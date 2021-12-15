@@ -1,0 +1,77 @@
+﻿<UserControl x:Class="GraduationProject.View.AddLineView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:GraduationProject.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="500">
+    <Grid Background="Transparent">
+        <Grid Background="Black" Opacity="0.3"/>
+        <Border Background="#17171a" Margin="50 20" CornerRadius="20" MinHeight="300" MaxWidth="400" MinWidth="350">
+            <Grid>
+                <StackPanel Margin="20">
+
+                    <Grid>
+                        <TextBlock Text="Add New Line" Foreground="White" FontFamily="Segoe UI Black" FontSize="25"/>
+                        <Button HorizontalAlignment="Right" Command="{Binding CloseWindow}" Background="Transparent" BorderThickness="0">
+                            <materialDesign:PackIcon Kind="Close" Foreground="White" Height="30" Width="30"/>
+                        </Button>
+                    </Grid>
+                    <Grid Margin="0 20 0 0">
+                        <Label Content="Введите длину линии, км:" Foreground="White" HorizontalAlignment="Left"/>
+                        <TextBox Foreground="White" FontSize="15" Margin="170 0 5 0" Text="{Binding LineLength}">
+                            <TextBox.Template>
+                                <ControlTemplate>
+                                    <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="#171924">
+                                        <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+                                    </Border>
+                                </ControlTemplate>
+                            </TextBox.Template>
+                        </TextBox>
+                    </Grid>
+                    <Grid Margin="0 20 0 0">
+                        <Label Content="Выберите марку провода:" Foreground="White" HorizontalAlignment="Left"/>
+                        <ComboBox BorderThickness="1" Margin="170 0 5 0" ItemsSource="{Binding SourceWireBrand}" SelectedItem="{Binding SelectedWireBrand}"/>
+                    </Grid>
+                    <Grid Margin="0 20 0 0">
+                        <Label Content="Удельное активное сопротивление:" Foreground="White" HorizontalAlignment="Left"/>
+                        <TextBox Foreground="White" FontSize="15" Margin="230 0 5 0" Text="{Binding R0}">
+                            <TextBox.Template>
+                                <ControlTemplate>
+                                    <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="#171924">
+                                        <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+                                    </Border>
+                                </ControlTemplate>
+                            </TextBox.Template>
+                        </TextBox>
+                    </Grid>
+                    <Grid Margin="0 20 0 20">
+                        <Label Content="Удельное реактивное сопротивление:" Foreground="White" HorizontalAlignment="Left"/>
+                        <TextBox Foreground="White" FontSize="15" Margin="230 0 5 0" Text="{Binding X0}">
+                            <TextBox.Template>
+                                <ControlTemplate>
+                                    <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="#171924">
+                                        <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+                                    </Border>
+                                </ControlTemplate>
+                            </TextBox.Template>
+                        </TextBox>
+                    </Grid>
+                    <Button Foreground="White" Margin="0 10" Cursor="Hand" Command="{Binding AddLineCommand}">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border BorderThickness="0" CornerRadius="5" Background="#3861fb">
+                                    <Grid Height="35">
+                                        <TextBlock Text="Add New Line" HorizontalAlignment="Center" FontFamily="Segoe UI Semibold" VerticalAlignment="Center"/>
+                                    </Grid>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

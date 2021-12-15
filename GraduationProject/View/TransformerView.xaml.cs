@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GraduationProject.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,16 +14,17 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace GraduationProject
+namespace GraduationProject.View
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для TransformerView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class TransformerView : UserControl
     {
-        public MainWindow()
+        public TransformerView()
         {
             InitializeComponent();
+            DataContext = new TransformerViewModel();
         }
     }
 }
