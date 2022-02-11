@@ -1,0 +1,208 @@
+﻿<UserControl x:Class="GraduationProject.View.CatalogTransformerView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:GraduationProject.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="750" d:DesignWidth="1200">
+    <Grid Background="White">
+        <Grid Background="White" Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Button Background="Transparent" BorderBrush="Transparent" Command="{Binding Return}" HorizontalAlignment="Left">
+                <materialDesign:PackIcon Kind="ArrowLeft" Foreground="Gray" Height="40" Width="auto"/>
+            </Button>
+            <Grid Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Orientation="Vertical" Grid.Column="0" Margin="5 0">
+                    <Label Content="Марка"/>
+                    <TextBox Text="{Binding Brand, UpdateSourceTrigger=PropertyChanged}" Foreground="White">
+                        <TextBox.Template>
+                            <ControlTemplate>
+                                <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="#171924">
+                                    <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+                                </Border>
+                            </ControlTemplate>
+                        </TextBox.Template>
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Grid.Column="1" Margin="5 0">
+                    <Label Content="Snom"/>
+                    <TextBox Text="{Binding Snom, UpdateSourceTrigger=PropertyChanged}" Foreground="White">
+                        <TextBox.Template>
+                            <ControlTemplate>
+                                <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="#171924">
+                                    <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+                                </Border>
+                            </ControlTemplate>
+                        </TextBox.Template>
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Grid.Column="2" Margin="5 0">
+                    <Label Content="Pxx"/>
+                    <TextBox Text="{Binding Pxx, UpdateSourceTrigger=PropertyChanged}" Foreground="White">
+                        <TextBox.Template>
+                            <ControlTemplate>
+                                <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="#171924">
+                                    <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+                                </Border>
+                            </ControlTemplate>
+                        </TextBox.Template>
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Grid.Column="3" Margin="5 0">
+                    <Label Content="Qxx"/>
+                    <TextBox Text="{Binding Qxx, UpdateSourceTrigger=PropertyChanged}" Foreground="White">
+                        <TextBox.Template>
+                            <ControlTemplate>
+                                <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="#171924">
+                                    <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+                                </Border>
+                            </ControlTemplate>
+                        </TextBox.Template>
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Grid.Column="4" Margin="5 0">
+                    <Label Content="Ukz"/>
+                    <TextBox Text="{Binding Ukz, UpdateSourceTrigger=PropertyChanged}" Foreground="White">
+                        <TextBox.Template>
+                            <ControlTemplate>
+                                <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="#171924">
+                                    <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+                                </Border>
+                            </ControlTemplate>
+                        </TextBox.Template>
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Grid.Column="5" Margin="5 0">
+                    <Label Content="Ixx"/>
+                    <TextBox Text="{Binding Ixx, UpdateSourceTrigger=PropertyChanged}" Foreground="White">
+                        <TextBox.Template>
+                            <ControlTemplate>
+                                <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="#171924">
+                                    <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+                                </Border>
+                            </ControlTemplate>
+                        </TextBox.Template>
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Grid.Column="6" Margin="5 0">
+                    <Label Content="Pkz"/>
+                    <TextBox Text="{Binding Pkz, UpdateSourceTrigger=PropertyChanged}" Foreground="White">
+                        <TextBox.Template>
+                            <ControlTemplate>
+                                <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="#171924">
+                                    <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+                                </Border>
+                            </ControlTemplate>
+                        </TextBox.Template>
+                    </TextBox>
+                </StackPanel>
+                <Button Content="+" Width="30" Height="30" VerticalAlignment="Center" Command="{Binding Add}" Grid.Column="7" Margin="5 0"/>
+            </Grid>
+            <Grid Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Border BorderBrush="Gray" BorderThickness="0 1 0 1"/>
+                    <Grid Margin="10 0 0 0" VerticalAlignment="Center">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <TextBlock Foreground="Gray" Text="Name"/>
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <TextBlock Foreground="Gray" Text="Snom"/>
+                        </Grid>
+                        <Grid Grid.Column="2">
+                            <TextBlock Foreground="Gray" Text="Pxx"/>
+                        </Grid>
+                        <Grid Grid.Column="3">
+                            <TextBlock Foreground="Gray" Text="Qxx"/>
+                        </Grid>
+                        <Grid Grid.Column="4">
+                            <TextBlock Foreground="Gray" Text="Ukz"/>
+                        </Grid>
+                        <Grid Grid.Column="5">
+                            <TextBlock Foreground="Gray" Text="Ixx"/>
+                        </Grid>
+                        <Grid Grid.Column="6">
+                            <TextBlock Foreground="Gray" Text="Pkz"/>
+                        </Grid>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <ScrollViewer>
+                        <ListView ItemsSource="{Binding TransformersList}" Background="Transparent" BorderThickness="0">
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="ListBoxItem">
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid Grid.Column="0">
+                                            <Label Foreground="Gray" Content="{Binding Path=Brand}"/>
+                                        </Grid>
+                                        <Grid Grid.Column="1">
+                                            <Label Foreground="Gray" Content="{Binding Path=Snom}"/>
+                                        </Grid>
+                                        <Grid Grid.Column="2">
+                                            <Label Foreground="Gray" Content="{Binding Path=Pxx}"/>
+                                        </Grid>
+                                        <Grid Grid.Column="3">
+                                            <Label Foreground="Gray" Content="{Binding Path=Qxx}"/>
+                                        </Grid>
+                                        <Grid Grid.Column="4">
+                                            <Label Foreground="Gray" Content="{Binding Path=Ukz}"/>
+                                        </Grid>
+                                        <Grid Grid.Column="5">
+                                            <Label Foreground="Gray" Content="{Binding Path=Ixx}"/>
+                                        </Grid>
+                                        <Grid Grid.Column="6">
+                                            <Label Foreground="Gray" Content="{Binding Path=Pkz}"/>
+                                        </Grid>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </ScrollViewer>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

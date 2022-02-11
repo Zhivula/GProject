@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
@@ -8,6 +9,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Shapes;
 using GraduationProject.Data;
+using GraduationProject.DataBase;
 using GraduationProject.View;
 
 namespace GraduationProject.ViewModel
@@ -18,10 +20,10 @@ namespace GraduationProject.ViewModel
         public ObservableCollection<string> SourceWireBrand { get; set; }
         private string lineLength;
         private string selectedWireBrand;
-        private float r0;
-        private float x0;
+        private double r0;
+        private double x0;
 
-        public float R0
+        public double R0
         {
             get => r0;
             set
@@ -30,7 +32,7 @@ namespace GraduationProject.ViewModel
                 OnPropertyChanged(nameof(R0));
             }
         }
-        public float X0
+        public double X0
         {
             get => x0;
             set
@@ -55,35 +57,44 @@ namespace GraduationProject.ViewModel
             {
                 selectedWireBrand = value;
                 OnPropertyChanged(nameof(SelectedWireBrand));
-                if(value == SourceWireBrand[0])
+                //if(value == SourceWireBrand[0])
+                //{
+                //    R0 = 0.777f;
+                //    X0 = 0.403f;
+                //}
+                //if (value == SourceWireBrand[1])
+                //{
+                //    R0 = 0.42859f;
+                //    X0 = 0.408f;
+                //}
+                //if (value == SourceWireBrand[2])
+                //{
+                //    R0 = 0.30599f;
+                //    X0 = 0.397f;
+                //}
+                //if (value == SourceWireBrand[3])
+                //{
+                //    R0 = 0.24917f;
+                //    X0 = 0.391f;
+                //}
+                //if (value == SourceWireBrand[4])
+                //{
+                //    R0 = 0.19798f;
+                //    X0 = 0.358f;
+                //}
+                //if (value == SourceWireBrand[5])
+                //{
+                //    R0 = 0.1206f;
+                //    X0 = 0.333f;
+                //}
+                using (var context = new MyDbContext())
                 {
-                    R0 = 0.777f;
-                    X0 = 0.403f;
-                }
-                if (value == SourceWireBrand[1])
-                {
-                    R0 = 0.42859f;
-                    X0 = 0.408f;
-                }
-                if (value == SourceWireBrand[2])
-                {
-                    R0 = 0.30599f;
-                    X0 = 0.397f;
-                }
-                if (value == SourceWireBrand[3])
-                {
-                    R0 = 0.24917f;
-                    X0 = 0.391f;
-                }
-                if (value == SourceWireBrand[4])
-                {
-                    R0 = 0.19798f;
-                    X0 = 0.358f;
-                }
-                if (value == SourceWireBrand[5])
-                {
-                    R0 = 0.1206f;
-                    X0 = 0.333f;
+                    if(context.Lines.Count() > 0)
+                    {
+                        var item = context.Lines.Where(x => x.Brand == selectedWireBrand).Single();
+                        R0 = item.R0;
+                        X0 = item.X0;
+                    }
                 }
             }
         }
@@ -91,21 +102,30 @@ namespace GraduationProject.ViewModel
         public AddLineViewModel()
         {
             window = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
-            SourceWireBrand = new ObservableCollection<string>() { "АС-35", "АС-70" , "АС-95" , "АС-120" , "АС-150" , "АС-240" };
-            SelectedWireBrand = SourceWireBrand.First();
+            var list = new List<string>();
+            using (var context = new MyDbContext())
+            {
+                list = context.Lines.Select(x => x.Brand).ToList();
+            }
+
+            SourceWireBrand = new ObservableCollection<string>();
+            foreach (var i in list)
+            {
+                SourceWireBrand.Add(i);
+            }
+            SelectedWireBrand = SourceWireBrand.FirstOrDefault();
+
+
+            //SourceWireBrand = new ObservableCollection<string>() { "АС-35", "АС-70" , "АС-95" , "АС-120" , "АС-150" , "АС-240" };
+            //SelectedWireBrand = SourceWireBrand.First();
             LineLength = "1";
         }
         public ICommand AddLineCommand => new DelegateCommand(o =>
         {
             var global = GlobalGrid.GetInstance();
-            var line = new Button1(SelectedWireBrand,float.Parse(LineLength)) { Height = 50, Width = 100 };
-            //line.UTextBlock.Text = "0";
-            //line.R0 = R0;
-            //line.X0 = X0;
-            //line.Length = float.Parse(LineLength);
+            var line = new Button1(SelectedWireBrand,double.Parse(LineLength), R0, X0) { Height = 50, Width = 100 };
             OnPropertyChanged(nameof(line));
             Close();
-            //line.MainButton.Click += new RoutedEventHandler(MouseEvent);
             window.GridChange.Children.Add(line);
             window.curr = line;
 
@@ -121,12 +141,12 @@ namespace GraduationProject.ViewModel
         });
         private void Close()
         {
-            for (int i = window.GridChange.Children.Count - 1; i >= 0; --i)
+            for (int i = window.GridChangeFirst.Children.Count - 1; i >= 0; --i)
             {
-                var childTypeName = window.GridChange.Children[i].GetType().Name;
+                var childTypeName = window.GridChangeFirst.Children[i].GetType().Name;
                 if (childTypeName == "AddLineView")
                 {
-                    window.GridChange.Children.RemoveAt(i);
+                    window.GridChangeFirst.Children.RemoveAt(i);
                 }
             }
         }

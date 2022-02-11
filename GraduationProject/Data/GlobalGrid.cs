@@ -14,11 +14,9 @@ namespace GraduationProject.Data
         {
             CountNode = 0;
             Lines = new List<Button1>();
-            
             Tree = new Tree<int>();
-            //Lines = new List<LineGrid>();
-            //Chain = new List<LineGrid>();
             U = new List<float>();
+            BoxK = new List<int>();
         }
         public static GlobalGrid GetInstance()
         {
@@ -27,10 +25,9 @@ namespace GraduationProject.Data
         }
 
         public int CountNode { get; set; }
+        public List<int> BoxK { get; set; }
         public List<Button1> Lines;
         public Tree<int> Tree { get; set; }
-        //public List<LineGrid> Lines;
-        //public List<LineGrid> Chain;
         public List<float> U;
     }
 }

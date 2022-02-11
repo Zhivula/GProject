@@ -5,28 +5,35 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GraduationProject"
         mc:Ignorable="d"
-        Title="MainWindow" Height="550" Width="900" WindowStartupLocation="CenterScreen" WindowState="Maximized">
+        Title="MainWindow" Height="550" Width="1200" WindowStartupLocation="CenterScreen" WindowState="Maximized">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="600*"/>
             <ColumnDefinition Width="200*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="20*"/>
+            <RowDefinition Height="15*"/>
             <RowDefinition Height="100*"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Column="0" Grid.Row="0">
+        <Grid Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Background="#222531">
             <StackPanel Orientation="Horizontal">
-                <Button Content="New Line" Width="150" Command="{Binding CreateNewLine}"/>
-                <Button Content="New Transformer" Width="150" Command="{Binding CreateNewTransformer}"/>
+                <RadioButton Content="New Source" Width="150" Style="{StaticResource MenuButtonTheme}" Command="{Binding CreateNewSource}"/>
+                <RadioButton Content="New Line" Width="150" Style="{StaticResource MenuButtonTheme}" Command="{Binding CreateNewLine}"/>
+                <RadioButton Content="New Transformer" Width="150" Style="{StaticResource MenuButtonTheme}" Command="{Binding CreateNewTransformer}"/>
+                <RadioButton Content="Catalog Line" Width="150" Style="{StaticResource MenuButtonTheme}" Command="{Binding CatalogLine}"/>
+                <RadioButton Content="Catalog Transformer" Style="{StaticResource MenuButtonTheme}" Width="150" Command="{Binding CatalogTransformer}"/>
+                <RadioButton Content="Analysis" Width="150" Style="{StaticResource MenuButtonTheme}" Command="{Binding Analysis}"/>
+                <RadioButton Content="Settings" Width="150" Style="{StaticResource MenuButtonTheme}" Command="{Binding Settings}"/>
             </StackPanel>
         </Grid>
-        <!--<Grid Grid.Column="0" Grid.Row="1" Name="GridChange" MouseRightButtonUp="GridChange_MouseRightButtonUp" Background="White" >
-            --><!--<Border BorderBrush="Gray" BorderThickness="3"/>--><!--
-        </Grid>-->
-        <Canvas Grid.Column="0" Grid.Row="1" Name="GridChange" MouseRightButtonUp="GridChange_MouseRightButtonUp" Background="White">
-            
-        </Canvas>
+        <Grid Grid.Column="0" Grid.Row="1" Name="GridChangeFirst">
+            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                <Canvas Name="GridChange" MouseRightButtonUp="GridChange_MouseRightButtonUp" Background="White">
 
+                </Canvas>
+            </ScrollViewer>
+        </Grid>
+                <Grid Grid.Column="1" Grid.Row="1" Name="InfoPanel">
+        </Grid>
     </Grid>
 </Window>

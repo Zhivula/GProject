@@ -12,10 +12,16 @@ namespace GraduationProject.ViewModel
         private int n;
         private int k;
         private bool flag;
-        private float length;
+        private double length;
         private string brand;
-        private float p1;
-        private float p2;
+        private double p1;
+        private double p2;
+        private double q1;
+        private double q2;
+        private float u1;
+        private float u2;
+        private double r0;
+        private double x0;
 
         public int N
         {
@@ -53,7 +59,7 @@ namespace GraduationProject.ViewModel
                 OnPropertyChanged(nameof(Brand));
             }
         }
-        public float Length
+        public double Length
         {
             get => length;
             set
@@ -62,7 +68,7 @@ namespace GraduationProject.ViewModel
                 OnPropertyChanged(nameof(Length));
             }
         }
-        public float P1
+        public double P1
         {
             get => p1;
             set
@@ -71,7 +77,7 @@ namespace GraduationProject.ViewModel
                 OnPropertyChanged(nameof(P1));
             }
         }
-        public float P2
+        public double P2
         {
             get => p2;
             set
@@ -80,11 +86,66 @@ namespace GraduationProject.ViewModel
                 OnPropertyChanged(nameof(P2));
             }
         }
-
-        public ButtonViewModel(string brand, float length)
+        public double Q1
+        {
+            get => q1;
+            set
+            {
+                q1 = value;
+                OnPropertyChanged(nameof(Q1));
+            }
+        }
+        public double Q2
+        {
+            get => q2;
+            set
+            {
+                q2 = value;
+                OnPropertyChanged(nameof(Q2));
+            }
+        }
+        public float U1
+        {
+            get => u1;
+            set
+            {
+                u1 = value;
+                OnPropertyChanged(nameof(U1));
+            }
+        }
+        public float U2
+        {
+            get => u2;
+            set
+            {
+                u2 = value;
+                OnPropertyChanged(nameof(U2));
+            }
+        }
+        public double R0
+        {
+            get => r0;
+            set
+            {
+                r0 = value;
+                OnPropertyChanged(nameof(R0));
+            }
+        }
+        public double X0
+        {
+            get => x0;
+            set
+            {
+                x0 = value;
+                OnPropertyChanged(nameof(X0)); 
+            }
+        }
+        public ButtonViewModel(string brand, double length, double r0, double x0)
         {
             Brand = brand;
             Length = length;
+            R0 = r0;
+            X0 = x0;
         }
         #region PropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;

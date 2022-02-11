@@ -5,46 +5,47 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GraduationProject"
              mc:Ignorable="d" 
-             d:DesignHeight="100" d:DesignWidth="200">
-    <Grid>
-        <Border BorderBrush="Gray" BorderThickness="2"/>
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="10"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="10"/>
-            </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Background="Red" Height="10" Width="10" Click="Button_Click_1">
-                <Button.Template>
-                    <ControlTemplate TargetType="Button">
-                        <Grid>
-                            <Ellipse Fill="{TemplateBinding Background}"/>
-                            <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Grid>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
-            <Grid Grid.Column="1">
-                <Grid>
-                    <TextBlock Text="{Binding Length}" FontSize="15" Foreground="Gray" HorizontalAlignment="Center"/>
-                    <TextBlock Text="{Binding P1}" FontSize="15" Foreground="Gray" HorizontalAlignment="Center" Margin="0 -20 0 0"/>
-                    <TextBlock Text="{Binding N}" FontSize="15" Foreground="Gray" HorizontalAlignment="Left"/>
-                    <TextBlock Text="{Binding K}" FontSize="15" Foreground="Gray" HorizontalAlignment="Right"/>
+             d:DesignHeight="50" d:DesignWidth="100">
+    <Border BorderBrush="Gray" BorderThickness="1">
+        <Grid MouseEnter="Button_MouseEnter">
+            <!--<Border BorderBrush="Gray" BorderThickness="2"/>-->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="10"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Background="Red" Height="10" Width="10" Click="Button_Click_1">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Grid>
+                                <Ellipse Fill="{TemplateBinding Background}"/>
+                                <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Grid>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Grid Grid.Column="1">
+                    <Grid x:Name="MiddleCanvas">
+                        <TextBlock x:Name="Length" Text="{Binding Length}" FontSize="15" Foreground="Gray" HorizontalAlignment="Center"/>
+                        <TextBlock x:Name="N" Text="{Binding N}" FontSize="15" Foreground="Gray" HorizontalAlignment="Left"/>
+                        <TextBlock x:Name="K" Text="{Binding K}" FontSize="15" Foreground="Gray" HorizontalAlignment="Right"/>
+                        <TextBlock x:Name="Brand" Text="{Binding Brand}" FontSize="15" Foreground="Gray" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="20"/>
+                    </Grid>
                     <Button x:Name="MainButton" Height="5" Width="auto" BorderThickness="0" Background="Black" VerticalAlignment="Center" Click="Button_Click">
                     </Button>
-                    <TextBlock Text="{Binding Brand}" FontSize="15" Foreground="Gray" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
                 </Grid>
+                <Button Grid.Column="2" Background="Green" Height="10" Width="10">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Grid>
+                                <Ellipse Fill="{TemplateBinding Background}"/>
+                                <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Grid>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
             </Grid>
-            <Button Grid.Column="2" Background="Green" Height="10" Width="10">
-                <Button.Template>
-                    <ControlTemplate TargetType="Button">
-                        <Grid>
-                            <Ellipse Fill="{TemplateBinding Background}"/>
-                            <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Grid>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
         </Grid>
-    </Grid>
+    </Border>
 </UserControl>

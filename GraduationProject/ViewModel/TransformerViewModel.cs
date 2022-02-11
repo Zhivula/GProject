@@ -1,9 +1,12 @@
-﻿using System;
+﻿using GraduationProject.DataBase;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Input;
 
 namespace GraduationProject.ViewModel
 {
@@ -12,11 +15,23 @@ namespace GraduationProject.ViewModel
         private int n;
         private int k;
         private bool flag;
-        private float length;
         private string brand;
-        private float p1;
-        private float p2;
+        private double p;
+        private double q;
+        private double s;
+        private double kz;
+        private Visibility visibility;
+        private Transformer transformer;
 
+        public Visibility Visibility
+        {
+            get => visibility;
+            set
+            {
+                visibility = value;
+                OnPropertyChanged(nameof(Visibility));
+            }
+        }
         public int N
         {
             get => n;
@@ -53,38 +68,60 @@ namespace GraduationProject.ViewModel
                 OnPropertyChanged(nameof(Brand));
             }
         }
-        public float Length
+        public double P
         {
-            get => length;
+            get => p;
             set
             {
-                length = value;
-                OnPropertyChanged(nameof(Length));
+                p = value;
+                OnPropertyChanged(nameof(P));
             }
         }
-        public float P1
+        public double Q
         {
-            get => p1;
+            get => q;
             set
             {
-                p1 = value;
-                OnPropertyChanged(nameof(P1));
+                q = value;
+                OnPropertyChanged(nameof(Q));
             }
         }
-        public float P2
+        public double S
         {
-            get => p2;
+            get => s;
             set
             {
-                p2 = value;
-                OnPropertyChanged(nameof(P2));
+                s = value;
+                OnPropertyChanged(nameof(S));
             }
         }
-        public TransformerViewModel()
+        public double Kz
         {
-            K = 0;
-            N = 0;
+            get => kz;
+            set
+            {
+                kz = value;
+                OnPropertyChanged(nameof(Kz));
+                double cos = 0.8;
+                S = transformer.Snom * Kz;
+                P = S * cos;
+                Q = S * Math.Sqrt(1 - cos * cos);
+            }
         }
+        public TransformerViewModel(Transformer transformer)
+        {
+            this.transformer = transformer;
+            Kz = 1;
+            double cos = 0.8;
+            S = transformer.Snom * Kz;
+            P = S * cos;
+            Q = S * Math.Sqrt(1 - cos*cos);
+            Brand = transformer.Brand;
+        }
+        //public ICommand DoubleClick => new DelegateCommand(o =>
+        //{
+        //    Visibility = Visibility.Visible;
+        //});
         #region PropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged(string name)

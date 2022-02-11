@@ -1,4 +1,5 @@
 ﻿using GraduationProject.Data;
+using GraduationProject.DataBase;
 using GraduationProject.View;
 using System;
 using System.Collections.Generic;
@@ -44,13 +45,28 @@ namespace GraduationProject.ViewModel
         public AddTransformerViewModel()
         {
             window = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
-            SourceTransformerBrand = new ObservableCollection<string>() { "ТМ-30", "ТМ-60", "ТМ-63", "ТМ-100", "ТМ-400", "ТМ-600" };
+            var list = new List<string>();
+            using (var context = new MyDbContext())
+            {
+                list = context.Transformers.Select(x => x.Brand).ToList();
+            }
+
+            SourceTransformerBrand = new ObservableCollection<string>();
+            foreach (var i in list)
+            {
+                SourceTransformerBrand.Add(i);
+            }
             SelectedTransformerBrand = SourceTransformerBrand.First();
         }
         public ICommand AddTransformerCommand => new DelegateCommand(o =>
         {
             var global = GlobalGrid.GetInstance();
-            var transformer = new TransformerView() { Height = 50, Width = 100 };
+            var item = new DataBase.Transformer();
+            using (var context = new MyDbContext())
+            {
+                item = context.Transformers.Where(x => x.Brand == SelectedTransformerBrand).Single();
+            }
+            var transformer = new TransformerView(item) { Height = 50, Width = 100 };
             //line.UTextBlock.Text = "0";
             //line.R0 = R0;
             //line.X0 = X0;
@@ -81,12 +97,12 @@ namespace GraduationProject.ViewModel
         });
         private void Close()
         {
-            for (int i = window.GridChange.Children.Count - 1; i >= 0; --i)
+            for (int i = window.GridChangeFirst.Children.Count - 1; i >= 0; --i)
             {
-                var childTypeName = window.GridChange.Children[i].GetType().Name;
+                var childTypeName = window.GridChangeFirst.Children[i].GetType().Name;
                 if (childTypeName == "AddTransformerView")
                 {
-                    window.GridChange.Children.RemoveAt(i);
+                    window.GridChangeFirst.Children.RemoveAt(i);
                 }
             }
         }

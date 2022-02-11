@@ -4,6 +4,6 @@
              xmlns:local="clr-namespace:GraduationProject"
              StartupUri="View/MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary Source="/Theme/ButtonMain.xaml"/>
     </Application.Resources>
 </Application>

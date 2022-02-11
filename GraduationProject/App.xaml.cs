@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GraduationProject.DataBase;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,6 +14,13 @@ namespace GraduationProject
     /// </summary>
     public partial class App : Application
     {
-        
+        public App()
+        {
+            //using (var context = new MyDbContext())
+            //{
+            //    context.Database.Delete();
+            //    context.Database.Create();
+            //}
+        }
     }
 }

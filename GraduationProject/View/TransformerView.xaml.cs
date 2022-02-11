@@ -1,4 +1,5 @@
-﻿using GraduationProject.ViewModel;
+﻿using GraduationProject.DataBase;
+using GraduationProject.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,10 +22,45 @@ namespace GraduationProject.View
     /// </summary>
     public partial class TransformerView : UserControl
     {
-        public TransformerView()
+        public MainWindow window;
+        public TransformerView(Transformer tr)
         {
+            window = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+            RenderTransform = new RotateTransform() { Angle = 0 };
             InitializeComponent();
-            DataContext = new TransformerViewModel();
+            DataContext = new TransformerViewModel(tr);
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            window.curr = this;
+        }
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            Dop.Visibility = Visibility.Hidden;
+        }
+        private void RotateTransformer(object sender, RoutedEventArgs e)
+        {
+            var x = Canvas.GetLeft(this);
+            var y = Canvas.GetTop(this);
+            if (((RotateTransform)RenderTransform).Angle == 270)
+            {
+                ((RotateTransform)RenderTransform).Angle = 0;
+            }
+            else ((RotateTransform)RenderTransform).Angle += 90;
+
+
+            Canvas.SetLeft(this, x);
+            Canvas.SetTop(this, y);
+        }
+        //private void Button_MouseEnter(object sender, MouseEventArgs e)
+        //{
+        //    window.InfoPanel.Children.Add(new PanelLineView());
+        //}
+
+        private void Button_MouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            Dop.Visibility = Visibility.Visible;
         }
     }
 }

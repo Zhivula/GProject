@@ -5,11 +5,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:GraduationProject.View"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="500">
-    <Grid Background="Transparent">
-        <Grid Background="Black" Opacity="0.3"/>
-        <Border Background="#17171a" Margin="50 20" CornerRadius="20" MinHeight="300" MaxWidth="400" MinWidth="350">
+             mc:Ignorable="d"> 
+    <Grid Background="Transparent" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Grid Background="Black" Opacity="0.3" />
+        <Border HorizontalAlignment="Center" VerticalAlignment="Center" Background="#17171a" Margin="50 20" CornerRadius="20" MinHeight="300" MinWidth="350">
             <Grid>
                 <StackPanel Margin="20">
 

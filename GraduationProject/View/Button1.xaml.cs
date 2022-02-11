@@ -25,20 +25,23 @@ namespace GraduationProject.View
     {
         public MainWindow window;
 
-        public Button1(string brand, float length)
+        public Button1(string brand, double length, double r0, double x0)
         {
             window = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
-            //RenderTransformOrigin = new Point(0.5, 0.5);
             RenderTransform = new RotateTransform() { Angle = 0 };
             InitializeComponent();
-            DataContext = new ButtonViewModel(brand, length);
+            DataContext = new ButtonViewModel(brand, length, r0, x0);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             window.curr = this;
         }
-
+        private void Button_MouseEnter(object sender, MouseEventArgs e)
+        {
+            window.InfoPanel.Children.Clear();
+            window.InfoPanel.Children.Add(new PanelLineView(this));
+        }
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             var x = Canvas.GetLeft(this);
@@ -46,11 +49,33 @@ namespace GraduationProject.View
             //RenderTransformOrigin = new Point(0, 0);
             //((RotateTransform)RenderTransform).CenterX = 50;
             //((RotateTransform)RenderTransform).CenterY = 25;
-            ((RotateTransform)RenderTransform).Angle +=90;
+            if (((RotateTransform)RenderTransform).Angle == 270)
+            {
+                ((RotateTransform)RenderTransform).Angle = 0;
+            }
+            else ((RotateTransform)RenderTransform).Angle +=90;
             
-
+            if(((RotateTransform)RenderTransform).Angle == 180)
+            {
+                RotateTransform rotate = new RotateTransform(-180);
+                K.LayoutTransform = rotate;
+                N.LayoutTransform = rotate;
+                Length.LayoutTransform = rotate;
+                Brand.VerticalAlignment = VerticalAlignment.Top;
+                Brand.LayoutTransform = rotate;
+            }
+            if (((RotateTransform)RenderTransform).Angle == 270)
+            {
+                RotateTransform rotate = new RotateTransform(180);
+                K.LayoutTransform = rotate;
+                N.LayoutTransform = rotate;
+                Length.LayoutTransform = rotate;
+                Brand.VerticalAlignment = VerticalAlignment.Bottom;
+                Brand.LayoutTransform = rotate;
+            }
             Canvas.SetLeft(this, x);
             Canvas.SetTop(this, y);
+            MessageBox.Show("X= " + Canvas.GetLeft(this) + "   Y= " + Canvas.GetTop(this));
 
             //var point = Mouse.GetPosition(window.GridChange);
             //var xp = point.X - (point.X % 10);

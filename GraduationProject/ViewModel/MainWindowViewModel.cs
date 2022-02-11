@@ -17,15 +17,35 @@ namespace GraduationProject.ViewModel
         {
             window = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
         }
+        public ICommand CreateNewSource => new DelegateCommand(o =>
+        {
+            //window.GridChange.Children.Clear();
+            window.GridChangeFirst.Children.Add(new AddSourceView());
+        });
         public ICommand CreateNewLine => new DelegateCommand(o =>
         { 
             //window.GridChange.Children.Clear();
-            window.GridChange.Children.Add(new AddLineView());
+            window.GridChangeFirst.Children.Add(new AddLineView());
         }); 
         public ICommand CreateNewTransformer => new DelegateCommand(o =>
         {
             //window.GridChange.Children.Clear();
-            window.GridChange.Children.Add(new AddTransformerView());
+            window.GridChangeFirst.Children.Add(new AddTransformerView());
+        });
+        public ICommand CatalogLine => new DelegateCommand(o =>
+        {
+            //window.GridChange.Children.Clear();
+            window.GridChangeFirst.Children.Add(new CatalogLineView());
+        });
+        public ICommand CatalogTransformer => new DelegateCommand(o =>
+        {
+            //window.GridChange.Children.Clear();
+            window.GridChangeFirst.Children.Add(new CatalogTransformerView());
+        });
+        public ICommand Analysis => new DelegateCommand(o =>
+        {
+            //window.GridChange.Children.Clear();
+            window.GridChangeFirst.Children.Add(new AnalysisView());
         });
     }
 }
