@@ -39,6 +39,16 @@
                     <TextBlock Foreground="Gray" Text="{Binding U1}"/>
                     <TextBlock Foreground="Gray" Text="   кВ"/>
                 </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Foreground="Gray" Text="Wp1:"/>
+                    <TextBlock Foreground="Gray" Text="{Binding Wp1}"/>
+                    <TextBlock Foreground="Gray" Text="   кВт*ч"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Foreground="Gray" Text="Wq1:"/>
+                    <TextBlock Foreground="Gray" Text="{Binding Wq1}"/>
+                    <TextBlock Foreground="Gray" Text="   кВар*ч"/>
+                </StackPanel>
             </StackPanel>
         </Grid>
         <Grid Grid.Row="2" >
@@ -59,6 +69,16 @@
                     <TextBlock Foreground="Gray" Text="U2:"/>
                     <TextBlock Foreground="Gray" Text="{Binding U2}"/>
                     <TextBlock Foreground="Gray" Text="   кВ"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Foreground="Gray" Text="Wp2:"/>
+                    <TextBlock Foreground="Gray" Text="{Binding Wp2}"/>
+                    <TextBlock Foreground="Gray" Text="   кВт*ч"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Foreground="Gray" Text="Wq2:"/>
+                    <TextBlock Foreground="Gray" Text="{Binding Wq2}"/>
+                    <TextBlock Foreground="Gray" Text="   кВар*ч"/>
                 </StackPanel>
             </StackPanel>
         </Grid>

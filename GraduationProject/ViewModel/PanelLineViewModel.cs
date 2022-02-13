@@ -23,7 +23,11 @@ namespace GraduationProject.ViewModel
         private double du;
         private double r;
         private double x;
-        private double l; 
+        private double l;
+        private double wp1;
+        private double wp2;
+        private double wq1;
+        private double wq2;
 
         public string LineNumber
         {
@@ -151,6 +155,42 @@ namespace GraduationProject.ViewModel
                 OnPropertyChanged(nameof(L));
             }
         }
+        public double Wp1
+        {
+            get => wp1;
+            set
+            {
+                wp1 = value;
+                OnPropertyChanged(nameof(Wp1));
+            }
+        }
+        public double Wp2
+        {
+            get => wp2;
+            set
+            {
+                wp2 = value;
+                OnPropertyChanged(nameof(Wp2));
+            }
+        }
+        public double Wq1
+        {
+            get => wq1;
+            set
+            {
+                wq1 = value;
+                OnPropertyChanged(nameof(Wq1));
+            }
+        }
+        public double Wq2
+        {
+            get => wq2;
+            set
+            {
+                wq2 = value;
+                OnPropertyChanged(nameof(Wq2));
+            }
+        }
         public PanelLineViewModel(Button1 line)
         {
             var context = line.DataContext as ButtonViewModel;
@@ -168,6 +208,10 @@ namespace GraduationProject.ViewModel
             dU = U1 - U2;
             Brand = context.Brand;
             L = context.Length;
+            Wp1 = context.Wp1;
+            Wp2 = context.Wp2;
+            Wq1 = context.Wq1;
+            Wq2 = context.Wq2;
         }
         #region PropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;

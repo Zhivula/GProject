@@ -125,37 +125,98 @@ namespace GraduationProject
                         var itemDataContext = item.DataContext as ButtonViewModel;
                         double another_left = 0;
                         double another_top = 0;
-                        another_left = Canvas.GetLeft(item) + 90;
-                        another_top = Canvas.GetTop(item);
+                        //Ниже описываются различные варианты положений элементов относительно друг друга
+                        //предыдуший элемент расположен горизонтально: 0 градусов поворот
+                        //активный элемент расположен вертикально: 270 или 90 градусов поворот
+                        if (((RotateTransform)item.RenderTransform).Angle == 0)
+                        {
+                            another_left = Canvas.GetLeft(item) + 90;
+                            another_top = Canvas.GetTop(item);
+
+                            if (((RotateTransform)activeLine.RenderTransform).Angle == 270)
+                            {
+                                another_left -= 20;
+                                another_top += 30;
+                            }
+                            if (((RotateTransform)activeLine.RenderTransform).Angle == 90)
+                            {
+                                another_left += 30;
+                                another_top += 20; 
+                            }
+                        }
+                        //предыдуший элемент расположен вертикально: 90 градусов поворот
+                        //активный элемент расположен горизонтально: 0 или 180 градусов поворот
                         if (((RotateTransform)item.RenderTransform).Angle == 90)
                         {
                             another_left = Canvas.GetLeft(item);
                             another_top = Canvas.GetTop(item)+90;
+
                             if (((RotateTransform)activeLine.RenderTransform).Angle == 0)
                             {
-                                another_left = Canvas.GetLeft(item) + -30;
-                                another_top = Canvas.GetTop(item)+70;
+                                another_left -= 30;
+                                another_top -= 20;
+                            }
+                            if (((RotateTransform)activeLine.RenderTransform).Angle == 180)
+                            {
+                                another_left -= 20;
+                                another_top += 30;
+                            }
+                        }
+                        //предыдуший элемент расположен горизонтально: 180 градусов поворот
+                        //активный элемент расположен вертикально: 270 или 90 градусов поворот
+                        if (((RotateTransform)item.RenderTransform).Angle == 180)
+                        {
+                            another_left = Canvas.GetLeft(item) - 90;
+                            another_top = Canvas.GetTop(item);
+
+                            if (((RotateTransform)activeLine.RenderTransform).Angle == 270)
+                            {
+                                another_left -= 20;
+                                another_top += 30;
+                            }
+                            if (((RotateTransform)activeLine.RenderTransform).Angle == 90)
+                            {
+                                another_left += 20;
+                                another_top -= 30;
+                            }
+                        }
+                        //предыдуший элемент расположен вертикально: 270 градусов поворот
+                        //активный элемент расположен горизонтально: 0 или 180 градусов поворот
+                        if (((RotateTransform)item.RenderTransform).Angle == 270)
+                        {
+                            another_left = Canvas.GetLeft(item);
+                            another_top = Canvas.GetTop(item) - 90;
+
+                            if (((RotateTransform)activeLine.RenderTransform).Angle == 0)
+                            {
+                                another_left += 20;
+                                another_top -= 30;
+                            }
+                            if (((RotateTransform)activeLine.RenderTransform).Angle == 180)
+                            {
+                                another_left += 20;
+                                another_top += 30;
                             }
                         }
                         //MessageBox.Show("X1: " + another_left + "X2: " + active_left + "Y1:" + another_top + "Y2:" + active_top);
+
+                        //Специальный случай для первой линии, чтобы она подключилась к источнику
                         if (active_left == 110 && active_top == 100 && (DataContextLine.Flag == false))
                         {
-                            //Специальный случай для первой линии, чтобы она подключилась к источнику
-
                             DataContextLine.N = 0;
                             DataContextLine.K = 1;
                             DataContextLine.Flag = true;
                             global.Tree.Add(0,1,new Point(110,100), activeLine);
                         }
 
-                        if (((active_left == another_left && active_top == another_top) || (active_left-30 == another_left && active_top-20 == another_top)) && (itemDataContext.Flag == true))
+                        //Есть общаая точка с другой линией и та линия имеет питание
+                        if ((active_left == another_left && active_top == another_top) && (itemDataContext.Flag == true))
                         {
-                            //Есть общаая точка с другой линией и та линия имеет питание
-
                             DataContextLine.K = global.Tree.Count+1;
                             DataContextLine.N = itemDataContext.K;
                             DataContextLine.Flag = true;
                             global.Tree.Add(DataContextLine.N, DataContextLine.K, new Point(another_left, another_top), activeLine);
+                            continue;
                         }
                         //Реализовать DELETE
                     }
@@ -176,14 +237,14 @@ namespace GraduationProject
 
                             var another_left = Canvas.GetLeft(item) + 100;
                             var another_top = Canvas.GetTop(item);
-                            //Реализовать DELETE
-                            if (context.Flag == true && (active_left != another_left || active_top != another_top))
-                            {
-                                context.Flag = false;
-                                var currentNode = global.Tree.Find(context.N, context.K);
-                                global.Tree.Delete(currentNode);
-                            }
-                            if (active_left == another_left && active_top == another_top && (itemDataContext.Flag == true))
+                        //Реализовать DELETE
+                        if (context.Flag == true && (active_left != another_left || active_top != another_top))
+                        {
+                            context.Flag = false;
+                            var currentNode = global.Tree.Find(context.N, context.K);
+                            global.Tree.Delete(currentNode);
+                        }
+                        if (active_left == another_left && active_top == another_top && (itemDataContext.Flag == true))
                             {
                                 if (GlobalGrid.GetInstance().BoxK.Count > 0)
                                 {

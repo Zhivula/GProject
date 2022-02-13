@@ -20,8 +20,20 @@ namespace GraduationProject.ViewModel
         private double q2;
         private float u1;
         private float u2;
+        private double w1;
+        private double w2;
         private double r0;
         private double x0;
+        private double wp1;
+        private double wp2;
+        private double wq1;
+        private double wq2;
+        private double dWp;
+        private double dWq;
+        private Dictionary<int,double> p2List;
+        private Dictionary<int, double> p1List;
+        private Dictionary<int, double> q2List;
+        private Dictionary<int, double> q1List;
 
         public int N
         {
@@ -86,6 +98,24 @@ namespace GraduationProject.ViewModel
                 OnPropertyChanged(nameof(P2));
             }
         }
+        public double W1
+        {
+            get => w1;
+            set
+            {
+                w1 = value;
+                OnPropertyChanged(nameof(W1));
+            }
+        }
+        public double W2
+        {
+            get => w2;
+            set
+            {
+                w2 = value;
+                OnPropertyChanged(nameof(W2));
+            }
+        }
         public double Q1
         {
             get => q1;
@@ -140,8 +170,115 @@ namespace GraduationProject.ViewModel
                 OnPropertyChanged(nameof(X0)); 
             }
         }
+        public double Wp1
+        {
+            get => wp1;
+            set
+            {
+                wp1 = value;
+                OnPropertyChanged(nameof(Wp1));
+            }
+        }
+        public double Wp2
+        {
+            get => wp2;
+            set
+            {
+                wp2 = value;
+                OnPropertyChanged(nameof(Wp2));
+            }
+        }
+        public double Wq1
+        {
+            get => wq1;
+            set
+            {
+                wq1 = value;
+                OnPropertyChanged(nameof(Wq1));
+            }
+        }
+        public double Wq2
+        {
+            get => wq2;
+            set
+            {
+                wq2 = value;
+                OnPropertyChanged(nameof(Wq2));
+            }
+        }
+        public double DWp
+        {
+            get => dWp;
+            set
+            {
+                dWp = value;
+                OnPropertyChanged(nameof(DWp));
+            }
+        }
+        public double DWq
+        {
+            get => dWq;
+            set
+            {
+                dWq = value;
+                OnPropertyChanged(nameof(DWq));
+            }
+        }
+        /// <summary>
+        /// Хранит активные мощности P2 протекающие по линии
+        /// </summary>
+        public Dictionary<int, double> P2List
+        {
+            get => p2List;
+            set
+            {
+                p2List = value;
+                OnPropertyChanged(nameof(P2List));
+            }
+        }
+        /// <summary>
+        /// Хранит активные мощности P1 протекающие по линии
+        /// </summary>
+        public Dictionary<int, double> P1List
+        {
+            get => p1List;
+            set
+            {
+                p1List = value;
+                OnPropertyChanged(nameof(P1List));
+            }
+        }
+        /// <summary>
+        /// Хранит активные мощности Q2 протекающие по линии
+        /// </summary>
+        public Dictionary<int, double> Q2List
+        {
+            get => q2List;
+            set
+            {
+                q2List = value;
+                OnPropertyChanged(nameof(Q2List));
+            }
+        }
+        /// <summary>
+        /// Хранит активные мощности Q1 протекающие по линии
+        /// </summary>
+        public Dictionary<int, double> Q1List
+        {
+            get => q1List;
+            set
+            {
+                q1List = value;
+                OnPropertyChanged(nameof(Q1List));
+            }
+        }
+
         public ButtonViewModel(string brand, double length, double r0, double x0)
         {
+            P2List = new Dictionary<int, double>();
+            P1List = new Dictionary<int, double>();
+            Q2List = new Dictionary<int, double>();
+            Q1List = new Dictionary<int, double>();
             Brand = brand;
             Length = length;
             R0 = r0;

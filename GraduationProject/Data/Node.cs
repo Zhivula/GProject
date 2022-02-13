@@ -43,37 +43,56 @@ namespace GraduationProject.Data
                     var transformer = view.DataContext as TransformerViewModel;
                     var parent = Parent;
                     var pp = parent;
-                    contextButton.Q2 = transformer.Q;
-                    contextButton.P2 = transformer.P;
+                    
+                    contextButton.P2List.Add(transformer.K, transformer.P1);
+                    contextButton.P2 = contextButton.P2List.Values.Sum();
+
+                    contextButton.Q2List.Add(transformer.K, transformer.Q1);
+                    contextButton.Q2 = contextButton.Q2List.Values.Sum();
 
                     var dP = (contextButton.P2 * contextButton.P2 + contextButton.Q2 * contextButton.Q2) * contextButton.Length * contextButton.R0 / (10.5f * 10.5f * 1000);
                     var dQ = (contextButton.P2 * contextButton.P2 + contextButton.Q2 * contextButton.Q2) * contextButton.Length * contextButton.X0 / (10.5f * 10.5f * 1000);
-                    contextButton.P1 = contextButton.P2 + dP;
-                    contextButton.Q1 = contextButton.Q2 + dQ;
+
+                    //contextButton.P1List.Add(transformer.K, contextButton.P2 + dP);
+
+                    var percent = contextButton.P2List.Last().Value / contextButton.P2;
+                    var dPpercent = dP * percent;
+                    contextButton.P1List.Add(contextButton.P2List.Last().Key, contextButton.P2List.Last().Value + dPpercent);
+                    contextButton.P1 = contextButton.P1List.Values.Sum();
+
+                    percent = contextButton.Q2List.Last().Value / contextButton.Q2;
+                    var dQpercent = dQ * percent;
+                    contextButton.Q1List.Add(contextButton.Q2List.Last().Key, contextButton.Q2List.Last().Value + dQpercent);
+                    contextButton.Q1 = contextButton.Q1List.Values.Sum();
 
                     var oldParent = contextButton;
-                    bool flag = false;
+
                     while (parent != null)
                     {
+
                         var contextButtonParent = parent.View.DataContext as ButtonViewModel;
                         pp = parent;
-                        if (contextButtonParent.P2 != 0 && flag == false)
-                        {
-                            contextButtonParent.P2 += oldParent.P1;
-                            contextButtonParent.Q2 += oldParent.Q1;
-                            flag = true;
-                        }
-                        else
-                        {
-                            contextButtonParent.P2 = oldParent.P1;
-                            contextButtonParent.Q2 = oldParent.Q1;
-                        }
-                        oldParent = contextButtonParent;
-                        //contextButtonParent.U1 = 10.5f;
-                        dP = (contextButtonParent.P2 * contextButtonParent.P2 + contextButtonParent.Q2 * contextButtonParent.Q2) * contextButtonParent.Length*contextButtonParent.R0 / (10.5f * 10.5f * 1000);
+                        contextButtonParent.P2List.Add(transformer.K, oldParent.P1List.Last().Value);
+                        contextButtonParent.P2 = contextButtonParent.P2List.Values.Sum();
+
+                        contextButtonParent.Q2List.Add(transformer.K, oldParent.Q1List.Last().Value);
+                        contextButtonParent.Q2 = contextButtonParent.Q2List.Values.Sum();
+
+                        dP = (contextButtonParent.P2 * contextButtonParent.P2 + contextButtonParent.Q2 * contextButtonParent.Q2) * contextButtonParent.Length * contextButtonParent.R0 / (10.5f * 10.5f * 1000);
                         dQ = (contextButtonParent.P2 * contextButtonParent.P2 + contextButtonParent.Q2 * contextButtonParent.Q2) * contextButtonParent.Length * contextButtonParent.X0 / (10.5f * 10.5f * 1000);
-                        contextButtonParent.P1 = contextButtonParent.P2 + dP;
-                        contextButtonParent.Q1 = contextButtonParent.Q2 + dQ;
+
+                        percent = contextButtonParent.P2List.Last().Value / contextButtonParent.P2;
+                        dPpercent = dP * percent;
+                        contextButtonParent.P1List.Add(transformer.K, contextButtonParent.P2List.Last().Value + dPpercent);
+                        contextButtonParent.P1 = contextButtonParent.P1List.Values.Sum();
+
+                        percent = contextButtonParent.Q2List.Last().Value / contextButtonParent.Q2;
+                        dQpercent = dQ * percent;
+                        contextButtonParent.Q1List.Add(transformer.K, contextButtonParent.Q2List.Last().Value + dQpercent);
+                        contextButtonParent.Q1 = contextButtonParent.Q1List.Values.Sum();
+
+                        oldParent = contextButtonParent;
+
                         parent = pp.Parent;
                     }
                     pp.Volt(10.5f);

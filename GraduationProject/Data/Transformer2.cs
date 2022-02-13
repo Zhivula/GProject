@@ -11,7 +11,7 @@ using System.Windows.Shapes;
 
 namespace GraduationProject.Data
 {
-    class Transformer : Button, IElement, INotifyPropertyChanged
+    class Transformer2 : Button, IElement, INotifyPropertyChanged
     {
         private bool flag;
         private string brand;
@@ -50,7 +50,7 @@ namespace GraduationProject.Data
 
         }
 
-        public Transformer()
+        public Transformer2()
         {
             var grid = new Grid();
 

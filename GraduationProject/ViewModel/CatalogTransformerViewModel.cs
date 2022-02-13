@@ -20,6 +20,9 @@ namespace GraduationProject.ViewModel
         private string ukz;
         private string ixx;
         private string pkz;
+        private string r;
+        private string x;
+        private string tnb;
 
         public List<Transformer> TransformersList { get; set; }
 
@@ -86,6 +89,33 @@ namespace GraduationProject.ViewModel
                 OnPropertyChanged(nameof(Pkz));
             }
         }
+        public string Tnb
+        {
+            get => tnb;
+            set
+            {
+                tnb = value;
+                OnPropertyChanged(nameof(Tnb));
+            }
+        }
+        public string R
+        {
+            get => r;
+            set
+            {
+                r = value;
+                OnPropertyChanged(nameof(R));
+            }
+        }
+        public string X
+        {
+            get => x;
+            set
+            {
+                x = value;
+                OnPropertyChanged(nameof(X));
+            }
+        }
 
         public CatalogTransformerViewModel()
         {
@@ -110,7 +140,10 @@ namespace GraduationProject.ViewModel
                     Pxx = double.Parse(Pxx),
                     Qxx = double.Parse(Qxx),
                     Ixx = double.Parse(Ixx),
-                    Ukz = double.Parse(Ukz)
+                    Ukz = double.Parse(Ukz),
+                    Tnb = double.Parse(Tnb),
+                    R = double.Parse(R),
+                    X = double.Parse(X)
                 };
                 context.Transformers.Add(item);
                 context.SaveChanges();
@@ -122,7 +155,7 @@ namespace GraduationProject.ViewModel
                     TransformersList.Add(i);
                 }
             }
-            Brand = Snom = Pkz = Pxx = Qxx = Ixx = Ukz = string.Empty;
+            Brand = Snom = Pkz = Pxx = Qxx = Ixx = Ukz = Tnb = string.Empty;
         });
         public ICommand Return => new DelegateCommand(o =>
         {

@@ -46,9 +46,7 @@ namespace GraduationProject.View
         {
             var x = Canvas.GetLeft(this);
             var y = Canvas.GetTop(this);
-            //RenderTransformOrigin = new Point(0, 0);
-            //((RotateTransform)RenderTransform).CenterX = 50;
-            //((RotateTransform)RenderTransform).CenterY = 25;
+
             if (((RotateTransform)RenderTransform).Angle == 270)
             {
                 ((RotateTransform)RenderTransform).Angle = 0;
@@ -64,9 +62,9 @@ namespace GraduationProject.View
                 Brand.VerticalAlignment = VerticalAlignment.Top;
                 Brand.LayoutTransform = rotate;
             }
-            if (((RotateTransform)RenderTransform).Angle == 270)
+            if (((RotateTransform)RenderTransform).Angle == 0)
             {
-                RotateTransform rotate = new RotateTransform(180);
+                RotateTransform rotate = new RotateTransform();
                 K.LayoutTransform = rotate;
                 N.LayoutTransform = rotate;
                 Length.LayoutTransform = rotate;
@@ -75,7 +73,7 @@ namespace GraduationProject.View
             }
             Canvas.SetLeft(this, x);
             Canvas.SetTop(this, y);
-            MessageBox.Show("X= " + Canvas.GetLeft(this) + "   Y= " + Canvas.GetTop(this));
+            //MessageBox.Show("X= " + Canvas.GetLeft(this) + "   Y= " + Canvas.GetTop(this));
 
             //var point = Mouse.GetPosition(window.GridChange);
             //var xp = point.X - (point.X % 10);

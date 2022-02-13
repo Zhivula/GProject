@@ -100,7 +100,7 @@
     <Compile Include="Data\GlobalGrid.cs" />
     <Compile Include="Data\IElement.cs" />
     <Compile Include="Data\LineGrid.cs" />
-    <Compile Include="Data\Transformer.cs" />
+    <Compile Include="Data\Transformer2.cs" />
     <Compile Include="DelegateCommand.cs" />
     <Compile Include="Model\AddLineModel.cs" />
     <Compile Include="Model\AddTransformerModel.cs" />

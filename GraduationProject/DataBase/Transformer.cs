@@ -10,5 +10,8 @@
         public double Ukz { get; set; }
         public double Snom { get; set; }
         public double Ixx { get; set; }
+        public double Tnb { get; set; }
+        public double R { get; set; }
+        public double X { get; set; }
     }
 }

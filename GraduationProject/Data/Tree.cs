@@ -59,13 +59,13 @@ namespace GraduationProject.Data
                 transformer.K = 0;
                 var parent = node.Parent;
                 var pp = parent;
-                contextButton.Q2 -= transformer.Q;
-                contextButton.P2 -= transformer.P;
+                contextButton.Q2 -= transformer.Q1;
+                contextButton.P2 -= transformer.P1;
 
-                var dP = (transformer.P * transformer.P + transformer.Q * transformer.Q) * contextButton.Length * contextButton.R0 / (10.5f * 10.5f * 1000);
-                var dQ = (transformer.P * transformer.P + transformer.Q * transformer.Q) * contextButton.Length * contextButton.X0 / (10.5f * 10.5f * 1000);
-                contextButton.P1  -= (transformer.P +  dP);
-                contextButton.Q1 -= (transformer.Q + dQ);
+                var dP = (transformer.P1 * transformer.P1 + transformer.Q1 * transformer.Q1) * contextButton.Length * contextButton.R0 / (10.5f * 10.5f * 1000);
+                var dQ = (transformer.P1 * transformer.P1 + transformer.Q1 * transformer.Q1) * contextButton.Length * contextButton.X0 / (10.5f * 10.5f * 1000);
+                contextButton.P1  -= (transformer.P1 +  dP);
+                contextButton.Q1 -= (transformer.Q1 + dQ);
 
                 var oldParent = contextButton;
                 bool flag = false;

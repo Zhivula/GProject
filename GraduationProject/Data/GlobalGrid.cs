@@ -23,6 +23,7 @@ namespace GraduationProject.Data
             if (instance == null) instance = new GlobalGrid();
             return instance;
         }
+        public static int T = 8760;
 
         public int CountNode { get; set; }
         public List<int> BoxK { get; set; }
