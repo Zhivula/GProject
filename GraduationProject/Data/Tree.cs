@@ -52,46 +52,23 @@ namespace GraduationProject.Data
         {
             if (node.View.DataContext is TransformerViewModel)
             {
-                var contextButton = node.Parent.View.DataContext as ButtonViewModel;
+                node.Delete(node.View);
+                var index = node.Parent.List.IndexOf(node);
                 var transformer = node.View.DataContext as TransformerViewModel;
                 GlobalGrid.GetInstance().BoxK.Add(transformer.K);
                 transformer.N = 0;
                 transformer.K = 0;
-                var parent = node.Parent;
-                var pp = parent;
-                contextButton.Q2 -= transformer.Q1;
-                contextButton.P2 -= transformer.P1;
-
-                var dP = (transformer.P1 * transformer.P1 + transformer.Q1 * transformer.Q1) * contextButton.Length * contextButton.R0 / (10.5f * 10.5f * 1000);
-                var dQ = (transformer.P1 * transformer.P1 + transformer.Q1 * transformer.Q1) * contextButton.Length * contextButton.X0 / (10.5f * 10.5f * 1000);
-                contextButton.P1  -= (transformer.P1 +  dP);
-                contextButton.Q1 -= (transformer.Q1 + dQ);
-
-                var oldParent = contextButton;
-                bool flag = false;
-                while (parent != null)
-                {
-                    var contextButtonParent = parent.View.DataContext as ButtonViewModel;
-                    pp = parent;
-                    if (parent.List.Count > 1 && flag == false)
-                    {
-                        contextButtonParent.P2 -= oldParent.P1;
-                        contextButtonParent.Q2 -= oldParent.Q1;
-                        flag = true;
-                    }
-                    else
-                    {
-                        contextButtonParent.P2 = oldParent.P1;
-                        contextButtonParent.Q2 = oldParent.Q1;
-                    }
-                    oldParent = contextButtonParent;
-                    dP = (contextButtonParent.P2 * contextButtonParent.P2 + contextButtonParent.Q2 * contextButtonParent.Q2) * contextButtonParent.Length * contextButtonParent.R0 / (10.5f * 10.5f * 1000);
-                    dQ = (contextButtonParent.P2 * contextButtonParent.P2 + contextButtonParent.Q2 * contextButtonParent.Q2) * contextButtonParent.Length * contextButtonParent.X0 / (10.5f * 10.5f * 1000);
-                    contextButtonParent.P1 = contextButtonParent.P2 + dP;
-                    contextButtonParent.Q1 = contextButtonParent.Q2 + dQ;
-                    parent = pp.Parent;
-                }
-                pp.Volt(10.5f);
+                node.Delete(node.View);
+                node.Parent.List.Remove(node.Parent.List[index]);
+            }
+            //Здесь нужно "глубокое удаление"
+            if (node.View.DataContext is ButtonViewModel)
+            {
+                var contextButton = node.Parent.View.DataContext as ButtonViewModel;
+                var line = node.View.DataContext as ButtonViewModel;
+                GlobalGrid.GetInstance().BoxK.Add(line.K);
+                line.N = 0;
+                line.K = 0;
             }
         }
         public void Volt()

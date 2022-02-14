@@ -227,59 +227,39 @@ namespace GraduationProject
                 var context = activeTransformer.DataContext as TransformerViewModel;
                 var active_left = Canvas.GetLeft(activeTransformer);
                 var active_top = Canvas.GetTop(activeTransformer);
-                //if(context.Flag == false)
-                //{
-                    if (global.Lines.Count >= 0)
+                if (global.Lines.Count >= 0)
+                {
+                    foreach (var item in global.Lines)
                     {
-                        foreach (var item in global.Lines)
-                        {
-                            var itemDataContext = item.DataContext as ButtonViewModel;
+                        var itemDataContext = item.DataContext as ButtonViewModel;
 
-                            var another_left = Canvas.GetLeft(item) + 100;
-                            var another_top = Canvas.GetTop(item);
+                        var another_left = Canvas.GetLeft(item) + 100;
+                        var another_top = Canvas.GetTop(item);
                         //Реализовать DELETE
                         if (context.Flag == true && (active_left != another_left || active_top != another_top))
                         {
                             context.Flag = false;
                             var currentNode = global.Tree.Find(context.N, context.K);
                             global.Tree.Delete(currentNode);
+                            
                         }
                         if (active_left == another_left && active_top == another_top && (itemDataContext.Flag == true))
+                        {
+                            if (GlobalGrid.GetInstance().BoxK.Count > 0)
                             {
-                                if (GlobalGrid.GetInstance().BoxK.Count > 0)
-                                {
-                                    context.K = global.BoxK.First();
-                                    global.BoxK.Remove(global.BoxK.First());
-                                }
-                                else
-                                {
-                                    context.K = global.Tree.Count + 1;
-                                }
-                                context.N = itemDataContext.K;
-                                global.Tree.Add(context.N, context.K, new Point(another_left, active_top), activeTransformer);
-                                context.Flag = true;
+                                context.K = global.BoxK.First();
+                                global.BoxK.Remove(global.BoxK.First());
                             }
+                            else
+                            {
+                                context.K = global.Tree.Count + 1;
+                            }
+                            context.N = itemDataContext.K;
+                            global.Tree.Add(context.N, context.K, new Point(another_left, active_top), activeTransformer);
+                            context.Flag = true;
                         }
                     }
-                //}
-
-
-                //if (active_left == another_left && active_top == another_top)
-                //{
-                //    //for (var i = 0; i < global.Chain.Count; i++)
-                //    //{
-                //    //    MessageBox.Show("В цикле итерация: " + i);
-                //    //    var Pj = activeTransformer.Snom * 0.8f;
-                //    //    var Qj = activeTransformer.Snom * (float)Math.Sqrt(1 - 0.8f * 0.8f);
-
-                //    //    var item = global.Tree.Foreach()[i].View.DataContext as ButtonViewModel;
-                //    //    var rl = 5 * item.Length;
-                //    //    var xl = 5 * item.Length;
-                //    //    var dU = (rl * Pj + xl * Qj) / (10.5f * 1000);
-                //    //    OnPropertyChanged(nameof(item));
-                //    //}
-
-                //}
+                }
             }
             curr = null;
         }

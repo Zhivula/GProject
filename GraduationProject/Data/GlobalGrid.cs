@@ -14,6 +14,7 @@ namespace GraduationProject.Data
         {
             CountNode = 0;
             Lines = new List<Button1>();
+            Transformers = new List<TransformerView>();
             Tree = new Tree<int>();
             U = new List<float>();
             BoxK = new List<int>();
@@ -28,6 +29,7 @@ namespace GraduationProject.Data
         public int CountNode { get; set; }
         public List<int> BoxK { get; set; }
         public List<Button1> Lines;
+        public List<TransformerView> Transformers;
         public Tree<int> Tree { get; set; }
         public List<float> U;
     }

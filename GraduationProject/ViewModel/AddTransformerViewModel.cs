@@ -61,31 +61,19 @@ namespace GraduationProject.ViewModel
         public ICommand AddTransformerCommand => new DelegateCommand(o =>
         {
             var global = GlobalGrid.GetInstance();
-            var item = new DataBase.Transformer();
+            var item = new Transformer();
             using (var context = new MyDbContext())
             {
                 item = context.Transformers.Where(x => x.Brand == SelectedTransformerBrand).Single();
             }
             var transformer = new TransformerView(item) { Height = 50, Width = 100 };
-            //line.UTextBlock.Text = "0";
-            //line.R0 = R0;
-            //line.X0 = X0;
-            //line.Length = float.Parse(LineLength);
             OnPropertyChanged(nameof(transformer));
             Close();
-            //line.MainButton.Click += new RoutedEventHandler(MouseEvent);
+            
             window.GridChange.Children.Add(transformer);
             window.curr = transformer;
 
-            //global.Lines.Add(transformer);
-            //var global = GlobalGrid.GetInstance();
-            //var transformer = new Transformer();
-            //transformer.Brand = SelectedTransformerBrand;
-            //transformer.Snom = int.Parse(Pnom);
-            //Close();
-            //transformer.Click += new RoutedEventHandler(MouseEvent);
-            //window.GridChange.Children.Add(transformer);
-            //window.curr = transformer;
+            global.Transformers.Add(transformer);
         });
         private void MouseEvent(object sender, RoutedEventArgs e)
         {

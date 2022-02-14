@@ -34,6 +34,10 @@ namespace GraduationProject.ViewModel
         private Dictionary<int, double> p1List;
         private Dictionary<int, double> q2List;
         private Dictionary<int, double> q1List;
+        private Dictionary<int, double> wp2List;
+        private Dictionary<int, double> wp1List;
+        private Dictionary<int, double> wq2List;
+        private Dictionary<int, double> wq1List;
 
         public int N
         {
@@ -249,7 +253,7 @@ namespace GraduationProject.ViewModel
             }
         }
         /// <summary>
-        /// Хранит активные мощности Q2 протекающие по линии
+        /// Хранит реактивные мощности Q2 протекающие по линии
         /// </summary>
         public Dictionary<int, double> Q2List
         {
@@ -261,7 +265,7 @@ namespace GraduationProject.ViewModel
             }
         }
         /// <summary>
-        /// Хранит активные мощности Q1 протекающие по линии
+        /// Хранит реактивные мощности Q1 протекающие по линии
         /// </summary>
         public Dictionary<int, double> Q1List
         {
@@ -273,12 +277,65 @@ namespace GraduationProject.ViewModel
             }
         }
 
+        /// <summary>
+        /// Хранит активную энергию протекающую по концу линии
+        /// </summary>
+        public Dictionary<int, double> Wp2List
+        {
+            get => wp2List;
+            set
+            {
+                wp2List = value;
+                OnPropertyChanged(nameof(Wp2List));
+            }
+        }
+        /// <summary>
+        /// Хранит активную энергию протекающую по началу линии
+        /// </summary>
+        public Dictionary<int, double> Wp1List
+        {
+            get => wp1List;
+            set
+            {
+                wp1List = value;
+                OnPropertyChanged(nameof(Wp1List));
+            }
+        }
+        /// <summary>
+        /// Хранит реактивную энергию протекающую по концу линии
+        /// </summary>
+        public Dictionary<int, double> Wq2List
+        {
+            get => wq2List;
+            set
+            {
+                wq2List = value;
+                OnPropertyChanged(nameof(Wq2List));
+            }
+        }
+        /// <summary>
+        /// Хранит реактивную энергию протекающую по началу линии
+        /// </summary>
+        public Dictionary<int, double> Wq1List
+        {
+            get => wq1List;
+            set
+            {
+                wq1List = value;
+                OnPropertyChanged(nameof(Wq1List));
+            }
+        }
+
         public ButtonViewModel(string brand, double length, double r0, double x0)
         {
             P2List = new Dictionary<int, double>();
             P1List = new Dictionary<int, double>();
             Q2List = new Dictionary<int, double>();
             Q1List = new Dictionary<int, double>();
+            Wp2List = new Dictionary<int, double>();
+            Wp1List = new Dictionary<int, double>();
+            Wq2List = new Dictionary<int, double>();
+            Wq1List = new Dictionary<int, double>();
             Brand = brand;
             Length = length;
             R0 = r0;

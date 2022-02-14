@@ -33,6 +33,7 @@ namespace GraduationProject.ViewModel
         private double dQj;
         private double dWp;
         private double dWq;
+        public double Tnb;
 
         private Visibility visibility;
         private Transformer transformer;
@@ -266,6 +267,7 @@ namespace GraduationProject.ViewModel
             Wq1 = Wq2 + DQj * GlobalGrid.T + DWq;
 
             Brand = transformer.Brand;
+            Tnb = transformer.Tnb;
         }
         //public ICommand DoubleClick => new DelegateCommand(o =>
         //{
