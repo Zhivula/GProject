@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GraduationProject.View"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:oxy="http://oxyplot.org/wpf"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="White">
@@ -15,5 +16,78 @@
         <Button Background="Transparent" BorderBrush="Transparent" Command="{Binding Return}" HorizontalAlignment="Left">
             <materialDesign:PackIcon Kind="ArrowLeft" Foreground="Gray" Height="40" Width="auto"/>
         </Button>
-    </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="260"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0">
+                <Grid>
+                    <Label Content="Начальный коэфф.загрузки: " Foreground="Gray" FontSize="15"/>
+                    <TextBox Foreground="Black" FontSize="15" MinWidth="50" Text="{Binding Min}" HorizontalAlignment="Right" Margin="0 2 0 2">
+                        <TextBox.Template>
+                            <ControlTemplate>
+                                <Border CornerRadius="5"  BorderThickness="2" BorderBrush="#FF468AFF" Background="White">
+                                    <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+                                </Border>
+                            </ControlTemplate>
+                        </TextBox.Template>
+                    </TextBox>
+                </Grid>
+                <Grid>
+                    <Label Content="Шаг: " Foreground="Gray" FontSize="15"/>
+                    <TextBox Foreground="Black" FontSize="15" MinWidth="50" Text="{Binding Step}" HorizontalAlignment="Right" Margin="0 2 0 2">
+                        <TextBox.Template>
+                            <ControlTemplate>
+                                <Border CornerRadius="5"  BorderThickness="2" BorderBrush="#FF468AFF" Background="White">
+                                    <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+                                </Border>
+                            </ControlTemplate>
+                        </TextBox.Template>
+                    </TextBox>
+                </Grid>
+                <Grid>
+                    <Label Content="Количество итераций: " Foreground="Gray" FontSize="15"/>
+                    <TextBox Foreground="Black" FontSize="15" MinWidth="50" Text="{Binding Count}" HorizontalAlignment="Right" Margin="0 2 0 2">
+                        <TextBox.Template>
+                            <ControlTemplate>
+                                <Border CornerRadius="5"  BorderThickness="2" BorderBrush="#FF468AFF" Background="White">
+                                    <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+                                </Border>
+                            </ControlTemplate>
+                        </TextBox.Template>
+                    </TextBox>
+                </Grid>
+                <Grid>
+                    <Label Content="Начальный коэфф.загрузки: " Foreground="Gray" FontSize="15"/>
+                    <TextBox Foreground="Black" FontSize="15" MinWidth="50" Text="{Binding Max}" HorizontalAlignment="Right" Margin="0 2 0 2">
+                        <TextBox.Template>
+                            <ControlTemplate>
+                                <Border CornerRadius="5"  BorderThickness="2" BorderBrush="#FF468AFF" Background="White">
+                                    <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+                                </Border>
+                            </ControlTemplate>
+                        </TextBox.Template>
+                    </TextBox>
+                </Grid>
+                <Grid>
+                    <Button Foreground="White" Margin="20 10" Cursor="Hand" Command="{Binding CalculateCommand}">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border BorderThickness="0" CornerRadius="5" Background="#3861fb">
+                                    <Grid Height="35">
+                                        <TextBlock Text="Calculate" HorizontalAlignment="Center" FontFamily="Segoe UI Semibold" VerticalAlignment="Center"/>
+                                    </Grid>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </Grid>
+
+            </StackPanel>
+            <Grid Grid.Column="1">
+                <oxy:PlotView Background="Transparent" Model="{Binding Plot}" BorderThickness="0"/>
+            </Grid>
+        </Grid>
+        </Grid>
 </UserControl>

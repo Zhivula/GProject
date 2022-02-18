@@ -52,7 +52,7 @@ namespace GraduationProject.Data
         {
             if (node.View.DataContext is TransformerViewModel)
             {
-                node.Delete(node.View);
+                //node.Delete(node.View);
                 var index = node.Parent.List.IndexOf(node);
                 var transformer = node.View.DataContext as TransformerViewModel;
                 GlobalGrid.GetInstance().BoxK.Add(transformer.K);
@@ -61,7 +61,7 @@ namespace GraduationProject.Data
                 node.Delete(node.View);
                 node.Parent.List.Remove(node.Parent.List[index]);
             }
-            //Здесь нужно "глубокое удаление"
+            //Здесь нужно "глубокое удаление" для линий
             if (node.View.DataContext is ButtonViewModel)
             {
                 var contextButton = node.Parent.View.DataContext as ButtonViewModel;

@@ -47,5 +47,10 @@ namespace GraduationProject.ViewModel
             //window.GridChange.Children.Clear();
             window.GridChangeFirst.Children.Add(new AnalysisView());
         });
+        public ICommand Settings => new DelegateCommand(o =>
+        {
+            //window.GridChange.Children.Clear();
+            window.GridChangeFirst.Children.Add(new SettingsView());
+        });
     }
 }

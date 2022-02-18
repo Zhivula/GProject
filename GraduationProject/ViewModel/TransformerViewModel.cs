@@ -135,16 +135,27 @@ namespace GraduationProject.ViewModel
             {
                 kz = value;
                 OnPropertyChanged(nameof(Kz));
-                double cos = 0.8;
-                Sj = transformer.Snom * Kz;
-                P2 = Sj * cos;
-                Q2 = Sj * Math.Sqrt(1 - cos * cos);
+                //Удалить трансформатор и снова его добавить 
 
-                dPj = (P2 * P2 + Q2 * Q2) * R / (10.5f * 10.5f * 1000);
-                dQj = (P2 * P2 + Q2 * Q2) * X / (10.5f * 10.5f * 1000);
+                var global = GlobalGrid.GetInstance();
+                var node = global.Tree.Find(N,K);
+                if (node!=null)
+                {
+                    node.Delete(node.View);
 
-                P1 = P2 + dPj + transformer.Pxx;
-                Q1 = Q2 + dQj + transformer.Qxx;
+                    double cos = 0.8;
+                    Sj = transformer.Snom * Kz;
+                    P2 = Sj * cos;
+                    Q2 = Sj * Math.Sqrt(1 - cos * cos);
+
+                    dPj = (P2 * P2 + Q2 * Q2) * R / (10.5f * 10.5f * 1000);
+                    dQj = (P2 * P2 + Q2 * Q2) * X / (10.5f * 10.5f * 1000);
+
+                    P1 = P2 + dPj + transformer.Pxx;
+                    Q1 = Q2 + dQj + transformer.Qxx;
+
+                    node.Add(node);
+                }
             }
         }
         public double R
@@ -269,10 +280,6 @@ namespace GraduationProject.ViewModel
             Brand = transformer.Brand;
             Tnb = transformer.Tnb;
         }
-        //public ICommand DoubleClick => new DelegateCommand(o =>
-        //{
-        //    Visibility = Visibility.Visible;
-        //});
         #region PropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged(string name)

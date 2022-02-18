@@ -50,9 +50,20 @@
     <Reference Include="MaterialDesignThemes.Wpf, Version=4.2.1.2, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignThemes.4.2.1\lib\net452\MaterialDesignThemes.Wpf.dll</HintPath>
     </Reference>
+    <Reference Include="OxyPlot, Version=2.1.0.0, Culture=neutral, PublicKeyToken=638079a8f0bd61e9, processorArchitecture=MSIL">
+      <HintPath>..\packages\OxyPlot.Core.2.1.0\lib\net45\OxyPlot.dll</HintPath>
+    </Reference>
+    <Reference Include="OxyPlot.Wpf, Version=2.1.0.0, Culture=neutral, PublicKeyToken=75e952ba404cdbb0, processorArchitecture=MSIL">
+      <HintPath>..\packages\OxyPlot.Wpf.2.1.0\lib\net45\OxyPlot.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="OxyPlot.Wpf.Shared, Version=2.1.0.0, Culture=neutral, PublicKeyToken=75e952ba404cdbb0, processorArchitecture=MSIL">
+      <HintPath>..\packages\OxyPlot.Wpf.Shared.2.1.0\lib\net45\OxyPlot.Wpf.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="ReachFramework" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Printing" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -79,6 +90,7 @@
     <Compile Include="Model\AddSourceModel.cs" />
     <Compile Include="Model\AnalysisModel.cs" />
     <Compile Include="Model\PanelLineModel.cs" />
+    <Compile Include="Model\SettingsModel.cs" />
     <Compile Include="Model\SourceModel.cs" />
     <Compile Include="Model\TransformerModel.cs" />
     <Compile Include="ViewModel\AddSourceViewModel.cs" />
@@ -86,6 +98,7 @@
     <Compile Include="ViewModel\CatalogLineViewModel.cs" />
     <Compile Include="ViewModel\CatalogTransformerViewModel.cs" />
     <Compile Include="ViewModel\PanelLineViewModel.cs" />
+    <Compile Include="ViewModel\SettingsViewModel.cs" />
     <Compile Include="ViewModel\SourceViewModel.cs" />
     <Compile Include="ViewModel\TransformerViewModel.cs" />
     <Compile Include="View\AddSourceView.xaml.cs">
@@ -118,6 +131,9 @@
     </Compile>
     <Compile Include="View\PanelLineView.xaml.cs">
       <DependentUpon>PanelLineView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SettingsView.xaml.cs">
+      <DependentUpon>SettingsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\SourceView.xaml.cs">
       <DependentUpon>SourceView.xaml</DependentUpon>
@@ -175,6 +191,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\PanelLineView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SettingsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
