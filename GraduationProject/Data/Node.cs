@@ -13,27 +13,22 @@ namespace GraduationProject.Data
     {
         public T Data { get; set; }
 
-        public Point Point { get; set; }
-
-        public float U { get; set; }
-
         public List<Node<T>> List { get; set; }
 
         public UserControl View { get; set; }
 
         public Node<T> Parent { get; set; }
 
-        public Node(T data, Point point, UserControl view, Node<T> parent)
+        public Node(T data, UserControl view, Node<T> parent)
         {
             Data = data;
-            Point = point;
             View = view;
             Parent = parent;
             List = new List<Node<T>>();
         }
-        public void Add(T start, T finish, Point point, UserControl view)
+        public void Add(T start, T finish, UserControl view)
         {
-            var node = new Node<T>(finish, point, view, this);
+            var node = new Node<T>(finish, view, this);
             if (Data.CompareTo(start) == 0)
             {
                 List.Add(node);
@@ -43,7 +38,7 @@ namespace GraduationProject.Data
                     var transformer = view.DataContext as TransformerViewModel;
                     var parent = Parent;
                     var pp = parent;
-                    
+
                     contextButton.P2List.Add(transformer.K, transformer.P1);
                     contextButton.P2 = contextButton.P2List.Values.Sum();
                     contextButton.Wp2List.Add(transformer.K, transformer.Wp1);
@@ -66,17 +61,17 @@ namespace GraduationProject.Data
                     {
                         var percent = i.Value / contextButton.P2;
                         var dPpercent = dP * percent;
-                        contextButton.P1List.Add(i.Key, i.Value + dPpercent);  
+                        contextButton.P1List.Add(i.Key, i.Value + dPpercent);
                     }
                     foreach (var i in contextButton.Q2List)
                     {
                         var percent = i.Value / contextButton.Q2;
                         var dQpercent = dQ * percent;
-                        contextButton.Q1List.Add(i.Key, i.Value + dQpercent);   
+                        contextButton.Q1List.Add(i.Key, i.Value + dQpercent);
                     }
 
                     var K2f = Math.Pow((0.16 / transformer.Kz) + 0.82, 2);
-                    var DWp = ((contextButton.Wp2 * contextButton.Wp2 + contextButton.Wq2 * contextButton.Wq2) * contextButton.R0* contextButton.Length * K2f) / (10.5f * 10.5f * 1000 * GlobalGrid.T);
+                    var DWp = ((contextButton.Wp2 * contextButton.Wp2 + contextButton.Wq2 * contextButton.Wq2) * contextButton.R0 * contextButton.Length * K2f) / (10.5f * 10.5f * 1000 * GlobalGrid.T);
                     var DWq = ((contextButton.Wp2 * contextButton.Wp2 + contextButton.Wq2 * contextButton.Wq2) * contextButton.X0 * contextButton.Length * K2f) / (10.5f * 10.5f * 1000 * GlobalGrid.T);
 
                     foreach (var i in contextButton.Wp2List)
@@ -107,7 +102,7 @@ namespace GraduationProject.Data
                         contextButtonParent.Wq2 = oldParent.Wq1;
                         pp = parent;
 
-                        contextButtonParent.P2List.Add(transformer.K, oldParent.P1List.Where(x=>x.Key == transformer.K).FirstOrDefault().Value);
+                        contextButtonParent.P2List.Add(transformer.K, oldParent.P1List.Where(x => x.Key == transformer.K).FirstOrDefault().Value);
                         contextButtonParent.P2 = contextButtonParent.P2List.Values.Sum();
 
                         contextButtonParent.Q2List.Add(transformer.K, oldParent.Q1List.Where(x => x.Key == transformer.K).FirstOrDefault().Value);
@@ -166,14 +161,14 @@ namespace GraduationProject.Data
 
                         parent = pp.Parent;
                     }
-                    pp.Volt(10.5f);
+                    pp.Volt((float)GlobalGrid.U);
                 }
             }
             else
             {
                 foreach (var i in List)
                 {
-                    i.Add(start, finish, point, view);
+                    i.Add(start, finish, view);
                 }
             }
         }
@@ -313,19 +308,19 @@ namespace GraduationProject.Data
 
                     parent = pp.Parent;
                 }
-                pp.Volt(10.5f);
+                pp.Volt((float)GlobalGrid.U);
             }
         }
         public void Volt(float u)
         {
             ButtonViewModel item = View.DataContext as ButtonViewModel;
-            if(item != null)
+            if (item != null)
             {
                 var rl = item.R0 * item.Length;
                 var xl = item.X0 * item.Length;
-                var dU = (rl * item.P1 + xl * item.P1) / (10.5f * 1000);
+                var dU = (rl * item.P1 + xl * item.P1) / ((float)GlobalGrid.U * 1000);
                 item.U1 = u;
-                u -= (float)dU; 
+                u -= (float)dU;
                 item.U2 = u;
                 foreach (var i in List)
                 {
@@ -424,19 +419,19 @@ namespace GraduationProject.Data
                     contextButtonParent.Wq2 = oldParent.Wq1;
                     pp = parent;
 
-                    if(oldParent.P1List.Count > 0) contextButtonParent.P2List.Remove(transformer.K);
+                    if (oldParent.P1List.Count > 0) contextButtonParent.P2List.Remove(transformer.K);
                     else contextButtonParent.P2List.Remove(transformer.K);
                     contextButtonParent.P2 = contextButtonParent.P2List.Values.Sum();
 
-                    if(oldParent.Q1List.Count > 0) contextButtonParent.Q2List.Remove(transformer.K);
+                    if (oldParent.Q1List.Count > 0) contextButtonParent.Q2List.Remove(transformer.K);
                     else contextButtonParent.Q2List.Remove(transformer.K);
                     contextButtonParent.Q2 = contextButtonParent.Q2List.Values.Sum();
 
-                    if(oldParent.Wp1List.Count > 0) contextButtonParent.Wp2List.Remove(transformer.K);
+                    if (oldParent.Wp1List.Count > 0) contextButtonParent.Wp2List.Remove(transformer.K);
                     else contextButtonParent.Wp2List.Remove(transformer.K);
                     contextButtonParent.Wp2 = contextButtonParent.Wp2List.Values.Sum();
 
-                    if(oldParent.Wq1List.Count > 0) contextButtonParent.Wq2List.Remove(transformer.K);
+                    if (oldParent.Wq1List.Count > 0) contextButtonParent.Wq2List.Remove(transformer.K);
                     else contextButtonParent.Wq2List.Remove(transformer.K);
                     contextButtonParent.Wq2 = contextButtonParent.Wq2List.Values.Sum();
 
@@ -487,12 +482,132 @@ namespace GraduationProject.Data
 
                     parent = pp.Parent;
                 }
-                pp.Volt(10.5f);
+                pp.Volt((float)GlobalGrid.U);
             }
         }
-        public void Delete(Node<T> node)
+        public Dictionary<int, double> GetdWxx(Dictionary<int, double> dictionary)
         {
+            foreach (var i in List)
+            {
+                if (i.View.DataContext is TransformerViewModel transformer)
+                {
+                    var line = i.Parent.View.DataContext as ButtonViewModel;
+                    var dPxx = transformer.dPxx * Math.Pow(line.U2 / GlobalGrid.U, 2);
+                    var dWxx = dPxx * GlobalGrid.T;
+                    if (!dictionary.Keys.Contains(transformer.K))
+                    {
+                        dictionary.Add(transformer.K, dWxx);
+                    }
+                }
+                else
+                {
+                    if (i.List.Count > 0)
+                    {
+                        foreach (var item in List)
+                        {
+                            item.GetdWxx(dictionary);
+                        }
+                    }
+                }
 
+            }
+            return dictionary;
+        }
+        /// <summary>
+        /// Нагрузочные потери всех трансформаторов
+        /// </summary>
+        /// <param name="dictionary"></param>
+        /// <returns>Словарь трансформаторов, где: 
+        /// Key: номер конца трансформатора
+        /// Value: Значение нагрузочных потерь данного трансформатора
+        /// </returns>
+        public Dictionary<int, double> GetdWnt(Dictionary<int, double> dictionary)
+        {
+            foreach (var i in List)
+            {
+                if (i.View.DataContext is TransformerViewModel transformer)
+                {
+                    var line = i.Parent.View.DataContext as ButtonViewModel;
+                    var tg = transformer.Wq1/transformer.Wp1;
+                    var dWnt = ((transformer.Wp1* transformer.Wp1*(1+tg*tg))/(line.U2*line.U2*GlobalGrid.T))*transformer.R*transformer.K2f;
+                    if (!dictionary.Keys.Contains(transformer.K))
+                    {
+                        dictionary.Add(transformer.K, dWnt);
+                    }
+                }
+                else
+                {
+                    if (i.List.Count > 0)
+                    {
+                        foreach (var item in List)
+                        {
+                            item.GetdWnt(dictionary);
+                        }
+                    }
+                }
+
+            }
+            return dictionary;
+        }
+        /// <summary>
+        /// Нагрузочные потери всех линий
+        /// </summary>
+        /// <param name="dictionary"></param>
+        /// <returns>Словарь линий, где: 
+        /// Key: номер конца линии
+        /// Value: Значение нагрузочных потерь данной линии
+        /// </returns>
+        public Dictionary<int, double> GetdWnl(Dictionary<int, double> dictionary)
+        {
+            foreach (var i in List)
+            {
+                if (i.View.DataContext is ButtonViewModel line)
+                {
+                    var tg = line.Wq1 / line.Wp1;
+                    var dWnl = ((line.Wp1 * line.Wp1 * (1 + tg * tg)) / (line.U2 * line.U2 * GlobalGrid.T)) * line.R0*line.Length * 1;//Вместо 1 нужно вставить K2f для линии
+                    if (!dictionary.Keys.Contains(line.K))
+                    {
+                        dictionary.Add(line.K, dWnl);
+                    }
+                }
+                else
+                {
+                    if (i.List.Count > 0)
+                    {
+                        foreach (var item in List)
+                        {
+                            item.GetdWnl(dictionary);
+                        }
+                    }
+                }
+
+            }
+            return dictionary;
+        }
+        /// <summary>
+        /// Изменяет коэффициент загрузки всех трансформаторов
+        /// </summary>
+        /// <param name="newKz">Новый коэффициент загрузки трансформаторов</param>
+        public void ChangedKz(double newKz)
+        {
+            foreach (var i in List)
+            {
+                if (i.View.DataContext is TransformerViewModel transformer)
+                {
+                    if (transformer.Kz != newKz) transformer.Kz = newKz;
+                }
+                else
+                {
+                    if (i.List.Count > 0)
+                    {
+                        foreach (var item in List)
+                        {
+                            item.ChangedKz(newKz);
+                        }
+                    }
+                }
+
+            }
         }
         public List<Node<T>> GetNode(List<Node<T>> list)
         {

@@ -206,7 +206,7 @@ namespace GraduationProject
                             DataContextLine.N = 0;
                             DataContextLine.K = 1;
                             DataContextLine.Flag = true;
-                            global.Tree.Add(0,1,new Point(110,100), activeLine);
+                            global.Tree.Add(0,1, activeLine);
                         }
 
                         //Есть общаая точка с другой линией и та линия имеет питание
@@ -215,7 +215,7 @@ namespace GraduationProject
                             DataContextLine.K = global.Tree.Count+1;
                             DataContextLine.N = itemDataContext.K;
                             DataContextLine.Flag = true;
-                            global.Tree.Add(DataContextLine.N, DataContextLine.K, new Point(another_left, another_top), activeLine);
+                            global.Tree.Add(DataContextLine.N, DataContextLine.K, activeLine);
                             continue;
                         }
                         //Реализовать DELETE
@@ -255,7 +255,7 @@ namespace GraduationProject
                                 context.K = global.Tree.Count + 1;
                             }
                             context.N = itemDataContext.K;
-                            global.Tree.Add(context.N, context.K, new Point(another_left, active_top), activeTransformer);
+                            global.Tree.Add(context.N, context.K, activeTransformer);
                             context.Flag = true;
                         }
                     }

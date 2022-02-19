@@ -16,7 +16,6 @@ namespace GraduationProject.Data
             Lines = new List<Button1>();
             Transformers = new List<TransformerView>();
             Tree = new Tree<int>();
-            U = new List<float>();
             BoxK = new List<int>();
         }
         public static GlobalGrid GetInstance()
@@ -25,12 +24,12 @@ namespace GraduationProject.Data
             return instance;
         }
         public static int T = 8760;
+        public static double U = 10.5d;
 
         public int CountNode { get; set; }
         public List<int> BoxK { get; set; }
         public List<Button1> Lines;
         public List<TransformerView> Transformers;
         public Tree<int> Tree { get; set; }
-        public List<float> U;
     }
 }

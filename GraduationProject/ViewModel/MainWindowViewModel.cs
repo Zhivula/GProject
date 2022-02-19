@@ -45,7 +45,7 @@ namespace GraduationProject.ViewModel
         public ICommand Analysis => new DelegateCommand(o =>
         {
             //window.GridChange.Children.Clear();
-            window.GridChangeFirst.Children.Add(new AnalysisView());
+            window.FullGridChange.Children.Add(new AnalysisView());
         });
         public ICommand Settings => new DelegateCommand(o =>
         {

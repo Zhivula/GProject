@@ -34,6 +34,8 @@ namespace GraduationProject.ViewModel
         private double dWp;
         private double dWq;
         public double Tnb;
+        public double dPxx;
+        private double k2f;
 
         private Visibility visibility;
         private Transformer transformer;
@@ -126,6 +128,15 @@ namespace GraduationProject.ViewModel
             {
                 sj = value;
                 OnPropertyChanged(nameof(Sj));
+            }
+        }
+        public double K2f
+        {
+            get => k2f;
+            set
+            {
+                k2f = value;
+                OnPropertyChanged(nameof(K2f));
             }
         }
         public double Kz
@@ -270,15 +281,16 @@ namespace GraduationProject.ViewModel
             Wp2 = transformer.Tnb * P2;
             Wq2 = transformer.Tnb * Q2;
 
-            var K2f = Math.Pow((0.16 / Kz) + 0.82, 2);
+            K2f = Math.Pow((0.16 / Kz) + 0.82, 2);
             DWp = ((Wp2 * Wp2 + Wq2 * Wq2) * R * K2f) / (10.5f * 10.5f * 1000 * GlobalGrid.T);
             DWq = ((Wp2 * Wp2 + Wq2 * Wq2) * X * K2f) / (10.5f * 10.5f * 1000 * GlobalGrid.T);
 
-            Wp1 = Wp2 + DPj*GlobalGrid.T + DWp;
+            Wp1 = Wp2 + DPj * GlobalGrid.T + DWp;
             Wq1 = Wq2 + DQj * GlobalGrid.T + DWq;
 
             Brand = transformer.Brand;
             Tnb = transformer.Tnb;
+            dPxx = transformer.Pxx;
         }
         #region PropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;

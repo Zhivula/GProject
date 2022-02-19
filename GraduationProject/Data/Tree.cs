@@ -19,25 +19,25 @@ namespace GraduationProject.Data
         {
 
         }
-        public void Add(T start, T finish, Point point, UserControl view)
+        public void Add(T start, T finish, UserControl view)
         {       
             if(Root == null)
             {
-                var node = new Node<T>(finish, point, view, null);
+                var node = new Node<T>(finish, view, null);
                 Root = node;
                 Count = 1;
                 return;
             }
             if (Root.Data.CompareTo(start) == 0)
             {
-                var node = new Node<T>(finish, point, view, Root);
+                var node = new Node<T>(finish, view, Root);
                 Count++;
                 Root.List.Add(node);
             }
             if(Root.Data.CompareTo(start) == -1)
             {
                 Count++;
-                Root.Add(start, finish, point, view);
+                Root.Add(start, finish, view);
             }  
         }
         public Node<T> Find(T start, T finish)
@@ -47,6 +47,32 @@ namespace GraduationProject.Data
                 return Root.Find(start, finish);
             }
             else return null;
+        }
+        public Dictionary<int, double> GetdWxx()
+        {
+            var dictionary = new Dictionary<int, double>();
+            if (Root != null) return Root.GetdWxx(dictionary);
+            else return dictionary;
+        }
+        public Dictionary<int, double> GetdWnt() 
+        {
+            var dictionary = new Dictionary<int, double>();
+            if (Root != null) return Root.GetdWnt(dictionary);
+            else return dictionary;
+        }
+        public Dictionary<int, double> GetdWnl()
+        {
+            var dictionary = new Dictionary<int, double>();
+            if (Root != null) return Root.GetdWnl(dictionary);
+            else return dictionary;
+        }
+        /// <summary>
+        /// Изменяет коэффициент загрузки всех трансформаторов
+        /// </summary>
+        /// <param name="newKz">Новый коэффициент загрузки трансформаторов</param>
+        public void ChangedKz(double newKz)
+        {
+            if (Root != null) Root.ChangedKz(newKz);
         }
         public void Delete(Node<T> node)
         {

@@ -33,7 +33,9 @@
                 </Canvas>
             </ScrollViewer>
         </Grid>
-                <Grid Grid.Column="1" Grid.Row="1" Name="InfoPanel">
+        <Grid Grid.Column="1" Grid.Row="1" Name="InfoPanel">
+        </Grid>
+        <Grid Grid.ColumnSpan="2" Grid.Row="1" Name="FullGridChange">
         </Grid>
     </Grid>
 </Window>

@@ -228,6 +228,7 @@ namespace GraduationProject.ViewModel
                 OnPropertyChanged(nameof(DWq));
             }
         }
+
         /// <summary>
         /// Хранит активные мощности P2 протекающие по линии
         /// </summary>

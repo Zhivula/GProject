@@ -89,6 +89,7 @@
     <Compile Include="Data\Tree.cs" />
     <Compile Include="Model\AddSourceModel.cs" />
     <Compile Include="Model\AnalysisModel.cs" />
+    <Compile Include="Data\Losses.cs" />
     <Compile Include="Model\PanelLineModel.cs" />
     <Compile Include="Model\SettingsModel.cs" />
     <Compile Include="Model\SourceModel.cs" />
@@ -142,6 +143,10 @@
       <DependentUpon>TransformerView.xaml</DependentUpon>
     </Compile>
     <Page Include="Theme\ButtonMain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Theme\Scroll.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
