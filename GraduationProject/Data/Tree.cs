@@ -66,6 +66,18 @@ namespace GraduationProject.Data
             if (Root != null) return Root.GetdWnl(dictionary);
             else return dictionary;
         }
+        public double GetSumL()
+        {
+            var dictionary = new Dictionary<int, double>();
+            if (Root != null) dictionary = Root.GetSumL(dictionary);
+            return dictionary.Values.Sum();
+        }
+        public double GetSumT()
+        {
+            var dictionary = new Dictionary<int, double>();
+            if (Root != null) dictionary = Root.GetSumT(dictionary);
+            return dictionary.Values.Sum();
+        }
         /// <summary>
         /// Изменяет коэффициент загрузки всех трансформаторов
         /// </summary>

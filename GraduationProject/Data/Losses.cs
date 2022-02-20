@@ -17,5 +17,11 @@ namespace GraduationProject.Model
         public string dWnlPercent { get; set; }
         public string dW { get; set; }
         public string dWPercent { get; set; }
+
+        public string WpMain { get; set; }
+        public string A { get; set; }
+        public string B { get; set; }
+        public string C { get; set; }
+        public string Cp { get; set; }
     }
 }

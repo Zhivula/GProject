@@ -1,7 +1,5 @@
 ﻿using GraduationProject.Data;
-using GraduationProject.DataBase;
 using GraduationProject.Model;
-using GraduationProject.View;
 using OxyPlot;
 using OxyPlot.Axes;
 using System;
@@ -10,17 +8,17 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Input;
 
 namespace GraduationProject.ViewModel
 {
-    class AnalysisViewModel : INotifyPropertyChanged
+    class Paragraph_3ViewModel : INotifyPropertyChanged
     {
         private float max;
         private float min;
         private int count;
         private float step;
+        private string theBestKz;
 
         public float Min
         {
@@ -29,7 +27,7 @@ namespace GraduationProject.ViewModel
             {
                 min = value;
                 OnPropertyChanged(nameof(Min));
-                Max = Min + (Count-1) * Step;
+                Max = Min + (Count - 1) * Step;
             }
         }
         public float Max
@@ -61,6 +59,16 @@ namespace GraduationProject.ViewModel
                 Max = Min + (Count - 1) * Step;
             }
         }
+        public string TheBestKz
+        {
+            get => theBestKz;
+            set
+            {
+                theBestKz = value;
+                OnPropertyChanged(nameof(TheBestKz));
+            }
+        }
+       
         private List<Losses> items;
         public List<Losses> ItemsSource
         {
@@ -111,7 +119,7 @@ namespace GraduationProject.ViewModel
                 OnPropertyChanged(nameof(PlotdWnl));
             }
         }
-        public AnalysisViewModel()
+        public Paragraph_3ViewModel()
         {
             ItemsSource = new List<Losses>();
         }
@@ -163,7 +171,7 @@ namespace GraduationProject.ViewModel
                 var root = GlobalGrid.GetInstance().Tree.Root;
 
                 if (root != null)
-                { 
+                {
                     var firstLine = root.View.DataContext as ButtonViewModel;
 
                     ItemsSource.Add(new Losses()
@@ -172,11 +180,11 @@ namespace GraduationProject.ViewModel
                         dWxx = dWxx.ToString("#.##"),
                         dWxxPercent = ((dWxx / firstLine.Wp1) * 100).ToString("#.##"),
                         dWnt = dWnt.ToString("#.##"),
-                        dWntPercent = ((dWnt / firstLine.Wp1)*100).ToString("#.##"),
+                        dWntPercent = ((dWnt / firstLine.Wp1) * 100).ToString("#.##"),
                         dWnl = dWnl.ToString("#.##"),
-                        dWnlPercent = ((dWnl / firstLine.Wp1)*100).ToString("#.##"),
+                        dWnlPercent = ((dWnl / firstLine.Wp1) * 100).ToString("#.##"),
                         dW = dW.ToString("#.##"),
-                        dWPercent = ((dW / firstLine.Wp1)*100).ToString("#.##")
+                        dWPercent = ((dW / firstLine.Wp1) * 100).ToString("#.##")
                     });
 
                     linedWxx.Points.Add(new DataPoint(Min + Step * i, dWxx));
@@ -185,6 +193,7 @@ namespace GraduationProject.ViewModel
                     linedW.Points.Add(new DataPoint(Min + Step * i, dW));
                 }
             }
+            TheBestKz = ItemsSource.Where(c => c.dW == ItemsSource.Select(x => x.dW).Min()).Select(t => t.Kz).SingleOrDefault();
 
             OnPropertyChanged(nameof(ItemsSource));
 
@@ -198,7 +207,7 @@ namespace GraduationProject.ViewModel
             plotList[0].Series.Add(linedW);
             plotList[1].Series.Add(linedWxx);
 
-            var valueAxis = new LinearAxis() { MajorGridlineStyle = LineStyle.Solid, MinorGridlineStyle = LineStyle.Dot, MajorGridlineColor = OxyColors.Gray};
+            var valueAxis = new LinearAxis() { MajorGridlineStyle = LineStyle.Solid, MinorGridlineStyle = LineStyle.Dot, MajorGridlineColor = OxyColors.Gray };
 
             foreach (var i in plotList)
             {
@@ -220,7 +229,7 @@ namespace GraduationProject.ViewModel
             var global = GlobalGrid.GetInstance();
 
             var list = global.Tree.GetdWxx().Values.Sum();
-            
+
             return list;
         }
         public double GetdWnt()
@@ -247,57 +256,6 @@ namespace GraduationProject.ViewModel
             PlotdWxx = list[1];
             PlotdWnt = list[2];
             PlotdWnl = list[3];
-        });
-
-        /// <summary>
-        /// Построение и анализ зависимости потерь электроэнергии в абсолютных и относительных единицах в функции отпуска электроэнергии
-        /// </summary>
-        public ICommand Paragraph_3 => new DelegateCommand(o =>
-        {
-            var window = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
-            for (int i = window.FullGridChange.Children.Count - 1; i >= 0; --i)
-            {
-                var childTypeName = window.FullGridChange.Children[i].GetType().Name;
-                if (childTypeName == "AnalysisView")
-                {
-                    var item = window.FullGridChange.Children[i];
-                    if(item is AnalysisView analysisView)
-                    {
-                        analysisView.ChangedGrid.Children.Add(new Paragraph_3View());
-                    }
-                }
-            }
-        });
-        /// <summary>
-        /// Построение и анализ зависимости стоимости передачи электроэнергии от отпуска электроэнергии
-        /// </summary>
-        public ICommand Paragraph_4 => new DelegateCommand(o =>
-        {
-            var window = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
-            for (int i = window.FullGridChange.Children.Count - 1; i >= 0; --i)
-            {
-                var childTypeName = window.FullGridChange.Children[i].GetType().Name;
-                if (childTypeName == "AnalysisView")
-                {
-                    var item = window.FullGridChange.Children[i];
-                    if (item is AnalysisView analysisView)
-                    {
-                        analysisView.ChangedGrid.Children.Add(new Paragraph_4View());
-                    }
-                }
-            }
-        });
-        public ICommand Return => new DelegateCommand(o =>
-        {
-            var window = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
-            for (int i = window.FullGridChange.Children.Count - 1; i >= 0; --i)
-            {
-                var childTypeName = window.FullGridChange.Children[i].GetType().Name;
-                if (childTypeName == "AnalysisView")
-                {
-                    window.FullGridChange.Children.RemoveAt(i);
-                }
-            }
         });
         #region PropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;

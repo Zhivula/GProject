@@ -105,7 +105,7 @@ namespace GraduationProject.ViewModel
             var list = new List<string>();
             using (var context = new MyDbContext())
             {
-                list = context.Lines.Select(x => x.Brand).ToList();
+                if (context.Lines.Count() > 0) list = context.Lines.Select(x => x.Brand).ToList();
             }
 
             SourceWireBrand = new ObservableCollection<string>();

@@ -609,6 +609,72 @@ namespace GraduationProject.Data
 
             }
         }
+        /// <summary>
+        /// Сумма длин всех линий
+        /// </summary>
+        /// <param name="dictionary"></param>
+        /// <returns>Словарь линий, где: 
+        /// Key: номер конца линии
+        /// Value: Значение длины линии
+        /// </returns>
+        public Dictionary<int, double> GetSumL(Dictionary<int, double> dictionary)
+        {
+            foreach (var i in List)
+            {
+                if (i.View.DataContext is ButtonViewModel line)
+                {
+                    if (!dictionary.Keys.Contains(line.K))
+                    {
+                        dictionary.Add(line.K, line.Length);
+                    }
+                }
+                else
+                {
+                    if (i.List.Count > 0)
+                    {
+                        foreach (var item in List)
+                        {
+                            item.GetSumL(dictionary);
+                        }
+                    }
+                }
+
+            }
+            return dictionary;
+        }
+        /// <summary>
+        /// Сумма нагрузок всех трансформаторов
+        /// </summary>
+        /// <param name="dictionary"></param>
+        /// <returns>Словарь трансформаторов, где: 
+        /// Key: номер конца трансформатора
+        /// Value: Значение нагрузки трансформатора
+        /// </returns>
+        public Dictionary<int, double> GetSumT(Dictionary<int, double> dictionary)
+        {
+            foreach (var i in List)
+            {
+                if (i.View.DataContext is TransformerViewModel transformer)
+                {
+                    if (!dictionary.Keys.Contains(transformer.K))
+                    {
+                        dictionary.Add(transformer.K, transformer.Sj);
+                    }
+                }
+                else
+                {
+                    if (i.List.Count > 0)
+                    {
+                        foreach (var item in List)
+                        {
+                            item.GetSumT(dictionary);
+                        }
+                    }
+                }
+
+            }
+            return dictionary;
+        }
         public List<Node<T>> GetNode(List<Node<T>> list)
         {
             if(!list.Contains(this)) list.Add(this);

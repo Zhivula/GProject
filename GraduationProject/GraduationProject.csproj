@@ -91,6 +91,8 @@
     <Compile Include="Model\AnalysisModel.cs" />
     <Compile Include="Data\Losses.cs" />
     <Compile Include="Model\PanelLineModel.cs" />
+    <Compile Include="Model\Paragraph_3Model.cs" />
+    <Compile Include="Model\Paragraph_4Model.cs" />
     <Compile Include="Model\SettingsModel.cs" />
     <Compile Include="Model\SourceModel.cs" />
     <Compile Include="Model\TransformerModel.cs" />
@@ -99,6 +101,11 @@
     <Compile Include="ViewModel\CatalogLineViewModel.cs" />
     <Compile Include="ViewModel\CatalogTransformerViewModel.cs" />
     <Compile Include="ViewModel\PanelLineViewModel.cs" />
+    <Compile Include="ViewModel\Paragraph_3ViewModel.cs" />
+    <Compile Include="ViewModel\Paragraph_4ViewModel.cs" />
+    <Compile Include="View\Paragraph_3View.xaml.cs">
+      <DependentUpon>Paragraph_3View.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\SettingsViewModel.cs" />
     <Compile Include="ViewModel\SourceViewModel.cs" />
     <Compile Include="ViewModel\TransformerViewModel.cs" />
@@ -133,6 +140,9 @@
     <Compile Include="View\PanelLineView.xaml.cs">
       <DependentUpon>PanelLineView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Paragraph_4View.xaml.cs">
+      <DependentUpon>Paragraph_4View.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\SettingsView.xaml.cs">
       <DependentUpon>SettingsView.xaml</DependentUpon>
     </Compile>
@@ -147,6 +157,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Theme\Scroll.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Paragraph_3View.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -196,6 +210,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\PanelLineView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Paragraph_4View.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
