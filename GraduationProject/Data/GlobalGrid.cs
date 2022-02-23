@@ -31,5 +31,6 @@ namespace GraduationProject.Data
         public List<Button1> Lines;
         public List<TransformerView> Transformers;
         public Tree<int> Tree { get; set; }
+        public SourceView Source { get; set; }
     }
 }
