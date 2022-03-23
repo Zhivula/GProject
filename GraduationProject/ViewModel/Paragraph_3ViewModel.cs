@@ -125,6 +125,7 @@ namespace GraduationProject.ViewModel
         }
         public List<PlotModel> GetPlotModel()
         {
+            ItemsSource.Clear();
             var plotList = new List<PlotModel>();
 
             var linedWxx = new OxyPlot.Series.LineSeries()
@@ -193,7 +194,7 @@ namespace GraduationProject.ViewModel
                     linedW.Points.Add(new DataPoint(Min + Step * i, dW));
                 }
             }
-            TheBestKz = ItemsSource.Where(c => c.dW == ItemsSource.Select(x => x.dW).Min()).Select(t => t.Kz).SingleOrDefault();
+            TheBestKz = GetTheBestKz(ItemsSource);
 
             OnPropertyChanged(nameof(ItemsSource));
 
@@ -218,6 +219,10 @@ namespace GraduationProject.ViewModel
             }
 
             return plotList;
+        }
+        public string GetTheBestKz(List<Losses> list)
+        {
+            return list.Where(c => c.dW == list.Select(x => x.dW).Min()).Select(t => t.Kz).SingleOrDefault();
         }
         public void ChangedKz(double newKz)
         {

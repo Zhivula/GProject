@@ -21,6 +21,7 @@ namespace GraduationProject.View
     /// <summary>
     /// Логика взаимодействия для Button1.xaml
     /// </summary>
+    [Serializable]
     public partial class Button1 : UserControl, INotifyPropertyChanged
     {
         public MainWindow window;

@@ -38,6 +38,9 @@
             <Button Background="Transparent" BorderBrush="Transparent" Command="{Binding Paragraph_4}" HorizontalAlignment="Left" Margin="30 0 0 0">
                 <TextBlock Text="Построение и анализ зависимости стоимости передачи электроэнергии от отпуска электроэнергии" Foreground="LightGray" TextWrapping="Wrap" Width="270"/>
             </Button>
+            <Button Background="Transparent" BorderBrush="Transparent" Command="{Binding Paragraph_5}" HorizontalAlignment="Left" Margin="30 0 0 0">
+                <TextBlock Text="Построение и анализ зависимости стоимости передачи электроэнергии от отпуска электроэнергии" Foreground="LightGray" TextWrapping="Wrap" Width="270"/>
+            </Button>
         </StackPanel>
 
         <Grid Grid.Row="1" x:Name="ChangedGrid">

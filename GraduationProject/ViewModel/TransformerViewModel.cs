@@ -11,6 +11,7 @@ using System.Windows.Input;
 
 namespace GraduationProject.ViewModel
 {
+    [Serializable]
     class TransformerViewModel : INotifyPropertyChanged
     {
         private int n;
@@ -26,6 +27,8 @@ namespace GraduationProject.ViewModel
         private double wp2;
         private double wq1;
         private double wq2;
+        private double u1;
+        private double u2;
         private double kz;
         private double r;
         private double x;
@@ -34,7 +37,12 @@ namespace GraduationProject.ViewModel
         private double dWp;
         private double dWq;
         public double Tnb;
-        public double dPxx;
+        public double Pxx;
+        public double Qxx;
+        public double Ixx;
+        public double Pkz;
+        public double Snom;
+        public double Ukz;
         private double k2f;
 
         private Visibility visibility;
@@ -83,6 +91,24 @@ namespace GraduationProject.ViewModel
             {
                 brand = value;
                 OnPropertyChanged(nameof(Brand));
+            }
+        }
+        public double U1
+        {
+            get => u1;
+            set
+            {
+                u1 = value;
+                OnPropertyChanged(nameof(U1));
+            }
+        }
+        public double U2
+        {
+            get => u2;
+            set
+            {
+                u2 = value;
+                OnPropertyChanged(nameof(U2));
             }
         }
         public double P1
@@ -272,8 +298,8 @@ namespace GraduationProject.ViewModel
             P2 = Sj * cos;
             Q2 = Sj * Math.Sqrt(1 - cos*cos);
 
-            DPj = (P2 * P2 + Q2 * Q2) * R/ (10.5f * 10.5f * 1000);
-            DQj = (P2 * P2 + Q2 * Q2) * X/ (10.5f * 10.5f * 1000);
+            DPj = (P2 * P2 + Q2 * Q2) * R/ (GlobalGrid.U * GlobalGrid.U * 1000);
+            DQj = (P2 * P2 + Q2 * Q2) * X/ (GlobalGrid.U * GlobalGrid.U * 1000);
 
             P1 = P2 + DQj + transformer.Pxx;
             Q1 = Q2 + DQj + transformer.Qxx;
@@ -282,15 +308,20 @@ namespace GraduationProject.ViewModel
             Wq2 = transformer.Tnb * Q2;
 
             K2f = Math.Pow((0.16 / Kz) + 0.82, 2);
-            DWp = ((Wp2 * Wp2 + Wq2 * Wq2) * R * K2f) / (10.5f * 10.5f * 1000 * GlobalGrid.T);
-            DWq = ((Wp2 * Wp2 + Wq2 * Wq2) * X * K2f) / (10.5f * 10.5f * 1000 * GlobalGrid.T);
+            DWp = ((Wp2 * Wp2 + Wq2 * Wq2) * R * K2f) / (GlobalGrid.U * GlobalGrid.U * 1000 * GlobalGrid.T);
+            DWq = ((Wp2 * Wp2 + Wq2 * Wq2) * X * K2f) / (GlobalGrid.U * GlobalGrid.U * 1000 * GlobalGrid.T);
 
             Wp1 = Wp2 + DPj * GlobalGrid.T + DWp;
             Wq1 = Wq2 + DQj * GlobalGrid.T + DWq;
 
             Brand = transformer.Brand;
             Tnb = transformer.Tnb;
-            dPxx = transformer.Pxx;
+            Pxx = transformer.Pxx;
+            Qxx = transformer.Qxx;
+            Ixx = transformer.Ixx;
+            Pkz = transformer.Pkz;
+            Ukz = transformer.Ukz;
+            Snom = transformer.Snom;
         }
         #region PropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;

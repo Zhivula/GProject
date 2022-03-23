@@ -8,7 +8,7 @@
              mc:Ignorable="d" >
     <Grid Background="Transparent" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <Grid Background="Black" Opacity="0.3"/>
-        <Border HorizontalAlignment="Center" VerticalAlignment="Center" Background="#17171a" Margin="50 20" CornerRadius="20" MinHeight="300" MinWidth="350">
+        <Border HorizontalAlignment="Center" VerticalAlignment="Center" Background="#17171a" Margin="50 20" CornerRadius="20" MinHeight="180" MinWidth="350">
             <Grid>
                 <StackPanel Margin="20">
 
@@ -18,18 +18,6 @@
                             <materialDesign:PackIcon Kind="Close" Foreground="White" Height="30" Width="30"/>
                         </Button>
                     </Grid>
-                    <!--<Grid Margin="0 20 0 0">
-                        <Label Content="Введите ном.мощность, МВт:" Foreground="White" HorizontalAlignment="Left"/>
-                        <TextBox Foreground="White" FontSize="15" Margin="170 0 5 0" Text="{Binding Pnom}">
-                            <TextBox.Template>
-                                <ControlTemplate>
-                                    <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="#171924">
-                                        <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
-                                    </Border>
-                                </ControlTemplate>
-                            </TextBox.Template>
-                        </TextBox>
-                    </Grid>-->
                     <Grid Margin="0 20 0 0">
                         <Label Content="Выберите трансформатор:" Foreground="White" HorizontalAlignment="Left"/>
                         <ComboBox BorderThickness="1" Margin="170 0 5 0" ItemsSource="{Binding SourceTransformerBrand}" SelectedItem="{Binding SelectedTransformerBrand}"/>

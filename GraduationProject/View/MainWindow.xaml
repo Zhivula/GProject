@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GraduationProject"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Title="MainWindow" Height="550" Width="1200" WindowStartupLocation="CenterScreen" WindowState="Maximized">
     <Grid>
@@ -17,6 +18,19 @@
         </Grid.RowDefinitions>
         <Grid Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Background="#222531">
             <StackPanel Orientation="Horizontal">
+                <RadioButton Width="150" Style="{StaticResource MenuButtonThemeMaretialDesign}" Command="{Binding SaveModel}" Foreground="White">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Package" Foreground="White" Height="20" Width="auto"/>
+                        <TextBlock Text="Save" Foreground="White" FontSize="15" Margin="10 0 0 0"/>
+                    </StackPanel>
+                </RadioButton>
+
+                <RadioButton Width="150" Style="{StaticResource MenuButtonThemeMaretialDesign}" Command="{Binding OpenModel}">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="OpenInApp" Foreground="White" Height="20" Width="auto"/>
+                        <TextBlock Text="Open" Foreground="White" FontSize="15" Margin="10 0 0 0"/>
+                    </StackPanel>
+                </RadioButton>
                 <RadioButton Content="New Source" Width="150" Style="{StaticResource MenuButtonTheme}" Command="{Binding CreateNewSource}"/>
                 <RadioButton Content="New Line" Width="150" Style="{StaticResource MenuButtonTheme}" Command="{Binding CreateNewLine}"/>
                 <RadioButton Content="New Transformer" Width="150" Style="{StaticResource MenuButtonTheme}" Command="{Binding CreateNewTransformer}"/>

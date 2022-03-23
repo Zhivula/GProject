@@ -8,7 +8,7 @@
              mc:Ignorable="d"> 
     <Grid Background="Transparent" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <Grid Background="Black" Opacity="0.3" />
-        <Border HorizontalAlignment="Center" VerticalAlignment="Center" Background="#17171a" Margin="50 20" CornerRadius="20" MinHeight="300" MinWidth="350">
+        <Border HorizontalAlignment="Center" VerticalAlignment="Center" Background="#17171a" Margin="50 20" CornerRadius="20" MinHeight="300" MinWidth="370">
             <Grid>
                 <StackPanel Margin="20">
 
@@ -35,8 +35,8 @@
                         <ComboBox BorderThickness="1" Margin="170 0 5 0" ItemsSource="{Binding SourceWireBrand}" SelectedItem="{Binding SelectedWireBrand}"/>
                     </Grid>
                     <Grid Margin="0 20 0 0">
-                        <Label Content="Удельное активное сопротивление:" Foreground="White" HorizontalAlignment="Left"/>
-                        <TextBox Foreground="White" FontSize="15" Margin="230 0 5 0" Text="{Binding R0}">
+                        <Label Content="Удельное активное сопротивление, Ом/км:" Foreground="White" HorizontalAlignment="Left"/>
+                        <TextBox Foreground="White" FontSize="15" Margin="260 0 5 0" Text="{Binding R0}">
                             <TextBox.Template>
                                 <ControlTemplate>
                                     <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="#171924">
@@ -47,8 +47,8 @@
                         </TextBox>
                     </Grid>
                     <Grid Margin="0 20 0 20">
-                        <Label Content="Удельное реактивное сопротивление:" Foreground="White" HorizontalAlignment="Left"/>
-                        <TextBox Foreground="White" FontSize="15" Margin="230 0 5 0" Text="{Binding X0}">
+                        <Label Content="Удельное реактивное сопротивление, Ом/км:" Foreground="White" HorizontalAlignment="Left"/>
+                        <TextBox Foreground="White" FontSize="15" Margin="260 0 5 0" Text="{Binding X0}">
                             <TextBox.Template>
                                 <ControlTemplate>
                                     <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="#171924">

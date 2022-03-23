@@ -208,8 +208,13 @@ namespace GraduationProject
                         //MessageBox.Show("X1: " + another_left + "X2: " + active_left + "Y1:" + another_top + "Y2:" + active_top);
 
                         //Специальный случай для первой линии, чтобы она подключилась к источнику
-                        var X = Canvas.GetLeft(global.Source)+60;
-                        var Y = Canvas.GetTop(global.Source)+20;
+                        double X = 0;
+                        double Y = 0;
+                        if (global.Source != null)
+                        {
+                            X = Canvas.GetLeft(global.Source) + 60;
+                            Y = Canvas.GetTop(global.Source) + 20;
+                        }
 
                         if (active_left == X && active_top == Y && (DataContextLine.Flag == false))
                         {
@@ -347,6 +352,11 @@ namespace GraduationProject
                         }
                     }
                 }
+            }
+            if(curr is SourceView source)
+            {
+                var context = source.DataContext as SourceViewModel;
+                GlobalGrid.U = context.Voltage;
             }
             curr = null;
         }

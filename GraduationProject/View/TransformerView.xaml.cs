@@ -20,6 +20,7 @@ namespace GraduationProject.View
     /// <summary>
     /// Логика взаимодействия для TransformerView.xaml
     /// </summary>
+    [Serializable]
     public partial class TransformerView : UserControl
     {
         public MainWindow window;
@@ -34,6 +35,11 @@ namespace GraduationProject.View
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             window.curr = this;
+        }
+        private void Button_MouseEnter(object sender, MouseEventArgs e)
+        {
+            window.InfoPanel.Children.Clear();
+            window.InfoPanel.Children.Add(new PanelTransformerView(this));
         }
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {

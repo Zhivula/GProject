@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace GraduationProject.ViewModel
 {
+    [Serializable]
     public class ButtonViewModel : INotifyPropertyChanged
     {
         private int n;
@@ -30,6 +31,9 @@ namespace GraduationProject.ViewModel
         private double wq2;
         private double dWp;
         private double dWq;
+        private double dU;
+        private double r;
+        private double x;
         private Dictionary<int,double> p2List;
         private Dictionary<int, double> p1List;
         private Dictionary<int, double> q2List;
@@ -156,6 +160,15 @@ namespace GraduationProject.ViewModel
                 OnPropertyChanged(nameof(U2));
             }
         }
+        public double DU
+        {
+            get => dU;
+            set
+            {
+                dU = value;
+                OnPropertyChanged(nameof(DU));
+            }
+        }
         public double R0
         {
             get => r0;
@@ -165,6 +178,15 @@ namespace GraduationProject.ViewModel
                 OnPropertyChanged(nameof(R0));
             }
         }
+        public double R
+        {
+            get => r;
+            set
+            {
+                r = value;
+                OnPropertyChanged(nameof(R));
+            }
+        }
         public double X0
         {
             get => x0;
@@ -172,6 +194,15 @@ namespace GraduationProject.ViewModel
             {
                 x0 = value;
                 OnPropertyChanged(nameof(X0)); 
+            }
+        }
+        public double X
+        {
+            get => x;
+            set
+            {
+                x = value;
+                OnPropertyChanged(nameof(X));
             }
         }
         public double Wp1

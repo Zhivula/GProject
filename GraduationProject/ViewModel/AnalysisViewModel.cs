@@ -263,6 +263,7 @@ namespace GraduationProject.ViewModel
                     var item = window.FullGridChange.Children[i];
                     if(item is AnalysisView analysisView)
                     {
+                        analysisView.ChangedGrid.Children.Clear();
                         analysisView.ChangedGrid.Children.Add(new Paragraph_3View());
                     }
                 }
@@ -282,7 +283,28 @@ namespace GraduationProject.ViewModel
                     var item = window.FullGridChange.Children[i];
                     if (item is AnalysisView analysisView)
                     {
+                        analysisView.ChangedGrid.Children.Clear();
                         analysisView.ChangedGrid.Children.Add(new Paragraph_4View());
+                    }
+                }
+            }
+        });
+        /// <summary>
+        /// Расчёт и анализ резервов по снижению потерь электроэнергии, стоимости передачи электроэнергии и экономии топлива
+        /// </summary>
+        public ICommand Paragraph_5 => new DelegateCommand(o =>
+        {
+            var window = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+            for (int i = window.FullGridChange.Children.Count - 1; i >= 0; --i)
+            {
+                var childTypeName = window.FullGridChange.Children[i].GetType().Name;
+                if (childTypeName == "AnalysisView")
+                {
+                    var item = window.FullGridChange.Children[i];
+                    if (item is AnalysisView analysisView)
+                    {
+                        analysisView.ChangedGrid.Children.Clear();
+                        analysisView.ChangedGrid.Children.Add(new Paragraph_5View());
                     }
                 }
             }

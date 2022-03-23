@@ -1,4 +1,5 @@
-﻿using GraduationProject.ViewModel;
+﻿using GraduationProject.Model;
+using GraduationProject.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,9 +7,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace GraduationProject.Data
 {
+    [Serializable]
     public class Tree<T> where T: IComparable
     {
         public Node<T> Root { get; private set; }
@@ -116,6 +119,24 @@ namespace GraduationProject.Data
                 Root.Volt(10.5f);
             }
         }
+        public List<Node<T>> GetTransformers()
+        {
+            var list = new List<Node<T>>();
+            if (Root != null && Root.List.Count > 0)
+            {
+                Root.GetTransformer(list);
+            }
+            return list;
+        }
+        public List<Node<T>> GetElements()
+        {
+            var list = new List<Node<T>>();
+            if (Root != null && Root.List.Count > 0)
+            {
+                Root.GetElements(ref list);
+            }
+            return list;
+        }
         /// <summary>
         /// Обход дерева
         /// </summary>
@@ -127,6 +148,37 @@ namespace GraduationProject.Data
                 Root.GetNode(list);
             }
             return list;
+        }
+        public TreeSerializable ConvertToSerializable()
+        {
+            var treeSerializable = new TreeSerializable();
+            if(Root != null)
+            {
+                var context = Root.View.DataContext as ButtonViewModel;
+                var node = new NodeSerializable(context.K, Root.View.DataContext, null, 0);
+                if (!treeSerializable.Contains(node))
+                {                  
+                    var model = new LineModel() {
+                         K = context.K,
+                         N = context.N,
+                         Brand = context.Brand,
+                         L = context.Length,
+                         R0 = context.R0,
+                         X0 = context.X0
+                    };
+                    var angle = ((RotateTransform)Root.View.RenderTransform).Angle;
+                    treeSerializable.Add(context.N, context.K, model, angle);
+                    if (Root.List.Count>0)
+                    {
+                        foreach (var i in Root.List)
+                        {
+                            i.AddToSerializable(ref treeSerializable);
+                        }
+                    }
+                }
+            }
+            
+            return treeSerializable;
         }
     }
 }

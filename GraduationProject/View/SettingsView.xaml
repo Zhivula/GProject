@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:GraduationProject.View"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="500" d:DesignWidth="800">
     <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
@@ -16,9 +16,240 @@
             <materialDesign:PackIcon Kind="ArrowLeft" Foreground="Gray" Height="40" Width="auto"/>
         </Button>
         <Grid Grid.Row="1">
-            <StackPanel Orientation="Horizontal" Margin="20 10 0 0">
-                <TextBlock Text="Видимость сети: " Foreground="Gray" FontSize="15"/>
+            <StackPanel Orientation="Vertical" Margin="20 10 0 0">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Отсутствие сетки: " Foreground="Gray" FontSize="15"/>
                     <CheckBox IsChecked="{Binding CheckedGrid}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Grid Width="600">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="Минимальное значение коэффициента загрузки: " Foreground="Gray" FontSize="15"/>
+                        <TextBox Grid.Column="1" Foreground="White" FontSize="15" Margin="20 0 5 0" Text="{Binding Min}" MinWidth="50" HorizontalAlignment="Right">
+                            <TextBox.Template>
+                                <ControlTemplate>
+                                    <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="#171924">
+                                        <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+                                    </Border>
+                                </ControlTemplate>
+                            </TextBox.Template>
+                        </TextBox>
+                    </Grid>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Grid Width="600" Margin="0 5 0 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="Максимальное значение коэффициента загрузки: " Foreground="Gray" FontSize="15"/>
+                        <TextBox Grid.Column="1" Foreground="White" FontSize="15" Margin="20 0 5 0" Text="{Binding LineLength}" MinWidth="50" HorizontalAlignment="Right">
+                            <TextBox.Template>
+                                <ControlTemplate>
+                                    <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="#171924">
+                                        <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+                                    </Border>
+                                </ControlTemplate>
+                            </TextBox.Template>
+                        </TextBox>
+                    </Grid>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Grid Width="600" Margin="0 5 0 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="Шаг: " Foreground="Gray" FontSize="15"/>
+                        <TextBox Grid.Column="1" Foreground="White" FontSize="15" Margin="20 0 5 0" Text="{Binding LineLength}" MinWidth="50" HorizontalAlignment="Right">
+                            <TextBox.Template>
+                                <ControlTemplate>
+                                    <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="#171924">
+                                        <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+                                    </Border>
+                                </ControlTemplate>
+                            </TextBox.Template>
+                        </TextBox>
+                    </Grid>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Grid Width="600" Margin="0 5 0 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="Количество итераций: " Foreground="Gray" FontSize="15"/>
+                        <TextBox Grid.Column="1" Foreground="White" FontSize="15" Margin="20 0 5 0" Text="{Binding LineLength}" MinWidth="50" HorizontalAlignment="Right">
+                            <TextBox.Template>
+                                <ControlTemplate>
+                                    <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="#171924">
+                                        <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+                                    </Border>
+                                </ControlTemplate>
+                            </TextBox.Template>
+                        </TextBox>
+                    </Grid>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Grid Width="600" Margin="0 5 0 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="Суммарный коэффициент отчислений от стоимости линий сети: " Foreground="Gray" FontSize="15"/>
+                        <TextBox Grid.Column="1" Foreground="White" FontSize="15" Margin="20 0 5 0" Text="{Binding LineLength}" MinWidth="50" HorizontalAlignment="Right">
+                            <TextBox.Template>
+                                <ControlTemplate>
+                                    <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="#171924">
+                                        <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+                                    </Border>
+                                </ControlTemplate>
+                            </TextBox.Template>
+                        </TextBox>
+                    </Grid>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Grid Width="600" Margin="0 5 0 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="Суммарный коэффициент отчислений от стоимости трансформаторов: " Foreground="Gray" FontSize="15"/>
+                        <TextBox Grid.Column="1" Foreground="White" FontSize="15" Margin="20 0 5 0" Text="{Binding LineLength}" MinWidth="50" HorizontalAlignment="Right">
+                            <TextBox.Template>
+                                <ControlTemplate>
+                                    <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="#171924">
+                                        <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+                                    </Border>
+                                </ControlTemplate>
+                            </TextBox.Template>
+                        </TextBox>
+                    </Grid>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Grid Width="600" Margin="0 5 0 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="βнл – стоимость 1 кВт∙ч, у.д.е./кВт∙ч: " Foreground="Gray" FontSize="15"/>
+                        <TextBox Grid.Column="1" Foreground="White" FontSize="15" Margin="20 0 5 0" Text="{Binding LineLength}" MinWidth="50" HorizontalAlignment="Right">
+                            <TextBox.Template>
+                                <ControlTemplate>
+                                    <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="#171924">
+                                        <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+                                    </Border>
+                                </ControlTemplate>
+                            </TextBox.Template>
+                        </TextBox>
+                    </Grid>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Grid Width="600" Margin="0 5 0 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="βхт – стоимость 1 кВт∙ч, у.д.е./кВт∙ч: " Foreground="Gray" FontSize="15"/>
+                        <TextBox Grid.Column="1" Foreground="White" FontSize="15" Margin="20 0 5 0" Text="{Binding LineLength}" MinWidth="50" HorizontalAlignment="Right">
+                            <TextBox.Template>
+                                <ControlTemplate>
+                                    <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="#171924">
+                                        <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+                                    </Border>
+                                </ControlTemplate>
+                            </TextBox.Template>
+                        </TextBox>
+                    </Grid>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Grid Width="600" Margin="0 5 0 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="βнт - стоимость 1 кВт∙ч, у.д.е./кВт∙ч: " Foreground="Gray" FontSize="15"/>
+                        <TextBox Grid.Column="1" Foreground="White" FontSize="15" Margin="20 0 5 0" Text="{Binding LineLength}" MinWidth="50" HorizontalAlignment="Right">
+                            <TextBox.Template>
+                                <ControlTemplate>
+                                    <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="#171924">
+                                        <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+                                    </Border>
+                                </ControlTemplate>
+                            </TextBox.Template>
+                        </TextBox>
+                    </Grid>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Grid Width="600" Margin="0 5 0 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="Kту – средняя удельная стоимость трансформатора, у.д.е /кВт: " Foreground="Gray" FontSize="15"/>
+                        <TextBox Grid.Column="1" Foreground="White" FontSize="15" Margin="20 0 5 0" Text="{Binding LineLength}" MinWidth="50" HorizontalAlignment="Right">
+                            <TextBox.Template>
+                                <ControlTemplate>
+                                    <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="#171924">
+                                        <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+                                    </Border>
+                                </ControlTemplate>
+                            </TextBox.Template>
+                        </TextBox>
+                    </Grid>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Grid Width="600" Margin="0 5 0 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="Kлу – средняя стоимость 1 км линии, у.д.е /км: " Foreground="Gray" FontSize="15"/>
+                        <TextBox Grid.Column="1" Foreground="White" FontSize="15" Margin="20 0 5 0" Text="{Binding LineLength}" MinWidth="50" HorizontalAlignment="Right">
+                            <TextBox.Template>
+                                <ControlTemplate>
+                                    <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="#171924">
+                                        <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+                                    </Border>
+                                </ControlTemplate>
+                            </TextBox.Template>
+                        </TextBox>
+                    </Grid>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Grid Width="600" Margin="0 5 0 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="Удельный расход топлива: " Foreground="Gray" FontSize="15"/>
+                        <TextBox Grid.Column="1" Foreground="White" FontSize="15" Margin="20 0 5 0" Text="{Binding LineLength}" MinWidth="50" HorizontalAlignment="Right">
+                            <TextBox.Template>
+                                <ControlTemplate>
+                                    <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="#171924">
+                                        <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+                                    </Border>
+                                </ControlTemplate>
+                            </TextBox.Template>
+                        </TextBox>
+                    </Grid>
+                </StackPanel>
+                <StackPanel>
+                    <Button Content="Save" Foreground="White" Cursor="Hand" Margin="50 20 0 0" HorizontalAlignment="Left">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border BorderThickness="0" CornerRadius="5" Background="#3861fb">
+                                    <Grid Height="35" Width="100">
+                                        <TextBlock Text="Save" HorizontalAlignment="Center" FontFamily="Segoe UI Semibold" VerticalAlignment="Center"/>
+                                    </Grid>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </StackPanel>
             </StackPanel>
         </Grid>
     </Grid>

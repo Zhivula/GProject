@@ -1,4 +1,6 @@
-﻿using GraduationProject.ViewModel;
+﻿using GraduationProject.Model;
+using GraduationProject.View;
+using GraduationProject.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,9 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace GraduationProject.Data
 {
+    [Serializable]
     public class Node<T> where T : IComparable
     {
         public T Data { get; set; }
@@ -316,11 +320,11 @@ namespace GraduationProject.Data
             ButtonViewModel item = View.DataContext as ButtonViewModel;
             if (item != null)
             {
-                var rl = item.R0 * item.Length;
-                var xl = item.X0 * item.Length;
-                var dU = (rl * item.P1 + xl * item.P1) / ((float)GlobalGrid.U * 1000);
+                item.R = item.R0 * item.Length;
+                item.X = item.X0 * item.Length;
+                item.DU = (item.R * item.P1 + item.X * item.P1) / ((float)GlobalGrid.U * 1000);
                 item.U1 = u;
-                u -= (float)dU;
+                u -= (float)item.DU;
                 item.U2 = u;
                 foreach (var i in List)
                 {
@@ -492,7 +496,7 @@ namespace GraduationProject.Data
                 if (i.View.DataContext is TransformerViewModel transformer)
                 {
                     var line = i.Parent.View.DataContext as ButtonViewModel;
-                    var dPxx = transformer.dPxx * Math.Pow(line.U2 / GlobalGrid.U, 2);
+                    var dPxx = transformer.Pxx * Math.Pow(line.U2 / GlobalGrid.U, 2);
                     var dWxx = dPxx * GlobalGrid.T;
                     if (!dictionary.Keys.Contains(transformer.K))
                     {
@@ -512,6 +516,46 @@ namespace GraduationProject.Data
 
             }
             return dictionary;
+        }
+        public List<Node<T>> GetTransformer(List<Node<T>> list)
+        {
+            foreach (var i in List)
+            {
+                if (i.View.DataContext is TransformerViewModel transformer)
+                {
+                    if (!list.Contains(i))
+                    {
+                        list.Add(i);
+                    }
+                }
+                else
+                {
+                    if (i.List.Count > 0)
+                    {
+                        foreach (var item in List)
+                        {
+                            item.GetTransformer(list);
+                        }
+                    }
+                }
+            }
+            return list;
+        } 
+        public List<Node<T>> GetElements(ref List<Node<T>> list)
+        {
+
+            if (!list.Contains(this))
+            {
+                list.Add(this);
+            }
+            if (List.Count > 0)
+            {
+                foreach (var item in List)
+                {
+                    item.GetElements(ref list);
+                }
+            }
+            return list;
         }
         /// <summary>
         /// Нагрузочные потери всех трансформаторов
@@ -683,6 +727,78 @@ namespace GraduationProject.Data
                 item.GetNode(list);
             }
             return list;
+        }
+        //public TreeSerializable<T> GetElements(TreeSerializable<T> tree)
+        //{
+        //    foreach (var i in List)
+        //    {
+        //        if (!tree.Contains(i))
+        //        {
+        //            tree.Add(i);
+        //        }
+        //        else
+        //        {
+        //            if (i.List.Count > 0)
+        //            {
+        //                foreach (var item in List)
+        //                {
+        //                    item.GetElements(tree);
+        //                }
+        //            }
+        //        }
+        //    }
+        //    return tree;
+        //}
+        public void AddToSerializable(ref TreeSerializable treeSerializable)
+        {
+            if (View.DataContext is ButtonViewModel contextLine)
+            {
+                var angle = ((RotateTransform)View.RenderTransform).Angle;
+                var node = new NodeSerializable(contextLine.K, contextLine, null, angle);
+                if (!treeSerializable.Contains(node))
+                {
+                    var model = new LineModel()
+                    {
+                        K = contextLine.K,
+                        N = contextLine.N,
+                        Brand = contextLine.Brand,
+                        L = contextLine.Length,
+                        R0 = contextLine.R0,
+                        X0 = contextLine.X0
+                    };
+                    treeSerializable.Add(contextLine.N, contextLine.K, model, angle);
+                }
+            }
+            if (View.DataContext is TransformerViewModel contextTransformer)
+            {
+                var angle = ((RotateTransform)View.RenderTransform).Angle;
+                var node = new NodeSerializable(contextTransformer.K, contextTransformer, null, angle);
+                if (!treeSerializable.Contains(node))
+                {
+                    var model = new TransformerModel()
+                    {
+                        K = contextTransformer.K,
+                        N = contextTransformer.N,
+                        Brand = contextTransformer.Brand,
+                        Ixx = contextTransformer.Ixx,
+                        Pkz = contextTransformer.Pkz,
+                        Pxx = contextTransformer.Pxx,
+                        Qxx = contextTransformer.Qxx,
+                        R = contextTransformer.R,
+                        X = contextTransformer.X,
+                        Snom = contextTransformer.Snom,
+                        Ukz = contextTransformer.Ukz
+                    };
+                    treeSerializable.Add(contextTransformer.N, contextTransformer.K, model, angle);
+                }
+            }
+            if (List.Count > 0)
+            {
+                foreach (var i in List)
+                {
+                    i.AddToSerializable(ref treeSerializable);
+                }
+            }
         }
         public int CompareTo(object obj)
         {

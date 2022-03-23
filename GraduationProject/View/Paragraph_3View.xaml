@@ -99,38 +99,22 @@
                             <TextBlock Text="Наименьшие суммарные потери в сети достигаются при коэффициенте загрузки K=" Foreground="White"/>
                             <TextBlock Text="{Binding TheBestKz}" Foreground="White"/>
                         </StackPanel>
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="*"/>
-                            </Grid.RowDefinitions>
+                        <StackPanel Orientation="Vertical">
                             <TextBlock Text="Сумарные потери в трансформаторах и линиях" Grid.Row="0" Style="{StaticResource Title}"/>
                             <oxy:PlotView Grid.Row="1" Background="Transparent" Model="{Binding PlotdW}" BorderThickness="0" Height="300" Width="Auto"/>
-                        </Grid>
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="*"/>
-                            </Grid.RowDefinitions>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical">
                             <TextBlock Text="Сумарные потери холостого хода в трансформаторах" Grid.Row="0" Style="{StaticResource Title}"/>
                             <oxy:PlotView Background="Transparent" Model="{Binding PlotdWxx}" BorderThickness="0" Height="300" Width="Auto"/>
-                        </Grid>
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="*"/>
-                            </Grid.RowDefinitions>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical">
                             <TextBlock Text="Сумарные нагрузочные потери в трансформаторах" Grid.Row="0" Style="{StaticResource Title}"/>
                             <oxy:PlotView Background="Transparent" Model="{Binding PlotdWnt}" BorderThickness="0" Height="300" Width="Auto"/>
-                        </Grid>
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="*"/>
-                            </Grid.RowDefinitions>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical">
                             <TextBlock Text="Сумарные нагрузочные потери в линиях" Grid.Row="0" Style="{StaticResource Title}"/>
                             <oxy:PlotView Background="Transparent" Model="{Binding PlotdWnl}" BorderThickness="0" Height="300" Width="Auto"/>
-                        </Grid>
+                        </StackPanel>
                     </StackPanel>
                 </Grid>
                 <Grid Grid.Column="2">

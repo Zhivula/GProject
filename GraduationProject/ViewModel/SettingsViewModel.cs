@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GraduationProject.DataBase;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -13,12 +14,14 @@ namespace GraduationProject.ViewModel
     class SettingsViewModel : INotifyPropertyChanged
     {
         private bool checkedGrid;
+        private string min;
 
         public bool CheckedGrid
         {
             get => checkedGrid;
             set
             {
+
                 checkedGrid = value;
                 OnPropertyChanged(nameof(CheckedGrid));
                 var window = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
@@ -26,21 +29,35 @@ namespace GraduationProject.ViewModel
                 {
                     for (var i = 0; i < window.GridChange.Children.Count; i++)
                     {
-                        if (window.GridChange.Children[i] is Line) window.GridChange.Children[i].Visibility = Visibility.Hidden;
+                        if (window.GridChange.Children[i] is System.Windows.Shapes.Line) window.GridChange.Children[i].Visibility = Visibility.Hidden;
                     }
                 }
                 else
                 {
                     for (var i = 0; i < window.GridChange.Children.Count; i++)
                     {
-                        if (window.GridChange.Children[i] is Line) window.GridChange.Children[i].Visibility = Visibility.Visible;
+                        if (window.GridChange.Children[i] is System.Windows.Shapes.Line) window.GridChange.Children[i].Visibility = Visibility.Visible;
                     }
                 }
             }
         }
+
+        public string Min
+        {
+            get => min;
+            set
+            {
+                min = value;
+                OnPropertyChanged(nameof(Min));
+            }
+        }
+
         public SettingsViewModel()
         {
-
+            using (var context = new MyDbContext())
+            {
+                Min = context.Settings.Select(x => x.Min).FirstOrDefault().ToString();
+            }
         }
         public ICommand Return => new DelegateCommand(o =>
         {
@@ -52,6 +69,16 @@ namespace GraduationProject.ViewModel
                 {
                     window.GridChangeFirst.Children.RemoveAt(i);
                 }
+            }
+        });
+        public ICommand SaveMin => new DelegateCommand(o =>
+        {
+            using (var context = new MyDbContext())
+            {
+                var item = context.Settings.FirstOrDefault();
+                item.Min = double.Parse(Min);
+                context.Entry(item).State = System.Data.Entity.EntityState.Modified;
+                context.SaveChanges();
             }
         });
         #region PropertyChanged

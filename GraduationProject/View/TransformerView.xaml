@@ -7,7 +7,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="50" d:DesignWidth="100">
-    <Grid>
+    <Grid MouseEnter="Button_MouseEnter">
         <Border x:Name="Dop" Visibility="Hidden" Background="#17171a" Margin="-25 -200 -25 0" CornerRadius="10" Height="100" Width="150">
             <Grid Background="Transparent">
                 <StackPanel>
@@ -40,7 +40,6 @@
                 <TextBlock Text="{Binding Brand}" FontSize="15" Foreground="Gray" HorizontalAlignment="Center" Margin="0 -20 0 0"/>
                 <TextBlock Text="{Binding N}" FontSize="15" Foreground="Gray" HorizontalAlignment="Left"/>
                 <TextBlock Text="{Binding K}" FontSize="15" Foreground="Gray" HorizontalAlignment="Right"/>
-                <TextBlock Text="{Binding U2}" FontSize="15" Foreground="Red" HorizontalAlignment="Right" Margin="0 -20 -20 0" FontWeight="DemiBold"/>
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="10"/>

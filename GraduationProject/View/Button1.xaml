@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:GraduationProject"
              mc:Ignorable="d" 
              d:DesignHeight="50" d:DesignWidth="100">
-    <Border BorderBrush="Gray" BorderThickness="1">
+    <Border BorderBrush="Gray" BorderThickness="0">
         <Grid MouseEnter="Button_MouseEnter">
             <!--<Border BorderBrush="Gray" BorderThickness="2"/>-->
             <Grid>

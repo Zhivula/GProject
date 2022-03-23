@@ -10,5 +10,6 @@ namespace GraduationProject.DataBase
         }
         public DbSet<Line> Lines { get; set; }
         public DbSet<Transformer> Transformers { get; set; }
+        public DbSet<Settings> Settings { get; set; }
     }
 }
