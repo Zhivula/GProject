@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace GraduationProject.Model
 {
@@ -20,6 +21,7 @@ namespace GraduationProject.Model
         public double Ixx { get; set; }
         public double R { get; set; }
         public double X { get; set; }
+        public Point Point { get; set; }
 
         public TransformerModel()
         {

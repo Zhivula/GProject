@@ -754,7 +754,9 @@ namespace GraduationProject.Data
             if (View.DataContext is ButtonViewModel contextLine)
             {
                 var angle = ((RotateTransform)View.RenderTransform).Angle;
-                var node = new NodeSerializable(contextLine.K, contextLine, null, angle);
+                var x = Canvas.GetLeft(View);
+                var y = Canvas.GetTop(View);
+                var node = new NodeSerializable(contextLine.K, contextLine, null, angle, x, y);
                 if (!treeSerializable.Contains(node))
                 {
                     var model = new LineModel()
@@ -766,13 +768,15 @@ namespace GraduationProject.Data
                         R0 = contextLine.R0,
                         X0 = contextLine.X0
                     };
-                    treeSerializable.Add(contextLine.N, contextLine.K, model, angle);
+                    treeSerializable.Add(contextLine.N, contextLine.K, model, angle, x, y);
                 }
             }
             if (View.DataContext is TransformerViewModel contextTransformer)
             {
                 var angle = ((RotateTransform)View.RenderTransform).Angle;
-                var node = new NodeSerializable(contextTransformer.K, contextTransformer, null, angle);
+                var x = Canvas.GetLeft(View);
+                var y = Canvas.GetTop(View);
+                var node = new NodeSerializable(contextTransformer.K, contextTransformer, null, angle, x, y);
                 if (!treeSerializable.Contains(node))
                 {
                     var model = new TransformerModel()
@@ -789,7 +793,7 @@ namespace GraduationProject.Data
                         Snom = contextTransformer.Snom,
                         Ukz = contextTransformer.Ukz
                     };
-                    treeSerializable.Add(contextTransformer.N, contextTransformer.K, model, angle);
+                    treeSerializable.Add(contextTransformer.N, contextTransformer.K, model, angle, x, y);
                 }
             }
             if (List.Count > 0)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace GraduationProject.Model
 {
@@ -15,6 +16,7 @@ namespace GraduationProject.Model
         public double R0 { get; set; }
         public double X0 { get; set; }
         public double L { get; set; }
+        public Point Point { get; set; }
 
         public LineModel()
         {

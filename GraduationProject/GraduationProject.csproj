@@ -87,6 +87,7 @@
     <Compile Include="DataBase\Settings.cs" />
     <Compile Include="DataBase\Transformer.cs" />
     <Compile Include="Data\BranchesMainTable.cs" />
+    <Compile Include="Data\BranchesTable.cs" />
     <Compile Include="Data\InfoBranches.cs" />
     <Compile Include="Data\InfoNodes.cs" />
     <Compile Include="Data\LoadTransformer.cs" />
@@ -94,6 +95,7 @@
     <Compile Include="Data\Node.cs" />
     <Compile Include="Data\NodeSerializable.cs" />
     <Compile Include="Data\Range.cs" />
+    <Compile Include="Data\RangeFormat.cs" />
     <Compile Include="Data\Tree.cs" />
     <Compile Include="Data\TreeSerializable.cs" />
     <Compile Include="Model\AddSourceModel.cs" />

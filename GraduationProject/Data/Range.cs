@@ -10,5 +10,14 @@ namespace GraduationProject.Data
     {
         public double Max { get; set; }
         public double Min { get; set; }
+
+        public new RangeFormat ToString()
+        {
+            return new RangeFormat()
+            {
+                Max = Max.ToString("#.##"),
+                Min = Min.ToString("#.##")
+            };
+        }
     }
 }

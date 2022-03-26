@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
 
 namespace GraduationProject.Data
@@ -19,23 +20,28 @@ namespace GraduationProject.Data
 
         public double Angel { get; set; }
 
+        public double X { get; set; }
+        public double Y { get; set; }
+
         public List<NodeSerializable> List { get; set; }
 
         public object DataContext { get; set; }
 
         public NodeSerializable Parent { get; set; }
 
-        public NodeSerializable(int data, object dataContext, NodeSerializable parent, double angle)
+        public NodeSerializable(int data, object dataContext, NodeSerializable parent, double angle, double x, double y)
         {
             Data = data;
             DataContext = dataContext;
             Parent = parent;
             List = new List<NodeSerializable>();
             Angel = angle;
+            X = x;
+            Y = y;
         }
-        public void Add(int start, int finish, object view, double angle)
+        public void Add(int start, int finish, object view, double angle, double x, double y)
         {
-            var node = new NodeSerializable(finish, view, this, angle);
+            var node = new NodeSerializable(finish, view, this, angle, x, y);
             if (Data.CompareTo(start) == 0)
             {
                 List.Add(node);
@@ -44,7 +50,7 @@ namespace GraduationProject.Data
             {
                 foreach (var i in List)
                 {
-                    i.Add(start, finish, view, angle);
+                    i.Add(start, finish, view, angle, x, y);
                 }
             }
         }
@@ -55,8 +61,21 @@ namespace GraduationProject.Data
             {
                 var line = new Button1(contextLine.Brand, contextLine.L, contextLine.R0, contextLine.X0) { Height = 50, Width = 100 };
                 ((RotateTransform)line.RenderTransform).Angle = Angel;
+
+                var contextL = line.DataContext as ButtonViewModel;
+                contextL.Flag = true;
+
                 var window = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+                
+                Canvas.SetLeft(line, X);
+                Canvas.SetTop(line, Y);
+
                 window.GridChange.Children.Add(line);
+                GlobalGrid.GetInstance().Lines.Add(line);
+
+                var contextMain = window.DataContext as MainWindowViewModel;
+                window.curr = line;
+                contextMain.MainClick();
             }
             else if (DataContext is TransformerModel contextTransformer)
             {
@@ -71,9 +90,14 @@ namespace GraduationProject.Data
                 global.Transformers.Add(transformer);
 
                 var window = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+                Canvas.SetLeft(transformer, X);
+                Canvas.SetTop(transformer, Y);
                 window.GridChange.Children.Add(transformer);
+                var contextMain = window.DataContext as MainWindowViewModel;
+                window.curr = transformer;
+                contextMain.MainClick();
             }
-            else
+            if(List.Count() > 0)
             {
                 foreach (var i in List)
                 {

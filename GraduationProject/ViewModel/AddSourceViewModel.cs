@@ -1,4 +1,5 @@
 ﻿using GraduationProject.Data;
+using GraduationProject.Model;
 using GraduationProject.View;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ using System.Windows.Input;
 
 namespace GraduationProject.ViewModel
 {
-    class AddSourceViewModel : INotifyPropertyChanged
+    public class AddSourceViewModel : INotifyPropertyChanged
     {
         MainWindow window;
         private double voltage;
@@ -35,6 +36,7 @@ namespace GraduationProject.ViewModel
                 OnPropertyChanged(nameof(Name));
             }
         }
+
 
         public AddSourceViewModel()
         {

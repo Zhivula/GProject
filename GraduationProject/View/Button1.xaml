@@ -9,6 +9,7 @@
     <Border BorderBrush="Gray" BorderThickness="0">
         <Grid MouseEnter="Button_MouseEnter">
             <!--<Border BorderBrush="Gray" BorderThickness="2"/>-->
+            <TextBlock x:Name="K" Text="{Binding K}" FontSize="15" Foreground="Gray" HorizontalAlignment="Right"/>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="10"/>
@@ -28,8 +29,9 @@
                 <Grid Grid.Column="1">
                     <Grid x:Name="MiddleCanvas">
                         <TextBlock x:Name="Length" Text="{Binding Length}" FontSize="15" Foreground="Gray" HorizontalAlignment="Center"/>
-                        <TextBlock x:Name="N" Text="{Binding N}" FontSize="15" Foreground="Gray" HorizontalAlignment="Left"/>
-                        <TextBlock x:Name="K" Text="{Binding K}" FontSize="15" Foreground="Gray" HorizontalAlignment="Right"/>
+                        <TextBlock x:Name="N" Text="" FontSize="15" Foreground="Gray" HorizontalAlignment="Left"/>
+                        <!--выше, в тексте было начало линии {Binding N}-->
+                        
                         <TextBlock x:Name="Brand" Text="{Binding Brand}" FontSize="15" Foreground="Gray" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="20"/>
                     </Grid>
                     <Button x:Name="MainButton" Height="5" Width="auto" BorderThickness="0" Background="Black" VerticalAlignment="Center" Click="Button_Click">

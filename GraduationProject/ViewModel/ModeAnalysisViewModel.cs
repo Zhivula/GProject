@@ -200,9 +200,35 @@ namespace GraduationProject.ViewModel
                 OnPropertyChanged(nameof(InfoBranches));
             }
         }
+        private BranchesMainTable branchesMainTable;
+        public BranchesMainTable BranchesMainTable
+        {
+            get => branchesMainTable;
+            set
+            {
+                branchesMainTable = value;
+                OnPropertyChanged(nameof(BranchesMainTable));
+            }
+        }
+        private List<BranchesTable> branchesTable;
+        public List<BranchesTable> BranchesTable
+        {
+            get => branchesTable;
+            set
+            {
+                branchesTable = value;
+                OnPropertyChanged(nameof(BranchesTable));
+            }
+        }
 
         public ModeAnalysisViewModel()
         {
+            Branch_1 = 5;
+            Branch_2 = 2.5;
+            Branch_3 = 0;
+            Branch_4 = -2.5;
+            Branch_5 = -5;
+
             ItemsSource = FullItemSource();
             InfoBranches = FullInfoBranches();
             InfoNodes = FullInfoNodes();
@@ -211,6 +237,8 @@ namespace GraduationProject.ViewModel
             Ust = 1.78;
             DUnnyMin = 0;
             DUnnyMax = 6;
+            BranchesMainTable = FindRangeForBranches();
+            BranchesTable = FullBranchesTable();
         }
         private List<Node<int>> GetTransformers()
         {
@@ -305,6 +333,60 @@ namespace GraduationProject.ViewModel
             }
             return list;
         }
+        public List<BranchesTable> FullBranchesTable()
+        {
+            var list = new List<BranchesTable>();
+            var nodes = GetTransformers();
+
+            foreach (var i in nodes)
+            {
+                var item = new BranchesTable();
+                var context = i.View.DataContext as TransformerViewModel;
+                var parent = i.Parent.View.DataContext as ButtonViewModel;
+                item.N = context.N;
+                item.K = context.K;
+                item.DeltaUSumPercent = ((GlobalGrid.U - parent.U2) / (GlobalGrid.U)) * 100;
+
+                if (double.Parse(BranchesMainTable.Branch_5.Max) >= item.DeltaUSumPercent & double.Parse(BranchesMainTable.Branch_5.Min) <= item.DeltaUSumPercent)
+                {
+                    item.Branch_5 = "+";
+                    item.SelectedBranch = Branch_5.ToString() + "%";
+                }
+                else item.Branch_5 = "-";
+
+                if (double.Parse(BranchesMainTable.Branch_4.Max) >= item.DeltaUSumPercent & double.Parse(BranchesMainTable.Branch_4.Min) <= item.DeltaUSumPercent)
+                {
+                    item.Branch_4 = "+";
+                    item.SelectedBranch = Branch_4.ToString() + "%";
+                }
+                else item.Branch_4 = "-";
+
+                if (double.Parse(BranchesMainTable.Branch_3.Max) >= item.DeltaUSumPercent & double.Parse(BranchesMainTable.Branch_3.Min) <= item.DeltaUSumPercent)
+                {
+                    item.Branch_3 = "+";
+                    item.SelectedBranch = Branch_3.ToString() + "%";
+                }
+                else item.Branch_3 = "-";
+
+                if (double.Parse(BranchesMainTable.Branch_2.Max) >= item.DeltaUSumPercent & double.Parse(BranchesMainTable.Branch_2.Min) <= item.DeltaUSumPercent)
+                {
+                    item.Branch_2 = "+";
+                    item.SelectedBranch = "+" + Branch_2.ToString() + "%";
+                }
+                else item.Branch_2 = "-";
+
+                if (double.Parse(BranchesMainTable.Branch_1.Max) >= item.DeltaUSumPercent & double.Parse(BranchesMainTable.Branch_1.Min) <= item.DeltaUSumPercent)
+                {
+                    item.Branch_1 = "+";
+                    item.SelectedBranch = "+" + Branch_1.ToString() + "%";
+                }
+                else item.Branch_1 = "-";
+
+                list.Add(item);
+            }
+
+            return list;
+        }
         public ICommand Return => new DelegateCommand(o =>
         {
             var window = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
@@ -321,6 +403,59 @@ namespace GraduationProject.ViewModel
         {
 
         });
+        public BranchesMainTable FindRangeForBranches()
+        {
+            var table = new BranchesMainTable();
+            table.Branch_1 = GetRange(DeltaUBranch_1).ToString();
+            table.Branch_2 = GetRange(DeltaUBranch_2).ToString();
+            table.Branch_3 = GetRange(DeltaUBranch_3).ToString();
+            table.Branch_4 = GetRange(DeltaUBranch_4).ToString();
+            table.Branch_5 = GetRange(DeltaUBranch_5).ToString();
+
+            return table;
+        }
+        public Range GetRange(double dUBranch)
+        {
+            var range = new Range();
+            var rangeMax = new Range();
+            var rangeMin = new Range();
+
+            var dUMaxU1 = PermissibleVoltageDeviations_10000V().Max + dUBranch - PermissibleVoltageDeviations_380V().Min;
+            var dUMinU1 = PermissibleVoltageDeviations_10000V().Max + dUBranch - PermissibleVoltageDeviations_380V().Max;
+
+            var dUMaxU2 = PermissibleVoltageDeviations_10000V().Min + dUBranch - PermissibleVoltageDeviations_380V().Min;
+            var dUMinU2 = PermissibleVoltageDeviations_10000V().Min + dUBranch - PermissibleVoltageDeviations_380V().Max;
+
+            if (dUMaxU1 > dUMinU1)
+            {
+                rangeMax.Max = dUMaxU1;
+                rangeMax.Min = dUMinU1;
+            }
+            else
+            {
+                rangeMax.Max = dUMinU1;
+                rangeMax.Min = dUMaxU1;
+            }
+
+            if (dUMaxU2 > dUMinU2)
+            {
+                rangeMin.Max = dUMaxU2;
+                rangeMin.Min = dUMinU2;
+            }
+            else
+            {
+                rangeMin.Max = dUMinU2;
+                rangeMin.Min = dUMaxU2;
+            }
+
+            if (rangeMax.Min > rangeMin.Min) range.Min = rangeMax.Min;
+            else range.Min = rangeMin.Min;
+
+            if (rangeMax.Max < rangeMin.Max) range.Max = rangeMax.Max;
+            else range.Max = rangeMin.Max;
+
+            return range;
+        }
         /// <summary>
         /// 4.	Определение зоны нечувствительности автоматического регулятора напряжения трансформатора в центре питания
         /// </summary>
@@ -329,13 +464,13 @@ namespace GraduationProject.ViewModel
         {
             return ((N * Ust) / 2); 
         }
-        public Point PermissibleVoltageDeviations_380V()
+        public Range PermissibleVoltageDeviations_380V()
         { 
-            return new Point() { X=DUnnyMin+5,Y=DUnnyMax-5 };
+            return new Range() { Max=DUnnyMin+5, Min=DUnnyMax-5 };
         }
-        public Point PermissibleVoltageDeviations_10000V()
+        public Range PermissibleVoltageDeviations_10000V()
         {
-            return new Point() { X = 5 + ZoneOfInsensitivity(), Y = 5-ZoneOfInsensitivity() };
+            return new Range() { Max = 5 + ZoneOfInsensitivity(), Min = 5-ZoneOfInsensitivity() };
         }
         #region PropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;

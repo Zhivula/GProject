@@ -151,11 +151,21 @@ namespace GraduationProject.Data
         }
         public TreeSerializable ConvertToSerializable()
         {
+            var global = GlobalGrid.GetInstance();
             var treeSerializable = new TreeSerializable();
-            if(Root != null)
+            var dataContextSource = global.Source.DataContext as SourceViewModel;
+
+            treeSerializable.SourceModel = dataContextSource.Model;
+            treeSerializable.XSource = Canvas.GetLeft(global.Source);
+            treeSerializable.YSource = Canvas.GetTop(global.Source);
+
+            if (Root != null)
             {
                 var context = Root.View.DataContext as ButtonViewModel;
-                var node = new NodeSerializable(context.K, Root.View.DataContext, null, 0);
+                var x = Canvas.GetLeft(Root.View);
+                var y = Canvas.GetTop(Root.View);
+                var node = new NodeSerializable(context.K, Root.View.DataContext, null, 0, x, y);
+
                 if (!treeSerializable.Contains(node))
                 {                  
                     var model = new LineModel() {
@@ -167,7 +177,7 @@ namespace GraduationProject.Data
                          X0 = context.X0
                     };
                     var angle = ((RotateTransform)Root.View.RenderTransform).Angle;
-                    treeSerializable.Add(context.N, context.K, model, angle);
+                    treeSerializable.Add(context.N, context.K, model, angle, x, y);
                     if (Root.List.Count>0)
                     {
                         foreach (var i in Root.List)

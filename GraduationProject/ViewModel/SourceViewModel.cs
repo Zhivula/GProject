@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GraduationProject.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -7,10 +8,11 @@ using System.Threading.Tasks;
 
 namespace GraduationProject.ViewModel
 {
-    class SourceViewModel : INotifyPropertyChanged
+    public class SourceViewModel : INotifyPropertyChanged
     {
         private double voltage;
         private string name;
+        public SourceModel Model { get; set; }
 
         public double Voltage
         {
@@ -35,6 +37,11 @@ namespace GraduationProject.ViewModel
         {
             Name = name;
             Voltage = voltage;
+            Model = new SourceModel()
+            {
+                Name = name,
+                Voltage = voltage
+            };
         }
         #region PropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;

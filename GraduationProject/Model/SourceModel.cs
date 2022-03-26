@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace GraduationProject.Model
 {
-    class SourceModel
+    [Serializable]
+    public class SourceModel
     {
+        public double Voltage { get; set; }
+        public string Name { get; set; }
     }
 }
