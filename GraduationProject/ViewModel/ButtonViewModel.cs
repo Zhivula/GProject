@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 
 namespace GraduationProject.ViewModel
 {
@@ -34,6 +35,7 @@ namespace GraduationProject.ViewModel
         private double dU;
         private double r;
         private double x;
+        private double opacity;
         private Dictionary<int,double> p2List;
         private Dictionary<int, double> p1List;
         private Dictionary<int, double> q2List;
@@ -42,6 +44,7 @@ namespace GraduationProject.ViewModel
         private Dictionary<int, double> wp1List;
         private Dictionary<int, double> wq2List;
         private Dictionary<int, double> wq1List;
+        private Color color;
 
         public int N
         {
@@ -259,7 +262,24 @@ namespace GraduationProject.ViewModel
                 OnPropertyChanged(nameof(DWq));
             }
         }
-
+        public double Opacity
+        {
+            get => opacity;
+            set
+            {
+                opacity = value;
+                OnPropertyChanged(nameof(Opacity));
+            }
+        }
+        public Color Color
+        {
+            get => color;
+            set
+            {
+                color = value;
+                OnPropertyChanged(nameof(Color));
+            }
+        }
         /// <summary>
         /// Хранит активные мощности P2 протекающие по линии
         /// </summary>
@@ -360,6 +380,8 @@ namespace GraduationProject.ViewModel
 
         public ButtonViewModel(string brand, double length, double r0, double x0)
         {
+            Opacity = 0;
+            Color = Colors.Transparent; 
             P2List = new Dictionary<int, double>();
             P1List = new Dictionary<int, double>();
             Q2List = new Dictionary<int, double>();

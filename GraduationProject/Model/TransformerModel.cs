@@ -23,6 +23,11 @@ namespace GraduationProject.Model
         public double X { get; set; }
         public Point Point { get; set; }
 
+        public double S { get; set; }
+        public double Cosfi { get; set; }
+        public double P { get; set; }
+        public double Q { get; set; }
+
         public TransformerModel()
         {
             

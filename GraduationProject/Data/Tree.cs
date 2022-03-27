@@ -116,7 +116,7 @@ namespace GraduationProject.Data
         {
             if(Root != null)
             {
-                Root.Volt(10.5f);
+                Root.Volt((float)GlobalGrid.U);
             }
         }
         public List<Node<T>> GetTransformers()

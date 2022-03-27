@@ -24,12 +24,12 @@ namespace GraduationProject.View
     public partial class TransformerView : UserControl
     {
         public MainWindow window;
-        public TransformerView(Transformer tr)
+        public TransformerView(Transformer tr, double s = 0, double cosfi = 0)
         {
             window = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
             RenderTransform = new RotateTransform() { Angle = 0 };
             InitializeComponent();
-            DataContext = new TransformerViewModel(tr);
+            DataContext = new TransformerViewModel(tr, s, cosfi);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

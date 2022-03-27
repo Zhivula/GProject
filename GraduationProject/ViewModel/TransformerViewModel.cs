@@ -45,6 +45,9 @@ namespace GraduationProject.ViewModel
         public double Ukz;
         private double k2f;
 
+        private double s;
+        private double cosfi;
+
         private Visibility visibility;
         private Transformer transformer;
 
@@ -285,18 +288,49 @@ namespace GraduationProject.ViewModel
                 OnPropertyChanged(nameof(DWq));
             }
         }
-        public TransformerViewModel(Transformer transformer)
+
+        public double S
+        {
+            get => s;
+            set
+            {
+                s = value;
+                OnPropertyChanged(nameof(S));
+            }
+        }
+        public double Cosfi
+        {
+            get => cosfi;
+            set
+            {
+                cosfi = value;
+                OnPropertyChanged(nameof(Cosfi));
+            }
+        }
+        public TransformerViewModel(Transformer transformer, double s = 0, double cosfi = 0)
         {
             this.transformer = transformer;
             Kz = 1;
             double cos = 0.8;
 
+            S = s;
+            Cosfi = cosfi;
+
             R = transformer.R;
             X = transformer.X;
 
-            Sj = transformer.Snom * Kz;
-            P2 = Sj * cos;
-            Q2 = Sj * Math.Sqrt(1 - cos*cos);
+            if (S != 0 & Cosfi != 0)
+            {
+                Sj = S;
+                P2 = Sj * Cosfi;
+                Q2 = Sj * Math.Sqrt(1 - Cosfi * Cosfi);
+            }
+            else
+            {
+                Sj = transformer.Snom * Kz;
+                P2 = Sj * cos;
+                Q2 = Sj * Math.Sqrt(1 - cos * cos);
+            }
 
             DPj = (P2 * P2 + Q2 * Q2) * R/ (GlobalGrid.U * GlobalGrid.U * 1000);
             DQj = (P2 * P2 + Q2 * Q2) * X/ (GlobalGrid.U * GlobalGrid.U * 1000);
@@ -322,6 +356,30 @@ namespace GraduationProject.ViewModel
             Pkz = transformer.Pkz;
             Ukz = transformer.Ukz;
             Snom = transformer.Snom;
+        }
+        public void ChangeParameters(Node<int> node, double S, double Cosfi)
+        {
+            var global = GlobalGrid.GetInstance();
+
+            if (node != null)
+            {
+                node.Delete(node.View);
+
+                this.S = S;
+                this.Cosfi = Cosfi;
+
+                Sj = S;
+                P2 = Sj * Cosfi;
+                Q2 = Sj * Math.Sqrt(1 - Cosfi * Cosfi);
+
+                dPj = (P2 * P2 + Q2 * Q2) * R / (GlobalGrid.U * GlobalGrid.U * 1000);
+                dQj = (P2 * P2 + Q2 * Q2) * X / (GlobalGrid.U * GlobalGrid.U * 1000);
+
+                P1 = P2 + dPj + transformer.Pxx;
+                Q1 = Q2 + dQj + transformer.Qxx;
+
+                node.Add(node);
+            }
         }
         #region PropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;

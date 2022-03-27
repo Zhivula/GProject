@@ -240,7 +240,7 @@
                                     </Grid>
                                     <Grid Grid.Column="2">
                                         <StackPanel>
-                                            <TextBox Text="{Binding Path=Snom}">
+                                            <TextBox Text="{Binding Path=Snom}" Margin="20 0">
                                                 <TextBox.Template>
                                                     <ControlTemplate>
                                                         <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="White">
@@ -252,7 +252,7 @@
                                         </StackPanel>
                                     </Grid>
                                     <Grid Grid.Column="3">
-                                        <TextBox Text="{Binding Path=Cosfi}">
+                                        <TextBox Text="{Binding Path=Cosfi}" Margin="20 0">
                                             <TextBox.Template>
                                                 <ControlTemplate>
                                                     <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="White">
@@ -264,7 +264,7 @@
                                     </Grid>
                                     <Grid Grid.Column="4">
                                         <StackPanel Orientation="Vertical">
-                                            <TextBox Text="{Binding Path=P}">
+                                            <TextBox Text="{Binding Path=P}" Margin="20 0">
                                                 <TextBox.Template>
                                                     <ControlTemplate>
                                                         <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="White">
@@ -277,7 +277,7 @@
                                     </Grid>
                                     <Grid Grid.Column="5">
                                         <StackPanel>
-                                            <TextBox Text="{Binding Path=Q}">
+                                            <TextBox Text="{Binding Path=Q}" Margin="20 0">
                                                 <TextBox.Template>
                                                     <ControlTemplate>
                                                         <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="White">

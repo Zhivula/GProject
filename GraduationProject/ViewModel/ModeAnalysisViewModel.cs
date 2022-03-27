@@ -261,10 +261,10 @@ namespace GraduationProject.ViewModel
                 {
                     N = context.N,
                     K = context.K,
-                    Cosfi = "",
-                    Snom = "",
-                    P = "",
-                    Q = ""
+                    Cosfi = "1",
+                    Snom = "1",
+                    P = "1",
+                    Q = "1"
                 });
             }
             return list;
@@ -401,7 +401,14 @@ namespace GraduationProject.ViewModel
         });
         public ICommand StartCommand => new DelegateCommand(o =>
         {
+            var listTransformers = GlobalGrid.GetInstance().Tree.GetTransformers();
+            foreach (var i in ItemsSource)
+            {
+                var transformer = listTransformers.Where(x => x.Data == i.K).FirstOrDefault();
+                var context = transformer.View.DataContext as TransformerViewModel;
 
+                context.ChangeParameters(transformer, double.Parse(i.Snom), double.Parse(i.Cosfi));
+            }
         });
         public BranchesMainTable FindRangeForBranches()
         {

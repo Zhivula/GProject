@@ -9,7 +9,7 @@
     <Border BorderBrush="Gray" BorderThickness="0">
         <Grid MouseEnter="Button_MouseEnter">
             <!--<Border BorderBrush="Gray" BorderThickness="2"/>-->
-            <TextBlock x:Name="K" Text="{Binding K}" FontSize="15" Foreground="Gray" HorizontalAlignment="Right"/>
+            <TextBlock x:Name="K" Text="{Binding K}" FontSize="15" Foreground="Black" HorizontalAlignment="Right" FontWeight="DemiBold"/>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="10"/>
@@ -34,8 +34,15 @@
                         
                         <TextBlock x:Name="Brand" Text="{Binding Brand}" FontSize="15" Foreground="Gray" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="20"/>
                     </Grid>
-                    <Button x:Name="MainButton" Height="5" Width="auto" BorderThickness="0" Background="Black" VerticalAlignment="Center" Click="Button_Click">
-                    </Button>
+                    <Border Height="30" Opacity="{Binding Opacity}" x:Name="BorderGradient">
+                        <Border.Background>
+                            <LinearGradientBrush SpreadMethod="Reflect" StartPoint="0,0" EndPoint="0,0.5">
+                                <GradientStop Color="Transparent" Offset="0"></GradientStop>
+                                <GradientStop Color="{Binding Color}" Offset="0.7"></GradientStop>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                    </Border>
+                    <Button x:Name="MainButton" Height="5" Width="auto" BorderThickness="0" Background="Black" VerticalAlignment="Center" Click="Button_Click"/>
                 </Grid>
                 <Button Grid.Column="2" Background="Green" Height="10" Width="10">
                     <Button.Template>

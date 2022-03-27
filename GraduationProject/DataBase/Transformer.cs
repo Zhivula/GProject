@@ -13,5 +13,7 @@
         public double Tnb { get; set; }
         public double R { get; set; }
         public double X { get; set; }
+
+
     }
 }

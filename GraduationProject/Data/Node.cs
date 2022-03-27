@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 
 namespace GraduationProject.Data
 {
@@ -326,6 +327,37 @@ namespace GraduationProject.Data
                 item.U1 = u;
                 u -= (float)item.DU;
                 item.U2 = u;
+
+                var deltaUPercent = ((GlobalGrid.U - item.U2) / GlobalGrid.U) * 100;
+
+                if (deltaUPercent >= 10) 
+                {
+                    item.Opacity = 1;
+                    item.Color = Colors.Red;
+
+                    DoubleAnimation buttonAnimation = new DoubleAnimation();
+                    buttonAnimation.From = 0.3;
+                    buttonAnimation.To = 1;
+                    buttonAnimation.RepeatBehavior = RepeatBehavior.Forever;
+                    buttonAnimation.AutoReverse = true;
+                    buttonAnimation.Duration = new TimeSpan(0,0,2);
+                    var b = View as Button1;
+                    b.BorderGradient.BeginAnimation(Border.OpacityProperty, buttonAnimation);
+                }
+                if (deltaUPercent >= 5 && deltaUPercent < 10)
+                {
+                    item.Opacity = 1;
+                    item.Color = Colors.Yellow;
+
+                    DoubleAnimation buttonAnimation = new DoubleAnimation();
+                    buttonAnimation.From = 0.3;
+                    buttonAnimation.To = 1;
+                    buttonAnimation.RepeatBehavior = RepeatBehavior.Forever;
+                    buttonAnimation.AutoReverse = true;
+                    buttonAnimation.Duration = new TimeSpan(0, 0, 2);
+                    var b = View as Button1;
+                    b.BorderGradient.BeginAnimation(Border.OpacityProperty, buttonAnimation);
+                }
                 foreach (var i in List)
                 {
                     i.Volt(u);
