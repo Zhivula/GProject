@@ -355,7 +355,7 @@
                         </Grid>
                     </Grid>
                 </Grid>
-                <ListView ItemsSource="{Binding InfoNodes}" Background="Transparent" BorderThickness="0">
+                <ListView ItemsSource="{Binding InfoBranches}" Background="Transparent" BorderThickness="0">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Grid>

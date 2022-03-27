@@ -91,25 +91,28 @@ namespace GraduationProject.Data
         }
         public void Delete(Node<T> node)
         {
-            if (node.View.DataContext is TransformerViewModel)
+            if (node != null)
             {
-                //node.Delete(node.View);
-                var index = node.Parent.List.IndexOf(node);
-                var transformer = node.View.DataContext as TransformerViewModel;
-                GlobalGrid.GetInstance().BoxK.Add(transformer.K);
-                transformer.N = 0;
-                transformer.K = 0;
-                node.Delete(node.View);
-                node.Parent.List.Remove(node.Parent.List[index]);
-            }
-            //Здесь нужно "глубокое удаление" для линий
-            if (node.View.DataContext is ButtonViewModel)
-            {
-                var contextButton = node.Parent.View.DataContext as ButtonViewModel;
-                var line = node.View.DataContext as ButtonViewModel;
-                GlobalGrid.GetInstance().BoxK.Add(line.K);
-                line.N = 0;
-                line.K = 0;
+                if (node.View.DataContext is TransformerViewModel)
+                {
+                    //node.Delete(node.View);
+                    var index = node.Parent.List.IndexOf(node);
+                    var transformer = node.View.DataContext as TransformerViewModel;
+                    GlobalGrid.GetInstance().BoxK.Add(transformer.K);
+                    transformer.N = 0;
+                    transformer.K = 0;
+                    node.Delete(node.View);
+                    node.Parent.List.Remove(node.Parent.List[index]);
+                }
+                //Здесь нужно "глубокое удаление" для линий
+                if (node.View.DataContext is ButtonViewModel)
+                {
+                    var contextButton = node.Parent.View.DataContext as ButtonViewModel;
+                    var line = node.View.DataContext as ButtonViewModel;
+                    GlobalGrid.GetInstance().BoxK.Add(line.K);
+                    line.N = 0;
+                    line.K = 0;
+                }
             }
         }
         public void Volt()
@@ -189,6 +192,14 @@ namespace GraduationProject.Data
             }
             
             return treeSerializable;
+        }
+        public void DeleteTree()
+        {
+            Root = null;
+            Count = 0;
+            GlobalGrid.GetInstance().Lines = new List<View.Button1>();
+            GlobalGrid.GetInstance().Transformers = new List<View.TransformerView>();
+            GlobalGrid.GetInstance().Source = null;
         }
     }
 }

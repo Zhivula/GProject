@@ -304,6 +304,20 @@ namespace GraduationProject.ViewModel
             //window.GridChange.Children.Clear();
             window.GridChangeFirst.Children.Add(new SettingsView());
         });
+        public ICommand ClearGrid => new DelegateCommand(o =>
+        {
+            for (int i = window.GridChange.Children.Count - 1; i >= 0; --i)
+            {
+                var childTypeName = window.GridChange.Children[i].GetType().Name;
+                if (childTypeName == "Button1" | childTypeName == "TransformerView" | childTypeName == "SourceView")
+                {
+                    window.GridChange.Children.RemoveAt(i);
+                }
+            }
+            GlobalGrid.GetInstance().Tree.DeleteTree();
+
+            MessageBox.Show("Успешно выполнено!");
+        });
         public ICommand SaveModel => new DelegateCommand(o =>
         {
             //window.GridChange.Children.Clear();

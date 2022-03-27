@@ -10,11 +10,11 @@ namespace GraduationProject.Data
     {
         public int N { get; set; }
         public int K { get; set; }
-        public double dU { get; set; }
-        public double dUPercent { get; set; }
-        public double P { get; set; }
-        public double Q { get; set; }
-        public double R { get; set; }
-        public double X { get; set; }
+        public string dU { get; set; }
+        public string dUPercent { get; set; }
+        public string P { get; set; }
+        public string Q { get; set; }
+        public string R { get; set; }
+        public string X { get; set; }
     }
 }

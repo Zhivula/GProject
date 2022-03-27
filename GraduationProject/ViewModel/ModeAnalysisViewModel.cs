@@ -281,12 +281,12 @@ namespace GraduationProject.ViewModel
                     {
                         N = contextTransformer.N,
                         K = contextTransformer.K,
-                        dU = (contextTransformer.U1-contextTransformer.U2)*1000,
-                        dUPercent = ((contextTransformer.U1 - contextTransformer.U2) / (GlobalGrid.U)) * 100,
-                        P = contextTransformer.P1,
-                        Q = contextTransformer.Q1,
-                        R = contextTransformer.R,
-                        X = contextTransformer.X
+                        dU = ((((contextTransformer.P2/1000) * (contextTransformer.R / 25) + (contextTransformer.Q2/1000)* (contextTransformer.X / 25)) /0.38)*100).ToString("0.####"),//Попровить формулу
+                        dUPercent = ((((contextTransformer.P2 / 1000) * (contextTransformer.R/25) + (contextTransformer.Q2 / 1000) * (contextTransformer.X/25)) / (0.38*0.38)) * 100).ToString("0.####"),//Попровить формулу
+                        P = contextTransformer.P1.ToString("0.####"),
+                        Q = contextTransformer.Q1.ToString("0.####"),
+                        R = contextTransformer.R.ToString("0.####"),
+                        X = contextTransformer.X.ToString("0.####")
                     });
                 }
                 if (i.View.DataContext is ButtonViewModel contextLine)
@@ -295,12 +295,12 @@ namespace GraduationProject.ViewModel
                     {
                         N = contextLine.N,
                         K = contextLine.K,
-                        dU = contextLine.DU*1000,
-                        dUPercent = (contextLine.DU/(GlobalGrid.U))*100,
-                        P = contextLine.P1,
-                        Q = contextLine.Q1,
-                        R = contextLine.R0*contextLine.Length,
-                        X = contextLine.X0 * contextLine.Length
+                        dU = (contextLine.DU*1000).ToString("0.####"),
+                        dUPercent = ((contextLine.DU/(GlobalGrid.U))*100).ToString("0.####"),
+                        P = contextLine.P1.ToString("0.####"),
+                        Q = contextLine.Q1.ToString("0.####"),
+                        R = contextLine.R.ToString("0.####"),
+                        X = contextLine.X.ToString("0.####")
                     });
                 }
             }
