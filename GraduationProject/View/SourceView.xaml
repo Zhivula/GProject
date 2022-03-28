@@ -4,18 +4,20 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GraduationProject.View"
-             mc:Ignorable="d"  d:DesignWidth="60" d:DesignHeight="50">
+             mc:Ignorable="d"  d:DesignWidth="150" d:DesignHeight="90">
     <Grid>
-        <TextBlock Text="{Binding Name}" FontSize="15" Foreground="BlueViolet" FontWeight="Bold" HorizontalAlignment="Center" Margin="0 0 10 0"/>
-        <StackPanel Orientation="Horizontal">
+        <TextBlock Text="{Binding Name}" FontSize="15" Foreground="BlueViolet" FontWeight="Bold" HorizontalAlignment="Right" Margin="0 -25 30 0"/>
+        <TextBlock Text="{Binding Voltage}" FontSize="15" Foreground="DarkViolet" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0 0 30 -25"/>
+        <TextBlock Text="0" FontSize="15" Foreground="Black" HorizontalAlignment="Right" FontWeight="DemiBold" Margin="0 20 -10 0"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
             <Grid>
-                <TextBlock Text="~" FontSize="70" Margin="0 -15 0 0" FontWeight="Light" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                <Button Click="Button_Click" Background="Transparent" BorderThickness="0" Padding="0" Height="50" Width="50">
-                    <Ellipse Height="50" Width="50" StrokeThickness="3" Stroke="Black" Fill="Transparent"/>
+                <!--<TextBlock Text="~" FontSize="70" Margin="0 -15 0 0" FontWeight="Light" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Center"/>-->
+                <Button Click="Button_Click" Background="Black" BorderThickness="0" Padding="0" Height="90" Width="20">
+                    <!--<Ellipse Height="50" Width="50" StrokeThickness="3" Stroke="Black" Fill="Transparent"/>-->
                 </Button>
             </Grid>
-            <Rectangle Fill="Black" Height="5" Width="11" HorizontalAlignment="Right"/>
+            <Rectangle Fill="Black" Height="10" Width="10" HorizontalAlignment="Right"/>
+            
         </StackPanel>
-        <TextBlock Text="{Binding Voltage}" FontSize="15" Foreground="DarkViolet" HorizontalAlignment="Center" Margin="0 70 10 0"/>
     </Grid>
 </UserControl>

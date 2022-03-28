@@ -45,7 +45,7 @@ namespace GraduationProject.ViewModel
         public ICommand AddSourceCommand => new DelegateCommand(o =>
         {
             var global = GlobalGrid.GetInstance();
-            var source = new SourceView(Name, Voltage) { Height = 90, Width = 60 };
+            var source = new SourceView(Name, Voltage) { Height = 90, Width = 150 };
             global.Source = source;
             OnPropertyChanged(nameof(source));
             Close();

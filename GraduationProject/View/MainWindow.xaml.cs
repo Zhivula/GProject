@@ -71,12 +71,9 @@ namespace GraduationProject
         }
         private void GenerateMap()
         {
-            for(var i = 0; i < 120; i++)
+            for(var i = 1; i < 120; i++)
             {
-                GridChange.Children.Add(new Line() {X1=i*10,X2=i*10,Y1=0,Y2=1200, Stroke = Brushes.Gray}); 
-            }
-            for (var i = 0; i < 120; i++)
-            {
+                GridChange.Children.Add(new Line() { X1 = i * 10, X2 = i * 10, Y1 = 0, Y2 = 1200, Stroke = Brushes.Gray });
                 GridChange.Children.Add(new Line() { X1 = 0, X2 = 1200, Y1 = i * 10, Y2 = i * 10, Stroke = Brushes.Gray });
             }
         }

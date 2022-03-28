@@ -37,10 +37,10 @@
             <Border BorderBrush="Gray" BorderThickness="0"/>
             <Grid HorizontalAlignment="Left" Width="100">
                 <TextBlock Text="{Binding P}" FontSize="15" Foreground="Gray" HorizontalAlignment="Center" Margin="0 80 0 0"/>
-                <TextBlock Text="{Binding Brand}" FontSize="15" Foreground="Gray" HorizontalAlignment="Center" Margin="0 -20 0 0"/>
+                <TextBlock x:Name="Brand" Text="{Binding Brand}" FontSize="15" Foreground="Gray" HorizontalAlignment="Center" Margin="0 -20 0 0"/>
                 <TextBlock Text="" FontSize="15" Foreground="Gray" HorizontalAlignment="Left"/>
                 <!--Выше, раньше задавалось начало ветки трансформатора {Binding N}-->
-                <TextBlock Text="{Binding K}" FontSize="15" Foreground="Black" HorizontalAlignment="Right" FontWeight="DemiBold"/>
+                <TextBlock x:Name="K" Text="{Binding K}" FontSize="15" Foreground="Black" HorizontalAlignment="Right" FontWeight="DemiBold"/>
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="10"/>

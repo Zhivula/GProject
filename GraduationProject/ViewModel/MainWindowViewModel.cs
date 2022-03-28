@@ -13,6 +13,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Shapes;
 
 namespace GraduationProject.ViewModel
 {
@@ -87,8 +88,8 @@ namespace GraduationProject.ViewModel
 
                             if (((RotateTransform)activeLine.RenderTransform).Angle == 270)
                             {
-                                another_left -= 20;
-                                another_top += 30;
+                                another_left -= 30;
+                                another_top -= 20;
                             }
                             if (((RotateTransform)activeLine.RenderTransform).Angle == 90)
                             {
@@ -110,8 +111,8 @@ namespace GraduationProject.ViewModel
                             }
                             if (((RotateTransform)activeLine.RenderTransform).Angle == 180)
                             {
-                                another_left += 20;
-                                another_top += 30;
+                                another_left += 30;
+                                another_top += 20;
                             }
                         }
                         //MessageBox.Show("X1: " + another_left + "X2: " + active_left + "Y1:" + another_top + "Y2:" + active_top);
@@ -121,7 +122,7 @@ namespace GraduationProject.ViewModel
                         double Y = 0;
                         if (global.Source != null)
                         {
-                            X = Canvas.GetLeft(global.Source) + 60;
+                            X = Canvas.GetLeft(global.Source) + 150;
                             Y = Canvas.GetTop(global.Source) + 20;
                         }
 
@@ -208,8 +209,8 @@ namespace GraduationProject.ViewModel
 
                             if (((RotateTransform)activeTransformer.RenderTransform).Angle == 270)
                             {
-                                another_left -= 20;
-                                another_top += 30;
+                                another_left -= 30;
+                                another_top -= 20;
                             }
                             if (((RotateTransform)activeTransformer.RenderTransform).Angle == 90)
                             {
@@ -231,8 +232,8 @@ namespace GraduationProject.ViewModel
                             }
                             if (((RotateTransform)activeTransformer.RenderTransform).Angle == 180)
                             {
-                                another_left += 20;
-                                another_top += 30;
+                                another_left += 30;
+                                another_top += 20;
                             }
                         }
 
@@ -304,6 +305,41 @@ namespace GraduationProject.ViewModel
             //window.GridChange.Children.Clear();
             window.GridChangeFirst.Children.Add(new SettingsView());
         });
+        public ICommand AddRight => new DelegateCommand(o =>
+        {
+            var width = window.GridChangeFirst.ActualWidth;
+            window.GridChangeFirst.Width = width + 200;
+            for (var i = 0; i < window.GridChange.Children.Count; i++)
+            {
+                if (window.GridChange.Children[i] is System.Windows.Shapes.Line line)
+                {
+                    if (line.X1 == 0)
+                    {
+                        line.X2 += 200;
+                    }
+                }
+            }
+            //Подправить
+            //for (var i = 1; i < 20; i++)
+            //{
+            //    window.GridChange.Children.Add(new Line() { X1 = (i * 10)+200, X2 = (i * 10)+200, Y1 = 0, Y2 = 1200, Stroke = Brushes.Gray });
+            //}
+        });
+        public ICommand AddBottom => new DelegateCommand(o =>
+        {
+            var height = window.GridChangeFirst.ActualHeight;
+            window.GridChangeFirst.Height = height + 200;
+            for (var i = 0; i < window.GridChange.Children.Count; i++)
+            {
+                if (window.GridChange.Children[i] is System.Windows.Shapes.Line line)
+                {
+                    if (line.Y1 == 0)
+                    {
+                        line.Y2 += 200;
+                    }
+                }
+            }
+        });
         public ICommand ClearGrid => new DelegateCommand(o =>
         {
             for (int i = window.GridChange.Children.Count - 1; i >= 0; --i)
@@ -347,7 +383,7 @@ namespace GraduationProject.ViewModel
             if (tree.Root != null)
             {
                 var global = GlobalGrid.GetInstance();
-                var source = new SourceView(tree.SourceModel.Name, tree.SourceModel.Voltage) { Height = 90, Width = 60 };
+                var source = new SourceView(tree.SourceModel.Name, tree.SourceModel.Voltage) { Height = 90, Width = 150 };
                 global.Source = source;
                 Canvas.SetLeft(source, tree.XSource);
                 Canvas.SetTop(source, tree.YSource);

@@ -55,6 +55,20 @@ namespace GraduationProject.View
             }
             else ((RotateTransform)RenderTransform).Angle += 90;
 
+            if (((RotateTransform)RenderTransform).Angle == 180)
+            {
+                RotateTransform rotate = new RotateTransform(-180);
+                K.LayoutTransform = rotate;
+                Brand.VerticalAlignment = VerticalAlignment.Top;
+                Brand.LayoutTransform = rotate;
+            }
+            if (((RotateTransform)RenderTransform).Angle == 0)
+            {
+                RotateTransform rotate = new RotateTransform();
+                K.LayoutTransform = rotate;
+                Brand.VerticalAlignment = VerticalAlignment.Top;
+                Brand.LayoutTransform = rotate;
+            }
 
             Canvas.SetLeft(this, x);
             Canvas.SetTop(this, y);
