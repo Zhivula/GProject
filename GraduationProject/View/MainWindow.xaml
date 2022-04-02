@@ -10,7 +10,7 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="600*"/>
-            <ColumnDefinition Width="200*"/>
+            <ColumnDefinition Width="150*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="15*"/>
@@ -40,7 +40,7 @@
                 <RadioButton Content="Settings" Width="150" Style="{StaticResource MenuButtonTheme}" Command="{Binding Settings}"/>
             </StackPanel>
         </Grid>
-        <Grid Grid.Column="0" Grid.Row="1">
+        <Grid Grid.Column="0" Grid.Row="1" x:Name="StaticGrid">
             <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
                 <Grid Name="GridChangeFirst">
                     <Canvas Name="GridChange" MouseRightButtonUp="GridChange_MouseRightButtonUp" Background="White">

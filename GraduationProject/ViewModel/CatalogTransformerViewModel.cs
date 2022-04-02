@@ -160,12 +160,12 @@ namespace GraduationProject.ViewModel
         public ICommand Return => new DelegateCommand(o =>
         {
             var window = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
-            for (int i = window.GridChangeFirst.Children.Count - 1; i >= 0; --i)
+            for (int i = window.StaticGrid.Children.Count - 1; i >= 0; --i)
             {
-                var childTypeName = window.GridChangeFirst.Children[i].GetType().Name;
+                var childTypeName = window.StaticGrid.Children[i].GetType().Name;
                 if (childTypeName == "CatalogTransformerView")
                 {
-                    window.GridChangeFirst.Children.RemoveAt(i);
+                    window.StaticGrid.Children.RemoveAt(i);
                 }
             }
         });

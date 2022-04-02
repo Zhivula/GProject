@@ -15,6 +15,9 @@ namespace GraduationProject.Data
         public double XSource { get; set; }
         public double YSource { get; set; }
 
+        public double HeightField { get; set; }
+        public double WidthField { get; set; }
+
         public NodeSerializable Root { get; set; }
 
         public TreeSerializable()

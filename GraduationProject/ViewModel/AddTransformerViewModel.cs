@@ -85,12 +85,12 @@ namespace GraduationProject.ViewModel
         });
         private void Close()
         {
-            for (int i = window.GridChangeFirst.Children.Count - 1; i >= 0; --i)
+            for (int i = window.StaticGrid.Children.Count - 1; i >= 0; --i)
             {
-                var childTypeName = window.GridChangeFirst.Children[i].GetType().Name;
+                var childTypeName = window.StaticGrid.Children[i].GetType().Name;
                 if (childTypeName == "AddTransformerView")
                 {
-                    window.GridChangeFirst.Children.RemoveAt(i);
+                    window.StaticGrid.Children.RemoveAt(i);
                 }
             }
         }

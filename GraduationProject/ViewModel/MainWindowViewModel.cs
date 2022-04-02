@@ -273,27 +273,27 @@ namespace GraduationProject.ViewModel
         public ICommand CreateNewSource => new DelegateCommand(o =>
         {
             //window.GridChange.Children.Clear();
-            window.GridChangeFirst.Children.Add(new AddSourceView());
+            window.StaticGrid.Children.Add(new AddSourceView());
         });
         public ICommand CreateNewLine => new DelegateCommand(o =>
         { 
             //window.GridChange.Children.Clear();
-            window.GridChangeFirst.Children.Add(new AddLineView());
+            window.StaticGrid.Children.Add(new AddLineView());
         }); 
         public ICommand CreateNewTransformer => new DelegateCommand(o =>
         {
             //window.GridChange.Children.Clear();
-            window.GridChangeFirst.Children.Add(new AddTransformerView());
+            window.StaticGrid.Children.Add(new AddTransformerView());
         });
         public ICommand CatalogLine => new DelegateCommand(o =>
         {
             //window.GridChange.Children.Clear();
-            window.GridChangeFirst.Children.Add(new CatalogLineView());
+            window.StaticGrid.Children.Add(new CatalogLineView());
         });
         public ICommand CatalogTransformer => new DelegateCommand(o =>
         {
             //window.GridChange.Children.Clear();
-            window.GridChangeFirst.Children.Add(new CatalogTransformerView());
+            window.StaticGrid.Children.Add(new CatalogTransformerView());
         });
         public ICommand Analysis => new DelegateCommand(o =>
         {
@@ -308,10 +308,18 @@ namespace GraduationProject.ViewModel
         public ICommand AddRight => new DelegateCommand(o =>
         {
             var width = window.GridChangeFirst.ActualWidth;
+            var height = window.GridChangeFirst.ActualHeight;
+
+            for (var i = 7; i < 27; i++)
+            {
+                window.GridChange.Children.Add(new Line() { X1 = (i * 10) + window.GridChangeFirst.ActualWidth - window.GridChangeFirst.ActualWidth%10, X2 = (i * 10) + window.GridChangeFirst.ActualWidth - window.GridChangeFirst.ActualWidth % 10, Y1 = 0, Y2 = height, Stroke = Brushes.Gray });
+            }
+
             window.GridChangeFirst.Width = width + 200;
+
             for (var i = 0; i < window.GridChange.Children.Count; i++)
             {
-                if (window.GridChange.Children[i] is System.Windows.Shapes.Line line)
+                if (window.GridChange.Children[i] is Line line)
                 {
                     if (line.X1 == 0)
                     {
@@ -319,19 +327,22 @@ namespace GraduationProject.ViewModel
                     }
                 }
             }
-            //Подправить
-            //for (var i = 1; i < 20; i++)
-            //{
-            //    window.GridChange.Children.Add(new Line() { X1 = (i * 10)+200, X2 = (i * 10)+200, Y1 = 0, Y2 = 1200, Stroke = Brushes.Gray });
-            //}
         });
         public ICommand AddBottom => new DelegateCommand(o =>
         {
+            var width = window.GridChangeFirst.ActualWidth;
             var height = window.GridChangeFirst.ActualHeight;
+
+            for (var i = 53; i < 73; i++)
+            {
+                window.GridChange.Children.Add(new Line() { X1 = 0, X2 = width, Y1 = (i * 10) + window.GridChangeFirst.ActualHeight - window.GridChangeFirst.ActualHeight % 10, Y2 = (i * 10) + window.GridChangeFirst.ActualHeight - window.GridChangeFirst.ActualHeight % 10, Stroke = Brushes.Gray });
+            }
+
             window.GridChangeFirst.Height = height + 200;
+
             for (var i = 0; i < window.GridChange.Children.Count; i++)
             {
-                if (window.GridChange.Children[i] is System.Windows.Shapes.Line line)
+                if (window.GridChange.Children[i] is Line line)
                 {
                     if (line.Y1 == 0)
                     {
@@ -382,6 +393,30 @@ namespace GraduationProject.ViewModel
 
             if (tree.Root != null)
             {
+                window.GridChangeFirst.Height = tree.HeightField;
+                window.GridChangeFirst.Width = tree.WidthField;
+
+                for (int i = window.GridChange.Children.Count - 1; i >= 0; --i)
+                {
+                    var childTypeName = window.GridChange.Children[i].GetType().Name;
+                    if (childTypeName == "Line")
+                    {
+                        window.GridChange.Children.RemoveAt(i);
+                    }
+                }
+
+                var countWidth = Math.Round(tree.WidthField / 10);
+                var countHeight = Math.Round(tree.HeightField / 10);
+
+                for (var i = 1; i < countHeight; i++)
+                {
+                    window.GridChange.Children.Add(new Line() { X1 = i * 10, X2 = i * 10, Y1 = 0, Y2 = countHeight * 10, Stroke = Brushes.Gray });
+                }
+                for (var i = 1; i < countWidth; i++)
+                {
+                    window.GridChange.Children.Add(new Line() { X1 = 0, X2 = countWidth * 10, Y1 = i * 10, Y2 = i * 10, Stroke = Brushes.Gray });
+                }
+
                 var global = GlobalGrid.GetInstance();
                 var source = new SourceView(tree.SourceModel.Name, tree.SourceModel.Voltage) { Height = 90, Width = 150 };
                 global.Source = source;
@@ -394,7 +429,7 @@ namespace GraduationProject.ViewModel
                 var line = new Button1(context.Brand, context.L, context.R0, context.X0) { Height = 50, Width = 100};
                 var contextLine = line.DataContext as ButtonViewModel;
                 contextLine.Flag = false;
-                ((RotateTransform)line.RenderTransform).Angle = tree.Root.Angel;
+                ((RotateTransform)line.RenderTransform).Angle = tree.Root.Angle;
                 Canvas.SetLeft(line, tree.Root.X);
                 Canvas.SetTop(line, tree.Root.Y);
                 window.GridChange.Children.Add(line);

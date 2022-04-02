@@ -27,6 +27,8 @@ namespace GraduationProject.ViewModel
         private double ust;
         private double dUnnyMax;
         private double dUnnyMin;
+        private double dUcpMax;
+        private double dUcpMin;
 
 
         public double Branch_1
@@ -170,6 +172,24 @@ namespace GraduationProject.ViewModel
                 OnPropertyChanged(nameof(DUnnyMin));
             }
         }
+        public double DUcpMax
+        {
+            get => dUcpMax;
+            set
+            {
+                dUcpMax = value;
+                OnPropertyChanged(nameof(DUcpMax));
+            }
+        }
+        public double DUcpMin 
+        {
+            get => dUcpMin;
+            set
+            {
+                dUcpMin = value;
+                OnPropertyChanged(nameof(DUcpMin));
+            }
+        }
         private List<LoadTransformer> items;
         public List<LoadTransformer> ItemsSource
         {
@@ -237,8 +257,8 @@ namespace GraduationProject.ViewModel
             Ust = 1.78;
             DUnnyMin = 0;
             DUnnyMax = 6;
-            BranchesMainTable = FindRangeForBranches();
-            BranchesTable = FullBranchesTable();
+            DUcpMax = 5;
+            DUcpMin = 0;
         }
         private List<Node<int>> GetTransformers()
         {
@@ -261,10 +281,10 @@ namespace GraduationProject.ViewModel
                 {
                     N = context.N,
                     K = context.K,
-                    Cosfi = "1",
-                    Snom = "1",
-                    P = "1",
-                    Q = "1"
+                    Cosfi = context.Cosfi.ToString(),
+                    Snom = context.Snom.ToString(),
+                    P = context.P1.ToString(),
+                    Q = context.Q1.ToString()
                 });
             }
             return list;
@@ -409,6 +429,9 @@ namespace GraduationProject.ViewModel
 
                 context.ChangeParameters(transformer, double.Parse(i.Snom), double.Parse(i.Cosfi));
             }
+
+            BranchesMainTable = FindRangeForBranches();
+            BranchesTable = FullBranchesTable();
         });
         public BranchesMainTable FindRangeForBranches()
         {
@@ -471,13 +494,17 @@ namespace GraduationProject.ViewModel
         {
             return ((N * Ust) / 2); 
         }
+        /// <summary>
+        /// По ГОСТу отклонение напряжения у потребителя от -5% до +5%
+        /// </summary>
+        /// <returns></returns>
         public Range PermissibleVoltageDeviations_380V()
         { 
             return new Range() { Max=DUnnyMin+5, Min=DUnnyMax-5 };
         }
         public Range PermissibleVoltageDeviations_10000V()
         {
-            return new Range() { Max = 5 + ZoneOfInsensitivity(), Min = 5-ZoneOfInsensitivity() };
+            return new Range() { Max = DUcpMax + ZoneOfInsensitivity(), Min = DUcpMax - ZoneOfInsensitivity() };
         }
         #region PropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;

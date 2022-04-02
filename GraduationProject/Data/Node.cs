@@ -37,6 +37,81 @@ namespace GraduationProject.Data
             if (Data.CompareTo(start) == 0)
             {
                 List.Add(node);
+                if (view.DataContext is ButtonViewModel context)
+                {
+                    var parentPosition = ((RotateTransform)View.RenderTransform).Angle;
+                    var childPosition = ((RotateTransform)view.RenderTransform).Angle;
+
+                    var parent = View as Button1;
+                    var child = view as Button1;
+
+                    if (parentPosition == 0 & childPosition == 270)
+                    {
+                        parent.K.Margin = new Thickness(0,0,-12,0);
+                    }
+                    if (parentPosition == 90 & childPosition == 0)
+                    {
+                        RotateTransform rotate = new RotateTransform(-90);
+
+                        parent.K.LayoutTransform = rotate;
+
+                        parent.K.Margin = new Thickness(-30, -30, 8, 30);
+                    }
+                    else if (parentPosition == 90)
+                    {
+                        var list = List.Where(x => {
+                            var item = x.View as Button1;
+                            var angle = ((RotateTransform)item.RenderTransform).Angle;
+                            if (angle == 0) return true;
+                            else return false;
+                        }).ToList();
+                        if (list.Count == 0)
+                        {
+                            RotateTransform rotate = new RotateTransform(-90);
+
+                            parent.K.LayoutTransform = rotate;
+
+                            parent.K.Margin = new Thickness(-30, -30, -5, 30);
+                        }
+                    }
+                    if (parentPosition == 180 & childPosition == 270)
+                    {
+                        parent.K.Margin = new Thickness(0, 0, 12, 0);
+                    }
+
+
+
+                    if (parentPosition == 270 & childPosition == 270)
+                    {
+                        RotateTransform rotate = new RotateTransform(-270);
+
+                        parent.K.LayoutTransform = rotate;
+
+                        parent.K.Margin = new Thickness(0, 33, -20, 0);
+                    }
+                    else if (parentPosition == 270)
+                    {
+                        var list = List.Where(x =>
+                        {
+                            var item = x.View as Button1;
+                            var angle = ((RotateTransform)item.RenderTransform).Angle;
+                            if (angle == 270) return true;
+                            else return false;
+                        }).ToList();
+                        if (list.Count == 0)
+                        {
+                            RotateTransform rotate = new RotateTransform(-270);
+
+                            parent.K.LayoutTransform = rotate;
+
+                            parent.K.Margin = new Thickness(0, 20, -20, 0);
+                        }
+                    }
+
+
+
+
+                }
                 if (view.DataContext is TransformerViewModel)
                 {
                     var contextButton = View.DataContext as ButtonViewModel;

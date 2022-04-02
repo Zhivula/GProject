@@ -162,6 +162,10 @@ namespace GraduationProject.Data
             treeSerializable.XSource = Canvas.GetLeft(global.Source);
             treeSerializable.YSource = Canvas.GetTop(global.Source);
 
+            var window = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+            treeSerializable.HeightField = window.GridChangeFirst.Height;
+            treeSerializable.WidthField = window.GridChangeFirst.Width;
+
             if (Root != null)
             {
                 var context = Root.View.DataContext as ButtonViewModel;
@@ -193,6 +197,9 @@ namespace GraduationProject.Data
             
             return treeSerializable;
         }
+        /// <summary>
+        /// Удаляет дерево. Root ссылается на null, следовательно дерево становится пустым.
+        /// </summary>
         public void DeleteTree()
         {
             Root = null;
@@ -200,6 +207,10 @@ namespace GraduationProject.Data
             GlobalGrid.GetInstance().Lines = new List<View.Button1>();
             GlobalGrid.GetInstance().Transformers = new List<View.TransformerView>();
             GlobalGrid.GetInstance().Source = null;
+        }
+        public void CorrectNKPositions()
+        {
+
         }
     }
 }

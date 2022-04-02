@@ -28,7 +28,7 @@
                 </Button>
                 <Grid Grid.Column="1">
                     <Grid x:Name="MiddleCanvas">
-                        <TextBlock x:Name="Length" Text="{Binding Length}" FontSize="15" Foreground="Gray" HorizontalAlignment="Center"/>
+                        <TextBlock x:Name="Length" Text="{Binding LengthFormat}" FontSize="15" Foreground="Gray" HorizontalAlignment="Center"/>
                         <TextBlock x:Name="N" Text="" FontSize="15" Foreground="Gray" HorizontalAlignment="Left"/>
                         <!--выше, в тексте было начало линии {Binding N}-->
                         

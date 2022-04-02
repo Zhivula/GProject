@@ -38,10 +38,20 @@ namespace GraduationProject
                 if(curr is Button1 line)
                 {
 
-                    if (((RotateTransform)line.RenderTransform).Angle == 90 || ((RotateTransform)line.RenderTransform).Angle == 270)
+                    if (((RotateTransform)line.RenderTransform).Angle == 90)
                     {
                         Canvas.SetLeft(line, x+20);
                         Canvas.SetTop(line, y-50);
+                    }
+                    else if (((RotateTransform)line.RenderTransform).Angle == 180)
+                    {
+                        Canvas.SetLeft(line, x + 50);
+                        Canvas.SetTop(line, y + 30);
+                    }
+                    else if (((RotateTransform)line.RenderTransform).Angle == 270)
+                    {
+                        Canvas.SetLeft(line, x - 20);
+                        Canvas.SetTop(line, y + 50);
                     }
                     else
                     {
@@ -69,12 +79,20 @@ namespace GraduationProject
                 }
             }
         }
+        ///Подправить
         private void GenerateMap()
         {
-            for(var i = 1; i < 120; i++)
+            var width = GridChange.Width;
+            var height = GridChange.Height;
+
+            var count = Math.Round(width);
+
+            count = 1200;
+
+            for (var i = 1; i < count; i++)
             {
-                GridChange.Children.Add(new Line() { X1 = i * 10, X2 = i * 10, Y1 = 0, Y2 = 1200, Stroke = Brushes.Gray });
-                GridChange.Children.Add(new Line() { X1 = 0, X2 = 1200, Y1 = i * 10, Y2 = i * 10, Stroke = Brushes.Gray });
+                GridChange.Children.Add(new Line() { X1 = i * 10, X2 = i * 10, Y1 = 0, Y2 = count*10, Stroke = Brushes.Gray });
+                GridChange.Children.Add(new Line() { X1 = 0, X2 = count*10, Y1 = i * 10, Y2 = i * 10, Stroke = Brushes.Gray });
             }
         }
         public void GridChange_MouseRightButtonUp(object sender, MouseButtonEventArgs e)

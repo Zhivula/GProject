@@ -18,7 +18,7 @@ namespace GraduationProject.Data
     {
         public int Data { get; set; }
 
-        public double Angel { get; set; }
+        public double Angle { get; set; }
 
         public double X { get; set; }
         public double Y { get; set; }
@@ -35,7 +35,7 @@ namespace GraduationProject.Data
             DataContext = dataContext;
             Parent = parent;
             List = new List<NodeSerializable>();
-            Angel = angle;
+            Angle = angle;
             X = x;
             Y = y;
         }
@@ -60,7 +60,17 @@ namespace GraduationProject.Data
             if (DataContext is LineModel contextLine)
             {
                 var line = new Button1(contextLine.Brand, contextLine.L, contextLine.R0, contextLine.X0) { Height = 50, Width = 100 };
-                ((RotateTransform)line.RenderTransform).Angle = Angel;
+                ((RotateTransform)line.RenderTransform).Angle = Angle;
+
+                if (Angle == 180 || Angle == 270)
+                {
+                    RotateTransform rotate = new RotateTransform(-180);
+                    line.K.LayoutTransform = rotate;
+                    line.N.LayoutTransform = rotate;
+                    line.Length.LayoutTransform = rotate;
+                    line.Brand.VerticalAlignment = VerticalAlignment.Top;
+                    line.Brand.LayoutTransform = rotate;
+                }
 
                 var contextL = line.DataContext as ButtonViewModel;
                 contextL.Flag = true;
@@ -86,7 +96,7 @@ namespace GraduationProject.Data
                     item = context.Transformers.Where(x => x.Brand == contextTransformer.Brand).Single();
                 }
                 var transformer = new TransformerView(item) { Height = 50, Width = 100 };
-                ((RotateTransform)transformer.RenderTransform).Angle = Angel;
+                ((RotateTransform)transformer.RenderTransform).Angle = Angle;
                 global.Transformers.Add(transformer);
 
                 var window = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();

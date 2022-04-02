@@ -195,23 +195,23 @@ namespace GraduationProject.ViewModel
         {
             var context = line.DataContext as ButtonViewModel;
             LineNumber = context.N.ToString() + "-" + context.K.ToString();
-            P1 = context.P1;
-            P2 = context.P2;
-            Q1 = context.Q1;
-            Q2 = context.Q2;
+            P1 = Math.Round(context.P1,5);
+            P2 = Math.Round(context.P2, 5);
+            Q1 = Math.Round(context.Q1, 5);
+            Q2 = Math.Round(context.Q2, 5);
             R = context.R0*context.Length;
             X = context.X0 * context.Length;
-            U2 = context.U2;
-            U1 = context.U1;
-            dP = P1 - P2;
-            dQ = Q1 - Q2;
-            dU = U1 - U2;
+            U2 = Math.Round(context.U2,5);
+            U1 = Math.Round(context.U1,5);
+            dP = Math.Round((P1 - P2),5);
+            dQ = Math.Round((Q1 - Q2),5);
+            dU = Math.Round((U1 - U2),5);
             Brand = context.Brand;
             L = context.Length;
-            Wp1 = context.Wp1;
-            Wp2 = context.Wp2;
-            Wq1 = context.Wq1;
-            Wq2 = context.Wq2;
+            Wp1 = Math.Round(context.Wp1,5);
+            Wp2 = Math.Round(context.Wp2, 5);
+            Wq1 = Math.Round(context.Wq1,5);
+            Wq2 = Math.Round(context.Wq2, 5);
         }
         #region PropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;

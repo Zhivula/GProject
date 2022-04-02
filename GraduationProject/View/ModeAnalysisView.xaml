@@ -6,178 +6,375 @@
              xmlns:local="clr-namespace:GraduationProject.View"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-             d:DesignHeight="750" d:DesignWidth="800">
+             d:DesignHeight="750" d:DesignWidth="1500">
+
+    <UserControl.Resources>
+        <Style x:Key="TitleText" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="Margin" Value="0 0 0 10"/>
+        </Style>
+        <Style x:Key="SmallText" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="Light"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+    </UserControl.Resources>
     <ScrollViewer>
         <Grid Background="White">
         <StackPanel>
             <Button Background="Transparent" BorderBrush="Transparent" Command="{Binding Return}" HorizontalAlignment="Left">
                 <materialDesign:PackIcon Kind="ArrowLeft" Foreground="Gray" Height="40" Width="auto"/>
             </Button>
-            
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <TextBlock Text="Общие параметры расчета" FontSize="16" Foreground="Black" FontWeight="Bold"/>
-                    <Grid Grid.Row="1">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="Uном, кВ"/>
-                        <TextBox Grid.Column="1" HorizontalAlignment="Right" MinWidth="70"/>
-                    </Grid>
-                    <Grid Grid.Row="2">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="δUст,%"/>
-                        <TextBox Grid.Column="1" HorizontalAlignment="Right" MinWidth="70" Text="{Binding Ust}"/>
-                    </Grid>
-                    <Grid Grid.Row="3">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="n"/>
-                        <TextBox Grid.Column="1" HorizontalAlignment="Right" MinWidth="70" Text="{Binding N}"/>
-                    </Grid>
-                    <Grid Grid.Row="4">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="m"/>
-                        <TextBox Grid.Column="1" HorizontalAlignment="Right" MinWidth="70" Text="{Binding M}"/>
-                    </Grid>
-                </Grid>
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <TextBlock Text="Рекомендуемые режимы регулирования напряжения в ЦП" FontSize="16" Foreground="Black" FontWeight="Bold"/>
-                    <Grid Grid.Row="1">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="δUцп max,%"/>
-                        <TextBox Grid.Column="1" HorizontalAlignment="Right" MinWidth="70" Text="5"/>
-                    </Grid>
-                    <Grid Grid.Row="2">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="δUцп min,%"/>
-                        <TextBox Grid.Column="1" HorizontalAlignment="Right" MinWidth="70" Text="0"/>
-                    </Grid>
-                </Grid>
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <TextBlock Text="Добавки напряжения на трансформаторах ТП (ответвления ПБВ)" FontSize="16" Foreground="Black" FontWeight="Bold"/>
-                    <Grid Grid.Row="1">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto" MinWidth="70"/>
-                            <ColumnDefinition Width="Auto" MinWidth="70"/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="#"/>
-                        <TextBlock Grid.Column="1" Text="Ответвление"/>
-                        <TextBlock Grid.Column="2" Text="δUт, %"/>
-                    </Grid>
-                    <Grid Grid.Row="2">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="1"/>
-                        <TextBox Grid.Column="1" HorizontalAlignment="Right" MinWidth="70" Text="{Binding Branch_1}"/>
-                        <TextBox Grid.Column="2" HorizontalAlignment="Right" MinWidth="70" Text="{Binding DeltaUBranch_1}"/>
-                    </Grid>
-                    <Grid Grid.Row="3">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="2"/>
-                        <TextBox Grid.Column="1" HorizontalAlignment="Right" MinWidth="70" Text="{Binding Branch_2}"/>
-                        <TextBox Grid.Column="2" HorizontalAlignment="Right" MinWidth="70" Text="{Binding DeltaUBranch_2}"/>
-                    </Grid>
-                    <Grid Grid.Row="4">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="3"/>
-                        <TextBox Grid.Column="1" HorizontalAlignment="Right" MinWidth="70" Text="{Binding Branch_3}"/>
-                        <TextBox Grid.Column="2" HorizontalAlignment="Right" MinWidth="70" Text="{Binding DeltaUBranch_3}"/>
-                    </Grid>
-                    <Grid Grid.Row="5">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="4"/>
-                        <TextBox Grid.Column="1" HorizontalAlignment="Right" MinWidth="70" Text="{Binding Branch_4}"/>
-                        <TextBox Grid.Column="2" HorizontalAlignment="Right" MinWidth="70" Text="{Binding DeltaUBranch_4}"/>
-                    </Grid>
-                    <Grid Grid.Row="6">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="5"/>
-                        <TextBox Grid.Column="1" HorizontalAlignment="Right" MinWidth="70" Text="{Binding Branch_5}"/>
-                        <TextBox Grid.Column="2" HorizontalAlignment="Right" MinWidth="70" Text="{Binding DeltaUBranch_5}"/>
-                    </Grid>
-                </Grid>
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <TextBlock Text="Задание потерь напряжения до потребителей" FontSize="16" Foreground="Black" FontWeight="Bold"/>
-                    <Grid Grid.Row="1">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="dUнн.у max,%"/>
-                        <TextBox Grid.Column="1" HorizontalAlignment="Right" MinWidth="70" Text="{Binding DUnnyMax}"/>
-                    </Grid>
-                    <Grid Grid.Row="2">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="dUнн.у min,%"/>
-                        <TextBox Grid.Column="1" HorizontalAlignment="Right" MinWidth="70" Text="{Binding DUnnyMin}"/>
-                    </Grid>
-                </Grid>
+                <StackPanel Orientation="Horizontal">
+                    <Border Background="#17171a" CornerRadius="10" Margin="10" Padding="10" Width="300">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <Grid Height="1" Background="Transparent" VerticalAlignment="Bottom">
+                                    <Border CornerRadius="1" Background="White"/>
+                                </Grid>
+
+                                <TextBlock Text="Общие параметры расчета" Style="{StaticResource TitleText}" VerticalAlignment="Center"/>
+                            </Grid>
+                            <Grid Grid.Row="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="0" Grid.Row="0">
+                                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <TextBlock Grid.Column="0" Text="Uном, кВ: " Style="{StaticResource SmallText}"/>
+                                        <TextBox Grid.Column="1" HorizontalAlignment="Right" MinWidth="100"  Margin="0 5 0 0">
+                                            <TextBox.Template>
+                                                <ControlTemplate>
+                                                    <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="White">
+                                                        <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </TextBox.Template>
+                                        </TextBox>
+                                    </StackPanel>
+                                </Grid>
+                                <Grid Grid.Column="1" Grid.Row="0" >
+                                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <TextBlock Grid.Column="0" Text="δUст, %: " Style="{StaticResource SmallText}"/>
+                                        <TextBox Grid.Column="1" MinWidth="100" Text="{Binding Ust}" Margin="0 5 0 0">
+                                            <TextBox.Template>
+                                                <ControlTemplate>
+                                                    <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="White">
+                                                        <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </TextBox.Template>
+                                        </TextBox>
+                                    </StackPanel>
+                                </Grid>
+                                <Grid Grid.Column="0" Grid.Row="1">
+                                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <TextBlock Grid.Column="0" Text="n: " Style="{StaticResource SmallText}"/>
+                                        <TextBox Grid.Column="1" MinWidth="100" Text="{Binding N}" Margin="0 5 0 0">
+                                            <TextBox.Template>
+                                                <ControlTemplate>
+                                                    <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="White">
+                                                        <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </TextBox.Template>
+                                        </TextBox>
+                                    </StackPanel>
+                                </Grid>
+                                <Grid Grid.Column="1" Grid.Row="1">
+                                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <TextBlock Grid.Column="0" Text="m: " Style="{StaticResource SmallText}"/>
+                                        <TextBox Grid.Column="1" MinWidth="100" Text="{Binding M}" Margin="0 5 0 0">
+                                            <TextBox.Template>
+                                                <ControlTemplate>
+                                                    <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="White">
+                                                        <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </TextBox.Template>
+                                        </TextBox>
+                                    </StackPanel>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </Border>
+                    <Border Background="#17171a" CornerRadius="10" Margin="10" Padding="10" Width="300">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <Grid Height="1" Background="Transparent" VerticalAlignment="Bottom">
+                                    <Border CornerRadius="1" Background="White"/>
+                                </Grid>
+
+                                <TextBlock Text="Регулирование напряжения в ЦП" Margin="0 0 0 10" Style="{StaticResource TitleText}" TextWrapping="Wrap"/>
+                            </Grid>
+                            <Grid Grid.Row="1">
+                                <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="0">
+                                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <TextBlock Text="δUцп max,%" Style="{StaticResource SmallText}"/>
+                                        <TextBox MinWidth="100" Text="5" Margin="0 10 0 0">
+                                            <TextBox.Template>
+                                                <ControlTemplate>
+                                                    <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="White">
+                                                        <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </TextBox.Template>
+                                        </TextBox>
+                                    </StackPanel>
+                                </Grid>
+                                <Grid Grid.Column="1">
+                                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <TextBlock Text="δUцп min,%" Style="{StaticResource SmallText}"/>
+                                        <TextBox MinWidth="100" Text="0" Margin="0 10 0 0">
+                                            <TextBox.Template>
+                                                <ControlTemplate>
+                                                    <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="White">
+                                                        <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </TextBox.Template>
+                                        </TextBox>
+                                    </StackPanel>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </Border>
+                    <Border Background="#17171a" CornerRadius="10" Margin="10" Padding="10" Width="360">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <Grid Height="1" Background="Transparent" VerticalAlignment="Bottom">
+                                    <Border CornerRadius="1" Background="White"/>
+                                </Grid>
+
+                                <TextBlock Text="Добавки напряжения на трансформаторах" Style="{StaticResource TitleText}" TextWrapping="Wrap"/>
+                            </Grid>
+                            <Grid Grid.Row="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto" MinWidth="100"/>
+                                    <ColumnDefinition Width="Auto" MinWidth="100"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="#" Style="{StaticResource SmallText}"/>
+                                <TextBlock Grid.Column="1" Text="Ответвление" Style="{StaticResource SmallText}"/>
+                                <TextBlock Grid.Column="2" Text="δUт, %" Style="{StaticResource SmallText}"/>
+                            </Grid>
+                            <Grid Grid.Row="2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="1" Style="{StaticResource SmallText}"/>
+                                <TextBox Grid.Column="1" HorizontalAlignment="Right" MinWidth="70" Text="{Binding Branch_1}">
+                                    <TextBox.Template>
+                                        <ControlTemplate>
+                                            <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="White">
+                                                <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+                                            </Border>
+                                        </ControlTemplate>
+                                    </TextBox.Template>
+                                </TextBox>
+                                <TextBox Grid.Column="2" HorizontalAlignment="Right" MinWidth="70" Text="{Binding DeltaUBranch_1}">
+                                    <TextBox.Template>
+                                        <ControlTemplate>
+                                            <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="White">
+                                                <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+                                            </Border>
+                                        </ControlTemplate>
+                                    </TextBox.Template>
+                                </TextBox>
+                            </Grid>
+                            <Grid Grid.Row="3">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="2" Style="{StaticResource SmallText}"/>
+                                <TextBox Grid.Column="1" HorizontalAlignment="Right" MinWidth="70" Text="{Binding Branch_2}">
+                                    <TextBox.Template>
+                                        <ControlTemplate>
+                                            <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="White">
+                                                <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+                                            </Border>
+                                        </ControlTemplate>
+                                    </TextBox.Template>
+                                </TextBox>
+                                <TextBox Grid.Column="2" HorizontalAlignment="Right" MinWidth="70" Text="{Binding DeltaUBranch_2}">
+                                    <TextBox.Template>
+                                        <ControlTemplate>
+                                            <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="White">
+                                                <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+                                            </Border>
+                                        </ControlTemplate>
+                                    </TextBox.Template>
+                                </TextBox>
+                            </Grid>
+                            <Grid Grid.Row="4">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="3" Style="{StaticResource SmallText}"/>
+                                <TextBox Grid.Column="1" HorizontalAlignment="Right" MinWidth="70" Text="{Binding Branch_3}">
+                                    <TextBox.Template>
+                                        <ControlTemplate>
+                                            <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="White">
+                                                <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+                                            </Border>
+                                        </ControlTemplate>
+                                    </TextBox.Template>
+                                </TextBox>
+                                <TextBox Grid.Column="2" HorizontalAlignment="Right" MinWidth="70" Text="{Binding DeltaUBranch_3}">
+                                    <TextBox.Template>
+                                        <ControlTemplate>
+                                            <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="White">
+                                                <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+                                            </Border>
+                                        </ControlTemplate>
+                                    </TextBox.Template>
+                                </TextBox>
+                            </Grid>
+                            <Grid Grid.Row="5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="4" Style="{StaticResource SmallText}"/>
+                                <TextBox Grid.Column="1" HorizontalAlignment="Right" MinWidth="70" Text="{Binding Branch_4}">
+                                    <TextBox.Template>
+                                        <ControlTemplate>
+                                            <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="White">
+                                                <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+                                            </Border>
+                                        </ControlTemplate>
+                                    </TextBox.Template>
+                                </TextBox>
+                                <TextBox Grid.Column="2" HorizontalAlignment="Right" MinWidth="70" Text="{Binding DeltaUBranch_4}">
+                                    <TextBox.Template>
+                                        <ControlTemplate>
+                                            <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="White">
+                                                <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+                                            </Border>
+                                        </ControlTemplate>
+                                    </TextBox.Template>
+                                </TextBox>
+                            </Grid>
+                            <Grid Grid.Row="6">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="5" Style="{StaticResource SmallText}"/>
+                                <TextBox Grid.Column="1" HorizontalAlignment="Right" MinWidth="70" Text="{Binding Branch_5}">
+                                    <TextBox.Template>
+                                        <ControlTemplate>
+                                            <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="White">
+                                                <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+                                            </Border>
+                                        </ControlTemplate>
+                                    </TextBox.Template>
+                                </TextBox>
+                                <TextBox Grid.Column="2" HorizontalAlignment="Right" MinWidth="70" Text="{Binding DeltaUBranch_5}">
+                                    <TextBox.Template>
+                                        <ControlTemplate>
+                                            <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="White">
+                                                <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+                                            </Border>
+                                        </ControlTemplate>
+                                    </TextBox.Template>
+                                </TextBox>
+                            </Grid>
+                        </Grid>
+                    </Border>
+                    <Border Background="#17171a" CornerRadius="10" Margin="10" Padding="10" Width="310">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <Grid Height="1" Background="Transparent" VerticalAlignment="Bottom">
+                                    <Border CornerRadius="1" Background="White"/>
+                                </Grid>
+
+                                <TextBlock Text="Потери напряжения до потребителя" Style="{StaticResource TitleText}" TextWrapping="Wrap" VerticalAlignment="Center"/>
+                            </Grid>
+                            <Grid Grid.Row="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="0">
+                                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <TextBlock Text="dUнн.у max,%" Style="{StaticResource SmallText}"/>
+                                        <TextBox MinWidth="100" Text="{Binding DUnnyMax}" Margin="0 10 0 0">
+                                            <TextBox.Template>
+                                                <ControlTemplate>
+                                                    <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="White">
+                                                        <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </TextBox.Template>
+                                        </TextBox>
+                                    </StackPanel>
+                                </Grid>
+                                <Grid Grid.Column="1">
+                                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <TextBlock Text="dUнн.у min,%" Style="{StaticResource SmallText}"/>
+                                        <TextBox MinWidth="100" Text="{Binding DUnnyMin}" Margin="0 10 0 0">
+                                            <TextBox.Template>
+                                                <ControlTemplate>
+                                                    <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="White">
+                                                        <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </TextBox.Template>
+                                        </TextBox>
+                                    </StackPanel>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </Border>
+                </StackPanel>
                 <Border BorderBrush="DeepSkyBlue" BorderThickness="0 0 0 5"/>
                 <Grid Background="#17171a" Height="35">
                     <Border BorderBrush="#333" BorderThickness="0 1"/>
@@ -197,16 +394,16 @@
                             <TextBlock Foreground="White" Text="Конец" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
                         </Grid>
                         <Grid Grid.Column="2">
-                            <TextBlock Foreground="White" Text="Snom" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
+                            <TextBlock Foreground="White" Text="Snom, кВА" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
                         </Grid>
                         <Grid Grid.Column="3">
                             <TextBlock Foreground="White" Text="cos(fi)" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
                         </Grid>
                         <Grid Grid.Column="4">
-                            <TextBlock Foreground="White" Text="P" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
+                            <TextBlock Foreground="White" Text="P, кВт" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
                         </Grid>
                         <Grid Grid.Column="5">
-                            <TextBlock Foreground="White" Text="Q" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
+                            <TextBlock Foreground="White" Text="Q, кВар" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
                         </Grid>
                     </Grid>
                 </Grid>
@@ -318,7 +515,7 @@
                 <Border BorderBrush="DeepSkyBlue" BorderThickness="0 0 0 5"/>
                 <Grid Background="#17171a" Height="35">
                     <Border BorderBrush="#333" BorderThickness="0 1"/>
-                    <Grid>
+                    <Grid Margin="100 0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
@@ -336,31 +533,31 @@
                             <TextBlock Foreground="White" Text="Конец" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
                         </Grid>
                         <Grid Grid.Column="2">
-                            <TextBlock Foreground="White" Text="R" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
+                            <TextBlock Foreground="White" Text="R, Ом" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
                         </Grid>
                         <Grid Grid.Column="3">
-                            <TextBlock Foreground="White" Text="X" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
+                            <TextBlock Foreground="White" Text="X, Ом" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
                         </Grid>
                         <Grid Grid.Column="4">
-                            <TextBlock Foreground="White" Text="P" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
+                            <TextBlock Foreground="White" Text="P, кВт" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
                         </Grid>
                         <Grid Grid.Column="5">
-                            <TextBlock Foreground="White" Text="Q" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
+                            <TextBlock Foreground="White" Text="Q, кВар" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
                         </Grid>
                         <Grid Grid.Column="6">
                             <TextBlock Foreground="White" Text="dU, В" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
                         </Grid>
                         <Grid Grid.Column="7">
-                            <TextBlock Foreground="White" Text="dU%" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
+                            <TextBlock Foreground="White" Text="dU, %" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
                         </Grid>
                     </Grid>
                 </Grid>
                 <ListView ItemsSource="{Binding InfoBranches}" Background="Transparent" BorderThickness="0">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <Grid>
+                            <Grid  Margin="100 0">
                                 <Border BorderThickness="0 0 0 1" BorderBrush="#333"/>
-                                <Grid  Margin="0 10">
+                                <Grid  Margin="0 5">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="*"/>
@@ -386,46 +583,22 @@
                                         </StackPanel>
                                     </Grid>
                                     <Grid Grid.Column="2">
-                                        <StackPanel Margin="10 5">
-                                            <Border Background="Gray" CornerRadius="5" HorizontalAlignment="Left" Padding="10 2 10 2">
-                                                <TextBlock Foreground="White" Text="{Binding Path=R}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 10 0"/>
-                                            </Border>
-                                        </StackPanel>
+                                        <TextBlock Foreground="Black" Text="{Binding Path=R}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 0 10 0"/>
                                     </Grid>
                                     <Grid Grid.Column="3">
-                                        <StackPanel Margin="10 5">
-                                            <Border Background="Gray" CornerRadius="5" HorizontalAlignment="Left" Padding="10 2 10 2">
-                                                <TextBlock Foreground="White" Text="{Binding Path=X}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 10 0"/>
-                                            </Border>
-                                        </StackPanel>
+                                        <TextBlock Foreground="Black" Text="{Binding Path=X}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 0 10 0"/>
                                     </Grid>
                                     <Grid Grid.Column="4">
-                                        <StackPanel Margin="10 5">
-                                            <Border Background="Gray" CornerRadius="5" HorizontalAlignment="Left" Padding="10 2 10 2">
-                                                <TextBlock Foreground="White" Text="{Binding Path=P}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 10 0"/>
-                                            </Border>
-                                        </StackPanel>
+                                        <TextBlock Foreground="Black" Text="{Binding Path=P}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 0 10 0"/>
                                     </Grid>
                                     <Grid Grid.Column="5">
-                                        <StackPanel Margin="10 5">
-                                            <Border Background="Gray" CornerRadius="5" HorizontalAlignment="Left" Padding="10 2 10 2">
-                                                <TextBlock Foreground="White" Text="{Binding Path=Q}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 10 0"/>
-                                            </Border>
-                                        </StackPanel>
+                                        <TextBlock Foreground="Black" Text="{Binding Path=Q}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 0 10 0"/>
                                     </Grid>
                                     <Grid Grid.Column="6">
-                                        <StackPanel Margin="10 5">
-                                            <Border Background="Gray" CornerRadius="5" HorizontalAlignment="Left" Padding="10 2 10 2">
-                                                <TextBlock Foreground="White" Text="{Binding Path=dU}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 10 0"/>
-                                            </Border>
-                                        </StackPanel>
+                                        <TextBlock Foreground="Black" Text="{Binding Path=dU}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 0 10 0"/>
                                     </Grid>
                                     <Grid Grid.Column="7">
-                                        <StackPanel Margin="10 5">
-                                            <Border Background="Gray" CornerRadius="5" HorizontalAlignment="Left" Padding="10 2 10 2">
-                                                <TextBlock Foreground="White" Text="{Binding Path=dUPercent}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 10 0"/>
-                                            </Border>
-                                        </StackPanel>
+                                        <TextBlock Foreground="Black" Text="{Binding Path=dUPercent}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 0 10 0"/>
                                     </Grid>
                                 </Grid>
                             </Grid>
@@ -538,7 +711,7 @@
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
                                     <Grid Grid.Column="0">
                                         <StackPanel Orientation="Vertical" Margin="10 0 0 0">

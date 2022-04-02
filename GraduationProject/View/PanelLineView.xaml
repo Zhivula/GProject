@@ -85,27 +85,27 @@
         <Grid Grid.Row="3">
             <StackPanel Margin="5">
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Foreground="Gray" Text="Активное сопротивление линии, R: " HorizontalAlignment="Left"/>
+                    <TextBlock Foreground="Gray" Text="Активное сопротивление, R: " HorizontalAlignment="Left"/>
                     <TextBlock Foreground="Gray" Text="{Binding R}"/>
                     <TextBlock Foreground="Gray" Text="   Ом"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Foreground="Gray" Text="Реактивное сопротивление линии, X: " HorizontalAlignment="Left"/>
+                    <TextBlock Foreground="Gray" Text="Реактивное сопротивление, X: " HorizontalAlignment="Left"/>
                     <TextBlock Foreground="Gray" Text="{Binding X}"/>
                     <TextBlock Foreground="Gray" Text="   Ом"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Foreground="Gray" Text="Потери активной мощнисти на линии, dP: "/>
+                    <TextBlock Foreground="Gray" Text="Потери активной мощнисти, dP: "/>
                     <TextBlock Foreground="Gray" Text="{Binding dP}"/>
                     <TextBlock Foreground="Gray" Text="   МВт"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Foreground="Gray" Text="Потери реактивной мощнисти на линии, dQ: "/>
+                    <TextBlock Foreground="Gray" Text="Потери реактивной мощнисти, dQ: "/>
                     <TextBlock Foreground="Gray" Text="{Binding dQ}"/>
                     <TextBlock Foreground="Gray" Text="   МВар"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Foreground="Gray" Text="Падение напряжения на линии, dU: "/>
+                    <TextBlock Foreground="Gray" Text="Падение напряжения, dU: "/>
                     <TextBlock Foreground="Gray" Text="{Binding dU}"/>
                     <TextBlock Foreground="Gray" Text="   кВ"/>
                 </StackPanel>

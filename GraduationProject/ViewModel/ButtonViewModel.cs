@@ -15,6 +15,7 @@ namespace GraduationProject.ViewModel
         private int k;
         private bool flag;
         private double length;
+        private string lengthFormat;
         private string brand;
         private double p1;
         private double p2;
@@ -89,6 +90,15 @@ namespace GraduationProject.ViewModel
             {
                 length = value;
                 OnPropertyChanged(nameof(Length));
+            }
+        }
+        public string LengthFormat
+        {
+            get => lengthFormat;
+            set
+            {
+                lengthFormat = value;
+                OnPropertyChanged(nameof(LengthFormat));
             }
         }
         public double P1
@@ -392,6 +402,7 @@ namespace GraduationProject.ViewModel
             Wq1List = new Dictionary<int, double>();
             Brand = brand;
             Length = length;
+            LengthFormat = length + " км";
             R0 = r0;
             X0 = x0;
         }
