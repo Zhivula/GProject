@@ -24,6 +24,8 @@
             <Setter Property="Foreground" Value="#f6fffa"/>
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="Margin" Value="5,0,5,0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Width" Value="150"/>
         </Style.Setters>
         <Style.Triggers>
             <Trigger Property="IsChecked" Value="true">
@@ -62,6 +64,7 @@
             <Setter Property="Foreground" Value="#f6fffa"/>
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="Margin" Value="5,0,5,0"/>
+            <Setter Property="Cursor" Value="Hand"/>
         </Style.Setters>
         <Style.Triggers>
             <Trigger Property="IsChecked" Value="true">

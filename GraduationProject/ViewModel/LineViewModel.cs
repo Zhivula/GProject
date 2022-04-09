@@ -9,7 +9,7 @@ using System.Windows.Media;
 namespace GraduationProject.ViewModel
 {
     [Serializable]
-    public class ButtonViewModel : INotifyPropertyChanged
+    public class LineViewModel : INotifyPropertyChanged
     {
         private int n;
         private int k;
@@ -388,7 +388,7 @@ namespace GraduationProject.ViewModel
             }
         }
 
-        public ButtonViewModel(string brand, double length, double r0, double x0)
+        public LineViewModel(string brand, double length, double r0, double x0)
         {
             Opacity = 0;
             Color = Colors.Transparent; 

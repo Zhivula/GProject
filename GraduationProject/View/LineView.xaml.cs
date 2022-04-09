@@ -31,7 +31,7 @@ namespace GraduationProject.View
             window = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
             RenderTransform = new RotateTransform() { Angle = 0 };
             InitializeComponent();
-            DataContext = new ButtonViewModel(brand, length, r0, x0);
+            DataContext = new LineViewModel(brand, length, r0, x0);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

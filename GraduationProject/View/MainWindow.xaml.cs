@@ -25,8 +25,6 @@ namespace GraduationProject
             GenerateMap();
 
             GridChange.MouseMove += new MouseEventHandler(MouseEvent);
-            //GridChange.MouseRightButtonUp += new MouseButtonEventHandler(GridChange_MouseRightButtonUp);
-
         }
         public void MouseEvent(object sender, MouseEventArgs e)
         {
@@ -98,7 +96,7 @@ namespace GraduationProject
         public void GridChange_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
         {
             var context = DataContext as MainWindowViewModel;
-            context.MainClick();
+            context.Model.MainClick(this);
         }
         #region PropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;

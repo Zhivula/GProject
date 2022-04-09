@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:GraduationProject"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="MainWindow" Height="550" Width="1200" WindowStartupLocation="CenterScreen" WindowState="Maximized">
+        Title="Zhivula Vlad" Height="550" Width="1200" WindowStartupLocation="CenterScreen" WindowState="Maximized">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="600*"/>
@@ -18,26 +18,31 @@
         </Grid.RowDefinitions>
         <Grid Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Background="#222531">
             <StackPanel Orientation="Horizontal">
-                <RadioButton Width="150" Style="{StaticResource MenuButtonThemeMaretialDesign}" Command="{Binding SaveModel}" Foreground="White">
+                <RadioButton Width="50" Style="{StaticResource MenuButtonThemeMaretialDesign}" Command="{Binding Home}" Background="Transparent">
+                    <materialDesign:PackIcon x:Name="mat" Kind="Home" Foreground="White" Height="20" Width="auto"/>
+                </RadioButton>
+                <RadioButton Width="150" Style="{StaticResource MenuButtonThemeMaretialDesign}" Command="{Binding SaveModel}" Background="Transparent">
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon Kind="Package" Foreground="White" Height="20" Width="auto"/>
-                        <TextBlock Text="Save" Foreground="White" FontSize="15" Margin="10 0 0 0"/>
+                        <TextBlock Text="Save model" Foreground="White" FontSize="15" Margin="10 0 0 0"/>
+                        <Rectangle RadiusX="2" RadiusY="2" Fill="White" Height="4" VerticalAlignment="Bottom" Opacity="0"/>
                     </StackPanel>
                 </RadioButton>
 
-                <RadioButton Width="150" Style="{StaticResource MenuButtonThemeMaretialDesign}" Command="{Binding OpenModel}">
+                <RadioButton Width="150" Style="{StaticResource MenuButtonThemeMaretialDesign}" Command="{Binding OpenModel}"  Background="Transparent">
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon Kind="OpenInApp" Foreground="White" Height="20" Width="auto"/>
-                        <TextBlock Text="Open" Foreground="White" FontSize="15" Margin="10 0 0 0"/>
+                        <TextBlock Text="Open model" Foreground="White" FontSize="15" Margin="10 0 0 0"/>
+                        <Rectangle RadiusX="2" RadiusY="2" Fill="White" Height="4" VerticalAlignment="Bottom" Opacity="0"/>
                     </StackPanel>
                 </RadioButton>
-                <RadioButton Content="New Source" Width="150" Style="{StaticResource MenuButtonTheme}" Command="{Binding CreateNewSource}"/>
-                <RadioButton Content="New Line" Width="150" Style="{StaticResource MenuButtonTheme}" Command="{Binding CreateNewLine}"/>
-                <RadioButton Content="New Transformer" Width="150" Style="{StaticResource MenuButtonTheme}" Command="{Binding CreateNewTransformer}"/>
-                <RadioButton Content="Catalog Line" Width="150" Style="{StaticResource MenuButtonTheme}" Command="{Binding CatalogLine}"/>
-                <RadioButton Content="Catalog Transformer" Style="{StaticResource MenuButtonTheme}" Width="150" Command="{Binding CatalogTransformer}"/>
-                <RadioButton Content="Analysis" Width="150" Style="{StaticResource MenuButtonTheme}" Command="{Binding Analysis}"/>
-                <RadioButton Content="Settings" Width="150" Style="{StaticResource MenuButtonTheme}" Command="{Binding Settings}"/>
+                <RadioButton Content="New Source" Style="{StaticResource MenuButtonTheme}" Command="{Binding CreateNewSource}"/>
+                <RadioButton Content="New Line" Style="{StaticResource MenuButtonTheme}" Command="{Binding CreateNewLine}"/>
+                <RadioButton Content="New Transformer" Style="{StaticResource MenuButtonTheme}" Command="{Binding CreateNewTransformer}"/>
+                <RadioButton Content="Catalog Line" Style="{StaticResource MenuButtonTheme}" Command="{Binding CatalogLine}"/>
+                <RadioButton Content="Catalog Transformer" Style="{StaticResource MenuButtonTheme}" Command="{Binding CatalogTransformer}"/>
+                <RadioButton Content="Analysis" Style="{StaticResource MenuButtonTheme}" Command="{Binding Analysis}"/>
+                <RadioButton Content="Settings" Style="{StaticResource MenuButtonTheme}" Command="{Binding Settings}"/>
             </StackPanel>
         </Grid>
         <Grid Grid.Column="0" Grid.Row="1" x:Name="StaticGrid">
@@ -56,6 +61,37 @@
                             <TextBlock Text="Clear" Foreground="White" FontSize="12" HorizontalAlignment="Center"/>
                         </StackPanel>
                     </Border>
+                    <Button.Triggers>
+                        <EventTrigger RoutedEvent="UserControl.Loaded">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" 
+                                         BeginTime="0:0:2"
+                                         From="0"
+                                         To="1"
+                                         Duration="0:0:0.5"
+                                         FillBehavior="HoldEnd">
+                                        <DoubleAnimation.EasingFunction>
+                                            <PowerEase Power="3" />
+                                        </DoubleAnimation.EasingFunction>
+                                    </DoubleAnimation>
+                                    <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(TranslateTransform.X)" 
+                                         BeginTime="0:0:2"
+                                         From="150"
+                                         To="0"
+                                         Duration="0:0:1"
+                                         FillBehavior="HoldEnd">
+                                        <DoubleAnimation.EasingFunction>
+                                            <PowerEase Power="3" />
+                                        </DoubleAnimation.EasingFunction>
+                                    </DoubleAnimation>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Button.Triggers>
+                    <Button.RenderTransform>
+                        <TranslateTransform X="150" Y="0"/>
+                    </Button.RenderTransform>
                 </Button>
                 <Button HorizontalAlignment="Right" VerticalAlignment="Top" BorderThickness="0" Height="50" Width="50" Margin="20 5" Command="{Binding AddRight}">
                     <Border BorderBrush="#222531" Background="#222531" CornerRadius="5" Margin="0" Padding="12 5">
@@ -64,6 +100,37 @@
                             <TextBlock Text="Add" Foreground="White" FontSize="12" HorizontalAlignment="Center"/>
                         </StackPanel>
                     </Border>
+                    <Button.Triggers>
+                        <EventTrigger RoutedEvent="UserControl.Loaded">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" 
+                                         BeginTime="0:0:1.5"
+                                         From="0"
+                                         To="1"
+                                         Duration="0:0:0.5"
+                                         FillBehavior="HoldEnd">
+                                        <DoubleAnimation.EasingFunction>
+                                            <PowerEase Power="3" />
+                                        </DoubleAnimation.EasingFunction>
+                                    </DoubleAnimation>
+                                    <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(TranslateTransform.X)" 
+                                         BeginTime="0:0:1.5"
+                                         From="150"
+                                         To="0"
+                                         Duration="0:0:1"
+                                         FillBehavior="HoldEnd">
+                                        <DoubleAnimation.EasingFunction>
+                                            <PowerEase Power="3" />
+                                        </DoubleAnimation.EasingFunction>
+                                    </DoubleAnimation>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Button.Triggers>
+                    <Button.RenderTransform>
+                        <TranslateTransform X="150" Y="0"/>
+                    </Button.RenderTransform>
                 </Button>
                 <Button HorizontalAlignment="Right" VerticalAlignment="Top" BorderThickness="0" Height="50" Width="50" Margin="20 5" Command="{Binding AddBottom}">
                     <Border BorderBrush="#222531" Background="#222531" CornerRadius="5" Margin="0" Padding="12 5">
@@ -72,10 +139,41 @@
                             <TextBlock Text="Add" Foreground="White" FontSize="12" HorizontalAlignment="Center"/>
                         </StackPanel>
                     </Border>
+                    <Button.Triggers>
+                        <EventTrigger RoutedEvent="UserControl.Loaded">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" 
+                                         BeginTime="0:0:1"
+                                         From="0"
+                                         To="1"
+                                         Duration="0:0:0.5"
+                                         FillBehavior="HoldEnd">
+                                        <DoubleAnimation.EasingFunction>
+                                            <PowerEase Power="3" />
+                                        </DoubleAnimation.EasingFunction>
+                                    </DoubleAnimation>
+                                    <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(TranslateTransform.X)" 
+                                         BeginTime="0:0:1"
+                                         From="150"
+                                         To="0"
+                                         Duration="0:0:1"
+                                         FillBehavior="HoldEnd">
+                                        <DoubleAnimation.EasingFunction>
+                                            <PowerEase Power="3" />
+                                        </DoubleAnimation.EasingFunction>
+                                    </DoubleAnimation>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Button.Triggers>
+                    <Button.RenderTransform>
+                        <TranslateTransform X="150" Y="0"/>
+                    </Button.RenderTransform>
                 </Button>
             </StackPanel>
         </Grid>
-        <Grid Grid.Column="1" Grid.Row="1" Name="InfoPanel">
+        <Grid Grid.Column="1" Grid.Row="1" Name="InfoPanel" Background="White">
         </Grid>
         <Grid Grid.ColumnSpan="2" Grid.Row="1" Name="FullGridChange">
         </Grid>

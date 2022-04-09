@@ -15,6 +15,7 @@ namespace GraduationProject.ViewModel
     public class AddSourceViewModel : INotifyPropertyChanged
     {
         MainWindow window;
+        private readonly AddSourceModel Model;
         private double voltage;
         private string name;
 
@@ -40,17 +41,13 @@ namespace GraduationProject.ViewModel
 
         public AddSourceViewModel()
         {
+            Model = new AddSourceModel();
             window = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
         }
         public ICommand AddSourceCommand => new DelegateCommand(o =>
         {
-            var global = GlobalGrid.GetInstance();
-            var source = new SourceView(Name, Voltage) { Height = 90, Width = 150 };
-            global.Source = source;
-            OnPropertyChanged(nameof(source));
+            Model.AddSource(window, Name, Voltage);
             Close();
-            window.GridChange.Children.Add(source);
-            window.curr = source;
         });
         public ICommand CloseWindow => new DelegateCommand(o =>
         {
@@ -61,7 +58,7 @@ namespace GraduationProject.ViewModel
             for (int i = window.StaticGrid.Children.Count - 1; i >= 0; --i)
             {
                 var childTypeName = window.StaticGrid.Children[i].GetType().Name;
-                if (childTypeName == "AddSourceView")
+                if (childTypeName == nameof(AddSourceView))
                 {
                     window.StaticGrid.Children.RemoveAt(i);
                 }

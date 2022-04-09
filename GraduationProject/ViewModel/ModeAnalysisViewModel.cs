@@ -250,7 +250,6 @@ namespace GraduationProject.ViewModel
             Branch_5 = -5;
 
             ItemsSource = FullItemSource();
-            InfoBranches = FullInfoBranches();
             InfoNodes = FullInfoNodes();
             N = 1.3;
             M = 0.15;
@@ -281,7 +280,7 @@ namespace GraduationProject.ViewModel
                 {
                     N = context.N,
                     K = context.K,
-                    Cosfi = context.Cosfi.ToString(),
+                    Cosfi = context.Cosfi.ToString("0.####"),
                     Snom = context.Snom.ToString(),
                     P = context.P1.ToString(),
                     Q = context.Q1.ToString()
@@ -309,7 +308,7 @@ namespace GraduationProject.ViewModel
                         X = contextTransformer.X.ToString("0.####")
                     });
                 }
-                if (i.View.DataContext is ButtonViewModel contextLine)
+                if (i.View.DataContext is LineViewModel contextLine)
                 {
                     list.Add(new InfoBranches()
                     {
@@ -341,7 +340,7 @@ namespace GraduationProject.ViewModel
                         dUSumPercent = ((GlobalGrid.U - contextTransformer.U2) / (GlobalGrid.U)) * 100,
                     });
                 }
-                if (i.View.DataContext is ButtonViewModel contextLine)
+                if (i.View.DataContext is LineViewModel contextLine)
                 {
                     list.Add(new InfoNodes()
                     {
@@ -362,10 +361,10 @@ namespace GraduationProject.ViewModel
             {
                 var item = new BranchesTable();
                 var context = i.View.DataContext as TransformerViewModel;
-                var parent = i.Parent.View.DataContext as ButtonViewModel;
+                var parent = i.Parent.View.DataContext as LineViewModel;
                 item.N = context.N;
                 item.K = context.K;
-                item.DeltaUSumPercent = ((GlobalGrid.U - parent.U2) / (GlobalGrid.U)) * 100;
+                item.DeltaUSumPercent = Math.Round((((GlobalGrid.U - parent.U2) / (GlobalGrid.U)) * 100),5);
 
                 if (double.Parse(BranchesMainTable.Branch_5.Max) >= item.DeltaUSumPercent & double.Parse(BranchesMainTable.Branch_5.Min) <= item.DeltaUSumPercent)
                 {
@@ -430,6 +429,7 @@ namespace GraduationProject.ViewModel
                 context.ChangeParameters(transformer, double.Parse(i.Snom), double.Parse(i.Cosfi));
             }
 
+            InfoBranches = FullInfoBranches();
             BranchesMainTable = FindRangeForBranches();
             BranchesTable = FullBranchesTable();
         });

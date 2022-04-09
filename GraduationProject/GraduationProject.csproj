@@ -84,14 +84,12 @@
     </ApplicationDefinition>
     <Compile Include="DataBase\Line.cs" />
     <Compile Include="DataBase\MyDbContext.cs" />
-    <Compile Include="DataBase\Settings.cs" />
     <Compile Include="DataBase\Transformer.cs" />
     <Compile Include="Data\BranchesMainTable.cs" />
     <Compile Include="Data\BranchesTable.cs" />
     <Compile Include="Data\InfoBranches.cs" />
     <Compile Include="Data\InfoNodes.cs" />
     <Compile Include="Data\LoadTransformer.cs" />
-    <Compile Include="Data\Losses_Paragraph_5.cs" />
     <Compile Include="Data\Node.cs" />
     <Compile Include="Data\NodeSerializable.cs" />
     <Compile Include="Data\Range.cs" />
@@ -99,35 +97,25 @@
     <Compile Include="Data\Tree.cs" />
     <Compile Include="Data\TreeSerializable.cs" />
     <Compile Include="Model\AddSourceModel.cs" />
-    <Compile Include="Model\AnalysisModel.cs" />
-    <Compile Include="Data\Losses.cs" />
+    <Compile Include="Model\CatalogLineModel.cs" />
+    <Compile Include="Model\CatalogTransformerModel.cs" />
     <Compile Include="Model\LineModel.cs" />
     <Compile Include="Model\PanelLineModel.cs" />
     <Compile Include="Model\PanelTransformerModel.cs" />
-    <Compile Include="Model\Paragraph_3Model.cs" />
-    <Compile Include="Model\Paragraph_4Model.cs" />
-    <Compile Include="Model\Paragraph_5Model.cs" />
     <Compile Include="Model\SettingsModel.cs" />
     <Compile Include="Model\SourceModel.cs" />
     <Compile Include="Model\TransformerModel.cs" />
     <Compile Include="ViewModel\AddSourceViewModel.cs" />
-    <Compile Include="ViewModel\AnalysisViewModel.cs" />
     <Compile Include="ViewModel\CatalogLineViewModel.cs" />
     <Compile Include="ViewModel\CatalogTransformerViewModel.cs" />
     <Compile Include="ViewModel\ModeAnalysisViewModel.cs" />
     <Compile Include="ViewModel\PanelLineViewModel.cs" />
     <Compile Include="ViewModel\PanelTransformerViewModel.cs" />
-    <Compile Include="ViewModel\Paragraph_3ViewModel.cs" />
-    <Compile Include="ViewModel\Paragraph_4ViewModel.cs" />
-    <Compile Include="ViewModel\Paragraph_5ViewModel.cs" />
     <Compile Include="View\ModeAnalysisView.xaml.cs">
       <DependentUpon>ModeAnalysisView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\PanelTransformerView.xaml.cs">
       <DependentUpon>PanelTransformerView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Paragraph_3View.xaml.cs">
-      <DependentUpon>Paragraph_3View.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\SettingsViewModel.cs" />
     <Compile Include="ViewModel\SourceViewModel.cs" />
@@ -135,21 +123,16 @@
     <Compile Include="View\AddSourceView.xaml.cs">
       <DependentUpon>AddSourceView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\AnalysisView.xaml.cs">
-      <DependentUpon>AnalysisView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Button1.xaml.cs">
-      <DependentUpon>Button1.xaml</DependentUpon>
+    <Compile Include="View\LineView.xaml.cs">
+      <DependentUpon>LineView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Data\GlobalGrid.cs" />
-    <Compile Include="Data\IElement.cs" />
-    <Compile Include="Data\LineGrid.cs" />
     <Compile Include="DelegateCommand.cs" />
     <Compile Include="Model\AddLineModel.cs" />
     <Compile Include="Model\AddTransformerModel.cs" />
     <Compile Include="ViewModel\AddLineViewModel.cs" />
     <Compile Include="ViewModel\AddTransformerViewModel.cs" />
-    <Compile Include="ViewModel\ButtonViewModel.cs" />
+    <Compile Include="ViewModel\LineViewModel.cs" />
     <Compile Include="View\AddLineView.xaml.cs">
       <DependentUpon>AddLineView.xaml</DependentUpon>
     </Compile>
@@ -161,12 +144,6 @@
     </Compile>
     <Compile Include="View\PanelLineView.xaml.cs">
       <DependentUpon>PanelLineView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Paragraph_4View.xaml.cs">
-      <DependentUpon>Paragraph_4View.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Paragraph_5View.xaml.cs">
-      <DependentUpon>Paragraph_5View.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\SettingsView.xaml.cs">
       <DependentUpon>SettingsView.xaml</DependentUpon>
@@ -193,19 +170,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Paragraph_3View.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="View\AddSourceView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\AnalysisView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Button1.xaml">
+    <Page Include="View\LineView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -243,14 +212,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\PanelLineView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Paragraph_4View.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Paragraph_5View.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

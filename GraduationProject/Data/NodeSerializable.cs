@@ -72,7 +72,7 @@ namespace GraduationProject.Data
                     line.Brand.LayoutTransform = rotate;
                 }
 
-                var contextL = line.DataContext as ButtonViewModel;
+                var contextL = line.DataContext as LineViewModel;
                 contextL.Flag = true;
 
                 var window = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
@@ -85,7 +85,7 @@ namespace GraduationProject.Data
 
                 var contextMain = window.DataContext as MainWindowViewModel;
                 window.curr = line;
-                contextMain.MainClick();
+                contextMain.Model.MainClick(window);
             }
             else if (DataContext is TransformerModel contextTransformer)
             {
@@ -105,7 +105,7 @@ namespace GraduationProject.Data
                 window.GridChange.Children.Add(transformer);
                 var contextMain = window.DataContext as MainWindowViewModel;
                 window.curr = transformer;
-                contextMain.MainClick();
+                contextMain.Model.MainClick(window);
             }
             if(List.Count() > 0)
             {

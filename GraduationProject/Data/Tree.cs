@@ -57,18 +57,6 @@ namespace GraduationProject.Data
             if (Root != null) return Root.GetdWxx(dictionary);
             else return dictionary;
         }
-        public Dictionary<int, double> GetdWnt() 
-        {
-            var dictionary = new Dictionary<int, double>();
-            if (Root != null) return Root.GetdWnt(dictionary);
-            else return dictionary;
-        }
-        public Dictionary<int, double> GetdWnl()
-        {
-            var dictionary = new Dictionary<int, double>();
-            if (Root != null) return Root.GetdWnl(dictionary);
-            else return dictionary;
-        }
         public double GetSumL()
         {
             var dictionary = new Dictionary<int, double>();
@@ -105,10 +93,10 @@ namespace GraduationProject.Data
                     node.Parent.List.Remove(node.Parent.List[index]);
                 }
                 //Здесь нужно "глубокое удаление" для линий
-                if (node.View.DataContext is ButtonViewModel)
+                if (node.View.DataContext is LineViewModel)
                 {
-                    var contextButton = node.Parent.View.DataContext as ButtonViewModel;
-                    var line = node.View.DataContext as ButtonViewModel;
+                    var contextButton = node.Parent.View.DataContext as LineViewModel;
+                    var line = node.View.DataContext as LineViewModel;
                     GlobalGrid.GetInstance().BoxK.Add(line.K);
                     line.N = 0;
                     line.K = 0;
@@ -168,7 +156,7 @@ namespace GraduationProject.Data
 
             if (Root != null)
             {
-                var context = Root.View.DataContext as ButtonViewModel;
+                var context = Root.View.DataContext as LineViewModel;
                 var x = Canvas.GetLeft(Root.View);
                 var y = Canvas.GetTop(Root.View);
                 var node = new NodeSerializable(context.K, Root.View.DataContext, null, 0, x, y);

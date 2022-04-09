@@ -59,7 +59,7 @@ namespace GraduationProject.Data
                 if (Cosfi != null && Snom != null && P != null && Q != null)
                 {
                     snom = Math.Sqrt(Math.Pow(double.Parse(P), 2) + Math.Pow(double.Parse(Q), 2)).ToString("#.####");
-                    cosfi = (double.Parse(P) / double.Parse(snom)).ToString("##.####");
+                    cosfi = (double.Parse(P) / double.Parse(snom)).ToString("0.####");
                     OnPropertyChanged(nameof(Snom));
                     OnPropertyChanged(nameof(Cosfi));
                 }
@@ -75,7 +75,7 @@ namespace GraduationProject.Data
                 if (Cosfi != null && Snom != null && P != null && Q != null)
                 {
                     snom = Math.Sqrt(Math.Pow(double.Parse(Q), 2) + Math.Pow(double.Parse(P), 2)).ToString("#.####");
-                    cosfi = (double.Parse(P) / double.Parse(snom)).ToString("##.####");
+                    cosfi = (double.Parse(P) / double.Parse(snom)).ToString("0.####");
                     OnPropertyChanged(nameof(Snom));
                     OnPropertyChanged(nameof(Cosfi));
                 }

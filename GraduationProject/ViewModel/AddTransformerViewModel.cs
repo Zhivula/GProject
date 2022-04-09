@@ -56,7 +56,7 @@ namespace GraduationProject.ViewModel
             {
                 SourceTransformerBrand.Add(i);
             }
-            SelectedTransformerBrand = SourceTransformerBrand.First();
+            SelectedTransformerBrand = SourceTransformerBrand.FirstOrDefault();
         }
         public ICommand AddTransformerCommand => new DelegateCommand(o =>
         {
@@ -88,7 +88,7 @@ namespace GraduationProject.ViewModel
             for (int i = window.StaticGrid.Children.Count - 1; i >= 0; --i)
             {
                 var childTypeName = window.StaticGrid.Children[i].GetType().Name;
-                if (childTypeName == "AddTransformerView")
+                if (childTypeName == nameof(AddTransformerView))
                 {
                     window.StaticGrid.Children.RemoveAt(i);
                 }

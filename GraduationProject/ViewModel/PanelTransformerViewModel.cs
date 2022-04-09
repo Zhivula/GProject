@@ -207,10 +207,6 @@ namespace GraduationProject.ViewModel
             dQ = Q1 - Q2;
             dU = U1 - U2;
             Brand = context.Brand;
-            Wp1 = context.Wp1;
-            Wp2 = context.Wp2;
-            Wq1 = context.Wq1;
-            Wq2 = context.Wq2;
         }
         #region PropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;

@@ -193,7 +193,7 @@ namespace GraduationProject.ViewModel
         }
         public PanelLineViewModel(Button1 line)
         {
-            var context = line.DataContext as ButtonViewModel;
+            var context = line.DataContext as LineViewModel;
             LineNumber = context.N.ToString() + "-" + context.K.ToString();
             P1 = Math.Round(context.P1,5);
             P2 = Math.Round(context.P2, 5);

@@ -28,7 +28,6 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
@@ -117,18 +116,6 @@
                     </TextBox>
                 </StackPanel>
                 <StackPanel Orientation="Vertical" Grid.Column="7" Margin="5 0">
-                    <Label Content="Tnb, ч"/>
-                    <TextBox Text="{Binding Tnb, UpdateSourceTrigger=PropertyChanged}" Foreground="White">
-                        <TextBox.Template>
-                            <ControlTemplate>
-                                <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="#171924">
-                                    <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
-                                </Border>
-                            </ControlTemplate>
-                        </TextBox.Template>
-                    </TextBox>
-                </StackPanel>
-                <StackPanel Orientation="Vertical" Grid.Column="8" Margin="5 0">
                     <Label Content="R, Ом"/>
                     <TextBox Text="{Binding R, UpdateSourceTrigger=PropertyChanged}" Foreground="White">
                         <TextBox.Template>
@@ -140,7 +127,7 @@
                         </TextBox.Template>
                     </TextBox>
                 </StackPanel>
-                <StackPanel Orientation="Vertical" Grid.Column="9" Margin="5 0">
+                <StackPanel Orientation="Vertical" Grid.Column="8" Margin="5 0">
                     <Label Content="X, Ом"/>
                     <TextBox Text="{Binding X, UpdateSourceTrigger=PropertyChanged}" Foreground="White">
                         <TextBox.Template>
@@ -152,7 +139,7 @@
                         </TextBox.Template>
                     </TextBox>
                 </StackPanel>
-                <Button Content="+" Width="30" Height="30" VerticalAlignment="Center" Command="{Binding Add}" Grid.Column="10" Margin="5 0"/>
+                <Button Content="+" Width="30" Height="30" VerticalAlignment="Center" Command="{Binding Add}" Grid.Column="9" Margin="5 0"/>
             </Grid>
             <Grid Grid.Row="2">
                 <Grid.RowDefinitions>
@@ -163,7 +150,6 @@
                     <Border BorderBrush="Gray" BorderThickness="0 1 0 1"/>
                     <Grid Margin="10 0 0 0" VerticalAlignment="Center">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
@@ -196,12 +182,9 @@
                             <TextBlock Foreground="Gray" Text="Pkz"/>
                         </Grid>
                         <Grid Grid.Column="7">
-                            <TextBlock Foreground="Gray" Text="Tnb"/>
-                        </Grid>
-                        <Grid Grid.Column="8">
                             <TextBlock Foreground="Gray" Text="R"/>
                         </Grid>
-                        <Grid Grid.Column="9">
+                        <Grid Grid.Column="8">
                             <TextBlock Foreground="Gray" Text="X"/>
                         </Grid>
                     </Grid>
@@ -218,7 +201,6 @@
                                 <DataTemplate>
                                     <Grid>
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="*"/>
@@ -251,12 +233,9 @@
                                             <Label Foreground="Gray" Content="{Binding Path=Pkz}"/>
                                         </Grid>
                                         <Grid Grid.Column="7">
-                                            <Label Foreground="Gray" Content="{Binding Path=Tnb}"/>
-                                        </Grid>
-                                        <Grid Grid.Column="8">
                                             <Label Foreground="Gray" Content="{Binding Path=R}"/>
                                         </Grid>
-                                        <Grid Grid.Column="9">
+                                        <Grid Grid.Column="8">
                                             <Label Foreground="Gray" Content="{Binding Path=X}"/>
                                         </Grid>
                                     </Grid>

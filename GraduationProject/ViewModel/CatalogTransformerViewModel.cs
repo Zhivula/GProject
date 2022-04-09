@@ -1,4 +1,6 @@
 ﻿using GraduationProject.DataBase;
+using GraduationProject.Model;
+using GraduationProject.View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -13,6 +15,7 @@ namespace GraduationProject.ViewModel
 {
     class CatalogTransformerViewModel : INotifyPropertyChanged
     {
+        public CatalogTransformerModel Model;
         private string brand;
         private string snom;
         private string pxx;
@@ -22,9 +25,8 @@ namespace GraduationProject.ViewModel
         private string pkz;
         private string r;
         private string x;
-        private string tnb;
 
-        public List<Transformer> TransformersList { get; set; }
+        public ObservableCollection<Transformer> TransformersList { get; set; }
 
         public string Brand
         {
@@ -89,15 +91,6 @@ namespace GraduationProject.ViewModel
                 OnPropertyChanged(nameof(Pkz));
             }
         }
-        public string Tnb
-        {
-            get => tnb;
-            set
-            {
-                tnb = value;
-                OnPropertyChanged(nameof(Tnb));
-            }
-        }
         public string R
         {
             get => r;
@@ -119,43 +112,14 @@ namespace GraduationProject.ViewModel
 
         public CatalogTransformerViewModel()
         {
-            TransformersList = new List<Transformer>();
-            using (var context = new MyDbContext())
-            {
-                foreach (var item in context.Transformers)
-                {
-                    TransformersList.Add(item);
-                }
-            }
+            Model = new CatalogTransformerModel();
+            TransformersList = Model.Collection;
         }
 
         public ICommand Add => new DelegateCommand(o =>
         {
-            using (var context = new MyDbContext())
-            {
-                var item = new Transformer() {
-                    Brand = Brand,
-                    Snom = double.Parse(Snom),
-                    Pkz = double.Parse(Pkz),
-                    Pxx = double.Parse(Pxx),
-                    Qxx = double.Parse(Qxx),
-                    Ixx = double.Parse(Ixx),
-                    Ukz = double.Parse(Ukz),
-                    Tnb = double.Parse(Tnb),
-                    R = double.Parse(R),
-                    X = double.Parse(X)
-                };
-                context.Transformers.Add(item);
-                context.SaveChanges();
-
-                TransformersList.Clear();
-
-                foreach (var i in context.Transformers)
-                {
-                    TransformersList.Add(i);
-                }
-            }
-            Brand = Snom = Pkz = Pxx = Qxx = Ixx = Ukz = Tnb = string.Empty;
+            Model.Add(Brand, Snom, Pkz, Pxx, Qxx, Ixx, Ukz, R, X);
+            Brand = Snom = Pkz = Pxx = Qxx = Ixx = Ukz = string.Empty;
         });
         public ICommand Return => new DelegateCommand(o =>
         {
@@ -163,7 +127,7 @@ namespace GraduationProject.ViewModel
             for (int i = window.StaticGrid.Children.Count - 1; i >= 0; --i)
             {
                 var childTypeName = window.StaticGrid.Children[i].GetType().Name;
-                if (childTypeName == "CatalogTransformerView")
+                if (childTypeName == nameof(CatalogTransformerView))
                 {
                     window.StaticGrid.Children.RemoveAt(i);
                 }

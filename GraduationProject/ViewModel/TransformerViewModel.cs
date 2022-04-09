@@ -23,10 +23,6 @@ namespace GraduationProject.ViewModel
         private double q1;
         private double q2;
         private double sj;
-        private double wp1;
-        private double wp2;
-        private double wq1;
-        private double wq2;
         private double u1;
         private double u2;
         private double kz;
@@ -34,9 +30,6 @@ namespace GraduationProject.ViewModel
         private double x;
         private double dPj;
         private double dQj;
-        private double dWp;
-        private double dWq;
-        public double Tnb;
         public double Pxx;
         public double Qxx;
         public double Ixx;
@@ -234,60 +227,6 @@ namespace GraduationProject.ViewModel
                 OnPropertyChanged(nameof(DQj));
             }
         }
-        public double Wp1
-        {
-            get => wp1;
-            set
-            {
-                wp1 = value;
-                OnPropertyChanged(nameof(Wp1));
-            }
-        }
-        public double Wp2
-        {
-            get => wp2;
-            set
-            {
-                wp2 = value;
-                OnPropertyChanged(nameof(Wp2));
-            }
-        }
-        public double Wq1
-        {
-            get => wq1;
-            set
-            {
-                wq1 = value;
-                OnPropertyChanged(nameof(Wq1));
-            }
-        }
-        public double Wq2
-        {
-            get => wq2;
-            set
-            {
-                wq2 = value;
-                OnPropertyChanged(nameof(Wq2));
-            }
-        }
-        public double DWp
-        {
-            get => dWp;
-            set
-            {
-                dWp = value;
-                OnPropertyChanged(nameof(DWp));
-            }
-        }
-        public double DWq
-        {
-            get => dWq;
-            set
-            {
-                dWq = value;
-                OnPropertyChanged(nameof(DWq));
-            }
-        }
 
         public double S
         {
@@ -338,18 +277,7 @@ namespace GraduationProject.ViewModel
             P1 = P2 + DQj + transformer.Pxx;
             Q1 = Q2 + DQj + transformer.Qxx;
 
-            Wp2 = transformer.Tnb * P2;
-            Wq2 = transformer.Tnb * Q2;
-
-            K2f = Math.Pow((0.16 / Kz) + 0.82, 2);
-            DWp = ((Wp2 * Wp2 + Wq2 * Wq2) * R * K2f) / (GlobalGrid.U * GlobalGrid.U * 1000 * GlobalGrid.T);
-            DWq = ((Wp2 * Wp2 + Wq2 * Wq2) * X * K2f) / (GlobalGrid.U * GlobalGrid.U * 1000 * GlobalGrid.T);
-
-            Wp1 = Wp2 + DPj * GlobalGrid.T + DWp;
-            Wq1 = Wq2 + DQj * GlobalGrid.T + DWq;
-
             Brand = transformer.Brand;
-            Tnb = transformer.Tnb;
             Pxx = transformer.Pxx;
             Qxx = transformer.Qxx;
             Ixx = transformer.Ixx;

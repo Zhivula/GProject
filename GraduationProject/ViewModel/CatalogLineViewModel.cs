@@ -1,6 +1,9 @@
 ﻿using GraduationProject.DataBase;
+using GraduationProject.Model;
+using GraduationProject.View;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -12,12 +15,14 @@ namespace GraduationProject.ViewModel
 {
     class CatalogLineViewModel : INotifyPropertyChanged
     {
+        public CatalogLineModel Model;
         private string brand;
         private string r0;
         private string x0;
+        private string idop;
 
-        public List<Line> LinesList { get; set; }
-
+        public ObservableCollection<Line> LinesList { get; set; }
+        
         public string Brand
         {
             get => brand;
@@ -45,39 +50,25 @@ namespace GraduationProject.ViewModel
                 OnPropertyChanged(nameof(X0));
             }
         }
+        public string Idop
+        {
+            get => idop;
+            set
+            {
+                idop = value;
+                OnPropertyChanged(nameof(Idop));
+            }
+        }
+
         public CatalogLineViewModel()
         {
-            LinesList = new List<Line>();
-            using (var context = new MyDbContext())
-            {
-                foreach(var item in context.Lines)
-                {
-                    LinesList.Add(item);
-                }
-            }
-            
+            Model = new CatalogLineModel();
+            LinesList = Model.Collection; 
         }
         public ICommand Add => new DelegateCommand(o =>
         {
-            using (var context = new MyDbContext())
-            {
-                var item = new Line()
-                {
-                    Brand = Brand,
-                    R0 = double.Parse(R0),
-                    X0 = double.Parse(X0)
-                };
-                context.Lines.Add(item);
-                context.SaveChanges();
-
-                LinesList.Clear();
-
-                foreach (var i in context.Lines)
-                {
-                    LinesList.Add(i);
-                }
-            }
-            Brand = R0 = X0 = string.Empty;
+            Model.Add(Brand, R0, X0, Idop);
+            Brand = R0 = X0 = Idop = string.Empty;
         });
         public ICommand Return => new DelegateCommand(o =>
         {
@@ -85,7 +76,7 @@ namespace GraduationProject.ViewModel
             for (int i = window.StaticGrid.Children.Count - 1; i >= 0; --i)
             {
                 var childTypeName = window.StaticGrid.Children[i].GetType().Name;
-                if (childTypeName == "CatalogLineView")
+                if (childTypeName == nameof(CatalogLineView))
                 {
                     window.StaticGrid.Children.RemoveAt(i);
                 }
