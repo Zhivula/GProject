@@ -10,6 +10,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
+using System.Windows.Shapes;
 
 namespace GraduationProject.Data
 {
@@ -42,8 +43,8 @@ namespace GraduationProject.Data
                     var parentPosition = ((RotateTransform)View.RenderTransform).Angle;
                     var childPosition = ((RotateTransform)view.RenderTransform).Angle;
 
-                    var parent = View as Button1;
-                    var child = view as Button1;
+                    var parent = View as LineView;
+                    var child = view as LineView;
 
                     if (parentPosition == 0 & childPosition == 270)
                     {
@@ -60,7 +61,7 @@ namespace GraduationProject.Data
                     else if (parentPosition == 90)
                     {
                         var list = List.Where(x => {
-                            var item = x.View as Button1;
+                            var item = x.View as LineView;
                             var angle = ((RotateTransform)item.RenderTransform).Angle;
                             if (angle == 0) return true;
                             else return false;
@@ -93,7 +94,7 @@ namespace GraduationProject.Data
                     {
                         var list = List.Where(x =>
                         {
-                            var item = x.View as Button1;
+                            var item = x.View as LineView;
                             var angle = ((RotateTransform)item.RenderTransform).Angle;
                             if (angle == 270) return true;
                             else return false;
@@ -126,6 +127,8 @@ namespace GraduationProject.Data
                     contextButton.Q2List.Add(transformer.K, transformer.Q1);
                     contextButton.Q2 = contextButton.Q2List.Values.Sum();
                     contextButton.Wq2 = contextButton.Wq2List.Values.Sum();
+
+                    contextButton.I2 = transformer.I;
 
                     var dP = (contextButton.P2 * contextButton.P2 + contextButton.Q2 * contextButton.Q2) * contextButton.Length * contextButton.R0 / (10.5f * 10.5f * 1000);
                     var dQ = (contextButton.P2 * contextButton.P2 + contextButton.Q2 * contextButton.Q2) * contextButton.Length * contextButton.X0 / (10.5f * 10.5f * 1000);
@@ -170,6 +173,8 @@ namespace GraduationProject.Data
 
                     contextButton.P1 = contextButton.P1List.Values.Sum();
                     contextButton.Q1 = contextButton.Q1List.Values.Sum();
+
+
 
                     var oldParent = contextButton;
 
@@ -398,10 +403,14 @@ namespace GraduationProject.Data
                 item.U1 = u;
                 u -= (float)item.DU;
                 item.U2 = u;
+                item.I1 = Math.Sqrt(Math.Pow(item.P1,2) + Math.Pow(item.Q1, 2)) / (Math.Sqrt(3) * 10);
+                item.I2 = Math.Sqrt(Math.Pow(item.P2, 2) + Math.Pow(item.Q2, 2)) / (Math.Sqrt(3) * 10);
 
                 var deltaUPercent = ((GlobalGrid.U - item.U2) / GlobalGrid.U) * 100;
 
-                if (deltaUPercent >= 10) 
+                var kzLine = item.I2 / item.Idop;
+
+                if (kzLine >= 1) 
                 {
                     item.Opacity = 1;
                     item.Color = Colors.Red;
@@ -412,10 +421,10 @@ namespace GraduationProject.Data
                     buttonAnimation.RepeatBehavior = RepeatBehavior.Forever;
                     buttonAnimation.AutoReverse = true;
                     buttonAnimation.Duration = new TimeSpan(0,0,2);
-                    var b = View as Button1;
+                    var b = View as LineView;
                     b.BorderGradient.BeginAnimation(Border.OpacityProperty, buttonAnimation);
                 }
-                if (deltaUPercent >= 5 && deltaUPercent < 10)
+                if (kzLine >= 0.75 && kzLine < 1)
                 {
                     item.Opacity = 1;
                     item.Color = Colors.Yellow;
@@ -426,8 +435,36 @@ namespace GraduationProject.Data
                     buttonAnimation.RepeatBehavior = RepeatBehavior.Forever;
                     buttonAnimation.AutoReverse = true;
                     buttonAnimation.Duration = new TimeSpan(0, 0, 2);
-                    var b = View as Button1;
+                    var b = View as LineView;
                     b.BorderGradient.BeginAnimation(Border.OpacityProperty, buttonAnimation);
+                }
+                if (deltaUPercent >= 10)
+                {
+                    item.Opacity = 1;
+                    item.ColorNode = new SolidColorBrush(Colors.Red);
+
+                    //DoubleAnimation buttonAnimation = new DoubleAnimation();
+                    //buttonAnimation.From = 0.3;
+                    //buttonAnimation.To = 1;
+                    //buttonAnimation.RepeatBehavior = RepeatBehavior.Forever;
+                    //buttonAnimation.AutoReverse = true;
+                    //buttonAnimation.Duration = new TimeSpan(0, 0, 2);
+                    //var b = View as LineView;
+                    //b.EllipseBorderGradient.BeginAnimation(Border.OpacityProperty, buttonAnimation);
+                }
+                if (deltaUPercent >= 5 && deltaUPercent < 10)
+                {
+                    item.Opacity = 1;
+                    item.ColorNode = new SolidColorBrush(Colors.Yellow);
+
+                    //DoubleAnimation buttonAnimation = new DoubleAnimation();
+                    //buttonAnimation.From = 0.3;
+                    //buttonAnimation.To = 1;
+                    //buttonAnimation.RepeatBehavior = RepeatBehavior.Forever;
+                    //buttonAnimation.AutoReverse = true;
+                    //buttonAnimation.Duration = new TimeSpan(0, 0, 2);
+                    //var b = View as LineView;
+                    //b.EllipseBorderGradient.BeginAnimation(Border.OpacityProperty, buttonAnimation);
                 }
                 foreach (var i in List)
                 {
@@ -798,7 +835,8 @@ namespace GraduationProject.Data
                         Brand = contextLine.Brand,
                         L = contextLine.Length,
                         R0 = contextLine.R0,
-                        X0 = contextLine.X0
+                        X0 = contextLine.X0,
+                        Idop = contextLine.Idop
                     };
                     treeSerializable.Add(contextLine.N, contextLine.K, model, angle, x, y);
                 }

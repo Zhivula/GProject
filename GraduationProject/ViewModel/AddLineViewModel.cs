@@ -89,7 +89,7 @@ namespace GraduationProject.ViewModel
         }
         public ICommand AddLineCommand => new DelegateCommand(o =>
         {
-            Model.AddLine(window, SelectedWireBrand, LineLength, R0, X0);
+            Model.AddLine(window, SelectedWireBrand, LineLength, R0, X0, Idop);
             Close();
         });
         public ICommand CloseWindow => new DelegateCommand(o =>

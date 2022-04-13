@@ -33,7 +33,7 @@ namespace GraduationProject
                 var point = Mouse.GetPosition(GridChange);
                 var x = point.X - (point.X % 10);
                 var y = point.Y - (point.Y % 10);
-                if(curr is Button1 line)
+                if(curr is LineView line)
                 {
 
                     if (((RotateTransform)line.RenderTransform).Angle == 90)

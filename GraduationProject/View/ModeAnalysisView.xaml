@@ -60,7 +60,7 @@
                                 <Grid Grid.Column="0" Grid.Row="0">
                                     <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
                                         <TextBlock Grid.Column="0" Text="Uном, кВ: " Style="{StaticResource SmallText}"/>
-                                        <TextBox Grid.Column="1" HorizontalAlignment="Right" MinWidth="100"  Margin="0 5 0 0">
+                                        <TextBox Grid.Column="1" HorizontalAlignment="Right" Text="{Binding Unom}" MinWidth="100"  Margin="0 5 0 0">
                                             <TextBox.Template>
                                                 <ControlTemplate>
                                                     <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="White">
@@ -333,7 +333,7 @@
                                     </StackPanel>
                                     <StackPanel Orientation="Vertical" Margin="0 0 10 0">
                                         <TextBlock Text="Ответвление" Style="{StaticResource SmallText}"/>
-                                        <TextBox MinWidth="100" Text="{Binding Branch_1}">
+                                        <TextBox MinWidth="100" Text="{Binding Branch_1}" Padding="3 0 0 0">
                                             <TextBox.Template>
                                                 <ControlTemplate>
                                                     <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="White">
@@ -342,7 +342,7 @@
                                                 </ControlTemplate>
                                             </TextBox.Template>
                                         </TextBox>
-                                        <TextBox MinWidth="100" Text="{Binding Branch_2}">
+                                        <TextBox MinWidth="100" Text="{Binding Branch_2}" Padding="3 0 0 0">
                                             <TextBox.Template>
                                                 <ControlTemplate>
                                                     <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="White">
@@ -351,7 +351,7 @@
                                                 </ControlTemplate>
                                             </TextBox.Template>
                                         </TextBox>
-                                        <TextBox MinWidth="100" Text="{Binding Branch_3}">
+                                        <TextBox MinWidth="100" Text="{Binding Branch_3}" Padding="3 0 0 0">
                                             <TextBox.Template>
                                                 <ControlTemplate>
                                                     <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="White">
@@ -360,7 +360,7 @@
                                                 </ControlTemplate>
                                             </TextBox.Template>
                                         </TextBox>
-                                        <TextBox MinWidth="100" Text="{Binding Branch_4}">
+                                        <TextBox MinWidth="100" Text="{Binding Branch_4}" Padding="3 0 0 0">
                                             <TextBox.Template>
                                                 <ControlTemplate>
                                                     <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="White">
@@ -369,7 +369,7 @@
                                                 </ControlTemplate>
                                             </TextBox.Template>
                                         </TextBox>
-                                        <TextBox MinWidth="100" Text="{Binding Branch_5}">
+                                        <TextBox MinWidth="100" Text="{Binding Branch_5}" Padding="3 0 0 0">
                                             <TextBox.Template>
                                                 <ControlTemplate>
                                                     <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="White">
@@ -381,7 +381,7 @@
                                     </StackPanel>
                                     <StackPanel Orientation="Vertical">
                                         <TextBlock Text="δUт, %" Style="{StaticResource SmallText}"/>
-                                        <TextBox MinWidth="100" Text="{Binding DeltaUBranch_1}">
+                                        <TextBox MinWidth="100" Text="{Binding DeltaUBranch_1}" Padding="3 0 0 0">
                                             <TextBox.Template>
                                                 <ControlTemplate>
                                                     <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="White">
@@ -390,7 +390,7 @@
                                                 </ControlTemplate>
                                             </TextBox.Template>
                                         </TextBox>
-                                        <TextBox MinWidth="100" Text="{Binding DeltaUBranch_2}">
+                                        <TextBox MinWidth="100" Text="{Binding DeltaUBranch_2}" Padding="3 0 0 0">
                                             <TextBox.Template>
                                                 <ControlTemplate>
                                                     <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="White">
@@ -399,7 +399,7 @@
                                                 </ControlTemplate>
                                             </TextBox.Template>
                                         </TextBox>
-                                        <TextBox MinWidth="100" Text="{Binding DeltaUBranch_3}">
+                                        <TextBox MinWidth="100" Text="{Binding DeltaUBranch_3}" Padding="3 0 0 0">
                                             <TextBox.Template>
                                                 <ControlTemplate>
                                                     <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="White">
@@ -408,7 +408,7 @@
                                                 </ControlTemplate>
                                             </TextBox.Template>
                                         </TextBox>
-                                        <TextBox MinWidth="100" Text="{Binding DeltaUBranch_4}">
+                                        <TextBox MinWidth="100" Text="{Binding DeltaUBranch_4}" Padding="3 0 0 0">
                                             <TextBox.Template>
                                                 <ControlTemplate>
                                                     <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="White">
@@ -417,7 +417,7 @@
                                                 </ControlTemplate>
                                             </TextBox.Template>
                                         </TextBox>
-                                        <TextBox MinWidth="100" Text="{Binding DeltaUBranch_5}">
+                                        <TextBox MinWidth="100" Text="{Binding DeltaUBranch_5}" Padding="3 0 0 0">
                                             <TextBox.Template>
                                                 <ControlTemplate>
                                                     <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="White">
@@ -464,34 +464,77 @@
                     </Border>
                 </StackPanel>
                 <Border BorderBrush="DeepSkyBlue" BorderThickness="0 0 0 5"/>
-                <Grid Background="#17171a" Height="35">
+                <Grid Background="#17171a" Height="Auto">
                     <Border BorderBrush="#333" BorderThickness="0 1"/>
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="0.15*"/>
+                            <ColumnDefinition Width="0.15*"/>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <Grid Grid.Column="0">
-                            <TextBlock Foreground="White" Text="Начало" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
+                            <TextBlock Foreground="White" Text="Начало" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
                         </Grid>
                         <Grid Grid.Column="1">
-                            <TextBlock Foreground="White" Text="Конец" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
+                            <TextBlock Foreground="White" Text="Конец" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
                         </Grid>
                         <Grid Grid.Column="2">
-                            <TextBlock Foreground="White" Text="Snom, кВА" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
+                            <Border BorderBrush="White" BorderThickness="1 0 1 0"/>
+                            <DockPanel>
+                                <Grid DockPanel.Dock="Top">
+                                    <Border BorderBrush="White" BorderThickness="0 1"/>
+                                    <TextBlock Foreground="White" Text="Режим наибольших нагрузок" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
+                                </Grid>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid Grid.Column="0">
+                                        <TextBlock Foreground="White" Text="Snom, кВА" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
+                                    </Grid>
+                                    <Grid Grid.Column="1">
+                                        <TextBlock Foreground="White" Text="cos(fi)" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
+                                    </Grid>
+                                    <Grid Grid.Column="2">
+                                        <TextBlock Foreground="White" Text="P, кВт" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
+                                    </Grid>
+                                    <Grid Grid.Column="3">
+                                        <TextBlock Foreground="White" Text="Q, кВар" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
+                                    </Grid>
+                                </Grid>
+                            </DockPanel>
                         </Grid>
                         <Grid Grid.Column="3">
-                            <TextBlock Foreground="White" Text="cos(fi)" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
-                        </Grid>
-                        <Grid Grid.Column="4">
-                            <TextBlock Foreground="White" Text="P, кВт" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
-                        </Grid>
-                        <Grid Grid.Column="5">
-                            <TextBlock Foreground="White" Text="Q, кВар" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
+                            <DockPanel>
+                                <Grid DockPanel.Dock="Top">
+                                    <Border BorderBrush="White" BorderThickness="0 1"/>
+                                    <TextBlock Foreground="White" Text="Режим наименьших нагрузок" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
+                                </Grid>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid Grid.Column="0">
+                                        <TextBlock Foreground="White" Text="Snom, кВА" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
+                                    </Grid>
+                                    <Grid Grid.Column="1">
+                                        <TextBlock Foreground="White" Text="cos(fi)" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
+                                    </Grid>
+                                    <Grid Grid.Column="2">
+                                        <TextBlock Foreground="White" Text="P, кВт" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
+                                    </Grid>
+                                    <Grid Grid.Column="3">
+                                        <TextBlock Foreground="White" Text="Q, кВар" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
+                                    </Grid>
+                                </Grid>
+                            </DockPanel>
                         </Grid>
                     </Grid>
                 </Grid>
@@ -502,29 +545,33 @@
                                 <Border BorderThickness="0 0 0 1" BorderBrush="#333"/>
                                 <Grid  Margin="0 10">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="0.15*"/>
+                                        <ColumnDefinition Width="0.15*"/>
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
                                     <Grid Grid.Column="0">
                                         <StackPanel Orientation="Vertical" Margin="10 0 0 0">
-                                            <Border Background="Gray" CornerRadius="5" HorizontalAlignment="Left" Padding="10 2 10 2">
-                                                <TextBlock Foreground="White" Text="{Binding Path=N}"/>
+                                            <Border Background="Gray" CornerRadius="5" HorizontalAlignment="Center" Padding="10 2 10 2">
+                                                <TextBlock Foreground="White" Text="{Binding Path=N}" HorizontalAlignment="Center"/>
                                             </Border>
                                         </StackPanel>
                                     </Grid>
                                     <Grid Grid.Column="1">
                                         <StackPanel Orientation="Vertical" Margin="10 0 0 0">
-                                            <Border Background="Gray" CornerRadius="5" HorizontalAlignment="Left" Padding="10 2 10 2">
-                                                <TextBlock Foreground="White" Text="{Binding Path=K}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 10 0"/>
+                                            <Border Background="Gray" CornerRadius="5" HorizontalAlignment="Center" Padding="10 2 10 2">
+                                                <TextBlock Foreground="White" Text="{Binding Path=K}" HorizontalAlignment="Center"/>
                                             </Border>
                                         </StackPanel>
                                     </Grid>
                                     <Grid Grid.Column="2">
-                                        <StackPanel>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid Grid.Column="0">
                                             <TextBox Text="{Binding Path=Snom}" Margin="20 0">
                                                 <TextBox.Template>
                                                     <ControlTemplate>
@@ -534,22 +581,9 @@
                                                     </ControlTemplate>
                                                 </TextBox.Template>
                                             </TextBox>
-                                        </StackPanel>
-                                    </Grid>
-                                    <Grid Grid.Column="3">
-                                        <TextBox Text="{Binding Path=Cosfi}" Margin="20 0">
-                                            <TextBox.Template>
-                                                <ControlTemplate>
-                                                    <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="White">
-                                                        <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
-                                                    </Border>
-                                                </ControlTemplate>
-                                            </TextBox.Template>
-                                        </TextBox>
-                                    </Grid>
-                                    <Grid Grid.Column="4">
-                                        <StackPanel Orientation="Vertical">
-                                            <TextBox Text="{Binding Path=P}" Margin="20 0">
+                                        </Grid>
+                                        <Grid Grid.Column="1">
+                                            <TextBox Text="{Binding Path=Cosfi}" Margin="20 0">
                                                 <TextBox.Template>
                                                     <ControlTemplate>
                                                         <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="White">
@@ -558,10 +592,19 @@
                                                     </ControlTemplate>
                                                 </TextBox.Template>
                                             </TextBox>
-                                        </StackPanel>
-                                    </Grid>
-                                    <Grid Grid.Column="5">
-                                        <StackPanel>
+                                        </Grid>
+                                        <Grid Grid.Column="2">
+                                            <TextBox Text="{Binding Path=P}" Margin="20 0">
+                                                    <TextBox.Template>
+                                                        <ControlTemplate>
+                                                            <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="White">
+                                                                <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+                                                            </Border>
+                                                        </ControlTemplate>
+                                                    </TextBox.Template>
+                                                </TextBox>
+                                        </Grid>
+                                        <Grid Grid.Column="3">
                                             <TextBox Text="{Binding Path=Q}" Margin="20 0">
                                                 <TextBox.Template>
                                                     <ControlTemplate>
@@ -571,7 +614,59 @@
                                                     </ControlTemplate>
                                                 </TextBox.Template>
                                             </TextBox>
-                                        </StackPanel>
+                                        </Grid>
+                                    </Grid>
+                                    <Grid Grid.Column="3">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid Grid.Column="0">
+                                            <TextBox Text="{Binding Path=Snom}" Margin="20 0">
+                                                <TextBox.Template>
+                                                    <ControlTemplate>
+                                                        <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="White">
+                                                            <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+                                                        </Border>
+                                                    </ControlTemplate>
+                                                </TextBox.Template>
+                                            </TextBox>
+                                        </Grid>
+                                        <Grid Grid.Column="1">
+                                            <TextBox Text="{Binding Path=Cosfi}" Margin="20 0">
+                                                <TextBox.Template>
+                                                    <ControlTemplate>
+                                                        <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="White">
+                                                            <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+                                                        </Border>
+                                                    </ControlTemplate>
+                                                </TextBox.Template>
+                                            </TextBox>
+                                        </Grid>
+                                        <Grid Grid.Column="2">
+                                            <TextBox Text="{Binding Path=P}" Margin="20 0">
+                                                <TextBox.Template>
+                                                    <ControlTemplate>
+                                                        <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="White">
+                                                            <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+                                                        </Border>
+                                                    </ControlTemplate>
+                                                </TextBox.Template>
+                                            </TextBox>
+                                        </Grid>
+                                        <Grid Grid.Column="3">
+                                            <TextBox Text="{Binding Path=Q}" Margin="20 0">
+                                                <TextBox.Template>
+                                                    <ControlTemplate>
+                                                        <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="White">
+                                                            <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+                                                        </Border>
+                                                    </ControlTemplate>
+                                                </TextBox.Template>
+                                            </TextBox>
+                                        </Grid>
                                     </Grid>
                                 </Grid>
                             </Grid>
@@ -601,24 +696,22 @@
 
 
                 <Border BorderBrush="DeepSkyBlue" BorderThickness="0 0 0 5"/>
-                <Grid Background="#17171a" Height="35">
+                <Grid Background="#17171a" Height="Auto">
                     <Border BorderBrush="#333" BorderThickness="0 1"/>
-                    <Grid Margin="100 0">
+                    <Grid Margin="10 0">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="0.15*"/>
+                            <ColumnDefinition Width="0.15*"/>
+                            <ColumnDefinition Width="0.15*"/>
+                            <ColumnDefinition Width="0.15*"/>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <Grid Grid.Column="0">
-                            <TextBlock Foreground="White" Text="Начало" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
+                            <TextBlock Foreground="White" Text="Начало" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
                         </Grid>
                         <Grid Grid.Column="1">
-                            <TextBlock Foreground="White" Text="Конец" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
+                            <TextBlock Foreground="White" Text="Конец" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
                         </Grid>
                         <Grid Grid.Column="2">
                             <TextBlock Foreground="White" Text="R, Ом" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
@@ -627,66 +720,145 @@
                             <TextBlock Foreground="White" Text="X, Ом" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
                         </Grid>
                         <Grid Grid.Column="4">
-                            <TextBlock Foreground="White" Text="P, кВт" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
-                        </Grid>
-                        <Grid Grid.Column="5">
-                            <TextBlock Foreground="White" Text="Q, кВар" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
-                        </Grid>
-                        <Grid Grid.Column="6">
-                            <TextBlock Foreground="White" Text="dU, В" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
-                        </Grid>
-                        <Grid Grid.Column="7">
-                            <TextBlock Foreground="White" Text="dU, %" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
-                        </Grid>
-                    </Grid>
-                </Grid>
-                <ListView ItemsSource="{Binding InfoBranches}" Background="Transparent" BorderThickness="0">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <Grid  Margin="100 0">
-                                <Border BorderThickness="0 0 0 1" BorderBrush="#333"/>
-                                <Grid  Margin="0 5">
+                            <Border BorderBrush="White" BorderThickness="1 0 1 0"/>
+                            <DockPanel>
+                                <Grid DockPanel.Dock="Top">
+                                    <Border BorderBrush="White" BorderThickness="0 0 0 1"/>
+                                    <TextBlock Foreground="White" Text="Режим наибольших нагрузок" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
+                                </Grid>
+                                <Grid DockPanel.Dock="Bottom">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
                                     <Grid Grid.Column="0">
+                                        <TextBlock Foreground="White" Text="P, кВт" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
+                                    </Grid>
+                                    <Grid Grid.Column="1">
+                                        <TextBlock Foreground="White" Text="Q, кВар" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
+                                    </Grid>
+                                    <Grid Grid.Column="2">
+                                        <TextBlock Foreground="White" Text="dU, В" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
+                                    </Grid>
+                                    <Grid Grid.Column="3">
+                                        <TextBlock Foreground="White" Text="dU, %" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
+                                    </Grid>
+                                </Grid>
+                            </DockPanel>
+                        </Grid>
+                        <Grid Grid.Column="5">
+                            <DockPanel>
+                                <Grid DockPanel.Dock="Top">
+                                    <Border BorderBrush="White" BorderThickness="0 0 0 1"/>
+                                    <TextBlock Foreground="White" Text="Режим наибольших нагрузок" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
+                                </Grid>
+                                <Grid DockPanel.Dock="Bottom">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid Grid.Column="0">
+                                        <TextBlock Foreground="White" Text="P, кВт" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
+                                    </Grid>
+                                    <Grid Grid.Column="1">
+                                        <TextBlock Foreground="White" Text="Q, кВар" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
+                                    </Grid>
+                                    <Grid Grid.Column="2">
+                                        <TextBlock Foreground="White" Text="dU, В" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
+                                    </Grid>
+                                    <Grid Grid.Column="3">
+                                        <TextBlock Foreground="White" Text="dU, %" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
+                                    </Grid>
+                                </Grid>
+                            </DockPanel>
+                        </Grid>
+                    </Grid>
+                </Grid>
+                <ListView ItemsSource="{Binding InfoBranches}" Background="Transparent" BorderThickness="0">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid  Margin="10 0">
+                                <Border BorderThickness="0 0 0 1" BorderBrush="#333"/>
+                                <Grid  Margin="0 5">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="0.15*"/>
+                                        <ColumnDefinition Width="0.15*"/>
+                                        <ColumnDefinition Width="0.15*"/>
+                                        <ColumnDefinition Width="0.15*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid Grid.Column="0">
                                         <StackPanel Orientation="Vertical" Margin="10 0 0 0">
-                                            <Border Background="Gray" CornerRadius="5" HorizontalAlignment="Left" Padding="10 2 10 2">
+                                            <Border Background="Gray" CornerRadius="5" HorizontalAlignment="Center" Padding="10 2 10 2">
                                                 <TextBlock Foreground="White" Text="{Binding Path=N}"/>
                                             </Border>
                                         </StackPanel>
                                     </Grid>
                                     <Grid Grid.Column="1">
                                         <StackPanel Orientation="Vertical" Margin="10 0 0 0">
-                                            <Border Background="Gray" CornerRadius="5" HorizontalAlignment="Left" Padding="10 2 10 2">
-                                                <TextBlock Foreground="White" Text="{Binding Path=K}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 10 0"/>
+                                            <Border Background="Gray" CornerRadius="5" HorizontalAlignment="Center" Padding="10 2 10 2">
+                                                <TextBlock Foreground="White" Text="{Binding Path=K}" HorizontalAlignment="Center"/>
                                             </Border>
                                         </StackPanel>
                                     </Grid>
                                     <Grid Grid.Column="2">
-                                        <TextBlock Foreground="Black" Text="{Binding Path=R}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 0 10 0"/>
+                                        <TextBlock Foreground="Black" Text="{Binding Path=R}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                     </Grid>
                                     <Grid Grid.Column="3">
-                                        <TextBlock Foreground="Black" Text="{Binding Path=X}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 0 10 0"/>
+                                        <TextBlock Foreground="Black" Text="{Binding Path=X}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                     </Grid>
                                     <Grid Grid.Column="4">
-                                        <TextBlock Foreground="Black" Text="{Binding Path=P}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 0 10 0"/>
+                                        <DockPanel>
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Grid Grid.Column="0">
+                                                    <TextBlock Foreground="Black" Text="{Binding Path=P}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 0 10 0"/>
+                                                </Grid>
+                                                <Grid Grid.Column="1">
+                                                    <TextBlock Foreground="Black" Text="{Binding Path=Q}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 0 10 0"/>
+                                                </Grid>
+                                                <Grid Grid.Column="2">
+                                                    <TextBlock Foreground="Black" Text="{Binding Path=dU}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 0 10 0"/>
+                                                </Grid>
+                                                <Grid Grid.Column="3">
+                                                    <TextBlock Foreground="Black" Text="{Binding Path=dUPercent}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 0 10 0"/>
+                                                </Grid>
+                                            </Grid>
+                                        </DockPanel>
                                     </Grid>
                                     <Grid Grid.Column="5">
-                                        <TextBlock Foreground="Black" Text="{Binding Path=Q}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 0 10 0"/>
-                                    </Grid>
-                                    <Grid Grid.Column="6">
-                                        <TextBlock Foreground="Black" Text="{Binding Path=dU}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 0 10 0"/>
-                                    </Grid>
-                                    <Grid Grid.Column="7">
-                                        <TextBlock Foreground="Black" Text="{Binding Path=dUPercent}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 0 10 0"/>
+                                        <DockPanel>
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Grid Grid.Column="0">
+                                                    <TextBlock Foreground="Black" Text="{Binding Path=P}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 0 10 0"/>
+                                                </Grid>
+                                                <Grid Grid.Column="1">
+                                                    <TextBlock Foreground="Black" Text="{Binding Path=Q}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 0 10 0"/>
+                                                </Grid>
+                                                <Grid Grid.Column="2">
+                                                    <TextBlock Foreground="Black" Text="{Binding Path=dU}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 0 10 0"/>
+                                                </Grid>
+                                                <Grid Grid.Column="3">
+                                                    <TextBlock Foreground="Black" Text="{Binding Path=dUPercent}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 0 10 0"/>
+                                                </Grid>
+                                            </Grid>
+                                        </DockPanel>
                                     </Grid>
                                 </Grid>
                             </Grid>
@@ -705,83 +877,195 @@
                     <Border BorderBrush="#333" BorderThickness="0 1"/>
                     <Grid>
                         <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.35*"/>
+                            <ColumnDefinition Width="0.6*"/>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="0.3*"/>
                         </Grid.ColumnDefinitions>
                         <Grid Grid.Column="0">
-                            <TextBlock Foreground="White" Text="Ветвь" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
+                            <TextBlock Foreground="White" Text="Ветвь" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
                         </Grid>
                         <Grid Grid.Column="1">
-                            <TextBlock Foreground="White" Text="dU%" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
+                            <Border BorderBrush="White" BorderThickness="1 0"/>
+                            <DockPanel>
+                                <Grid DockPanel.Dock="Top">
+                                    <Border BorderBrush="White" BorderThickness="0 1"/>
+                                    <TextBlock Foreground="White" Text="Падение напряжения" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
+                                </Grid>
+                                <Grid DockPanel.Dock="Bottom">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <DockPanel Grid.Column="0" HorizontalAlignment="Left">
+                                        <TextBlock DockPanel.Dock="Top" Foreground="White" Text="Режим наибольших нагрузок" TextAlignment="Center" FontSize="10" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
+                                        <TextBlock DockPanel.Dock="Bottom" Foreground="White" Text="dU%" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
+                                    </DockPanel>
+                                    <DockPanel Grid.Column="1" HorizontalAlignment="Right">
+                                        <TextBlock DockPanel.Dock="Top" Foreground="White" Text="Режим наименьших нагрузок" TextAlignment="Center" FontSize="10" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
+                                        <TextBlock DockPanel.Dock="Bottom" Foreground="White" Text="dU%" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
+                                    </DockPanel>
+                                </Grid>
+                            </DockPanel>
                         </Grid>
                         <Grid Grid.Column="2">
-                            <StackPanel>
-                                <TextBlock Foreground="White" Text="+5%" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                    <TextBlock Foreground="White" Text="[" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
-                                    <TextBlock Foreground="White" Text="{Binding Path=BranchesMainTable.Branch_1.Min}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
-                                    <TextBlock Foreground="White" Text=", " HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
-                                    <TextBlock Foreground="White" Text="{Binding Path=BranchesMainTable.Branch_1.Max}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
-                                    <TextBlock Foreground="White" Text="]" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
-                                </StackPanel>
-                            </StackPanel>
+                            <DockPanel>
+                                <Grid DockPanel.Dock="Top">
+                                    <Border BorderBrush="White" BorderThickness="0 1"/>
+                                    <TextBlock Foreground="White" Text="Режим наибольших нагрузок" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
+                                </Grid>
+                                <Grid DockPanel.Dock="Bottom">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid Grid.Column="0">
+                                        <StackPanel>
+                                            <TextBlock Foreground="White" Text="+5%" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                <TextBlock Foreground="White" Text="[" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
+                                                <TextBlock Foreground="White" Text="{Binding Path=BranchesMainTable.Branch_1.Min}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
+                                                <TextBlock Foreground="White" Text=", " HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
+                                                <TextBlock Foreground="White" Text="{Binding Path=BranchesMainTable.Branch_1.Max}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
+                                                <TextBlock Foreground="White" Text="]" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </Grid>
+                                    <Grid Grid.Column="1">
+                                        <StackPanel>
+                                            <TextBlock Foreground="White" Text="+2,5%" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                <TextBlock Foreground="White" Text="[" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
+                                                <TextBlock Foreground="White" Text="{Binding Path=BranchesMainTable.Branch_2.Min}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
+                                                <TextBlock Foreground="White" Text=", " HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
+                                                <TextBlock Foreground="White" Text="{Binding Path=BranchesMainTable.Branch_2.Max}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
+                                                <TextBlock Foreground="White" Text="]" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </Grid>
+                                    <Grid Grid.Column="2">
+                                        <StackPanel>
+                                            <TextBlock Foreground="White" Text="0%" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                <TextBlock Foreground="White" Text="[" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
+                                                <TextBlock Foreground="White" Text="{Binding Path=BranchesMainTable.Branch_3.Min}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
+                                                <TextBlock Foreground="White" Text=", " HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
+                                                <TextBlock Foreground="White" Text="{Binding Path=BranchesMainTable.Branch_3.Max}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
+                                                <TextBlock Foreground="White" Text="]" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </Grid>
+                                    <Grid Grid.Column="3">
+                                        <StackPanel>
+                                            <TextBlock Foreground="White" Text="-2,5%" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                <TextBlock Foreground="White" Text="[" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
+                                                <TextBlock Foreground="White" Text="{Binding Path=BranchesMainTable.Branch_4.Min}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
+                                                <TextBlock Foreground="White" Text=", " HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
+                                                <TextBlock Foreground="White" Text="{Binding Path=BranchesMainTable.Branch_4.Max}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
+                                                <TextBlock Foreground="White" Text="]" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </Grid>
+                                    <Grid Grid.Column="4">
+                                        <StackPanel>
+                                            <TextBlock Foreground="White" Text="-5%" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                <TextBlock Foreground="White" Text="[" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
+                                                <TextBlock Foreground="White" Text="{Binding Path=BranchesMainTable.Branch_5.Min}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
+                                                <TextBlock Foreground="White" Text=", " HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
+                                                <TextBlock Foreground="White" Text="{Binding Path=BranchesMainTable.Branch_5.Max}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
+                                                <TextBlock Foreground="White" Text="]" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </Grid>
+                                </Grid>
+                            </DockPanel>
                         </Grid>
                         <Grid Grid.Column="3">
-                            <StackPanel>
-                                <TextBlock Foreground="White" Text="+2,5%" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                    <TextBlock Foreground="White" Text="[" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
-                                    <TextBlock Foreground="White" Text="{Binding Path=BranchesMainTable.Branch_2.Min}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
-                                    <TextBlock Foreground="White" Text=", " HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
-                                    <TextBlock Foreground="White" Text="{Binding Path=BranchesMainTable.Branch_2.Max}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
-                                    <TextBlock Foreground="White" Text="]" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
-                                </StackPanel>
-                            </StackPanel>
-                        </Grid>
-                        <Grid Grid.Column="4">
-                            <StackPanel>
-                                <TextBlock Foreground="White" Text="0%" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                    <TextBlock Foreground="White" Text="[" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
-                                    <TextBlock Foreground="White" Text="{Binding Path=BranchesMainTable.Branch_3.Min}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
-                                    <TextBlock Foreground="White" Text=", " HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
-                                    <TextBlock Foreground="White" Text="{Binding Path=BranchesMainTable.Branch_3.Max}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
-                                    <TextBlock Foreground="White" Text="]" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
-                                </StackPanel>
-                            </StackPanel>
-                        </Grid>
-                        <Grid Grid.Column="5">
-                            <StackPanel>
-                                <TextBlock Foreground="White" Text="-2,5%" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                    <TextBlock Foreground="White" Text="[" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
-                                    <TextBlock Foreground="White" Text="{Binding Path=BranchesMainTable.Branch_4.Min}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
-                                    <TextBlock Foreground="White" Text=", " HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
-                                    <TextBlock Foreground="White" Text="{Binding Path=BranchesMainTable.Branch_4.Max}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
-                                    <TextBlock Foreground="White" Text="]" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
-                                </StackPanel>
-                            </StackPanel>
-                        </Grid>
-                        <Grid Grid.Column="6">
-                            <StackPanel>
-                                <TextBlock Foreground="White" Text="-5%" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                    <TextBlock Foreground="White" Text="[" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
-                                    <TextBlock Foreground="White" Text="{Binding Path=BranchesMainTable.Branch_5.Min}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
-                                    <TextBlock Foreground="White" Text=", " HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
-                                    <TextBlock Foreground="White" Text="{Binding Path=BranchesMainTable.Branch_5.Max}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
-                                    <TextBlock Foreground="White" Text="]" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
-                                </StackPanel>
-                            </StackPanel>
+                            <Border BorderBrush="White" BorderThickness="1 0"/>
+                            <DockPanel>
+                                <Grid DockPanel.Dock="Top">
+                                    <Border BorderBrush="White" BorderThickness="0 1"/>
+                                    <TextBlock Foreground="White" Text="Режим наименьших нагрузок" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
+                                </Grid>
+                                <Grid DockPanel.Dock="Bottom">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid Grid.Column="0">
+                                        <StackPanel>
+                                            <TextBlock Foreground="White" Text="+5%" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                <TextBlock Foreground="White" Text="[" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
+                                                <TextBlock Foreground="White" Text="{Binding Path=BranchesMainTable.Branch_1.Min}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
+                                                <TextBlock Foreground="White" Text=", " HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
+                                                <TextBlock Foreground="White" Text="{Binding Path=BranchesMainTable.Branch_1.Max}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
+                                                <TextBlock Foreground="White" Text="]" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </Grid>
+                                    <Grid Grid.Column="1">
+                                        <StackPanel>
+                                            <TextBlock Foreground="White" Text="+2,5%" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                <TextBlock Foreground="White" Text="[" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
+                                                <TextBlock Foreground="White" Text="{Binding Path=BranchesMainTable.Branch_2.Min}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
+                                                <TextBlock Foreground="White" Text=", " HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
+                                                <TextBlock Foreground="White" Text="{Binding Path=BranchesMainTable.Branch_2.Max}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
+                                                <TextBlock Foreground="White" Text="]" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </Grid>
+                                    <Grid Grid.Column="2">
+                                        <StackPanel>
+                                            <TextBlock Foreground="White" Text="0%" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                <TextBlock Foreground="White" Text="[" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
+                                                <TextBlock Foreground="White" Text="{Binding Path=BranchesMainTable.Branch_3.Min}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
+                                                <TextBlock Foreground="White" Text=", " HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
+                                                <TextBlock Foreground="White" Text="{Binding Path=BranchesMainTable.Branch_3.Max}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
+                                                <TextBlock Foreground="White" Text="]" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </Grid>
+                                    <Grid Grid.Column="3">
+                                        <StackPanel>
+                                            <TextBlock Foreground="White" Text="-2,5%" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                <TextBlock Foreground="White" Text="[" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
+                                                <TextBlock Foreground="White" Text="{Binding Path=BranchesMainTable.Branch_4.Min}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
+                                                <TextBlock Foreground="White" Text=", " HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
+                                                <TextBlock Foreground="White" Text="{Binding Path=BranchesMainTable.Branch_4.Max}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
+                                                <TextBlock Foreground="White" Text="]" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </Grid>
+                                    <Grid Grid.Column="4">
+                                        <StackPanel>
+                                            <TextBlock Foreground="White" Text="-5%" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                <TextBlock Foreground="White" Text="[" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
+                                                <TextBlock Foreground="White" Text="{Binding Path=BranchesMainTable.Branch_5.Min}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
+                                                <TextBlock Foreground="White" Text=", " HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
+                                                <TextBlock Foreground="White" Text="{Binding Path=BranchesMainTable.Branch_5.Max}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
+                                                <TextBlock Foreground="White" Text="]" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </Grid>
+                                </Grid>
+                            </DockPanel>
                         </Grid>
                         <Grid Grid.Column="7">
-                            <TextBlock Foreground="White" Text="Принятое ответвление" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
+                            <TextBlock Foreground="White" Text="Принятое ответвление" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
                         </Grid>
                     </Grid>
                 </Grid>
@@ -792,18 +1076,15 @@
                                 <Border BorderThickness="0 0 0 1" BorderBrush="#333"/>
                                 <Grid  Margin="0 10">
                                     <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="0.35*"/>
+                                        <ColumnDefinition Width="0.6*"/>
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="0.3*"/>
                                     </Grid.ColumnDefinitions>
                                     <Grid Grid.Column="0">
                                         <StackPanel Orientation="Vertical" Margin="10 0 0 0">
-                                            <Border Background="Gray" CornerRadius="5" HorizontalAlignment="Left" Padding="10 2 10 2">
+                                            <Border Background="Gray" CornerRadius="5" HorizontalAlignment="Center" Padding="10 2 10 2">
                                                 <StackPanel Orientation="Horizontal">
                                                     <TextBlock Foreground="White" Text="{Binding Path=N}"/>
                                                     <TextBlock Foreground="White" Text=" - "/>
@@ -813,47 +1094,105 @@
                                         </StackPanel>
                                     </Grid>
                                     <Grid Grid.Column="1">
-                                        <TextBlock Foreground="Black" Text="{Binding Path=DeltaUSumPercent}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0 0 0 0"/>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0" Foreground="Black" Text="{Binding Path=DeltaUSumPercent}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <TextBlock Grid.Column="1" Foreground="Black" Text="{Binding Path=DeltaUSumPercent}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                     </Grid>
                                     <Grid Grid.Column="2">
-                                        <StackPanel Margin="10 5">
-                                            <Border Background="Gray" CornerRadius="5" HorizontalAlignment="Left" Padding="10 2 10 2">
-                                                <TextBlock Foreground="White" Text="{Binding Path=Branch_1}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 0 0"/>
-                                            </Border>
-                                        </StackPanel>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid Grid.Column="0">
+                                            <StackPanel Margin="10 5">
+                                                <Border Background="Gray" CornerRadius="5" HorizontalAlignment="Center" Padding="10 2 10 2">
+                                                    <TextBlock Foreground="White" Text="{Binding Path=Branch_1}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                </Border>
+                                            </StackPanel>
+                                        </Grid>
+                                        <Grid Grid.Column="1">
+                                            <StackPanel Margin="10 5">
+                                                <Border Background="Gray" CornerRadius="5" HorizontalAlignment="Center" Padding="10 2 10 2">
+                                                    <TextBlock Foreground="White" Text="{Binding Path=Branch_2}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                </Border>
+                                            </StackPanel>
+                                        </Grid>
+                                        <Grid Grid.Column="2">
+                                            <StackPanel Margin="10 5">
+                                                <Border Background="Gray" CornerRadius="5" HorizontalAlignment="Center" Padding="10 2 10 2">
+                                                    <TextBlock Foreground="White" Text="{Binding Path=Branch_3}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                </Border>
+                                            </StackPanel>
+                                        </Grid>
+                                        <Grid Grid.Column="3">
+                                            <StackPanel Margin="10 5">
+                                                <Border Background="Gray" CornerRadius="5" HorizontalAlignment="Center" Padding="10 2 10 2">
+                                                    <TextBlock Foreground="White" Text="{Binding Path=Branch_4}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                </Border>
+                                            </StackPanel>
+                                        </Grid>
+                                        <Grid Grid.Column="4">
+                                            <StackPanel Margin="10 5">
+                                                <Border Background="Gray" CornerRadius="5" HorizontalAlignment="Center" Padding="10 2 10 2">
+                                                    <TextBlock Foreground="White" Text="{Binding Path=Branch_5}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                </Border>
+                                            </StackPanel>
+                                        </Grid>
                                     </Grid>
                                     <Grid Grid.Column="3">
-                                        <StackPanel Margin="10 5">
-                                            <Border Background="Gray" CornerRadius="5" HorizontalAlignment="Left" Padding="10 2 10 2">
-                                                <TextBlock Foreground="White" Text="{Binding Path=Branch_2}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 0 0"/>
-                                            </Border>
-                                        </StackPanel>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid Grid.Column="0">
+                                            <StackPanel Margin="10 5">
+                                                <Border Background="Gray" CornerRadius="5" HorizontalAlignment="Center" Padding="10 2 10 2">
+                                                    <TextBlock Foreground="White" Text="{Binding Path=Branch_1}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                </Border>
+                                            </StackPanel>
+                                        </Grid>
+                                        <Grid Grid.Column="1">
+                                            <StackPanel Margin="10 5">
+                                                <Border Background="Gray" CornerRadius="5" HorizontalAlignment="Center" Padding="10 2 10 2">
+                                                    <TextBlock Foreground="White" Text="{Binding Path=Branch_2}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                </Border>
+                                            </StackPanel>
+                                        </Grid>
+                                        <Grid Grid.Column="2">
+                                            <StackPanel Margin="10 5">
+                                                <Border Background="Gray" CornerRadius="5" HorizontalAlignment="Center" Padding="10 2 10 2">
+                                                    <TextBlock Foreground="White" Text="{Binding Path=Branch_3}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                </Border>
+                                            </StackPanel>
+                                        </Grid>
+                                        <Grid Grid.Column="3">
+                                            <StackPanel Margin="10 5">
+                                                <Border Background="Gray" CornerRadius="5" HorizontalAlignment="Center" Padding="10 2 10 2">
+                                                    <TextBlock Foreground="White" Text="{Binding Path=Branch_4}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                </Border>
+                                            </StackPanel>
+                                        </Grid>
+                                        <Grid Grid.Column="4">
+                                            <StackPanel Margin="10 5">
+                                                <Border Background="Gray" CornerRadius="5" HorizontalAlignment="Center" Padding="10 2 10 2">
+                                                    <TextBlock Foreground="White" Text="{Binding Path=Branch_5}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                </Border>
+                                            </StackPanel>
+                                        </Grid>
                                     </Grid>
                                     <Grid Grid.Column="4">
                                         <StackPanel Margin="10 5">
-                                            <Border Background="Gray" CornerRadius="5" HorizontalAlignment="Left" Padding="10 2 10 2">
-                                                <TextBlock Foreground="White" Text="{Binding Path=Branch_3}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 0 0"/>
-                                            </Border>
-                                        </StackPanel>
-                                    </Grid>
-                                    <Grid Grid.Column="5">
-                                        <StackPanel Margin="10 5">
-                                            <Border Background="Gray" CornerRadius="5" HorizontalAlignment="Left" Padding="10 2 10 2">
-                                                <TextBlock Foreground="White" Text="{Binding Path=Branch_4}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 0 0"/>
-                                            </Border>
-                                        </StackPanel>
-                                    </Grid>
-                                    <Grid Grid.Column="6">
-                                        <StackPanel Margin="10 5">
-                                            <Border Background="Gray" CornerRadius="5" HorizontalAlignment="Left" Padding="10 2 10 2">
-                                                <TextBlock Foreground="White" Text="{Binding Path=Branch_5}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 0 0"/>
-                                            </Border>
-                                        </StackPanel>
-                                    </Grid>
-                                    <Grid Grid.Column="7">
-                                        <StackPanel Margin="10 5">
-                                            <Border Background="Gray" CornerRadius="5" HorizontalAlignment="Left" Padding="10 2 10 2">
-                                                <TextBlock Foreground="White" Text="{Binding Path=SelectedBranch}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 0 0"/>
+                                            <Border Background="Gray" CornerRadius="5" HorizontalAlignment="Center" Padding="10 2 10 2">
+                                                <TextBlock Foreground="White" Text="{Binding Path=SelectedBranch}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                             </Border>
                                         </StackPanel>
                                     </Grid>

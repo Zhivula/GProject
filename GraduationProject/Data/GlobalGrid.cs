@@ -13,7 +13,7 @@ namespace GraduationProject.Data
         private GlobalGrid()
         {
             CountNode = 0;
-            Lines = new List<Button1>();
+            Lines = new List<LineView>();
             Transformers = new List<TransformerView>();
             Tree = new Tree<int>();
             BoxK = new List<int>();
@@ -28,7 +28,7 @@ namespace GraduationProject.Data
 
         public int CountNode { get; set; }
         public List<int> BoxK { get; set; }
-        public List<Button1> Lines;
+        public List<LineView> Lines;
         public List<TransformerView> Transformers;
         public Tree<int> Tree { get; set; }
         public SourceView Source { get; set; }

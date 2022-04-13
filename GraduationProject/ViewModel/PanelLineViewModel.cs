@@ -18,6 +18,9 @@ namespace GraduationProject.ViewModel
         private double q2;
         private double u1;
         private double u2;
+        private double i1;
+        private double i2;
+        private double idop;
         private double dp;
         private double dq;
         private double du;
@@ -99,6 +102,33 @@ namespace GraduationProject.ViewModel
             {
                 u2 = value;
                 OnPropertyChanged(nameof(U2));
+            }
+        }
+        public double I1
+        {
+            get => i1;
+            set
+            {
+                i1 = value;
+                OnPropertyChanged(nameof(I1));
+            }
+        }
+        public double I2
+        {
+            get => i2;
+            set
+            {
+                i2 = value;
+                OnPropertyChanged(nameof(I2));
+            }
+        }
+        public double Idop
+        {
+            get => idop;
+            set
+            {
+                idop = value;
+                OnPropertyChanged(nameof(Idop));
             }
         }
         public double dP
@@ -191,7 +221,7 @@ namespace GraduationProject.ViewModel
                 OnPropertyChanged(nameof(Wq2));
             }
         }
-        public PanelLineViewModel(Button1 line)
+        public PanelLineViewModel(LineView line)
         {
             var context = line.DataContext as LineViewModel;
             LineNumber = context.N.ToString() + "-" + context.K.ToString();
@@ -212,6 +242,9 @@ namespace GraduationProject.ViewModel
             Wp2 = Math.Round(context.Wp2, 5);
             Wq1 = Math.Round(context.Wq1,5);
             Wq2 = Math.Round(context.Wq2, 5);
+            Idop = context.Idop;
+            I1 = context.I1;
+            I2 = context.I2;
         }
         #region PropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;

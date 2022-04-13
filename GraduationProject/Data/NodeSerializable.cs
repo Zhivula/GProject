@@ -59,7 +59,7 @@ namespace GraduationProject.Data
             
             if (DataContext is LineModel contextLine)
             {
-                var line = new Button1(contextLine.Brand, contextLine.L, contextLine.R0, contextLine.X0) { Height = 50, Width = 100 };
+                var line = new LineView(contextLine.Brand, contextLine.L, contextLine.R0, contextLine.X0, contextLine.Idop) { Height = 50, Width = 100 };
                 ((RotateTransform)line.RenderTransform).Angle = Angle;
 
                 if (Angle == 180 || Angle == 270)

@@ -27,17 +27,22 @@
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Foreground="Gray" Text="P1:"/>
                     <TextBlock Foreground="Gray" Text="{Binding P1}"/>
-                    <TextBlock Foreground="Gray" Text="   МВт"/>
+                    <TextBlock Foreground="Gray" Text="   кВт"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Foreground="Gray" Text="Q1:"/>
                     <TextBlock Foreground="Gray" Text="{Binding Q1}"/>
-                    <TextBlock Foreground="Gray" Text="   МВар"/>
+                    <TextBlock Foreground="Gray" Text="   кВар"/>
                     </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Foreground="Gray" Text="U1:"/>
                     <TextBlock Foreground="Gray" Text="{Binding U1}"/>
                     <TextBlock Foreground="Gray" Text="   кВ"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Foreground="Gray" Text="I1:"/>
+                    <TextBlock Foreground="Gray" Text="{Binding I1}"/>
+                    <TextBlock Foreground="Gray" Text="   A"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Foreground="Gray" Text="Wp1:"/>
@@ -58,17 +63,22 @@
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Foreground="Gray" Text="P2:"/>
                     <TextBlock Foreground="Gray" Text="{Binding P2}"/>
-                    <TextBlock Foreground="Gray" Text="   МВт"/>
+                    <TextBlock Foreground="Gray" Text="   кВт"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Foreground="Gray" Text="Q2:"/>
                     <TextBlock Foreground="Gray" Text="{Binding Q2}"/>
-                    <TextBlock Foreground="Gray" Text="   МВар"/>
+                    <TextBlock Foreground="Gray" Text="   квар"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Foreground="Gray" Text="U2:"/>
                     <TextBlock Foreground="Gray" Text="{Binding U2}"/>
                     <TextBlock Foreground="Gray" Text="   кВ"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Foreground="Gray" Text="I2:"/>
+                    <TextBlock Foreground="Gray" Text="{Binding I2}"/>
+                    <TextBlock Foreground="Gray" Text="   A"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Foreground="Gray" Text="Wp2:"/>
@@ -113,6 +123,11 @@
                     <TextBlock Foreground="Gray" Text="Длина, L: "/>
                     <TextBlock Foreground="Gray" Text="{Binding L}"/>
                     <TextBlock Foreground="Gray" Text="   км"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Foreground="Gray" Text="Допустимый ток, Idop: "/>
+                    <TextBlock Foreground="Gray" Text="{Binding Idop}"/>
+                    <TextBlock Foreground="Gray" Text="   A"/>
                 </StackPanel>
             </StackPanel>
         </Grid>

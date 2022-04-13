@@ -106,7 +106,7 @@ namespace GraduationProject.ViewModel
             for (int i = window.GridChange.Children.Count - 1; i >= 0; --i)
             {
                 var childTypeName = window.GridChange.Children[i].GetType().Name;
-                if (childTypeName == "Button1" | childTypeName == "TransformerView" | childTypeName == "SourceView")
+                if (childTypeName == nameof(LineView) | childTypeName == nameof(TransformerView) | childTypeName == nameof(SourceView))
                 {
                     window.GridChange.Children.RemoveAt(i);
                 }

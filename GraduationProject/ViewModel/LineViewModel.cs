@@ -23,6 +23,9 @@ namespace GraduationProject.ViewModel
         private double q2;
         private float u1;
         private float u2;
+        private double i1;
+        private double i2;
+        private double idop;
         private double w1;
         private double w2;
         private double r0;
@@ -46,6 +49,7 @@ namespace GraduationProject.ViewModel
         private Dictionary<int, double> wq2List;
         private Dictionary<int, double> wq1List;
         private Color color;
+        private SolidColorBrush colorNode;
 
         public int N
         {
@@ -173,6 +177,33 @@ namespace GraduationProject.ViewModel
                 OnPropertyChanged(nameof(U2));
             }
         }
+        public double I1
+        {
+            get => i1;
+            set
+            {
+                i1 = value;
+                OnPropertyChanged(nameof(I1));
+            }
+        }
+        public double I2
+        {
+            get => i2;
+            set
+            {
+                i2 = value;
+                OnPropertyChanged(nameof(I2));
+            }
+        }
+        public double Idop
+        {
+            get => idop;
+            set
+            {
+                idop = value;
+                OnPropertyChanged(nameof(Idop));
+            }
+        }
         public double DU
         {
             get => dU;
@@ -290,6 +321,15 @@ namespace GraduationProject.ViewModel
                 OnPropertyChanged(nameof(Color));
             }
         }
+        public SolidColorBrush ColorNode
+        {
+            get => colorNode;
+            set
+            {
+                colorNode = value;
+                OnPropertyChanged(nameof(ColorNode));
+            }
+        }
         /// <summary>
         /// Хранит активные мощности P2 протекающие по линии
         /// </summary>
@@ -388,10 +428,11 @@ namespace GraduationProject.ViewModel
             }
         }
 
-        public LineViewModel(string brand, double length, double r0, double x0)
+        public LineViewModel(string brand, double length, double r0, double x0, double idop)
         {
             Opacity = 0;
-            Color = Colors.Transparent; 
+            Color = Colors.Transparent;
+            ColorNode = new SolidColorBrush(Colors.Green);
             P2List = new Dictionary<int, double>();
             P1List = new Dictionary<int, double>();
             Q2List = new Dictionary<int, double>();
@@ -405,6 +446,7 @@ namespace GraduationProject.ViewModel
             LengthFormat = length + " км";
             R0 = r0;
             X0 = x0;
+            Idop = idop;
         }
         #region PropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;

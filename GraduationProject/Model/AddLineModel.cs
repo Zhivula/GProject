@@ -31,10 +31,10 @@ namespace GraduationProject.Model
             SourceWireBrand = GetWireBrands();
             SelectedWireBrand = SourceWireBrand.FirstOrDefault();
         }
-        public void AddLine(MainWindow window, string selectedWireBrand, string lineLength, double r0, double x0)
+        public void AddLine(MainWindow window, string selectedWireBrand, string lineLength, double r0, double x0, double idop)
         {
             var global = GlobalGrid.GetInstance();
-            var line = new Button1(selectedWireBrand, double.Parse(lineLength), r0, x0) { Height = 50, Width = 100 };
+            var line = new LineView(selectedWireBrand, double.Parse(lineLength), r0, x0, idop) { Height = 50, Width = 100 };
             window.GridChange.Children.Add(line);
             window.curr = line;
 

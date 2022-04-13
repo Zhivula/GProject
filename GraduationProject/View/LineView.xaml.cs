@@ -22,16 +22,16 @@ namespace GraduationProject.View
     /// Логика взаимодействия для Button1.xaml
     /// </summary>
     [Serializable]
-    public partial class Button1 : UserControl, INotifyPropertyChanged
+    public partial class LineView : UserControl, INotifyPropertyChanged
     {
         public MainWindow window;
 
-        public Button1(string brand, double length, double r0, double x0)
+        public LineView(string brand, double length, double r0, double x0, double idop)
         {
             window = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
             RenderTransform = new RotateTransform() { Angle = 0 };
             InitializeComponent();
-            DataContext = new LineViewModel(brand, length, r0, x0);
+            DataContext = new LineViewModel(brand, length, r0, x0, idop);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

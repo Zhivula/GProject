@@ -8,7 +8,7 @@ namespace GraduationProject.View
     /// </summary>
     public partial class PanelLineView : UserControl
     {
-        public PanelLineView(Button1 line)
+        public PanelLineView(LineView line) 
         {
             InitializeComponent();
             DataContext = new PanelLineViewModel(line);

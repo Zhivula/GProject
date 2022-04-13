@@ -37,7 +37,7 @@
                         </DockPanel>
                         <DockPanel Margin="0 3">
                             <TextBlock Text="Kz" Foreground="White" Width="60"/>
-                            <TextBox Text="{Binding Path=Snom}" Margin="10 0 0 0" >
+                            <TextBox Text="{Binding Path=Kz}" Margin="10 0 0 0" >
                                 <TextBox.Template>
                                     <ControlTemplate>
                                         <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="White">
@@ -49,7 +49,7 @@
                         </DockPanel>
                         <DockPanel Margin="0 3">
                             <TextBlock Text="S, кВА" Foreground="White" Width="60"/>
-                            <TextBox Text="{Binding Path=Snom}" Margin="10 0 0 0" >
+                            <TextBox Text="{Binding Path=S}" Margin="10 0 0 0" >
                                 <TextBox.Template>
                                     <ControlTemplate>
                                         <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="White">

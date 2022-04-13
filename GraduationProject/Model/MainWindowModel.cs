@@ -29,7 +29,7 @@ namespace GraduationProject.Model
         /// <param name="window"></param>
         public void MainClick(MainWindow window)
         {
-            if (window.curr is Button1 line)
+            if (window.curr is LineView line)
             {
                 AddLine(line);
             }
@@ -47,7 +47,7 @@ namespace GraduationProject.Model
         /// Подключение к сети нового участка - линии.
         /// </summary>
         /// <param name="activeLine">Активный элемент - линия (View)</param>
-        private void AddLine(Button1 activeLine)
+        private void AddLine(LineView activeLine)
         {
             var DataContextLine = activeLine.DataContext as LineViewModel;
             var active_left = Canvas.GetLeft(activeLine);
@@ -269,7 +269,7 @@ namespace GraduationProject.Model
                 for (int i = window.GridChange.Children.Count - 1; i >= 0; --i)
                 {
                     var childTypeName = window.GridChange.Children[i].GetType().Name;
-                    if (childTypeName == "Line")
+                    if (childTypeName == nameof(Line))
                     {
                         window.GridChange.Children.RemoveAt(i);
                     }
@@ -296,7 +296,7 @@ namespace GraduationProject.Model
 
                 var context = tree.Root.DataContext as LineModel;
 
-                var line = new Button1(context.Brand, context.L, context.R0, context.X0) { Height = 50, Width = 100 };
+                var line = new LineView(context.Brand, context.L, context.R0, context.X0, context.Idop) { Height = 50, Width = 100 };
                 var contextLine = line.DataContext as LineViewModel;
                 contextLine.Flag = false;
                 ((RotateTransform)line.RenderTransform).Angle = tree.Root.Angle;

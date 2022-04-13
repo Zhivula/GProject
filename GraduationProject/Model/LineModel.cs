@@ -15,6 +15,7 @@ namespace GraduationProject.Model
         public string Brand { get; set; }
         public double R0 { get; set; }
         public double X0 { get; set; }
+        public double Idop { get; set; }
         public double L { get; set; }
         public Point Point { get; set; }
 

@@ -48,7 +48,7 @@
                         <ColumnDefinition Width="10"/>
                     </Grid.ColumnDefinitions>
                     <Grid Grid.Column="0">
-                        <Button Background="Red" Height="10" Width="10" Click="RotateTransformer">
+                        <Button Background="Green" Height="10" Width="10" Click="RotateTransformer">
                             <Button.Template>
                                 <ControlTemplate TargetType="Button">
                                     <Grid>

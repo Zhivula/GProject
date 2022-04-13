@@ -25,6 +25,7 @@ namespace GraduationProject.ViewModel
         private double sj;
         private double u1;
         private double u2;
+        private double i;
         private double kz;
         private double r;
         private double x;
@@ -105,6 +106,15 @@ namespace GraduationProject.ViewModel
             {
                 u2 = value;
                 OnPropertyChanged(nameof(U2));
+            }
+        }
+        public double I
+        {
+            get => i;
+            set
+            {
+                i = value;
+                OnPropertyChanged(nameof(I));
             }
         }
         public double P1
@@ -305,6 +315,8 @@ namespace GraduationProject.ViewModel
 
                 P1 = P2 + dPj + transformer.Pxx;
                 Q1 = Q2 + dQj + transformer.Qxx;
+
+                I = P1 / (Math.Sqrt(3)*10*Cosfi);
 
                 node.Add(node);
             }

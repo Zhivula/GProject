@@ -21,7 +21,14 @@ namespace GraduationProject.ViewModel
         MainWindow window;
         public ObservableCollection<string> SourceTransformerBrand { get; set; }
         private string pnom;
+        private double snom;
+        private double s;
+        private double p;
+        private double q;
+        private double kz; 
+        private double cosfi;
         private string selectedTransformerBrand;
+        private Transformer transformer;
 
         public string Pnom
         {
@@ -32,6 +39,75 @@ namespace GraduationProject.ViewModel
                 OnPropertyChanged(nameof(Pnom));
             }
         }
+        public double Snom
+        {
+            get => snom;
+            set
+            {
+                snom = value;
+                OnPropertyChanged(nameof(Snom));
+            }
+        }
+        public double S
+        {
+            get => s;
+            set
+            {
+                s = value;
+                OnPropertyChanged(nameof(S));
+            }
+        }
+        public double P
+        {
+            get => p;
+            set
+            {
+                p = value;
+                OnPropertyChanged(nameof(P));
+            }
+        }
+        public double Q
+        {
+            get => q;
+            set
+            {
+                q = value;
+                OnPropertyChanged(nameof(Q));
+            }
+        }
+        public double Kz
+        {
+            get => kz;
+            set
+            {
+                kz = value;
+                OnPropertyChanged(nameof(Kz));
+                s = Snom * Kz;
+                cosfi = Math.Round(0.7, 4);
+                p = S * Cosfi;
+                q = Math.Sqrt(Math.Pow(S, 2) - Math.Pow(P, 2));
+
+                OnPropertyChanged(nameof(S));
+                OnPropertyChanged(nameof(Cosfi));
+                OnPropertyChanged(nameof(P));
+                OnPropertyChanged(nameof(Q));
+            }
+        }
+        public double Cosfi
+        {
+            get => cosfi;
+            set
+            {
+                cosfi = value;
+                OnPropertyChanged(nameof(Cosfi));
+
+                p = S * Cosfi;
+                q = Math.Sqrt(Math.Pow(S, 2) - Math.Pow(P, 2));
+
+                OnPropertyChanged(nameof(P));
+                OnPropertyChanged(nameof(Q));
+            }
+        }
         public string SelectedTransformerBrand
         {
             get => selectedTransformerBrand;
@@ -39,11 +115,22 @@ namespace GraduationProject.ViewModel
             {
                 selectedTransformerBrand = value;
                 OnPropertyChanged(nameof(SelectedTransformerBrand));
+                using (var context = new MyDbContext())
+                {
+                    transformer = context.Transformers.Where(x => x.Brand == selectedTransformerBrand).FirstOrDefault();
+                    Snom = transformer.Snom;
+                    Kz = 1;
+                    S = Snom*Kz;
+                    Cosfi = Math.Round(0.7,4);
+                    P = Math.Round(S * Cosfi, 4);
+                    Q = Math.Round(Math.Sqrt(Math.Pow(S,2) - Math.Pow(P,2)), 4);
+                }
             }
         }
 
         public AddTransformerViewModel()
         {
+            transformer = new Transformer();
             window = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
             var list = new List<string>();
             using (var context = new MyDbContext())
@@ -61,19 +148,14 @@ namespace GraduationProject.ViewModel
         public ICommand AddTransformerCommand => new DelegateCommand(o =>
         {
             var global = GlobalGrid.GetInstance();
-            var item = new Transformer();
-            using (var context = new MyDbContext())
-            {
-                item = context.Transformers.Where(x => x.Brand == SelectedTransformerBrand).Single();
-            }
-            var transformer = new TransformerView(item) { Height = 50, Width = 100 };
-            OnPropertyChanged(nameof(transformer));
+
+            var view = new TransformerView(transformer, S, Cosfi) { Height = 50, Width = 100 };
             Close();
             
-            window.GridChange.Children.Add(transformer);
-            window.curr = transformer;
+            window.GridChange.Children.Add(view);
+            window.curr = view;
 
-            global.Transformers.Add(transformer);
+            global.Transformers.Add(view);
         });
         private void MouseEvent(object sender, RoutedEventArgs e)
         {

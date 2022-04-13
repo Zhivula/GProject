@@ -1,4 +1,5 @@
 ﻿using GraduationProject.Data;
+using GraduationProject.View;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -29,6 +30,7 @@ namespace GraduationProject.ViewModel
         private double dUnnyMin;
         private double dUcpMax;
         private double dUcpMin;
+        private double unom;
 
 
         public double Branch_1
@@ -38,7 +40,7 @@ namespace GraduationProject.ViewModel
             {
                 branch_1 = value;
                 OnPropertyChanged(nameof(Branch_1));
-                DeltaUBranch_1 = ((0.4 / 0.38) / ((10 + 10 * value * 0.01) / 10) - 1) * 100;
+                DeltaUBranch_1 = Math.Round(((0.4 / 0.38) / ((Unom + Unom * value * 0.01) / Unom) - 1) * 100, 3);
             }
         }
         public double Branch_2
@@ -48,7 +50,7 @@ namespace GraduationProject.ViewModel
             {
                 branch_2 = value;
                 OnPropertyChanged(nameof(Branch_2));
-                DeltaUBranch_2 = ((0.4 / 0.38) / ((10 + 10 * value * 0.01) / 10) - 1) * 100;
+                DeltaUBranch_2 = Math.Round(((0.4 / 0.38) / ((Unom + Unom * value * 0.01) / Unom) - 1) * 100, 3);
             }
         }
         public double Branch_3
@@ -58,7 +60,7 @@ namespace GraduationProject.ViewModel
             {
                 branch_3 = value;
                 OnPropertyChanged(nameof(Branch_3));
-                DeltaUBranch_3 = ((0.4 / 0.38) / ((10 + 10 * value * 0.01)/10) - 1) * 100;
+                DeltaUBranch_3 = Math.Round(((0.4 / 0.38) / ((Unom + Unom * value * 0.01) / Unom) - 1) * 100, 3);
             }
         }
         public double Branch_4
@@ -68,7 +70,7 @@ namespace GraduationProject.ViewModel
             {
                 branch_4 = value;
                 OnPropertyChanged(nameof(Branch_4));
-                DeltaUBranch_4 = ((0.4 / 0.38) / ((10 + 10 * value * 0.01) / 10) - 1) * 100;
+                DeltaUBranch_4 = Math.Round(((0.4 / 0.38) / ((Unom + Unom * value * 0.01) / Unom) - 1) * 100, 3);
             }
         }
         public double Branch_5
@@ -78,7 +80,7 @@ namespace GraduationProject.ViewModel
             {
                 branch_5 = value;
                 OnPropertyChanged(nameof(Branch_5));
-                DeltaUBranch_5 = ((0.4 / 0.38) / ((10 + 10 * value * 0.01) / 10) - 1) * 100;
+                DeltaUBranch_5 = Math.Round(((0.4 / 0.38) / ((Unom + Unom * value * 0.01) / Unom) - 1) * 100, 3);
             }
         }
 
@@ -190,6 +192,15 @@ namespace GraduationProject.ViewModel
                 OnPropertyChanged(nameof(DUcpMin));
             }
         }
+        public double Unom
+        {
+            get => unom;
+            set
+            {
+                unom = value;
+                OnPropertyChanged(nameof(Unom));
+            }
+        }
         private List<LoadTransformer> items;
         public List<LoadTransformer> ItemsSource
         {
@@ -243,6 +254,7 @@ namespace GraduationProject.ViewModel
 
         public ModeAnalysisViewModel()
         {
+            Unom = 10;
             Branch_1 = 5;
             Branch_2 = 2.5;
             Branch_3 = 0;
@@ -281,9 +293,9 @@ namespace GraduationProject.ViewModel
                     N = context.N,
                     K = context.K,
                     Cosfi = context.Cosfi.ToString("0.####"),
-                    Snom = context.Snom.ToString(),
-                    P = context.P1.ToString(),
-                    Q = context.Q1.ToString()
+                    Snom = context.Snom.ToString("0.####"),
+                    P = context.P1.ToString("0.####"),
+                    Q = context.Q1.ToString("0.####")
                 });
             }
             return list;
@@ -412,7 +424,7 @@ namespace GraduationProject.ViewModel
             for (int i = window.FullGridChange.Children.Count - 1; i >= 0; --i)
             {
                 var childTypeName = window.FullGridChange.Children[i].GetType().Name;
-                if (childTypeName == "ModeAnalysisView")
+                if (childTypeName == nameof(ModeAnalysisView))
                 {
                     window.FullGridChange.Children.RemoveAt(i);
                 }

@@ -169,7 +169,8 @@ namespace GraduationProject.Data
                          Brand = context.Brand,
                          L = context.Length,
                          R0 = context.R0,
-                         X0 = context.X0
+                         X0 = context.X0,
+                         Idop = context.Idop
                     };
                     var angle = ((RotateTransform)Root.View.RenderTransform).Angle;
                     treeSerializable.Add(context.N, context.K, model, angle, x, y);
@@ -192,7 +193,7 @@ namespace GraduationProject.Data
         {
             Root = null;
             Count = 0;
-            GlobalGrid.GetInstance().Lines = new List<View.Button1>();
+            GlobalGrid.GetInstance().Lines = new List<View.LineView>();
             GlobalGrid.GetInstance().Transformers = new List<View.TransformerView>();
             GlobalGrid.GetInstance().Source = null;
         }
