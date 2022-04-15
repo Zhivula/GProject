@@ -201,14 +201,24 @@ namespace GraduationProject.ViewModel
                 OnPropertyChanged(nameof(Unom));
             }
         }
-        private List<LoadTransformer> items;
-        public List<LoadTransformer> ItemsSource
+        private List<LoadTransformer> itemsMax;
+        public List<LoadTransformer> ItemsSourceMax
         {
-            get => items;
+            get => itemsMax;
             set
             {
-                items = value;
-                OnPropertyChanged(nameof(ItemsSource));
+                itemsMax = value;
+                OnPropertyChanged(nameof(ItemsSourceMax));
+            }
+        }
+        private List<LoadTransformer> itemsMin;
+        public List<LoadTransformer> ItemsSourceMin
+        {
+            get => itemsMin;
+            set
+            {
+                itemsMin = value;
+                OnPropertyChanged(nameof(ItemsSourceMin));
             }
         }
         private List<InfoNodes> infoNodes;
@@ -231,6 +241,16 @@ namespace GraduationProject.ViewModel
                 OnPropertyChanged(nameof(InfoBranches));
             }
         }
+        private List<InfoBranches> infoBranchesMin;
+        public List<InfoBranches> InfoBranchesMin
+        {
+            get => infoBranchesMin;
+            set
+            {
+                infoBranchesMin = value;
+                OnPropertyChanged(nameof(InfoBranchesMin));
+            }
+        }
         private BranchesMainTable branchesMainTable;
         public BranchesMainTable BranchesMainTable
         {
@@ -239,6 +259,16 @@ namespace GraduationProject.ViewModel
             {
                 branchesMainTable = value;
                 OnPropertyChanged(nameof(BranchesMainTable));
+            }
+        }
+        private BranchesMainTable branchesMainTableMin;
+        public BranchesMainTable BranchesMainTableMin
+        {
+            get => branchesMainTableMin;
+            set
+            {
+                branchesMainTableMin = value;
+                OnPropertyChanged(nameof(BranchesMainTableMin));
             }
         }
         private List<BranchesTable> branchesTable;
@@ -251,7 +281,16 @@ namespace GraduationProject.ViewModel
                 OnPropertyChanged(nameof(BranchesTable));
             }
         }
-
+        private List<BranchesTable> branchesTableMin;
+        public List<BranchesTable> BranchesTableMin
+        {
+            get => branchesTableMin;
+            set
+            {
+                branchesTableMin = value;
+                OnPropertyChanged(nameof(BranchesTableMin));
+            }
+        }
         public ModeAnalysisViewModel()
         {
             Unom = 10;
@@ -261,8 +300,6 @@ namespace GraduationProject.ViewModel
             Branch_4 = -2.5;
             Branch_5 = -5;
 
-            ItemsSource = FullItemSource();
-            InfoNodes = FullInfoNodes();
             N = 1.3;
             M = 0.15;
             Ust = 1.78;
@@ -270,6 +307,10 @@ namespace GraduationProject.ViewModel
             DUnnyMax = 6;
             DUcpMax = 5;
             DUcpMin = 0;
+
+            ItemsSourceMax = FullItemSource();
+            ItemsSourceMin = FullItemSource(M);
+            InfoNodes = FullInfoNodes();
         }
         private List<Node<int>> GetTransformers()
         {
@@ -281,7 +322,7 @@ namespace GraduationProject.ViewModel
             var global = GlobalGrid.GetInstance();
             return global.Tree.GetElements();
         }
-        private List<LoadTransformer> FullItemSource()
+        private List<LoadTransformer> FullItemSource(double m = 1)
         {
             var list = new List<LoadTransformer>();
             var nodes = GetTransformers();
@@ -292,10 +333,10 @@ namespace GraduationProject.ViewModel
                 {
                     N = context.N,
                     K = context.K,
-                    Cosfi = context.Cosfi.ToString("0.####"),
-                    Snom = context.Snom.ToString("0.####"),
-                    P = context.P1.ToString("0.####"),
-                    Q = context.Q1.ToString("0.####")
+                    Cosfi = (context.Cosfi).ToString("0.####"),
+                    Snom = (context.Snom*m).ToString("0.####"),
+                    P = (context.P1*m).ToString("0.####"),
+                    Q = (context.Q1*m).ToString("0.####")
                 });
             }
             return list;
@@ -433,7 +474,7 @@ namespace GraduationProject.ViewModel
         public ICommand StartCommand => new DelegateCommand(o =>
         {
             var listTransformers = GlobalGrid.GetInstance().Tree.GetTransformers();
-            foreach (var i in ItemsSource)
+            foreach (var i in ItemsSourceMax)
             {
                 var transformer = listTransformers.Where(x => x.Data == i.K).FirstOrDefault();
                 var context = transformer.View.DataContext as TransformerViewModel;
@@ -442,31 +483,44 @@ namespace GraduationProject.ViewModel
             }
 
             InfoBranches = FullInfoBranches();
-            BranchesMainTable = FindRangeForBranches();
+            BranchesMainTable = FindRangeForBranches(DUcpMax);
             BranchesTable = FullBranchesTable();
+
+
+            foreach (var i in ItemsSourceMin)
+            {
+                var transformer = listTransformers.Where(x => x.Data == i.K).FirstOrDefault();
+                var context = transformer.View.DataContext as TransformerViewModel;
+
+                context.ChangeParameters(transformer, double.Parse(i.Snom), double.Parse(i.Cosfi));
+            }
+
+            InfoBranchesMin = FullInfoBranches();
+            BranchesMainTableMin = FindRangeForBranches(DUcpMin, M); 
+            //BranchesTableMin = FullBranchesTable();
         });
-        public BranchesMainTable FindRangeForBranches()
+        public BranchesMainTable FindRangeForBranches(double dUcp, double m = 1)
         {
             var table = new BranchesMainTable();
-            table.Branch_1 = GetRange(DeltaUBranch_1).ToString();
-            table.Branch_2 = GetRange(DeltaUBranch_2).ToString();
-            table.Branch_3 = GetRange(DeltaUBranch_3).ToString();
-            table.Branch_4 = GetRange(DeltaUBranch_4).ToString();
-            table.Branch_5 = GetRange(DeltaUBranch_5).ToString();
+            table.Branch_1 = GetRange(DeltaUBranch_1, dUcp, m).ToString();
+            table.Branch_2 = GetRange(DeltaUBranch_2, dUcp, m).ToString();
+            table.Branch_3 = GetRange(DeltaUBranch_3, dUcp, m).ToString();
+            table.Branch_4 = GetRange(DeltaUBranch_4, dUcp, m).ToString();
+            table.Branch_5 = GetRange(DeltaUBranch_5, dUcp, m).ToString();
 
             return table;
         }
-        public Range GetRange(double dUBranch)
+        public Range GetRange(double dUBranch, double DUcp, double m)
         {
             var range = new Range();
             var rangeMax = new Range();
             var rangeMin = new Range();
 
-            var dUMaxU1 = PermissibleVoltageDeviations_10000V().Max + dUBranch - PermissibleVoltageDeviations_380V().Min;
-            var dUMinU1 = PermissibleVoltageDeviations_10000V().Max + dUBranch - PermissibleVoltageDeviations_380V().Max;
+            var dUMaxU1 = PermissibleVoltageDeviations_10000V(DUcp).Max + dUBranch - PermissibleVoltageDeviations_380V(m).Min;
+            var dUMinU1 = PermissibleVoltageDeviations_10000V(DUcp).Max + dUBranch - PermissibleVoltageDeviations_380V(m).Max;
 
-            var dUMaxU2 = PermissibleVoltageDeviations_10000V().Min + dUBranch - PermissibleVoltageDeviations_380V().Min;
-            var dUMinU2 = PermissibleVoltageDeviations_10000V().Min + dUBranch - PermissibleVoltageDeviations_380V().Max;
+            var dUMaxU2 = PermissibleVoltageDeviations_10000V(DUcp).Min + dUBranch - PermissibleVoltageDeviations_380V(m).Min;
+            var dUMinU2 = PermissibleVoltageDeviations_10000V(DUcp).Min + dUBranch - PermissibleVoltageDeviations_380V(m).Max;
 
             if (dUMaxU1 > dUMinU1)
             {
@@ -510,13 +564,13 @@ namespace GraduationProject.ViewModel
         /// По ГОСТу отклонение напряжения у потребителя от -5% до +5%
         /// </summary>
         /// <returns></returns>
-        public Range PermissibleVoltageDeviations_380V()
+        public Range PermissibleVoltageDeviations_380V(double m)
         { 
-            return new Range() { Max=DUnnyMin+5, Min=DUnnyMax-5 };
+            return new Range() { Max=DUnnyMin*m+5, Min=DUnnyMax*m-5 };
         }
-        public Range PermissibleVoltageDeviations_10000V()
+        public Range PermissibleVoltageDeviations_10000V(double dUcp)
         {
-            return new Range() { Max = DUcpMax + ZoneOfInsensitivity(), Min = DUcpMax - ZoneOfInsensitivity() };
+            return new Range() { Max = dUcp + ZoneOfInsensitivity(), Min = dUcp - ZoneOfInsensitivity() };
         }
         #region PropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;

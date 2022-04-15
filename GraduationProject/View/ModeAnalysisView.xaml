@@ -538,63 +538,45 @@
                         </Grid>
                     </Grid>
                 </Grid>
-                <ListView ItemsSource="{Binding ItemsSource}" Background="Transparent" BorderThickness="0">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <Grid>
-                                <Border BorderThickness="0 0 0 1" BorderBrush="#333"/>
-                                <Grid  Margin="0 10">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="0.15*"/>
-                                        <ColumnDefinition Width="0.15*"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Grid Grid.Column="0">
-                                        <StackPanel Orientation="Vertical" Margin="10 0 0 0">
-                                            <Border Background="Gray" CornerRadius="5" HorizontalAlignment="Center" Padding="10 2 10 2">
-                                                <TextBlock Foreground="White" Text="{Binding Path=N}" HorizontalAlignment="Center"/>
-                                            </Border>
-                                        </StackPanel>
-                                    </Grid>
-                                    <Grid Grid.Column="1">
-                                        <StackPanel Orientation="Vertical" Margin="10 0 0 0">
-                                            <Border Background="Gray" CornerRadius="5" HorizontalAlignment="Center" Padding="10 2 10 2">
-                                                <TextBlock Foreground="White" Text="{Binding Path=K}" HorizontalAlignment="Center"/>
-                                            </Border>
-                                        </StackPanel>
-                                    </Grid>
-                                    <Grid Grid.Column="2">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2.6*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <ListView ItemsSource="{Binding ItemsSourceMax}" Background="Transparent" BorderThickness="0">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid x:Name="ItemsSourceMax">
+                                    <Border BorderThickness="0 0 0 1" BorderBrush="#333"/>
+                                    <Grid  Margin="0 10">
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="0.15*"/>
+                                            <ColumnDefinition Width="0.15*"/>
                                             <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
                                         <Grid Grid.Column="0">
-                                            <TextBox Text="{Binding Path=Snom}" Margin="20 0">
-                                                <TextBox.Template>
-                                                    <ControlTemplate>
-                                                        <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="White">
-                                                            <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
-                                                        </Border>
-                                                    </ControlTemplate>
-                                                </TextBox.Template>
-                                            </TextBox>
+                                            <StackPanel Orientation="Vertical" Margin="10 0 0 0">
+                                                <Border Background="Gray" CornerRadius="5" HorizontalAlignment="Center" Padding="10 2 10 2">
+                                                    <TextBlock Foreground="White" Text="{Binding Path=N}" HorizontalAlignment="Center"/>
+                                                </Border>
+                                            </StackPanel>
                                         </Grid>
                                         <Grid Grid.Column="1">
-                                            <TextBox Text="{Binding Path=Cosfi}" Margin="20 0">
-                                                <TextBox.Template>
-                                                    <ControlTemplate>
-                                                        <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="White">
-                                                            <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
-                                                        </Border>
-                                                    </ControlTemplate>
-                                                </TextBox.Template>
-                                            </TextBox>
+                                            <StackPanel Orientation="Vertical" Margin="10 0 0 0">
+                                                <Border Background="Gray" CornerRadius="5" HorizontalAlignment="Center" Padding="10 2 10 2">
+                                                    <TextBlock Foreground="White" Text="{Binding Path=K}" HorizontalAlignment="Center"/>
+                                                </Border>
+                                            </StackPanel>
                                         </Grid>
                                         <Grid Grid.Column="2">
-                                            <TextBox Text="{Binding Path=P}" Margin="20 0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid Grid.Column="0">
+                                                <TextBox Text="{Binding Path=Snom}" Margin="20 0">
                                                     <TextBox.Template>
                                                         <ControlTemplate>
                                                             <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="White">
@@ -603,81 +585,120 @@
                                                         </ControlTemplate>
                                                     </TextBox.Template>
                                                 </TextBox>
-                                        </Grid>
-                                        <Grid Grid.Column="3">
-                                            <TextBox Text="{Binding Path=Q}" Margin="20 0">
-                                                <TextBox.Template>
-                                                    <ControlTemplate>
-                                                        <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="White">
-                                                            <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
-                                                        </Border>
-                                                    </ControlTemplate>
-                                                </TextBox.Template>
-                                            </TextBox>
-                                        </Grid>
-                                    </Grid>
-                                    <Grid Grid.Column="3">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="*"/>
-                                        </Grid.ColumnDefinitions>
-                                        <Grid Grid.Column="0">
-                                            <TextBox Text="{Binding Path=Snom}" Margin="20 0">
-                                                <TextBox.Template>
-                                                    <ControlTemplate>
-                                                        <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="White">
-                                                            <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
-                                                        </Border>
-                                                    </ControlTemplate>
-                                                </TextBox.Template>
-                                            </TextBox>
-                                        </Grid>
-                                        <Grid Grid.Column="1">
-                                            <TextBox Text="{Binding Path=Cosfi}" Margin="20 0">
-                                                <TextBox.Template>
-                                                    <ControlTemplate>
-                                                        <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="White">
-                                                            <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
-                                                        </Border>
-                                                    </ControlTemplate>
-                                                </TextBox.Template>
-                                            </TextBox>
-                                        </Grid>
-                                        <Grid Grid.Column="2">
-                                            <TextBox Text="{Binding Path=P}" Margin="20 0">
-                                                <TextBox.Template>
-                                                    <ControlTemplate>
-                                                        <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="White">
-                                                            <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
-                                                        </Border>
-                                                    </ControlTemplate>
-                                                </TextBox.Template>
-                                            </TextBox>
-                                        </Grid>
-                                        <Grid Grid.Column="3">
-                                            <TextBox Text="{Binding Path=Q}" Margin="20 0">
-                                                <TextBox.Template>
-                                                    <ControlTemplate>
-                                                        <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="White">
-                                                            <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
-                                                        </Border>
-                                                    </ControlTemplate>
-                                                </TextBox.Template>
-                                            </TextBox>
+                                            </Grid>
+                                            <Grid Grid.Column="1">
+                                                <TextBox Text="{Binding Path=Cosfi}" Margin="20 0">
+                                                    <TextBox.Template>
+                                                        <ControlTemplate>
+                                                            <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="White">
+                                                                <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+                                                            </Border>
+                                                        </ControlTemplate>
+                                                    </TextBox.Template>
+                                                </TextBox>
+                                            </Grid>
+                                            <Grid Grid.Column="2">
+                                                <TextBox Text="{Binding Path=P}" Margin="20 0">
+                                                    <TextBox.Template>
+                                                        <ControlTemplate>
+                                                            <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="White">
+                                                                <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+                                                            </Border>
+                                                        </ControlTemplate>
+                                                    </TextBox.Template>
+                                                </TextBox>
+                                            </Grid>
+                                            <Grid Grid.Column="3">
+                                                <TextBox Text="{Binding Path=Q}" Margin="20 0">
+                                                    <TextBox.Template>
+                                                        <ControlTemplate>
+                                                            <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="White">
+                                                                <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+                                                            </Border>
+                                                        </ControlTemplate>
+                                                    </TextBox.Template>
+                                                </TextBox>
+                                            </Grid>
                                         </Grid>
                                     </Grid>
                                 </Grid>
-                            </Grid>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                    <ListView.ItemContainerStyle>
-                        <Style TargetType="ListBoxItem">
-                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                        </Style>
-                    </ListView.ItemContainerStyle>
-                </ListView>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListBoxItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                    </ListView>
+                    <ListView ItemsSource="{Binding ItemsSourceMin}" Grid.Column="1" Background="Transparent" BorderThickness="0" VerticalAlignment="Stretch">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="0 2">
+                                    <Border BorderThickness="0 0 0 1" BorderBrush="#333"/>
+                                    <Grid  Margin="0 10">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid Grid.Column="0">
+                                                <TextBox Text="{Binding Path=Snom}" Margin="20 0">
+                                                    <TextBox.Template>
+                                                        <ControlTemplate>
+                                                            <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="White">
+                                                                <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+                                                            </Border>
+                                                        </ControlTemplate>
+                                                    </TextBox.Template>
+                                                </TextBox>
+                                            </Grid>
+                                            <Grid Grid.Column="1">
+                                                <TextBox Text="{Binding Path=Cosfi}" Margin="20 0">
+                                                    <TextBox.Template>
+                                                        <ControlTemplate>
+                                                            <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="White">
+                                                                <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+                                                            </Border>
+                                                        </ControlTemplate>
+                                                    </TextBox.Template>
+                                                </TextBox>
+                                            </Grid>
+                                            <Grid Grid.Column="2">
+                                                <TextBox Text="{Binding Path=P}" Margin="20 0">
+                                                    <TextBox.Template>
+                                                        <ControlTemplate>
+                                                            <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="White">
+                                                                <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+                                                            </Border>
+                                                        </ControlTemplate>
+                                                    </TextBox.Template>
+                                                </TextBox>
+                                            </Grid>
+                                            <Grid Grid.Column="3">
+                                                <TextBox Text="{Binding Path=Q}" Margin="20 0">
+                                                    <TextBox.Template>
+                                                        <ControlTemplate>
+                                                            <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="White">
+                                                                <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+                                                            </Border>
+                                                        </ControlTemplate>
+                                                    </TextBox.Template>
+                                                </TextBox>
+                                            </Grid>
+                                        </Grid>
+                                    </Grid>
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListBoxItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                    </ListView>
+                </Grid>
                 <Grid>
                     <Button Foreground="White" Margin="50 10" Cursor="Hand" Command="{Binding StartCommand}">
                         <Button.Template>
@@ -778,65 +799,84 @@
                         </Grid>
                     </Grid>
                 </Grid>
-                <ListView ItemsSource="{Binding InfoBranches}" Background="Transparent" BorderThickness="0">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <Grid  Margin="10 0">
-                                <Border BorderThickness="0 0 0 1" BorderBrush="#333"/>
-                                <Grid  Margin="0 5">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="0.15*"/>
-                                        <ColumnDefinition Width="0.15*"/>
-                                        <ColumnDefinition Width="0.15*"/>
-                                        <ColumnDefinition Width="0.15*"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Grid Grid.Column="0">
-                                        <StackPanel Orientation="Vertical" Margin="10 0 0 0">
-                                            <Border Background="Gray" CornerRadius="5" HorizontalAlignment="Center" Padding="10 2 10 2">
-                                                <TextBlock Foreground="White" Text="{Binding Path=N}"/>
-                                            </Border>
-                                        </StackPanel>
-                                    </Grid>
-                                    <Grid Grid.Column="1">
-                                        <StackPanel Orientation="Vertical" Margin="10 0 0 0">
-                                            <Border Background="Gray" CornerRadius="5" HorizontalAlignment="Center" Padding="10 2 10 2">
-                                                <TextBlock Foreground="White" Text="{Binding Path=K}" HorizontalAlignment="Center"/>
-                                            </Border>
-                                        </StackPanel>
-                                    </Grid>
-                                    <Grid Grid.Column="2">
-                                        <TextBlock Foreground="Black" Text="{Binding Path=R}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                    </Grid>
-                                    <Grid Grid.Column="3">
-                                        <TextBlock Foreground="Black" Text="{Binding Path=X}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                    </Grid>
-                                    <Grid Grid.Column="4">
-                                        <DockPanel>
-                                            <Grid>
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="*"/>
-                                                    <ColumnDefinition Width="*"/>
-                                                    <ColumnDefinition Width="*"/>
-                                                    <ColumnDefinition Width="*"/>
-                                                </Grid.ColumnDefinitions>
-                                                <Grid Grid.Column="0">
-                                                    <TextBlock Foreground="Black" Text="{Binding Path=P}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 0 10 0"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3.15*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <ListView ItemsSource="{Binding InfoBranches}" Background="Transparent" BorderThickness="0">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid  Margin="10 0">
+                                    <Border BorderThickness="0 0 0 1" BorderBrush="#333"/>
+                                    <Grid  Margin="0 5">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="0.15*"/>
+                                            <ColumnDefinition Width="0.15*"/>
+                                            <ColumnDefinition Width="0.15*"/>
+                                            <ColumnDefinition Width="0.15*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid Grid.Column="0">
+                                            <StackPanel Orientation="Vertical" Margin="10 0 0 0">
+                                                <Border Background="Gray" CornerRadius="5" HorizontalAlignment="Center" Padding="10 2 10 2">
+                                                    <TextBlock Foreground="White" Text="{Binding Path=N}"/>
+                                                </Border>
+                                            </StackPanel>
+                                        </Grid>
+                                        <Grid Grid.Column="1">
+                                            <StackPanel Orientation="Vertical" Margin="10 0 0 0">
+                                                <Border Background="Gray" CornerRadius="5" HorizontalAlignment="Center" Padding="10 2 10 2">
+                                                    <TextBlock Foreground="White" Text="{Binding Path=K}" HorizontalAlignment="Center"/>
+                                                </Border>
+                                            </StackPanel>
+                                        </Grid>
+                                        <Grid Grid.Column="2">
+                                            <TextBlock Foreground="Black" Text="{Binding Path=R}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Grid>
+                                        <Grid Grid.Column="3">
+                                            <TextBlock Foreground="Black" Text="{Binding Path=X}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Grid>
+                                        <Grid Grid.Column="4">
+                                            <DockPanel>
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*"/>
+                                                        <ColumnDefinition Width="*"/>
+                                                        <ColumnDefinition Width="*"/>
+                                                        <ColumnDefinition Width="*"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid Grid.Column="0">
+                                                        <TextBlock Foreground="Black" Text="{Binding Path=P}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 0 10 0"/>
+                                                    </Grid>
+                                                    <Grid Grid.Column="1">
+                                                        <TextBlock Foreground="Black" Text="{Binding Path=Q}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 0 10 0"/>
+                                                    </Grid>
+                                                    <Grid Grid.Column="2">
+                                                        <TextBlock Foreground="Black" Text="{Binding Path=dU}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 0 10 0"/>
+                                                    </Grid>
+                                                    <Grid Grid.Column="3">
+                                                        <TextBlock Foreground="Black" Text="{Binding Path=dUPercent}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 0 10 0"/>
+                                                    </Grid>
                                                 </Grid>
-                                                <Grid Grid.Column="1">
-                                                    <TextBlock Foreground="Black" Text="{Binding Path=Q}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 0 10 0"/>
-                                                </Grid>
-                                                <Grid Grid.Column="2">
-                                                    <TextBlock Foreground="Black" Text="{Binding Path=dU}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 0 10 0"/>
-                                                </Grid>
-                                                <Grid Grid.Column="3">
-                                                    <TextBlock Foreground="Black" Text="{Binding Path=dUPercent}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 0 10 0"/>
-                                                </Grid>
-                                            </Grid>
-                                        </DockPanel>
+                                            </DockPanel>
+                                        </Grid>
                                     </Grid>
-                                    <Grid Grid.Column="5">
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListBoxItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                    </ListView>
+                    <ListView ItemsSource="{Binding InfoBranchesMin}" Grid.Column="1" Background="Transparent" BorderThickness="0">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid  Margin="10 0">
+                                    <Border BorderThickness="0 0 0 1" BorderBrush="#333"/>
+                                    <Grid  Margin="0 5">
                                         <DockPanel>
                                             <Grid>
                                                 <Grid.ColumnDefinitions>
@@ -861,16 +901,15 @@
                                         </DockPanel>
                                     </Grid>
                                 </Grid>
-                            </Grid>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                    <ListView.ItemContainerStyle>
-                        <Style TargetType="ListBoxItem">
-                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                        </Style>
-                    </ListView.ItemContainerStyle>
-                </ListView>
-
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListBoxItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                    </ListView>
+                </Grid>
 
                 <Border BorderBrush="DeepSkyBlue" BorderThickness="0 0 0 5"/>
                 <Grid Background="#17171a" Height="Auto">
@@ -1006,9 +1045,9 @@
                                             <TextBlock Foreground="White" Text="+5%" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
                                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                                 <TextBlock Foreground="White" Text="[" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
-                                                <TextBlock Foreground="White" Text="{Binding Path=BranchesMainTable.Branch_1.Min}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
+                                                <TextBlock Foreground="White" Text="{Binding Path=BranchesMainTableMin.Branch_1.Min}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
                                                 <TextBlock Foreground="White" Text=", " HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
-                                                <TextBlock Foreground="White" Text="{Binding Path=BranchesMainTable.Branch_1.Max}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
+                                                <TextBlock Foreground="White" Text="{Binding Path=BranchesMainTableMin.Branch_1.Max}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
                                                 <TextBlock Foreground="White" Text="]" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
                                             </StackPanel>
                                         </StackPanel>
@@ -1018,9 +1057,9 @@
                                             <TextBlock Foreground="White" Text="+2,5%" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
                                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                                 <TextBlock Foreground="White" Text="[" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
-                                                <TextBlock Foreground="White" Text="{Binding Path=BranchesMainTable.Branch_2.Min}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
+                                                <TextBlock Foreground="White" Text="{Binding Path=BranchesMainTableMin.Branch_2.Min}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
                                                 <TextBlock Foreground="White" Text=", " HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
-                                                <TextBlock Foreground="White" Text="{Binding Path=BranchesMainTable.Branch_2.Max}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
+                                                <TextBlock Foreground="White" Text="{Binding Path=BranchesMainTableMin.Branch_2.Max}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
                                                 <TextBlock Foreground="White" Text="]" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
                                             </StackPanel>
                                         </StackPanel>
@@ -1030,9 +1069,9 @@
                                             <TextBlock Foreground="White" Text="0%" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
                                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                                 <TextBlock Foreground="White" Text="[" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
-                                                <TextBlock Foreground="White" Text="{Binding Path=BranchesMainTable.Branch_3.Min}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
+                                                <TextBlock Foreground="White" Text="{Binding Path=BranchesMainTableMin.Branch_3.Min}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
                                                 <TextBlock Foreground="White" Text=", " HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
-                                                <TextBlock Foreground="White" Text="{Binding Path=BranchesMainTable.Branch_3.Max}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
+                                                <TextBlock Foreground="White" Text="{Binding Path=BranchesMainTableMin.Branch_3.Max}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
                                                 <TextBlock Foreground="White" Text="]" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
                                             </StackPanel>
                                         </StackPanel>
@@ -1042,9 +1081,9 @@
                                             <TextBlock Foreground="White" Text="-2,5%" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
                                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                                 <TextBlock Foreground="White" Text="[" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
-                                                <TextBlock Foreground="White" Text="{Binding Path=BranchesMainTable.Branch_4.Min}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
+                                                <TextBlock Foreground="White" Text="{Binding Path=BranchesMainTableMin.Branch_4.Min}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
                                                 <TextBlock Foreground="White" Text=", " HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
-                                                <TextBlock Foreground="White" Text="{Binding Path=BranchesMainTable.Branch_4.Max}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
+                                                <TextBlock Foreground="White" Text="{Binding Path=BranchesMainTableMin.Branch_4.Max}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
                                                 <TextBlock Foreground="White" Text="]" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
                                             </StackPanel>
                                         </StackPanel>
@@ -1054,9 +1093,9 @@
                                             <TextBlock Foreground="White" Text="-5%" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
                                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                                 <TextBlock Foreground="White" Text="[" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
-                                                <TextBlock Foreground="White" Text="{Binding Path=BranchesMainTable.Branch_5.Min}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
+                                                <TextBlock Foreground="White" Text="{Binding Path=BranchesMainTableMin.Branch_5.Min}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
                                                 <TextBlock Foreground="White" Text=", " HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
-                                                <TextBlock Foreground="White" Text="{Binding Path=BranchesMainTable.Branch_5.Max}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
+                                                <TextBlock Foreground="White" Text="{Binding Path=BranchesMainTableMin.Branch_5.Max}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
                                                 <TextBlock Foreground="White" Text="]" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="0"/>
                                             </StackPanel>
                                         </StackPanel>
