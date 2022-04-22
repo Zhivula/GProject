@@ -18,10 +18,11 @@ namespace GraduationProject.Model
     public class MainWindowModel
     {
         private readonly GlobalGrid global = GlobalGrid.GetInstance();
+        private bool FlagViewGrid { get; set; }
 
         public MainWindowModel()
         {
-
+            FlagViewGrid = true;
         }
         /// <summary>
         /// Добавление нового элемента на рабочее пространство
@@ -229,6 +230,26 @@ namespace GraduationProject.Model
             }
             return new Point(another_left, another_top);
         }
+        public void ViewGrid()
+        {
+            var window = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+            if (FlagViewGrid == true)
+            {
+                for (var i = 0; i < window.GridChange.Children.Count; i++)
+                {
+                    if (window.GridChange.Children[i] is Line) window.GridChange.Children[i].Visibility = Visibility.Hidden;
+                }
+                FlagViewGrid = false;
+            }
+            else
+            {
+                for (var i = 0; i < window.GridChange.Children.Count; i++)
+                {
+                    if (window.GridChange.Children[i] is Line) window.GridChange.Children[i].Visibility = Visibility.Visible;
+                }
+                FlagViewGrid = true;
+            }
+        }
         /// <summary>
         /// Сохранение сериализируемой модели сети в отдельный файл.
         /// </summary>
@@ -278,11 +299,11 @@ namespace GraduationProject.Model
                 var countWidth = Math.Round(tree.WidthField / 10);
                 var countHeight = Math.Round(tree.HeightField / 10);
 
-                for (var i = 1; i < countHeight; i++)
+                for (var i = 1; i < countWidth; i++)
                 {
                     window.GridChange.Children.Add(new Line() { X1 = i * 10, X2 = i * 10, Y1 = 0, Y2 = countHeight * 10, Stroke = Brushes.Gray });
                 }
-                for (var i = 1; i < countWidth; i++)
+                for (var i = 1; i < countHeight; i++)
                 {
                     window.GridChange.Children.Add(new Line() { X1 = 0, X2 = countWidth * 10, Y1 = i * 10, Y2 = i * 10, Stroke = Brushes.Gray });
                 }

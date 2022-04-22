@@ -4,6 +4,7 @@ using GraduationProject.View;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -17,7 +18,7 @@ using System.Windows.Shapes;
 
 namespace GraduationProject.ViewModel
 {
-    public class MainWindowViewModel
+    public class MainWindowViewModel : INotifyPropertyChanged
     {
         private MainWindow window;
         public readonly MainWindowModel Model;
@@ -53,21 +54,24 @@ namespace GraduationProject.ViewModel
         });
         public ICommand Settings => new DelegateCommand(o =>
         {
-            window.GridChangeFirst.Children.Add(new SettingsView());
+            window.FullGridChange.Children.Add(new SettingsView());
         });
         public ICommand AddRight => new DelegateCommand(o =>
         {
             var width = window.GridChangeFirst.ActualWidth;
             var height = window.GridChangeFirst.ActualHeight;
 
-            for (var i = 7; i < 27; i++)
+            var countWidth = (int)Math.Round(width / 10);
+            var countHeight = (int)Math.Round(height / 10);
+
+            for (var i = countWidth; i < countWidth + 20; i++)
             {
                 window.GridChange.Children.Add(new Line() { X1 = (i * 10) + window.GridChangeFirst.ActualWidth - window.GridChangeFirst.ActualWidth%10, X2 = (i * 10) + window.GridChangeFirst.ActualWidth - window.GridChangeFirst.ActualWidth % 10, Y1 = 0, Y2 = height, Stroke = Brushes.Gray });
             }
 
             window.GridChangeFirst.Width = width + 200;
 
-            for (var i = 0; i < window.GridChange.Children.Count; i++)
+            for (var i = countHeight; i < countHeight + 20; i++)
             {
                 if (window.GridChange.Children[i] is Line line)
                 {
@@ -115,6 +119,21 @@ namespace GraduationProject.ViewModel
 
             MessageBox.Show("Успешно выполнено!");
         });
+        public ICommand ViewGrid => new DelegateCommand(o =>
+        {
+            Model.ViewGrid();
+        });
+        public ICommand Home => new DelegateCommand(o =>
+        { 
+            for (int i = window.FullGridChange.Children.Count - 1; i >= 0; --i)
+            {
+                var childTypeName = window.FullGridChange.Children[i].GetType().Name;
+                if (childTypeName == nameof(ModeAnalysisView) | childTypeName == nameof(SettingsView))
+                {
+                    window.FullGridChange.Children.RemoveAt(i);
+                }
+            }
+        });
         public ICommand SaveModel => new DelegateCommand(o =>
         {
             Model.SaveModel();
@@ -123,6 +142,13 @@ namespace GraduationProject.ViewModel
         {
             Model.OpenModel(window);
         });
+        #region PropertyChanged
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void OnPropertyChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+        #endregion
     }
-    
+
 }

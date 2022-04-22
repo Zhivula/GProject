@@ -87,9 +87,12 @@
     <Compile Include="DataBase\Transformer.cs" />
     <Compile Include="Data\BranchesMainTable.cs" />
     <Compile Include="Data\BranchesTable.cs" />
+    <Compile Include="Data\BranchesTableMaxMin.cs" />
     <Compile Include="Data\InfoBranches.cs" />
+    <Compile Include="Data\InfoBranchesMaxMin.cs" />
     <Compile Include="Data\InfoNodes.cs" />
     <Compile Include="Data\LoadTransformer.cs" />
+    <Compile Include="Data\LoadTransformerMaxMin.cs" />
     <Compile Include="Data\Node.cs" />
     <Compile Include="Data\NodeSerializable.cs" />
     <Compile Include="Data\Range.cs" />

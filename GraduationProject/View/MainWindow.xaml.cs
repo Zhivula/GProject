@@ -59,10 +59,20 @@ namespace GraduationProject
                 }
                 if (curr is TransformerView transformer)
                 {
-                    if (((RotateTransform)transformer.RenderTransform).Angle == 90 || ((RotateTransform)transformer.RenderTransform).Angle == 270)
+                    if (((RotateTransform)transformer.RenderTransform).Angle == 90)
                     {
                         Canvas.SetLeft(transformer, x + 20);
                         Canvas.SetTop(transformer, y - 50);
+                    }
+                    else if (((RotateTransform)transformer.RenderTransform).Angle == 180)
+                    {
+                        Canvas.SetLeft(transformer, x + 50);
+                        Canvas.SetTop(transformer, y + 30);
+                    }
+                    else if (((RotateTransform)transformer.RenderTransform).Angle == 270)
+                    {
+                        Canvas.SetLeft(transformer, x - 20);
+                        Canvas.SetTop(transformer, y + 50);
                     }
                     else
                     {
@@ -72,8 +82,8 @@ namespace GraduationProject
                 }
                 if (curr is SourceView source)
                 {
-                    Canvas.SetLeft(source, x - 20);
-                    Canvas.SetTop(source, y - 50);
+                    Canvas.SetLeft(source, x - 130);
+                    Canvas.SetTop(source, y - 40);
                 }
             }
         }

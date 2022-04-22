@@ -117,6 +117,7 @@ namespace GraduationProject.Data
                 {
                     var contextButton = View.DataContext as LineViewModel;
                     var transformer = view.DataContext as TransformerViewModel;
+
                     var parent = Parent;
                     var pp = parent;
 
@@ -394,6 +395,21 @@ namespace GraduationProject.Data
         }
         public void Volt(float u)
         {
+            TransformerViewModel transformer = View.DataContext as TransformerViewModel;
+            if (transformer != null)
+            {
+                transformer.U1 = (Parent.View.DataContext as LineViewModel).U2;
+                var deltaUPercent = ((GlobalGrid.U - transformer.U1) / GlobalGrid.U) * 100;
+                if (deltaUPercent >= 10)
+                {
+                    transformer.ColorNode = new SolidColorBrush(Colors.Red);
+                }
+                if (deltaUPercent >= 5 && deltaUPercent < 10)
+                {
+                    transformer.ColorNode = new SolidColorBrush(Colors.Yellow);
+                }
+            }
+
             LineViewModel item = View.DataContext as LineViewModel;
             if (item != null)
             {

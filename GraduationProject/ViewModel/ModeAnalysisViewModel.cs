@@ -1,5 +1,7 @@
 ﻿using GraduationProject.Data;
 using GraduationProject.View;
+using OxyPlot;
+using OxyPlot.Axes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace GraduationProject.ViewModel
 {
@@ -31,7 +34,7 @@ namespace GraduationProject.ViewModel
         private double dUcpMax;
         private double dUcpMin;
         private double unom;
-
+        private SolidColorBrush colorSelected;
 
         public double Branch_1
         {
@@ -136,6 +139,16 @@ namespace GraduationProject.ViewModel
             {
                 m = value;
                 OnPropertyChanged(nameof(M));
+                ItemsSourceMin = FullItemSource(M);
+                if (ItemsSourceMaxMin.Count > 0)
+                {
+                    for (var i = 0; i < ItemsSourceMin.Count; i++)
+                    {
+                        ItemsSourceMaxMin[i].LoadTransformerMin = ItemsSourceMin[i];
+                    }
+                    OnPropertyChanged(nameof(ItemsSourceMaxMin));
+                    
+                }
             }
         }
         public double N
@@ -201,6 +214,16 @@ namespace GraduationProject.ViewModel
                 OnPropertyChanged(nameof(Unom));
             }
         }
+        private List<LoadTransformerMaxMin> itemsSourceMaxMin;
+        public List<LoadTransformerMaxMin> ItemsSourceMaxMin
+        {
+            get => itemsSourceMaxMin;
+            set
+            {
+                itemsSourceMaxMin = value;
+                OnPropertyChanged(nameof(ItemsSourceMaxMin));
+            }
+        }
         private List<LoadTransformer> itemsMax;
         public List<LoadTransformer> ItemsSourceMax
         {
@@ -231,14 +254,14 @@ namespace GraduationProject.ViewModel
                 OnPropertyChanged(nameof(InfoNodes));
             }
         }
-        private List<InfoBranches> infoBranches;
-        public List<InfoBranches> InfoBranches
+        private List<InfoBranchesMaxMin> infoBranchesMaxMin;
+        public List<InfoBranchesMaxMin> InfoBranchesMaxMin
         {
-            get => infoBranches;
+            get => infoBranchesMaxMin;
             set
             {
-                infoBranches = value;
-                OnPropertyChanged(nameof(InfoBranches));
+                infoBranchesMaxMin = value;
+                OnPropertyChanged(nameof(InfoBranchesMaxMin));
             }
         }
         private List<InfoBranches> infoBranchesMin;
@@ -249,6 +272,16 @@ namespace GraduationProject.ViewModel
             {
                 infoBranchesMin = value;
                 OnPropertyChanged(nameof(InfoBranchesMin));
+            }
+        }
+        private List<InfoBranches> infoBranchesMax;
+        public List<InfoBranches> InfoBranchesMax
+        {
+            get => infoBranchesMax;
+            set
+            {
+                infoBranchesMax = value;
+                OnPropertyChanged(nameof(InfoBranchesMax));
             }
         }
         private BranchesMainTable branchesMainTable;
@@ -271,14 +304,24 @@ namespace GraduationProject.ViewModel
                 OnPropertyChanged(nameof(BranchesMainTableMin));
             }
         }
-        private List<BranchesTable> branchesTable;
-        public List<BranchesTable> BranchesTable
+        private List<BranchesTableMaxMin> branchesTableMaxMin;
+        public List<BranchesTableMaxMin> BranchesTableMaxMin
         {
-            get => branchesTable;
+            get => branchesTableMaxMin;
             set
             {
-                branchesTable = value;
-                OnPropertyChanged(nameof(BranchesTable));
+                branchesTableMaxMin = value;
+                OnPropertyChanged(nameof(BranchesTableMaxMin));
+            }
+        }
+        private List<BranchesTable> branchesTableMax;
+        public List<BranchesTable> BranchesTableMax
+        {
+            get => branchesTableMax;
+            set
+            {
+                branchesTableMax = value;
+                OnPropertyChanged(nameof(BranchesTableMax));
             }
         }
         private List<BranchesTable> branchesTableMin;
@@ -291,8 +334,30 @@ namespace GraduationProject.ViewModel
                 OnPropertyChanged(nameof(BranchesTableMin));
             }
         }
+        public SolidColorBrush ColorSelected
+        {
+            get => colorSelected;
+            set
+            {
+                colorSelected = value;
+                OnPropertyChanged(nameof(ColorSelected));
+            }
+        }
+        private PlotModel plotMax;
+        public PlotModel PlotMax
+        {
+            get => plotMax;
+            set
+            {
+                plotMax = value;
+                OnPropertyChanged(nameof(PlotMax));
+            }
+        }
         public ModeAnalysisViewModel()
         {
+            ItemsSourceMaxMin = new List<LoadTransformerMaxMin>();
+            ColorSelected = new SolidColorBrush(Colors.Gray);
+
             Unom = 10;
             Branch_1 = 5;
             Branch_2 = 2.5;
@@ -310,7 +375,12 @@ namespace GraduationProject.ViewModel
 
             ItemsSourceMax = FullItemSource();
             ItemsSourceMin = FullItemSource(M);
+
+            foreach (var i in ItemsSourceMax) ItemsSourceMaxMin.Add(new LoadTransformerMaxMin() { LoadTransformerMax = i});
+            for (var i = 0; i < ItemsSourceMin.Count; i++) ItemsSourceMaxMin[i].LoadTransformerMin = ItemsSourceMin[i];
+
             InfoNodes = FullInfoNodes();
+            PlotMax = GetPlotModel();
         }
         private List<Node<int>> GetTransformers()
         {
@@ -405,7 +475,7 @@ namespace GraduationProject.ViewModel
             }
             return list;
         }
-        public List<BranchesTable> FullBranchesTable()
+        public List<BranchesTable> FullBranchesTable(BranchesMainTable table)
         {
             var list = new List<BranchesTable>();
             var nodes = GetTransformers();
@@ -419,46 +489,81 @@ namespace GraduationProject.ViewModel
                 item.K = context.K;
                 item.DeltaUSumPercent = Math.Round((((GlobalGrid.U - parent.U2) / (GlobalGrid.U)) * 100),5);
 
-                if (double.Parse(BranchesMainTable.Branch_5.Max) >= item.DeltaUSumPercent & double.Parse(BranchesMainTable.Branch_5.Min) <= item.DeltaUSumPercent)
-                {
-                    item.Branch_5 = "+";
-                    item.SelectedBranch = Branch_5.ToString() + "%";
-                }
-                else item.Branch_5 = "-";
 
-                if (double.Parse(BranchesMainTable.Branch_4.Max) >= item.DeltaUSumPercent & double.Parse(BranchesMainTable.Branch_4.Min) <= item.DeltaUSumPercent)
+                if (double.Parse(table.Branch_1.Max) >= item.DeltaUSumPercent & double.Parse(table.Branch_1.Min) <= item.DeltaUSumPercent)
                 {
-                    item.Branch_4 = "+";
-                    item.SelectedBranch = Branch_4.ToString() + "%";
-                }
-                else item.Branch_4 = "-";
+                    item.Branch_1 = "+";
+                    item.Branch_2 = "-";
+                    item.Branch_3 = "-";
+                    item.Branch_4 = "-";
+                    item.Branch_5 = "-";
 
-                if (double.Parse(BranchesMainTable.Branch_3.Max) >= item.DeltaUSumPercent & double.Parse(BranchesMainTable.Branch_3.Min) <= item.DeltaUSumPercent)
-                {
-                    item.Branch_3 = "+";
-                    item.SelectedBranch = Branch_3.ToString() + "%";
+                    item.SelectedBranch = "+" + Branch_1.ToString() + "%";
+                    list.Add(item);
+                    continue;
                 }
-                else item.Branch_3 = "-";
+                else item.Branch_1 = "-";
 
-                if (double.Parse(BranchesMainTable.Branch_2.Max) >= item.DeltaUSumPercent & double.Parse(BranchesMainTable.Branch_2.Min) <= item.DeltaUSumPercent)
+                if (double.Parse(table.Branch_2.Max) >= item.DeltaUSumPercent & double.Parse(table.Branch_2.Min) <= item.DeltaUSumPercent)
                 {
+                    item.Branch_1 = "-";
                     item.Branch_2 = "+";
+                    item.Branch_3 = "-";
+                    item.Branch_4 = "-";
+                    item.Branch_5 = "-";
                     item.SelectedBranch = "+" + Branch_2.ToString() + "%";
+                    list.Add(item);
+                    continue;
                 }
                 else item.Branch_2 = "-";
 
-                if (double.Parse(BranchesMainTable.Branch_1.Max) >= item.DeltaUSumPercent & double.Parse(BranchesMainTable.Branch_1.Min) <= item.DeltaUSumPercent)
+                if (double.Parse(table.Branch_3.Max) >= item.DeltaUSumPercent & double.Parse(table.Branch_3.Min) <= item.DeltaUSumPercent)
                 {
-                    item.Branch_1 = "+";
-                    item.SelectedBranch = "+" + Branch_1.ToString() + "%";
+                    item.Branch_1 = "-";
+                    item.Branch_2 = "-";
+                    item.Branch_3 = "+";
+                    item.Branch_4 = "-";
+                    item.Branch_5 = "-";
+                    item.SelectedBranch = Branch_3.ToString() + "%";
+                    list.Add(item);
+                    continue;
                 }
-                else item.Branch_1 = "-";
+                else item.Branch_3 = "-";
+
+                if (double.Parse(table.Branch_4.Max) >= item.DeltaUSumPercent & double.Parse(table.Branch_4.Min) <= item.DeltaUSumPercent)
+                {
+                    item.Branch_1 = "-";
+                    item.Branch_2 = "-";
+                    item.Branch_3 = "-";
+                    item.Branch_4 = "+";
+                    item.Branch_5 = "-";
+
+                    item.SelectedBranch = "-" + Branch_4.ToString() + "%";
+                    list.Add(item);
+                    continue;
+                }
+                else item.Branch_4 = "-";
+
+                if (double.Parse(table.Branch_5.Max) >= item.DeltaUSumPercent & double.Parse(table.Branch_5.Min) <= item.DeltaUSumPercent)
+                {
+                    item.Branch_1 = "-";
+                    item.Branch_2 = "-";
+                    item.Branch_3 = "-";
+                    item.Branch_4 = "-";
+                    item.Branch_5 = "+";
+                    item.SelectedBranch = "-" + Branch_5.ToString() + "%";
+                    list.Add(item);
+                    continue;
+                }
+                else item.Branch_5 = "-";
+
 
                 list.Add(item);
             }
 
             return list;
         }
+
         public ICommand Return => new DelegateCommand(o =>
         {
             var window = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
@@ -471,8 +576,29 @@ namespace GraduationProject.ViewModel
                 }
             }
         });
+        public ICommand ReturnResult => new DelegateCommand(o =>
+        {
+            BranchesTableMaxMin = new List<BranchesTableMaxMin>();
+            InfoBranchesMaxMin = new List<InfoBranchesMaxMin>();
+        });
         public ICommand StartCommand => new DelegateCommand(o =>
         {
+            #region ScrollToTop
+            var window = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+            for (int i = window.FullGridChange.Children.Count - 1; i >= 0; --i)
+            {
+                var childTypeName = window.FullGridChange.Children[i].GetType().Name;
+                if (childTypeName == nameof(ModeAnalysisView))
+                {
+                    var item = window.FullGridChange.Children[i] as ModeAnalysisView;
+                    item.ScrollViewerMain.ScrollToTop();
+                }
+            }
+            #endregion
+            
+            BranchesTableMaxMin = new List<BranchesTableMaxMin>();
+            InfoBranchesMaxMin = new List<InfoBranchesMaxMin>();
+
             var listTransformers = GlobalGrid.GetInstance().Tree.GetTransformers();
             foreach (var i in ItemsSourceMax)
             {
@@ -481,11 +607,13 @@ namespace GraduationProject.ViewModel
 
                 context.ChangeParameters(transformer, double.Parse(i.Snom), double.Parse(i.Cosfi));
             }
+            
+            InfoBranchesMax = FullInfoBranches();
+            foreach (var i in InfoBranchesMax) InfoBranchesMaxMin.Add(new InfoBranchesMaxMin() { InfoBranchesMax = i });
 
-            InfoBranches = FullInfoBranches();
             BranchesMainTable = FindRangeForBranches(DUcpMax);
-            BranchesTable = FullBranchesTable();
-
+            BranchesTableMax = FullBranchesTable(BranchesMainTable);
+            foreach (var i in BranchesTableMax) BranchesTableMaxMin.Add(new BranchesTableMaxMin() { BranchesTableMax = i });
 
             foreach (var i in ItemsSourceMin)
             {
@@ -496,8 +624,28 @@ namespace GraduationProject.ViewModel
             }
 
             InfoBranchesMin = FullInfoBranches();
+            for (var i = 0; i < InfoBranchesMin.Count; i++) InfoBranchesMaxMin[i].InfoBranchesMin = InfoBranchesMin[i];
+
             BranchesMainTableMin = FindRangeForBranches(DUcpMin, M); 
-            //BranchesTableMin = FullBranchesTable();
+            BranchesTableMin = FullBranchesTable(BranchesMainTableMin);
+            for (var i = 0; i < BranchesTableMin.Count; i++) BranchesTableMaxMin[i].BranchesTableMin = BranchesTableMin[i];
+
+            //Возврат к режиму наибольших нагрузок
+            foreach (var i in ItemsSourceMax)
+            {
+                var transformer = listTransformers.Where(x => x.Data == i.K).FirstOrDefault();
+                var context = transformer.View.DataContext as TransformerViewModel;
+
+                context.ChangeParameters(transformer, double.Parse(i.Snom), double.Parse(i.Cosfi));
+            }
+
+            var listSelectedBranches = GetSelectedBranches();
+
+            for (var i = 0; i < listSelectedBranches.Count; i++) BranchesTableMaxMin[i].BranchesTableSelected = listSelectedBranches[i];
+        });
+        public ICommand ShowCharts => new DelegateCommand(o =>
+        {
+            PlotMax = GetPlotModel();
         });
         public BranchesMainTable FindRangeForBranches(double dUcp, double m = 1)
         {
@@ -571,6 +719,141 @@ namespace GraduationProject.ViewModel
         public Range PermissibleVoltageDeviations_10000V(double dUcp)
         {
             return new Range() { Max = dUcp + ZoneOfInsensitivity(), Min = dUcp - ZoneOfInsensitivity() };
+        }
+        public List<string> GetSelectedBranches()
+        {
+            var list = new List<string>();
+
+            foreach (var i in BranchesTableMaxMin)
+            {
+                if (ChooseBranch(i, BranchesMainTable.Branch_5, BranchesMainTableMin.Branch_5, Branch_5) != "-")
+                {
+                    list.Add(ChooseBranch(i, BranchesMainTable.Branch_5, BranchesMainTableMin.Branch_5, Branch_5));
+                    continue;
+                }
+                else if (ChooseBranch(i, BranchesMainTable.Branch_4, BranchesMainTableMin.Branch_4, Branch_4) != "-")
+                {
+                    list.Add(ChooseBranch(i, BranchesMainTable.Branch_4, BranchesMainTableMin.Branch_4, Branch_4));
+                    continue;
+                }
+                else if (ChooseBranch(i, BranchesMainTable.Branch_3, BranchesMainTableMin.Branch_3, Branch_3) != "-")
+                {
+                    list.Add(ChooseBranch(i, BranchesMainTable.Branch_3, BranchesMainTableMin.Branch_3, Branch_3));
+                    continue;
+                }
+                else if (ChooseBranch(i, BranchesMainTable.Branch_2, BranchesMainTableMin.Branch_2, Branch_2) != "-")
+                {
+                    list.Add(ChooseBranch(i, BranchesMainTable.Branch_2, BranchesMainTableMin.Branch_2, Branch_2));
+                    continue;
+                }
+                else if (ChooseBranch(i, BranchesMainTable.Branch_1, BranchesMainTableMin.Branch_1, Branch_1) != "-")
+                {
+                    list.Add(ChooseBranch(i, BranchesMainTable.Branch_1, BranchesMainTableMin.Branch_1, Branch_1));
+                    continue;
+                }
+                else list.Add("-");
+            }
+
+            return list;
+        }
+        public string ChooseBranch(BranchesTableMaxMin table, RangeFormat range1, RangeFormat range2, double branch)
+        {
+            //var max1 = float.Parse(range1.Max);
+            //var min1 = float.Parse(range1.Min);
+            //var max2 = float.Parse(range2.Max);
+            //var min2 = float.Parse(range2.Min);
+
+            //var range = new Range();
+
+            //if (max1 > max2) range.Max = max2;
+            //else range.Max = max1;
+
+            //if (min1 > min2) range.Min = min1;
+            //else range.Min = min2;
+
+            if ((table.BranchesTableMax.DeltaUSumPercent <= double.Parse(range1.Max)) & (table.BranchesTableMax.DeltaUSumPercent >= double.Parse(range1.Min)))
+            {
+                if ((table.BranchesTableMin.DeltaUSumPercent <= double.Parse(range2.Max)) & (table.BranchesTableMin.DeltaUSumPercent >= double.Parse(range2.Min)))
+                {
+                    table.ColorSelected = new SolidColorBrush(Colors.Green);
+                    return branch.ToString() + "%";
+                }
+                else
+                {
+                    table.ColorSelected = new SolidColorBrush(Colors.Red);
+                    return "-";
+                }
+            }
+            else
+            {
+                table.ColorSelected = new SolidColorBrush(Colors.Red);
+                return "-";
+            }
+        }
+        public PlotModel GetPlotModel()
+        {
+            #region ScrollToTop
+            var window = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+            for (int i = window.FullGridChange.Children.Count - 1; i >= 0; --i)
+            {
+                var childTypeName = window.FullGridChange.Children[i].GetType().Name;
+                if (childTypeName == nameof(ModeAnalysisView))
+                {
+                    var item = window.FullGridChange.Children[i] as ModeAnalysisView;
+                    item.ScrollViewerMain.ScrollToTop();
+                }
+            }
+            #endregion
+
+            var plot = new PlotModel();
+
+            var line = new OxyPlot.Series.LineSeries()
+            {
+                Title = "Режим наибольших нагрузок",
+                Color = OxyColor.FromRgb(22, 186, 124),
+                StrokeThickness = 2,
+                MarkerSize = 5,
+                MarkerType = MarkerType.Circle
+            };
+            var dictionary = GetDataChart();
+
+            if (dictionary.Count > 0)
+            {
+                var valueList = dictionary.Values.ToList();
+                for (int i = 0; i < dictionary.Count(); i++)
+                {
+                    line.Points.Add(new DataPoint(i, valueList[i]));
+                    
+                }
+                plot.Series.Add(line);
+                plot.TextColor = OxyColors.Black;
+                plot.PlotAreaBorderThickness = new OxyThickness(2, 0, 0, 2);
+                plot.PlotAreaBorderColor = OxyColors.DimGray;
+
+                var min = dictionary.Values.ToList().Min();
+                var max = dictionary.Values.ToList().Max();
+
+                //var dateAxisH = new LinearAxis() { MajorGridlineStyle = LineStyle.Solid, MinorGridlineStyle = LineStyle.Dot, MajorGridlineColor = OxyColors.Blue, Maximum = max, Minimum = min, Position = AxisPosition.Left };
+                //plot.Axes.Add(dateAxisH);
+                
+                var dateAxisV = new CategoryAxis() { MajorGridlineStyle = LineStyle.Solid, MinorGridlineStyle = LineStyle.Dot, MajorGridlineColor = OxyColors.Transparent, Position = AxisPosition.Bottom, Angle = -90, ItemsSource = dictionary.Keys.ToList() };
+                plot.Axes.Add(dateAxisV);
+            }   
+            return plot;
+        }
+        private Dictionary<string, double> GetDataChart()
+        {
+            var list = new Dictionary<string, double>();
+            var nodes = GetElements();
+            foreach (var i in nodes)
+            {
+                if (i.View.DataContext is TransformerViewModel contextTransformer)
+                {
+                    list.Add(contextTransformer.K.ToString(), 5 - ((GlobalGrid.U - contextTransformer.U1) / (GlobalGrid.U)) * 100 );
+                }
+            }
+            list = list.OrderByDescending(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
+            return list;
         }
         #region PropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;

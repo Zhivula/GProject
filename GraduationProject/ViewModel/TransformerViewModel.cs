@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace GraduationProject.ViewModel
 {
@@ -44,6 +45,7 @@ namespace GraduationProject.ViewModel
 
         private Visibility visibility;
         private Transformer transformer;
+        private SolidColorBrush colorNode;
 
         public Visibility Visibility
         {
@@ -256,6 +258,16 @@ namespace GraduationProject.ViewModel
                 OnPropertyChanged(nameof(Cosfi));
             }
         }
+        public SolidColorBrush ColorNode
+        {
+            get => colorNode;
+            set
+            {
+                colorNode = value;
+                OnPropertyChanged(nameof(ColorNode));
+            }
+        }
+
         public TransformerViewModel(Transformer transformer, double s = 0, double cosfi = 0)
         {
             this.transformer = transformer;

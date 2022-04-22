@@ -48,12 +48,12 @@ namespace GraduationProject.ViewModel
         public ICommand Return => new DelegateCommand(o =>
         {
             var window = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
-            for (int i = window.GridChangeFirst.Children.Count - 1; i >= 0; --i)
+            for (int i = window.FullGridChange.Children.Count - 1; i >= 0; --i)
             {
-                var childTypeName = window.GridChangeFirst.Children[i].GetType().Name;
+                var childTypeName = window.FullGridChange.Children[i].GetType().Name;
                 if (childTypeName == nameof(SettingsView))
                 {
-                    window.GridChangeFirst.Children.RemoveAt(i);
+                    window.FullGridChange.Children.RemoveAt(i);
                 }
             }
         });
