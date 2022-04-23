@@ -696,7 +696,31 @@ namespace GraduationProject.Data
                 }
             }
             return list;
-        } 
+        }
+        public List<Node<T>> GetLines(List<Node<T>> list)
+        {
+            foreach (var i in List)
+            {
+                if (i.View.DataContext is LineViewModel line)
+                {
+                    if (!list.Contains(i))
+                    {
+                        list.Add(i);
+                    }
+                }
+                else
+                {
+                    if (i.List.Count > 0)
+                    {
+                        foreach (var item in List)
+                        {
+                            item.GetLines(list);
+                        }
+                    }
+                }
+            }
+            return list;
+        }
         public List<Node<T>> GetElements(ref List<Node<T>> list)
         {
 

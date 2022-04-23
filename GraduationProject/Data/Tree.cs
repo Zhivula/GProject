@@ -119,6 +119,15 @@ namespace GraduationProject.Data
             }
             return list;
         }
+        public List<Node<T>> GetLines()
+        {
+            var list = new List<Node<T>>();
+            if (Root != null && Root.List.Count > 0)
+            {
+                Root.GetLines(list);
+            }
+            return list;
+        }
         public List<Node<T>> GetElements()
         {
             var list = new List<Node<T>>();

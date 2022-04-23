@@ -123,6 +123,10 @@ namespace GraduationProject.ViewModel
         {
             Model.ViewGrid();
         });
+        public ICommand CorrectLines => new DelegateCommand(o =>
+        {
+            Model.CorrectLines();
+        });
         public ICommand Home => new DelegateCommand(o =>
         { 
             for (int i = window.FullGridChange.Children.Count - 1; i >= 0; --i)

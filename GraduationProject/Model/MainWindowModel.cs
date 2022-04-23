@@ -250,6 +250,11 @@ namespace GraduationProject.Model
                 FlagViewGrid = true;
             }
         }
+        public void CorrectLines()
+        {
+            var window = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+            window.StaticGrid.Children.Add(new CorrectLineView());
+        }
         /// <summary>
         /// Сохранение сериализируемой модели сети в отдельный файл.
         /// </summary>

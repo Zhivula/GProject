@@ -4,6 +4,7 @@ using OxyPlot;
 using OxyPlot.Axes;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -353,6 +354,16 @@ namespace GraduationProject.ViewModel
                 OnPropertyChanged(nameof(PlotMax));
             }
         }
+        private PlotModel plotMin;
+        public PlotModel PlotMin
+        {
+            get => plotMin;
+            set
+            {
+                plotMin = value;
+                OnPropertyChanged(nameof(PlotMin));
+            }
+        }
         public ModeAnalysisViewModel()
         {
             ItemsSourceMaxMin = new List<LoadTransformerMaxMin>();
@@ -381,6 +392,7 @@ namespace GraduationProject.ViewModel
 
             InfoNodes = FullInfoNodes();
             PlotMax = GetPlotModel();
+            PlotMin = GetPlotModel();
         }
         private List<Node<int>> GetTransformers()
         {
@@ -646,6 +658,7 @@ namespace GraduationProject.ViewModel
         public ICommand ShowCharts => new DelegateCommand(o =>
         {
             PlotMax = GetPlotModel();
+            PlotMin = GetPlotModel();
         });
         public BranchesMainTable FindRangeForBranches(double dUcp, double m = 1)
         {
@@ -811,19 +824,20 @@ namespace GraduationProject.ViewModel
             {
                 Title = "Режим наибольших нагрузок",
                 Color = OxyColor.FromRgb(22, 186, 124),
-                StrokeThickness = 2,
+                StrokeThickness = 3,
                 MarkerSize = 5,
-                MarkerType = MarkerType.Circle
+                MarkerType = MarkerType.Circle,
             };
             var dictionary = GetDataChart();
 
             if (dictionary.Count > 0)
             {
-                var valueList = dictionary.Values.ToList();
+                var valuesList = dictionary.Values.ToList();
+                var keysList = dictionary.Keys.ToList();
+
                 for (int i = 0; i < dictionary.Count(); i++)
                 {
-                    line.Points.Add(new DataPoint(i, valueList[i]));
-                    
+                    line.Points.Add(new DataPoint(i, valuesList[i]));
                 }
                 plot.Series.Add(line);
                 plot.TextColor = OxyColors.Black;
@@ -833,10 +847,13 @@ namespace GraduationProject.ViewModel
                 var min = dictionary.Values.ToList().Min();
                 var max = dictionary.Values.ToList().Max();
 
-                //var dateAxisH = new LinearAxis() { MajorGridlineStyle = LineStyle.Solid, MinorGridlineStyle = LineStyle.Dot, MajorGridlineColor = OxyColors.Blue, Maximum = max, Minimum = min, Position = AxisPosition.Left };
-                //plot.Axes.Add(dateAxisH);
-                
-                var dateAxisV = new CategoryAxis() { MajorGridlineStyle = LineStyle.Solid, MinorGridlineStyle = LineStyle.Dot, MajorGridlineColor = OxyColors.Transparent, Position = AxisPosition.Bottom, Angle = -90, ItemsSource = dictionary.Keys.ToList() };
+                var dateAxisH = new LinearAxis() { MajorGridlineStyle = LineStyle.Solid, MinorGridlineStyle = LineStyle.Dot, MinorGridlineColor = OxyColors.LightGray, MajorGridlineColor = OxyColors.Transparent, Maximum = max, Minimum = min, Position = AxisPosition.Left };
+                dateAxisH.Layer = AxisLayer.BelowSeries;
+                plot.Axes.Add(dateAxisH);
+
+                var dateAxisV = new CategoryAxis() { MajorGridlineStyle = LineStyle.Solid, MinorGridlineStyle = LineStyle.Dot, MinorGridlineColor = OxyColors.LightGray, MajorGridlineColor = OxyColors.Transparent, Position = AxisPosition.Bottom, Angle = -90 };
+                foreach (var i in keysList) dateAxisV.Labels.Add(i);
+                dateAxisV.Layer = AxisLayer.AboveSeries;
                 plot.Axes.Add(dateAxisV);
             }   
             return plot;
@@ -845,6 +862,8 @@ namespace GraduationProject.ViewModel
         {
             var list = new Dictionary<string, double>();
             var nodes = GetElements();
+            list.Add("ЦП", 5);
+
             foreach (var i in nodes)
             {
                 if (i.View.DataContext is TransformerViewModel contextTransformer)

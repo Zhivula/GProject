@@ -761,9 +761,9 @@
                     </Button>
                     <TextBlock Text="Результаты расчета" Foreground="Black" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontFamily="Montserrat" Margin="0 20"/>
                     <Button Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Right" Command="{Binding ShowCharts}">
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="ChartBar" Foreground="Gray" Height="40" Width="auto"/>
-                            <TextBlock Text="Графики напряжений" Foreground="Gray" Margin="10 0 0 0"/>
+                        <StackPanel Orientation="Horizontal" Margin="0 0 10 0">
+                            <materialDesign:PackIcon Kind="ChartBar" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Gray" Height="40" Width="auto"/>
+                            <TextBlock Text="Графики напряжений" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Gray" Margin="10 0 0 0"/>
                         </StackPanel>
                         <Button.Triggers>
                             <EventTrigger RoutedEvent="Button.Click">
@@ -851,7 +851,7 @@
                             <DockPanel>
                                 <Grid DockPanel.Dock="Top">
                                     <Border BorderBrush="White" BorderThickness="0 0 0 1"/>
-                                    <TextBlock Foreground="White" Text="Режим наибольших нагрузок" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
+                                    <TextBlock Foreground="White" Text="Режим наименьших нагрузок" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
                                 </Grid>
                                 <Grid DockPanel.Dock="Bottom">
                                     <Grid.ColumnDefinitions>
@@ -1320,7 +1320,7 @@
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="500"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <DockPanel Grid.Row="0">
                         <Button Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Left" Command="{Binding ReturnCharts}">
@@ -1347,7 +1347,25 @@
                         <TextBlock Text="График напряжений на ТП для режима наибольших нагрузок" Foreground="Black" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontFamily="Montserrat" Margin="0 20"/>
                     </DockPanel>
                     <Grid Grid.Row="1" Margin="20">
-                        <oxy:PlotView Grid.Row="1" Background="Transparent" Model="{Binding PlotMax}" BorderThickness="0"/>
+                        <StackPanel>
+                            <Grid>
+                                <Border CornerRadius="7"  Background="White">
+                                    <Border.Effect>
+                                        <DropShadowEffect ShadowDepth="0" Direction="90" Color="Black" Opacity="0.75"  BlurRadius="10.0" />
+                                    </Border.Effect>
+                                </Border>
+                                <oxy:PlotView Background="Transparent" Model="{Binding PlotMax}" Margin="10" Height="500"/>
+                            </Grid>
+                            <TextBlock Text="График напряжений на ТП для режима наименьших нагрузок" Foreground="Black" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontFamily="Montserrat" Margin="0 30"/>
+                            <Grid>
+                                <Border CornerRadius="7"  Background="White">
+                                    <Border.Effect>
+                                        <DropShadowEffect ShadowDepth="0" Direction="90" Color="Black" Opacity="0.75"  BlurRadius="10.0" />
+                                    </Border.Effect>
+                                </Border>
+                                <oxy:PlotView Background="Transparent" Model="{Binding PlotMin}" Margin="10" Height="500"/>
+                            </Grid>
+                        </StackPanel>
                     </Grid>
                 </Grid>
             </Grid>

@@ -91,6 +91,8 @@
     <Compile Include="Data\InfoBranches.cs" />
     <Compile Include="Data\InfoBranchesMaxMin.cs" />
     <Compile Include="Data\InfoNodes.cs" />
+    <Compile Include="Data\Item.cs" />
+    <Compile Include="Data\LoadLine.cs" />
     <Compile Include="Data\LoadTransformer.cs" />
     <Compile Include="Data\LoadTransformerMaxMin.cs" />
     <Compile Include="Data\Node.cs" />
@@ -102,6 +104,7 @@
     <Compile Include="Model\AddSourceModel.cs" />
     <Compile Include="Model\CatalogLineModel.cs" />
     <Compile Include="Model\CatalogTransformerModel.cs" />
+    <Compile Include="Model\CorrectLineModel.cs" />
     <Compile Include="Model\LineModel.cs" />
     <Compile Include="Model\PanelLineModel.cs" />
     <Compile Include="Model\PanelTransformerModel.cs" />
@@ -111,9 +114,13 @@
     <Compile Include="ViewModel\AddSourceViewModel.cs" />
     <Compile Include="ViewModel\CatalogLineViewModel.cs" />
     <Compile Include="ViewModel\CatalogTransformerViewModel.cs" />
+    <Compile Include="ViewModel\CorrectLineViewModel.cs" />
     <Compile Include="ViewModel\ModeAnalysisViewModel.cs" />
     <Compile Include="ViewModel\PanelLineViewModel.cs" />
     <Compile Include="ViewModel\PanelTransformerViewModel.cs" />
+    <Compile Include="View\CorrectLineView.xaml.cs">
+      <DependentUpon>CorrectLineView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ModeAnalysisView.xaml.cs">
       <DependentUpon>ModeAnalysisView.xaml</DependentUpon>
     </Compile>
@@ -162,6 +169,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Theme\Scroll.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CorrectLineView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
