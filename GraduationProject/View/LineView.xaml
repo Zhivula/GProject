@@ -43,7 +43,7 @@
                         <TextBlock x:Name="Length" Text="{Binding LengthFormat}" FontSize="15" Foreground="Gray" HorizontalAlignment="Center"/>
                         <TextBlock x:Name="N" Text="" FontSize="15" Foreground="Gray" HorizontalAlignment="Left"/>
                         <!--выше, в тексте было начало линии {Binding N}-->
-                        
+
                         <TextBlock x:Name="Brand" Text="{Binding Brand}" FontSize="15" Foreground="Gray" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="20"/>
                     </Grid>
                     <Border Height="30" Opacity="{Binding Opacity}" x:Name="BorderGradient">
@@ -55,6 +55,16 @@
                         </Border.Background>
                     </Border>
                     <Button x:Name="MainButton" Height="5" Width="auto" BorderThickness="0" Background="Black" VerticalAlignment="Center" Click="Button_Click"/>
+                    <Grid Visibility="{Binding VisibilytyVDT}">
+                        <Ellipse Stroke="DarkBlue" StrokeThickness="4" Width="30" Height="30"/>
+                        <Ellipse Stroke="DeepSkyBlue" StrokeThickness="0.5" Width="27" Height="27" Margin="0.5 0.5 0 0"/>
+                        <Line Stroke="DarkBlue" X1="22.5" Y1="42.5" X2="60" Y2="5"/>
+                        <Line Stroke="DarkBlue" X1="60" Y1="5" X2="50" Y2="8"/>
+                        <Line Stroke="DarkBlue" X1="60" Y1="5" X2="58" Y2="14"/>
+                        <Line Stroke="DeepSkyBlue" StrokeThickness="0.3" X1="22.5" Y1="42.5" X2="60" Y2="5"/>
+                        <Line Stroke="DeepSkyBlue" StrokeThickness="0.3" X1="60" Y1="5" X2="50" Y2="8"/>
+                        <Line Stroke="DeepSkyBlue" StrokeThickness="0.3" X1="60" Y1="5" X2="58" Y2="14"/>
+                    </Grid>
                 </Grid>
                 <Button Grid.Column="2" Background="Green" Height="10" Width="10">
                     <Button.Template>

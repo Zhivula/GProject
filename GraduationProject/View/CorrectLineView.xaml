@@ -20,7 +20,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="80"/>
                         <RowDefinition Height="*"/>
-                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="60"/>
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0" Height="Auto">
                         <Border BorderBrush="#333" BorderThickness="0 0 0 1"/>
@@ -70,7 +70,7 @@
                             </Grid>
                         </Grid>
                     </Grid>
-                    <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Visible">
+                    <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Visible" CanContentScroll="True">
                             <ListView ItemsSource="{Binding ItemsSourceLine}" Background="Transparent" BorderThickness="0">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>

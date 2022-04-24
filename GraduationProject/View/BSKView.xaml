@@ -1,0 +1,69 @@
+﻿<UserControl x:Class="GraduationProject.View.BSKView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GraduationProject.View"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Background="Transparent" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Grid Background="Black" Opacity="0.3" />
+        <Grid Margin="150 50">
+            <Border CornerRadius="7" Background="#17171a">
+                <Border.Effect>
+                    <DropShadowEffect ShadowDepth="0" Direction="90" Color="Black" Opacity="0.75"  BlurRadius="10.0" />
+                </Border.Effect>
+            </Border>
+            <DockPanel>
+                <Grid DockPanel.Dock="Top">
+                    <TextBlock Text="Установка батарей статических конденсаторов" Foreground="White" HorizontalAlignment="Center" FontSize="20"/>
+                    <Button HorizontalAlignment="Right" Command="{Binding Close}" Background="Transparent" BorderThickness="0">
+                        <materialDesign:PackIcon Kind="Close" Foreground="White" Height="30" Width="30"/>
+                    </Button>
+                </Grid>
+                <Grid Margin="5 20 5 5">
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock DockPanel.Dock="Top" Text="Участок   " Foreground="White" HorizontalAlignment="Center" FontSize="16"/>
+                            <TextBlock DockPanel.Dock="Top" Text="{Binding N}" Foreground="White" HorizontalAlignment="Center" FontSize="16"/>
+                            <TextBlock DockPanel.Dock="Top" Text=" - " Foreground="White" HorizontalAlignment="Center" FontSize="16"/>
+                            <TextBlock DockPanel.Dock="Top" Text="{Binding K}" Foreground="White" HorizontalAlignment="Center" FontSize="16"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock DockPanel.Dock="Top" Text="Напряжение в начале:   " Foreground="White" HorizontalAlignment="Center" FontSize="16"/>
+                            <TextBlock DockPanel.Dock="Top" Text="{Binding Voltage1}" Foreground="Red" HorizontalAlignment="Center" FontSize="16"/>
+                            <TextBlock DockPanel.Dock="Top" Text=" кВ" Foreground="White" HorizontalAlignment="Center" FontSize="16"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock DockPanel.Dock="Top" Text="Напряжение в конце:   " Foreground="White" HorizontalAlignment="Center" FontSize="16"/>
+                            <TextBlock DockPanel.Dock="Top" Text="{Binding Voltage2}" Foreground="Red" HorizontalAlignment="Center" FontSize="16"/>
+                            <TextBlock DockPanel.Dock="Top" Text=" кВ" Foreground="White" HorizontalAlignment="Center" FontSize="16"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock DockPanel.Dock="Top" Text="Максимальная добавка напряжения:   " Foreground="White" HorizontalAlignment="Center" FontSize="16"/>
+                            <TextBlock DockPanel.Dock="Top" Text="{Binding MaxPlusVoltage}" Foreground="Green" HorizontalAlignment="Center" FontSize="16"/>
+                            <TextBlock DockPanel.Dock="Top" Text=" кВ" Foreground="White" HorizontalAlignment="Center" FontSize="16"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock DockPanel.Dock="Top" Text="Реактивная мощность БСК:   " Foreground="White" HorizontalAlignment="Center" FontSize="16"/>
+                            <TextBlock DockPanel.Dock="Top" Text="{Binding SBSK}" Foreground="Green" HorizontalAlignment="Center" FontSize="16"/>
+                            <TextBlock DockPanel.Dock="Top" Text=" кВар" Foreground="White" HorizontalAlignment="Center" FontSize="16"/>
+                        </StackPanel>
+                        <Button Foreground="White" Margin="50 10" Cursor="Hand" Command="{Binding StartCommand}">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border BorderThickness="0" CornerRadius="5" Background="#3861fb">
+                                        <Grid Height="35">
+                                            <TextBlock Text="Рассчитать" HorizontalAlignment="Center" FontFamily="Segoe UI Semibold" VerticalAlignment="Center"/>
+                                        </Grid>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </DockPanel>
+        </Grid>
+    </Grid>
+</UserControl>

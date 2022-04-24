@@ -127,6 +127,14 @@ namespace GraduationProject.ViewModel
         {
             Model.CorrectLines();
         });
+        public ICommand VDT => new DelegateCommand(o =>
+        {
+            Model.VDT();
+        });
+        public ICommand BSK => new DelegateCommand(o =>
+        {
+            Model.BSK(); 
+        });
         public ICommand Home => new DelegateCommand(o =>
         { 
             for (int i = window.FullGridChange.Children.Count - 1; i >= 0; --i)

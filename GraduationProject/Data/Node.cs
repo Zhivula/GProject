@@ -408,6 +408,10 @@ namespace GraduationProject.Data
                 {
                     transformer.ColorNode = new SolidColorBrush(Colors.Yellow);
                 }
+                if (deltaUPercent < 5)
+                {
+                    transformer.ColorNode = new SolidColorBrush(Colors.Green);
+                }
             }
 
             LineViewModel item = View.DataContext as LineViewModel;
@@ -458,29 +462,16 @@ namespace GraduationProject.Data
                 {
                     item.Opacity = 1;
                     item.ColorNode = new SolidColorBrush(Colors.Red);
-
-                    //DoubleAnimation buttonAnimation = new DoubleAnimation();
-                    //buttonAnimation.From = 0.3;
-                    //buttonAnimation.To = 1;
-                    //buttonAnimation.RepeatBehavior = RepeatBehavior.Forever;
-                    //buttonAnimation.AutoReverse = true;
-                    //buttonAnimation.Duration = new TimeSpan(0, 0, 2);
-                    //var b = View as LineView;
-                    //b.EllipseBorderGradient.BeginAnimation(Border.OpacityProperty, buttonAnimation);
                 }
                 if (deltaUPercent >= 5 && deltaUPercent < 10)
                 {
                     item.Opacity = 1;
                     item.ColorNode = new SolidColorBrush(Colors.Yellow);
-
-                    //DoubleAnimation buttonAnimation = new DoubleAnimation();
-                    //buttonAnimation.From = 0.3;
-                    //buttonAnimation.To = 1;
-                    //buttonAnimation.RepeatBehavior = RepeatBehavior.Forever;
-                    //buttonAnimation.AutoReverse = true;
-                    //buttonAnimation.Duration = new TimeSpan(0, 0, 2);
-                    //var b = View as LineView;
-                    //b.EllipseBorderGradient.BeginAnimation(Border.OpacityProperty, buttonAnimation);
+                }
+                if (deltaUPercent < 5)
+                {
+                    item.Opacity = 1;
+                    item.ColorNode = new SolidColorBrush(Colors.Green);
                 }
                 foreach (var i in List)
                 {

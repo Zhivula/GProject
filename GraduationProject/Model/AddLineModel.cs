@@ -34,7 +34,7 @@ namespace GraduationProject.Model
         public void AddLine(MainWindow window, string selectedWireBrand, string lineLength, double r0, double x0, double idop)
         {
             var global = GlobalGrid.GetInstance();
-            var line = new LineView(selectedWireBrand, double.Parse(lineLength), r0, x0, idop) { Height = 50, Width = 100 };
+            var line = new LineView(selectedWireBrand, double.Parse(lineLength), r0, x0, idop) { Height = 50, Width = 100};
             window.GridChange.Children.Add(line);
             window.curr = line;
 

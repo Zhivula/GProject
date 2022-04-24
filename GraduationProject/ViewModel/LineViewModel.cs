@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Media;
 
 namespace GraduationProject.ViewModel
@@ -50,6 +51,7 @@ namespace GraduationProject.ViewModel
         private Dictionary<int, double> wq1List;
         private Color color;
         private SolidColorBrush colorNode;
+        private Visibility visibilytyVDT;
 
         public int N
         {
@@ -427,6 +429,15 @@ namespace GraduationProject.ViewModel
                 OnPropertyChanged(nameof(Wq1List));
             }
         }
+        public Visibility VisibilytyVDT
+        {
+            get => visibilytyVDT;
+            set
+            {
+                visibilytyVDT = value;
+                OnPropertyChanged(nameof(VisibilytyVDT));
+            }
+        }
 
         public LineViewModel(string brand, double length, double r0, double x0, double idop)
         {
@@ -447,6 +458,7 @@ namespace GraduationProject.ViewModel
             R0 = r0;
             X0 = x0;
             Idop = idop;
+            VisibilytyVDT = Visibility.Hidden;
         }
         #region PropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;

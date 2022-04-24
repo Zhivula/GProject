@@ -112,12 +112,17 @@
     <Compile Include="Model\SourceModel.cs" />
     <Compile Include="Model\TransformerModel.cs" />
     <Compile Include="ViewModel\AddSourceViewModel.cs" />
+    <Compile Include="ViewModel\BSKViewModel.cs" />
     <Compile Include="ViewModel\CatalogLineViewModel.cs" />
     <Compile Include="ViewModel\CatalogTransformerViewModel.cs" />
     <Compile Include="ViewModel\CorrectLineViewModel.cs" />
     <Compile Include="ViewModel\ModeAnalysisViewModel.cs" />
     <Compile Include="ViewModel\PanelLineViewModel.cs" />
     <Compile Include="ViewModel\PanelTransformerViewModel.cs" />
+    <Compile Include="ViewModel\VDTViewModel.cs" />
+    <Compile Include="View\BSKView.xaml.cs">
+      <DependentUpon>BSKView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\CorrectLineView.xaml.cs">
       <DependentUpon>CorrectLineView.xaml</DependentUpon>
     </Compile>
@@ -164,11 +169,18 @@
     <Compile Include="View\TransformerView.xaml.cs">
       <DependentUpon>TransformerView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\VDTView.xaml.cs">
+      <DependentUpon>VDTView.xaml</DependentUpon>
+    </Compile>
     <Page Include="Theme\ButtonMain.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Theme\Scroll.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\BSKView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -238,6 +250,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\TransformerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\VDTView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
