@@ -16,21 +16,21 @@ namespace GraduationProject.Model
         {
             UpDateCollection();
         }
-        public void Add(string Brand, string Snom, string Pkz, string Pxx, string Qxx, string Ixx, string Ukz, string R, string X)
+        public void Add(string Brand, double Snom, double Pkz, double Pxx, double Ixx, double Ukz, double Unom)
         {
             using (var context = new MyDbContext())
             {
                 var item = new Transformer()
                 {
                     Brand = Brand,
-                    Snom = double.Parse(Snom),
-                    Pkz = double.Parse(Pkz),
-                    Pxx = double.Parse(Pxx),
-                    Qxx = double.Parse(Qxx),
-                    Ixx = double.Parse(Ixx),
-                    Ukz = double.Parse(Ukz),
-                    R = double.Parse(R),
-                    X = double.Parse(X)
+                    Snom = Snom,
+                    Pkz = Pkz,
+                    Pxx = Pxx,
+                    Qxx = Math.Round((Ixx*Snom)/100,5),
+                    Ixx = Ixx,
+                    Ukz = Ukz,
+                    R = Math.Round((Pkz*Unom*Unom*1000)/(Snom* Snom),5),
+                    X = Math.Round(Math.Sqrt(Math.Pow(((Ukz * Unom * Unom*10) / Snom),2) - Math.Pow((Pkz * Unom * Unom*1000) / (Snom * Snom), 2)),5)
                 };
                 context.Transformers.Add(item);
                 context.SaveChanges();
@@ -44,6 +44,9 @@ namespace GraduationProject.Model
             {
                 foreach (var i in context.Transformers)
                 {
+                    i.Qxx = Math.Round(i.Qxx,5);
+                    i.R = Math.Round(i.R,5);
+                    i.X = Math.Round(i.X,5);
                     Collection.Add(i);
                 }
             }

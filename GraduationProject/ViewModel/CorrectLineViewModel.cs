@@ -33,16 +33,45 @@ namespace GraduationProject.ViewModel
         public ICommand StartCommand => new DelegateCommand(o =>
         {
 
-            var list = GlobalGrid.GetInstance().Tree.GetLines();
+            var listElements = GlobalGrid.GetInstance().Tree.GetElements();
+            var list = listElements.Where(x => x.View.DataContext is LineViewModel).ToList();
             foreach (var i in ItemsSourceLine)
             {
-                var transformer = list.Where(x => x.Data == i.K).FirstOrDefault();
-                var context = transformer.View.DataContext as LineViewModel;
-
-                //context.ChangeParameters(transformer, double.Parse(i.Snom), double.Parse(i.Cosfi));
+                var line = list.Where(x => x.Data == i.K).FirstOrDefault();
+                if (line.View.DataContext is LineViewModel context)
+                {
+                    if (context.Length != i.Length)
+                    {
+                        context.Length = i.Length;
+                        context.LengthFormat = i.Length + " км";
+                    }
+                    if (context.Idop != i.Idop)
+                    {
+                        context.Idop = i.Idop;
+                    }
+                    if (context.X0 != i.X0)
+                    {
+                        context.X0 = i.X0;
+                    }
+                    if (context.R0 != i.R0)
+                    {
+                        context.R0 = i.R0;
+                    }
+                }
             }
+            var listTransformers = listElements.Where(x => x.View.DataContext is TransformerViewModel).ToList();
+            foreach (var i in listTransformers)
+            {
+                var c = i.View.DataContext as TransformerViewModel;
+                c.ChangeParameters(i, c.Snom, c.Cosfi);
+            }
+            CloseControl();
         });
         public ICommand Close => new DelegateCommand(o =>
+        {
+            CloseControl();
+        });
+        private void CloseControl()
         {
             var window = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
             for (int i = window.StaticGrid.Children.Count - 1; i >= 0; --i)
@@ -53,7 +82,7 @@ namespace GraduationProject.ViewModel
                     window.StaticGrid.Children.RemoveAt(i);
                 }
             }
-        });
+        }
         #region PropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged(string name)

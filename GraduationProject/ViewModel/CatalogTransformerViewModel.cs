@@ -17,14 +17,14 @@ namespace GraduationProject.ViewModel
     {
         public CatalogTransformerModel Model;
         private string brand;
-        private string snom;
-        private string pxx;
-        private string qxx;
-        private string ukz;
-        private string ixx;
-        private string pkz;
-        private string r;
-        private string x;
+        private double snom;
+        private double pxx;
+        private double unom;
+        private double ukz;
+        private double ixx;
+        private double pkz;
+        //private string r;
+        //private string x;
 
         public ObservableCollection<Transformer> TransformersList { get; set; }
 
@@ -37,7 +37,7 @@ namespace GraduationProject.ViewModel
                 OnPropertyChanged(nameof(Brand));
             }
         }
-        public string Snom
+        public double Snom
         {
             get => snom;
             set
@@ -46,7 +46,7 @@ namespace GraduationProject.ViewModel
                 OnPropertyChanged(nameof(Snom));
             }
         }
-        public string Pxx
+        public double Pxx
         {
             get => pxx;
             set
@@ -55,16 +55,16 @@ namespace GraduationProject.ViewModel
                 OnPropertyChanged(nameof(Pxx));
             }
         }
-        public string Qxx
+        public double Unom
         {
-            get => qxx;
+            get => unom;
             set
             {
-                qxx = value;
-                OnPropertyChanged(nameof(Qxx));
+                unom = value;
+                OnPropertyChanged(nameof(Unom));
             }
         }
-        public string Ixx
+        public double Ixx
         {
             get => ixx;
             set
@@ -73,7 +73,7 @@ namespace GraduationProject.ViewModel
                 OnPropertyChanged(nameof(Ixx));
             }
         }
-        public string Ukz
+        public double Ukz
         {
             get => ukz;
             set
@@ -82,7 +82,7 @@ namespace GraduationProject.ViewModel
                 OnPropertyChanged(nameof(Ukz));
             }
         }
-        public string Pkz
+        public double Pkz
         {
             get => pkz;
             set
@@ -91,24 +91,24 @@ namespace GraduationProject.ViewModel
                 OnPropertyChanged(nameof(Pkz));
             }
         }
-        public string R
-        {
-            get => r;
-            set
-            {
-                r = value;
-                OnPropertyChanged(nameof(R));
-            }
-        }
-        public string X
-        {
-            get => x;
-            set
-            {
-                x = value;
-                OnPropertyChanged(nameof(X));
-            }
-        }
+        //public string R
+        //{
+        //    get => r;
+        //    set
+        //    {
+        //        r = value;
+        //        OnPropertyChanged(nameof(R));
+        //    }
+        //}
+        //public string X
+        //{
+        //    get => x;
+        //    set
+        //    {
+        //        x = value;
+        //        OnPropertyChanged(nameof(X));
+        //    }
+        //}
 
         public CatalogTransformerViewModel()
         {
@@ -118,8 +118,9 @@ namespace GraduationProject.ViewModel
 
         public ICommand Add => new DelegateCommand(o =>
         {
-            Model.Add(Brand, Snom, Pkz, Pxx, Qxx, Ixx, Ukz, R, X);
-            Brand = Snom = Pkz = Pxx = Qxx = Ixx = Ukz = string.Empty;
+            Model.Add(Brand, Snom, Pkz, Pxx, Ixx, Ukz, Unom);
+            Brand = string.Empty;
+            Snom = Pkz = Pxx = Ixx = Ukz = Unom = 0;
         });
         public ICommand Return => new DelegateCommand(o =>
         {

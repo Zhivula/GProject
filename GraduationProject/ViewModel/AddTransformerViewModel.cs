@@ -83,7 +83,7 @@ namespace GraduationProject.ViewModel
                 kz = value;
                 OnPropertyChanged(nameof(Kz));
                 s = Snom * Kz;
-                cosfi = Math.Round(0.7, 4);
+                cosfi = Math.Round(0.92, 4);
                 p = S * Cosfi;
                 q = Math.Sqrt(Math.Pow(S, 2) - Math.Pow(P, 2));
 
@@ -119,9 +119,9 @@ namespace GraduationProject.ViewModel
                 {
                     transformer = context.Transformers.Where(x => x.Brand == selectedTransformerBrand).FirstOrDefault();
                     Snom = transformer.Snom;
-                    Kz = 1;
+                    Kz = 0.18;
                     S = Snom*Kz;
-                    Cosfi = Math.Round(0.7,4);
+                    Cosfi = Math.Round(0.92,4);
                     P = Math.Round(S * Cosfi, 4);
                     Q = Math.Round(Math.Sqrt(Math.Pow(S,2) - Math.Pow(P,2)), 4);
                 }

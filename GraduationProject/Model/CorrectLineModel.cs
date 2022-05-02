@@ -26,10 +26,10 @@ namespace GraduationProject.Model
                     {
                         N = context.N,
                         K = context.K,
-                        Length = (context.Length).ToString("0.####"),
-                        R0 = (context.R0).ToString("0.####"),
-                        X0 = (context.X0).ToString("0.####"),
-                        Idop = (context.Idop).ToString("0.####")
+                        Length = Math.Round(context.Length,4),
+                        R0 = Math.Round(context.R0,4),
+                        X0 = Math.Round(context.X0,4),
+                        Idop = Math.Round(context.Idop,4)
                     });
                 }
             }

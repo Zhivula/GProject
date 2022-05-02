@@ -68,6 +68,18 @@
                     </TextBox>
                 </StackPanel>
                 <StackPanel Orientation="Vertical" Grid.Column="3" Margin="5 0">
+                    <Label Content="Pkz, кВт"/>
+                    <TextBox Text="{Binding Pkz, UpdateSourceTrigger=PropertyChanged}" Foreground="White">
+                        <TextBox.Template>
+                            <ControlTemplate>
+                                <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="#171924">
+                                    <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+                                </Border>
+                            </ControlTemplate>
+                        </TextBox.Template>
+                    </TextBox>
+                </StackPanel>
+                <!--<StackPanel Orientation="Vertical" Grid.Column="3" Margin="5 0">
                     <Label Content="Qxx, квар"/>
                     <TextBox Text="{Binding Qxx, UpdateSourceTrigger=PropertyChanged}" Foreground="White">
                         <TextBox.Template>
@@ -78,7 +90,7 @@
                             </ControlTemplate>
                         </TextBox.Template>
                     </TextBox>
-                </StackPanel>
+                </StackPanel>-->
                 <StackPanel Orientation="Vertical" Grid.Column="4" Margin="5 0">
                     <Label Content="Ukz, %"/>
                     <TextBox Text="{Binding Ukz, UpdateSourceTrigger=PropertyChanged}" Foreground="White">
@@ -92,7 +104,7 @@
                     </TextBox>
                 </StackPanel>
                 <StackPanel Orientation="Vertical" Grid.Column="5" Margin="5 0">
-                    <Label Content="Ixx, А"/>
+                    <Label Content="Ixx, %"/>
                     <TextBox Text="{Binding Ixx, UpdateSourceTrigger=PropertyChanged}" Foreground="White">
                         <TextBox.Template>
                             <ControlTemplate>
@@ -104,8 +116,8 @@
                     </TextBox>
                 </StackPanel>
                 <StackPanel Orientation="Vertical" Grid.Column="6" Margin="5 0">
-                    <Label Content="Pkz, кВт"/>
-                    <TextBox Text="{Binding Pkz, UpdateSourceTrigger=PropertyChanged}" Foreground="White">
+                    <Label Content="Unom, кВ"/>
+                    <TextBox Text="{Binding Unom, UpdateSourceTrigger=PropertyChanged}" Foreground="White">
                         <TextBox.Template>
                             <ControlTemplate>
                                 <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="#171924">
@@ -115,19 +127,7 @@
                         </TextBox.Template>
                     </TextBox>
                 </StackPanel>
-                <StackPanel Orientation="Vertical" Grid.Column="7" Margin="5 0">
-                    <Label Content="R, Ом"/>
-                    <TextBox Text="{Binding R, UpdateSourceTrigger=PropertyChanged}" Foreground="White">
-                        <TextBox.Template>
-                            <ControlTemplate>
-                                <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="#171924">
-                                    <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
-                                </Border>
-                            </ControlTemplate>
-                        </TextBox.Template>
-                    </TextBox>
-                </StackPanel>
-                <StackPanel Orientation="Vertical" Grid.Column="8" Margin="5 0">
+                <!--<StackPanel Orientation="Vertical" Grid.Column="8" Margin="5 0">
                     <Label Content="X, Ом"/>
                     <TextBox Text="{Binding X, UpdateSourceTrigger=PropertyChanged}" Foreground="White">
                         <TextBox.Template>
@@ -138,8 +138,18 @@
                             </ControlTemplate>
                         </TextBox.Template>
                     </TextBox>
-                </StackPanel>
-                <Button Content="+" Width="30" Height="30" VerticalAlignment="Center" Command="{Binding Add}" Grid.Column="9" Margin="5 0"/>
+                </StackPanel>--> 
+                <Button Width="Auto" Height="30" Padding="0" Command="{Binding Add}" Cursor="Hand" Grid.Column="7" Foreground="White" Margin="10">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border BorderThickness="0" CornerRadius="5" Background="#3861fb">
+                                <Grid Height="35">
+                                    <TextBlock Text="+ Add" HorizontalAlignment="Center" FontFamily="Segoe UI Semibold" VerticalAlignment="Center"/>
+                                </Grid>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
             </Grid>
             <Grid Grid.Row="2">
                 <Grid.RowDefinitions>

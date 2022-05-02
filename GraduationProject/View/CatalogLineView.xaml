@@ -79,7 +79,7 @@
                             </TextBox.Template>
                         </TextBox>
                     </StackPanel>
-                    <Button Width="Auto" Height="30" Padding="0" Command="{Binding Add}" Grid.Column="4" Foreground="White">
+                    <Button Width="Auto" Height="30" Padding="0" Command="{Binding Add}" Cursor="Hand" Grid.Column="4" Foreground="White">
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border BorderThickness="0" CornerRadius="5" Background="#3861fb">

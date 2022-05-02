@@ -97,6 +97,13 @@ namespace GraduationProject.Data
                 }
                 var transformer = new TransformerView(item) { Height = 50, Width = 100 };
                 ((RotateTransform)transformer.RenderTransform).Angle = Angle;
+                if (Angle == 180 || Angle == 270)
+                {
+                    RotateTransform rotate = new RotateTransform(-180);
+                    transformer.K.LayoutTransform = rotate;
+                    transformer.Brand.VerticalAlignment = VerticalAlignment.Top;
+                    transformer.Brand.LayoutTransform = rotate;
+                }
                 global.Transformers.Add(transformer);
 
                 var window = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
@@ -107,7 +114,7 @@ namespace GraduationProject.Data
                 window.curr = transformer;
                 contextMain.Model.MainClick(window);
             }
-            if(List.Count() > 0)
+            if (List.Count() > 0)
             {
                 foreach (var i in List)
                 {

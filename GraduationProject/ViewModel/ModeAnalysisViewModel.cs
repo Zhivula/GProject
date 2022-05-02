@@ -391,8 +391,8 @@ namespace GraduationProject.ViewModel
             for (var i = 0; i < ItemsSourceMin.Count; i++) ItemsSourceMaxMin[i].LoadTransformerMin = ItemsSourceMin[i];
 
             InfoNodes = FullInfoNodes();
-            PlotMax = GetPlotModel();
-            PlotMin = GetPlotModel();
+            //PlotMax = GetPlotModel();
+            //PlotMin = GetPlotModel();
         }
         private List<Node<int>> GetTransformers()
         {
@@ -505,10 +505,6 @@ namespace GraduationProject.ViewModel
                 if (double.Parse(table.Branch_1.Max) >= item.DeltaUSumPercent & double.Parse(table.Branch_1.Min) <= item.DeltaUSumPercent)
                 {
                     item.Branch_1 = "+";
-                    item.Branch_2 = "-";
-                    item.Branch_3 = "-";
-                    item.Branch_4 = "-";
-                    item.Branch_5 = "-";
 
                     item.SelectedBranch = "+" + Branch_1.ToString() + "%";
                     list.Add(item);
@@ -518,11 +514,7 @@ namespace GraduationProject.ViewModel
 
                 if (double.Parse(table.Branch_2.Max) >= item.DeltaUSumPercent & double.Parse(table.Branch_2.Min) <= item.DeltaUSumPercent)
                 {
-                    item.Branch_1 = "-";
                     item.Branch_2 = "+";
-                    item.Branch_3 = "-";
-                    item.Branch_4 = "-";
-                    item.Branch_5 = "-";
                     item.SelectedBranch = "+" + Branch_2.ToString() + "%";
                     list.Add(item);
                     continue;
@@ -531,11 +523,7 @@ namespace GraduationProject.ViewModel
 
                 if (double.Parse(table.Branch_3.Max) >= item.DeltaUSumPercent & double.Parse(table.Branch_3.Min) <= item.DeltaUSumPercent)
                 {
-                    item.Branch_1 = "-";
-                    item.Branch_2 = "-";
                     item.Branch_3 = "+";
-                    item.Branch_4 = "-";
-                    item.Branch_5 = "-";
                     item.SelectedBranch = Branch_3.ToString() + "%";
                     list.Add(item);
                     continue;
@@ -544,11 +532,7 @@ namespace GraduationProject.ViewModel
 
                 if (double.Parse(table.Branch_4.Max) >= item.DeltaUSumPercent & double.Parse(table.Branch_4.Min) <= item.DeltaUSumPercent)
                 {
-                    item.Branch_1 = "-";
-                    item.Branch_2 = "-";
-                    item.Branch_3 = "-";
                     item.Branch_4 = "+";
-                    item.Branch_5 = "-";
 
                     item.SelectedBranch = "-" + Branch_4.ToString() + "%";
                     list.Add(item);
@@ -558,10 +542,6 @@ namespace GraduationProject.ViewModel
 
                 if (double.Parse(table.Branch_5.Max) >= item.DeltaUSumPercent & double.Parse(table.Branch_5.Min) <= item.DeltaUSumPercent)
                 {
-                    item.Branch_1 = "-";
-                    item.Branch_2 = "-";
-                    item.Branch_3 = "-";
-                    item.Branch_4 = "-";
                     item.Branch_5 = "+";
                     item.SelectedBranch = "-" + Branch_5.ToString() + "%";
                     list.Add(item);
@@ -641,7 +621,7 @@ namespace GraduationProject.ViewModel
             BranchesMainTableMin = FindRangeForBranches(DUcpMin, M); 
             BranchesTableMin = FullBranchesTable(BranchesMainTableMin);
             for (var i = 0; i < BranchesTableMin.Count; i++) BranchesTableMaxMin[i].BranchesTableMin = BranchesTableMin[i];
-
+            PlotMin = GetPlotModel();
             //Возврат к режиму наибольших нагрузок
             foreach (var i in ItemsSourceMax)
             {
@@ -654,11 +634,12 @@ namespace GraduationProject.ViewModel
             var listSelectedBranches = GetSelectedBranches();
 
             for (var i = 0; i < listSelectedBranches.Count; i++) BranchesTableMaxMin[i].BranchesTableSelected = listSelectedBranches[i];
+            PlotMax = GetPlotModel();
         });
         public ICommand ShowCharts => new DelegateCommand(o =>
         {
-            PlotMax = GetPlotModel();
-            PlotMin = GetPlotModel();
+            //PlotMax = GetPlotModel();
+            //PlotMin = GetPlotModel();
         });
         public BranchesMainTable FindRangeForBranches(double dUcp, double m = 1)
         {

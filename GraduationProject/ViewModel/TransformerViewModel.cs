@@ -188,7 +188,7 @@ namespace GraduationProject.ViewModel
                 {
                     node.Delete(node.View);
 
-                    double cos = 0.8;
+                    double cos = 0.92;
                     Sj = transformer.Snom * Kz;
                     P2 = Sj * cos;
                     Q2 = Sj * Math.Sqrt(1 - cos * cos);
@@ -268,11 +268,11 @@ namespace GraduationProject.ViewModel
             }
         }
 
-        public TransformerViewModel(Transformer transformer, double s = 0, double cosfi = 0)
+        public TransformerViewModel(Transformer transformer, double s = 0, double cosfi = 0, double kz = 0.18d)
         {
             this.transformer = transformer;
-            Kz = 1;
-            double cos = 0.8;
+            Kz = kz;
+            double cos = 0.92;
 
             S = s;
             Cosfi = cosfi;
@@ -293,10 +293,10 @@ namespace GraduationProject.ViewModel
                 Q2 = Sj * Math.Sqrt(1 - cos * cos);
             }
 
-            DPj = (P2 * P2 + Q2 * Q2) * R/ (GlobalGrid.U * GlobalGrid.U * 1000);
-            DQj = (P2 * P2 + Q2 * Q2) * X/ (GlobalGrid.U * GlobalGrid.U * 1000);
+            DPj = (P2 * P2 + Q2 * Q2) * R/ (10 * 10 * 1000);
+            DQj = (P2 * P2 + Q2 * Q2) * X/ (10 * 10 * 1000);
 
-            P1 = P2 + DQj + transformer.Pxx;
+            P1 = P2 + DPj + transformer.Pxx;
             Q1 = Q2 + DQj + transformer.Qxx;
 
             Brand = transformer.Brand;
@@ -322,8 +322,8 @@ namespace GraduationProject.ViewModel
                 P2 = Sj * Cosfi;
                 Q2 = Sj * Math.Sqrt(1 - Cosfi * Cosfi);
 
-                dPj = (P2 * P2 + Q2 * Q2) * R / (GlobalGrid.U * GlobalGrid.U * 1000);
-                dQj = (P2 * P2 + Q2 * Q2) * X / (GlobalGrid.U * GlobalGrid.U * 1000);
+                dPj = (P2 * P2 + Q2 * Q2) * R / (10 * 10 * 1000);
+                dQj = (P2 * P2 + Q2 * Q2) * X / (10 * 10 * 1000);
 
                 P1 = P2 + dPj + transformer.Pxx;
                 Q1 = Q2 + dQj + transformer.Qxx;

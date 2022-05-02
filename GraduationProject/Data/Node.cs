@@ -108,10 +108,89 @@ namespace GraduationProject.Data
                             parent.K.Margin = new Thickness(0, 20, -20, 0);
                         }
                     }
+                }
+                if (view.DataContext is TransformerViewModel contextTr)
+                {
+                    var parentPosition = ((RotateTransform)View.RenderTransform).Angle;
+                    var childPosition = ((RotateTransform)view.RenderTransform).Angle;
+
+                    var parent = View as LineView;
+                    var child = view as TransformerView;
+
+                    if (parentPosition == 0 & childPosition == 270)
+                    {
+                        parent.K.Margin = new Thickness(0, 0, -12, 0);
+                    }
+                    if (parentPosition == 90 & childPosition == 90)
+                    {
+                        RotateTransform rotate = new RotateTransform(-90);
+
+                        child.K.LayoutTransform = rotate;
+
+                        child.K.Margin = new Thickness(-30, -30, 0, 30);
+                    }
+                    if (parentPosition == 90 & childPosition == 0)
+                    {
+                        RotateTransform rotate = new RotateTransform(-90);
+
+                        parent.K.LayoutTransform = rotate;
+
+                        parent.K.Margin = new Thickness(-30, -30, 8, 30);
+                    }
+                    else if (parentPosition == 90)
+                    {
+                        var list = List.Where(x => {
+                            var item = x.View as TransformerView;
+                            var angle = ((RotateTransform)item.RenderTransform).Angle;
+                            if (angle == 0) return true;
+                            else return false;
+                        }).ToList();
+                        if (list.Count == 0)
+                        {
+                            RotateTransform rotate = new RotateTransform(-90);
+
+                            parent.K.LayoutTransform = rotate;
+
+                            parent.K.Margin = new Thickness(-30, -30, -5, 30);
+                        }
+                    }
+                    if (parentPosition == 180 & childPosition == 270)
+                    {
+                        parent.K.Margin = new Thickness(0, 0, 12, 0);
+                    }
 
 
 
+                    if (parentPosition == 270 & childPosition == 270)
+                    {
+                        RotateTransform rotate = new RotateTransform(-270);
 
+                        parent.K.LayoutTransform = rotate;
+
+                        parent.K.Margin = new Thickness(0, 33, -20, 0);
+
+                        child.K.LayoutTransform = rotate;
+
+                        child.K.Margin = new Thickness(0, 33, -20, 0);
+                    }
+                    else if (parentPosition == 270)
+                    {
+                        var list = List.Where(x =>
+                        {
+                            var item = x.View as TransformerView;
+                            var angle = ((RotateTransform)item.RenderTransform).Angle;
+                            if (angle == 270) return true;
+                            else return false;
+                        }).ToList();
+                        if (list.Count == 0)
+                        {
+                            RotateTransform rotate = new RotateTransform(-270);
+
+                            parent.K.LayoutTransform = rotate;
+
+                            parent.K.Margin = new Thickness(0, 20, -20, 0);
+                        }
+                    }
                 }
                 if (view.DataContext is TransformerViewModel)
                 {
@@ -131,8 +210,8 @@ namespace GraduationProject.Data
 
                     contextButton.I2 = transformer.I;
 
-                    var dP = (contextButton.P2 * contextButton.P2 + contextButton.Q2 * contextButton.Q2) * contextButton.Length * contextButton.R0 / (10.5f * 10.5f * 1000);
-                    var dQ = (contextButton.P2 * contextButton.P2 + contextButton.Q2 * contextButton.Q2) * contextButton.Length * contextButton.X0 / (10.5f * 10.5f * 1000);
+                    var dP = (contextButton.P2 * contextButton.P2 + contextButton.Q2 * contextButton.Q2) * contextButton.Length * contextButton.R0 / (GlobalGrid.U * GlobalGrid.U * 1000);
+                    var dQ = (contextButton.P2 * contextButton.P2 + contextButton.Q2 * contextButton.Q2) * contextButton.Length * contextButton.X0 / (GlobalGrid.U * GlobalGrid.U * 1000);
 
                     contextButton.P1List = new Dictionary<int, double>();
                     contextButton.Q1List = new Dictionary<int, double>();
@@ -153,8 +232,8 @@ namespace GraduationProject.Data
                     }
 
                     var K2f = Math.Pow((0.16 / transformer.Kz) + 0.82, 2);
-                    var DWp = ((contextButton.Wp2 * contextButton.Wp2 + contextButton.Wq2 * contextButton.Wq2) * contextButton.R0 * contextButton.Length * K2f) / (10.5f * 10.5f * 1000 * GlobalGrid.T);
-                    var DWq = ((contextButton.Wp2 * contextButton.Wp2 + contextButton.Wq2 * contextButton.Wq2) * contextButton.X0 * contextButton.Length * K2f) / (10.5f * 10.5f * 1000 * GlobalGrid.T);
+                    var DWp = ((contextButton.Wp2 * contextButton.Wp2 + contextButton.Wq2 * contextButton.Wq2) * contextButton.R0 * contextButton.Length * K2f) / (GlobalGrid.U * GlobalGrid.U * 1000 * GlobalGrid.T);
+                    var DWq = ((contextButton.Wp2 * contextButton.Wp2 + contextButton.Wq2 * contextButton.Wq2) * contextButton.X0 * contextButton.Length * K2f) / (GlobalGrid.U * GlobalGrid.U * 1000 * GlobalGrid.T);
 
                     foreach (var i in contextButton.Wp2List)
                     {
@@ -198,8 +277,8 @@ namespace GraduationProject.Data
                         contextButtonParent.Wq2List.Add(transformer.K, oldParent.Wq1List.Where(x => x.Key == transformer.K).FirstOrDefault().Value);
                         contextButtonParent.Wq2 = contextButtonParent.Wq2List.Values.Sum();
 
-                        dP = (contextButtonParent.P2 * contextButtonParent.P2 + contextButtonParent.Q2 * contextButtonParent.Q2) * contextButtonParent.Length * contextButtonParent.R0 / (10.5f * 10.5f * 1000);
-                        dQ = (contextButtonParent.P2 * contextButtonParent.P2 + contextButtonParent.Q2 * contextButtonParent.Q2) * contextButtonParent.Length * contextButtonParent.X0 / (10.5f * 10.5f * 1000);
+                        dP = (contextButtonParent.P2 * contextButtonParent.P2 + contextButtonParent.Q2 * contextButtonParent.Q2) * contextButtonParent.Length * contextButtonParent.R0 / (GlobalGrid.U * GlobalGrid.U * 1000);
+                        dQ = (contextButtonParent.P2 * contextButtonParent.P2 + contextButtonParent.Q2 * contextButtonParent.Q2) * contextButtonParent.Length * contextButtonParent.X0 / (GlobalGrid.U * GlobalGrid.U * 1000);
 
                         contextButtonParent.P1List = new Dictionary<int, double>();
                         contextButtonParent.Q1List = new Dictionary<int, double>();
@@ -219,8 +298,8 @@ namespace GraduationProject.Data
                             contextButtonParent.Q1List.Add(i.Key, i.Value + dQpercent);
                         }
 
-                        DWp = ((contextButtonParent.Wp2 * contextButtonParent.Wp2 + contextButtonParent.Wq2 * contextButtonParent.Wq2) * contextButtonParent.R0 * contextButtonParent.Length * K2f) / (10.5f * 10.5f * 1000 * GlobalGrid.T);
-                        DWq = ((contextButtonParent.Wp2 * contextButtonParent.Wp2 + contextButtonParent.Wq2 * contextButtonParent.Wq2) * contextButtonParent.X0 * contextButtonParent.Length * K2f) / (10.5f * 10.5f * 1000 * GlobalGrid.T);
+                        DWp = ((contextButtonParent.Wp2 * contextButtonParent.Wp2 + contextButtonParent.Wq2 * contextButtonParent.Wq2) * contextButtonParent.R0 * contextButtonParent.Length * K2f) / (GlobalGrid.U * GlobalGrid.U * 1000 * GlobalGrid.T);
+                        DWq = ((contextButtonParent.Wp2 * contextButtonParent.Wp2 + contextButtonParent.Wq2 * contextButtonParent.Wq2) * contextButtonParent.X0 * contextButtonParent.Length * K2f) / (GlobalGrid.U * GlobalGrid.U * 1000 * GlobalGrid.T);
 
                         foreach (var i in contextButtonParent.Wp2List)
                         {
@@ -278,8 +357,8 @@ namespace GraduationProject.Data
                 contextButton.Q2 = contextButton.Q2List.Values.Sum();
                 contextButton.Wq2 = contextButton.Wq2List.Values.Sum();
 
-                var dP = (contextButton.P2 * contextButton.P2 + contextButton.Q2 * contextButton.Q2) * contextButton.Length * contextButton.R0 / (10.5f * 10.5f * 1000);
-                var dQ = (contextButton.P2 * contextButton.P2 + contextButton.Q2 * contextButton.Q2) * contextButton.Length * contextButton.X0 / (10.5f * 10.5f * 1000);
+                var dP = (contextButton.P2 * contextButton.P2 + contextButton.Q2 * contextButton.Q2) * contextButton.Length * contextButton.R0 / (GlobalGrid.U * GlobalGrid.U * 1000);
+                var dQ = (contextButton.P2 * contextButton.P2 + contextButton.Q2 * contextButton.Q2) * contextButton.Length * contextButton.X0 / (GlobalGrid.U * GlobalGrid.U * 1000);
 
                 contextButton.P1List = new Dictionary<int, double>();
                 contextButton.Q1List = new Dictionary<int, double>();
@@ -300,8 +379,8 @@ namespace GraduationProject.Data
                 }
 
                 var K2f = Math.Pow((0.16 / transformer.Kz) + 0.82, 2);
-                var DWp = ((contextButton.Wp2 * contextButton.Wp2 + contextButton.Wq2 * contextButton.Wq2) * contextButton.R0 * contextButton.Length * K2f) / (10.5f * 10.5f * 1000 * GlobalGrid.T);
-                var DWq = ((contextButton.Wp2 * contextButton.Wp2 + contextButton.Wq2 * contextButton.Wq2) * contextButton.X0 * contextButton.Length * K2f) / (10.5f * 10.5f * 1000 * GlobalGrid.T);
+                var DWp = ((contextButton.Wp2 * contextButton.Wp2 + contextButton.Wq2 * contextButton.Wq2) * contextButton.R0 * contextButton.Length * K2f) / (GlobalGrid.U * GlobalGrid.U * 1000 * GlobalGrid.T);
+                var DWq = ((contextButton.Wp2 * contextButton.Wp2 + contextButton.Wq2 * contextButton.Wq2) * contextButton.X0 * contextButton.Length * K2f) / (GlobalGrid.U * GlobalGrid.U * 1000 * GlobalGrid.T);
 
                 foreach (var i in contextButton.Wp2List)
                 {
@@ -343,8 +422,8 @@ namespace GraduationProject.Data
                     contextButtonParent.Wq2List.Add(transformer.K, oldParent.Wq1List.Where(x => x.Key == transformer.K).FirstOrDefault().Value);
                     contextButtonParent.Wq2 = contextButtonParent.Wq2List.Values.Sum();
 
-                    dP = (contextButtonParent.P2 * contextButtonParent.P2 + contextButtonParent.Q2 * contextButtonParent.Q2) * contextButtonParent.Length * contextButtonParent.R0 / (10.5f * 10.5f * 1000);
-                    dQ = (contextButtonParent.P2 * contextButtonParent.P2 + contextButtonParent.Q2 * contextButtonParent.Q2) * contextButtonParent.Length * contextButtonParent.X0 / (10.5f * 10.5f * 1000);
+                    dP = (contextButtonParent.P2 * contextButtonParent.P2 + contextButtonParent.Q2 * contextButtonParent.Q2) * contextButtonParent.Length * contextButtonParent.R0 / (GlobalGrid.U * GlobalGrid.U * 1000);
+                    dQ = (contextButtonParent.P2 * contextButtonParent.P2 + contextButtonParent.Q2 * contextButtonParent.Q2) * contextButtonParent.Length * contextButtonParent.X0 / (GlobalGrid.U * GlobalGrid.U * 1000);
 
                     contextButtonParent.P1List = new Dictionary<int, double>();
                     contextButtonParent.Q1List = new Dictionary<int, double>();
@@ -364,8 +443,8 @@ namespace GraduationProject.Data
                         contextButtonParent.Q1List.Add(i.Key, i.Value + dQpercent);
                     }
 
-                    DWp = ((contextButtonParent.Wp2 * contextButtonParent.Wp2 + contextButtonParent.Wq2 * contextButtonParent.Wq2) * contextButtonParent.R0 * contextButtonParent.Length * K2f) / (10.5f * 10.5f * 1000 * GlobalGrid.T);
-                    DWq = ((contextButtonParent.Wp2 * contextButtonParent.Wp2 + contextButtonParent.Wq2 * contextButtonParent.Wq2) * contextButtonParent.X0 * contextButtonParent.Length * K2f) / (10.5f * 10.5f * 1000 * GlobalGrid.T);
+                    DWp = ((contextButtonParent.Wp2 * contextButtonParent.Wp2 + contextButtonParent.Wq2 * contextButtonParent.Wq2) * contextButtonParent.R0 * contextButtonParent.Length * K2f) / (GlobalGrid.U * GlobalGrid.U * 1000 * GlobalGrid.T);
+                    DWq = ((contextButtonParent.Wp2 * contextButtonParent.Wp2 + contextButtonParent.Wq2 * contextButtonParent.Wq2) * contextButtonParent.X0 * contextButtonParent.Length * K2f) / (GlobalGrid.U * GlobalGrid.U * 1000 * GlobalGrid.T);
 
                     foreach (var i in contextButtonParent.Wp2List)
                     {
@@ -517,8 +596,8 @@ namespace GraduationProject.Data
                 contextButton.Wq2List.Remove(transformer.K);
                 contextButton.Wq2 = contextButton.Wq2List.Values.Sum();
 
-                var dP = (contextButton.P2 * contextButton.P2 + contextButton.Q2 * contextButton.Q2) * contextButton.Length * contextButton.R0 / (10.5f * 10.5f * 1000);
-                var dQ = (contextButton.P2 * contextButton.P2 + contextButton.Q2 * contextButton.Q2) * contextButton.Length * contextButton.X0 / (10.5f * 10.5f * 1000);
+                var dP = (contextButton.P2 * contextButton.P2 + contextButton.Q2 * contextButton.Q2) * contextButton.Length * contextButton.R0 / (GlobalGrid.U * GlobalGrid.U * 1000);
+                var dQ = (contextButton.P2 * contextButton.P2 + contextButton.Q2 * contextButton.Q2) * contextButton.Length * contextButton.X0 / (GlobalGrid.U * GlobalGrid.U * 1000);
 
                 contextButton.P1List = new Dictionary<int, double>();
                 contextButton.Q1List = new Dictionary<int, double>();
@@ -586,8 +665,8 @@ namespace GraduationProject.Data
                     else contextButtonParent.Wq2List.Remove(transformer.K);
                     contextButtonParent.Wq2 = contextButtonParent.Wq2List.Values.Sum();
 
-                    dP = (contextButtonParent.P2 * contextButtonParent.P2 + contextButtonParent.Q2 * contextButtonParent.Q2) * contextButtonParent.Length * contextButtonParent.R0 / (10.5f * 10.5f * 1000);
-                    dQ = (contextButtonParent.P2 * contextButtonParent.P2 + contextButtonParent.Q2 * contextButtonParent.Q2) * contextButtonParent.Length * contextButtonParent.X0 / (10.5f * 10.5f * 1000);
+                    dP = (contextButtonParent.P2 * contextButtonParent.P2 + contextButtonParent.Q2 * contextButtonParent.Q2) * contextButtonParent.Length * contextButtonParent.R0 / (GlobalGrid.U * GlobalGrid.U * 1000);
+                    dQ = (contextButtonParent.P2 * contextButtonParent.P2 + contextButtonParent.Q2 * contextButtonParent.Q2) * contextButtonParent.Length * contextButtonParent.X0 / (GlobalGrid.U * GlobalGrid.U * 1000);
 
                     contextButtonParent.P1List = new Dictionary<int, double>();
                     contextButtonParent.Q1List = new Dictionary<int, double>();

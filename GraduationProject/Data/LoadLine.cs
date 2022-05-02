@@ -10,9 +10,9 @@ namespace GraduationProject.Data
     {
         public int N { get; set; }
         public int K { get; set; }
-        public string Length { get; set; }
-        public string R0 { get; set; }
-        public string X0 { get; set; }
-        public string Idop { get; set; }
+        public double Length { get; set; }
+        public double R0 { get; set; }
+        public double X0 { get; set; }
+        public double Idop { get; set; }
     }
 }
