@@ -63,7 +63,7 @@ namespace GraduationProject.ViewModel
             foreach (var i in listTransformers)
             {
                 var c = i.View.DataContext as TransformerViewModel;
-                c.ChangeParameters(i, c.Snom, c.Cosfi);
+                c.ChangeParameters(i, c.Sj, 0.92);
             }
             CloseControl();
         });

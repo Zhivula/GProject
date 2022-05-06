@@ -158,7 +158,14 @@ namespace GraduationProject.Data
                     {
                         parent.K.Margin = new Thickness(0, 0, 12, 0);
                     }
+                    if (parentPosition == 180 & childPosition == 90)
+                    {
+                        RotateTransform rotate = new RotateTransform(-90);
 
+                        child.K.LayoutTransform = rotate;
+
+                        child.K.Margin = new Thickness(-30, -30, 0, 30);
+                    }
 
 
                     if (parentPosition == 270 & childPosition == 270)

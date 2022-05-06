@@ -435,8 +435,10 @@ namespace GraduationProject.ViewModel
                     {
                         N = contextTransformer.N,
                         K = contextTransformer.K,
-                        dU = ((((contextTransformer.P2/1000) * (contextTransformer.R / 25) + (contextTransformer.Q2/1000)* (contextTransformer.X / 25)) /0.38)*100).ToString("0.####"),//Попровить формулу
-                        dUPercent = ((((contextTransformer.P2 / 1000) * (contextTransformer.R/25) + (contextTransformer.Q2 / 1000) * (contextTransformer.X/25)) / (0.38*0.38)) * 100).ToString("0.####"),//Попровить формулу
+                        //dU = ((((contextTransformer.P2/1000) * (contextTransformer.R / 25) + (contextTransformer.Q2/1000)* (contextTransformer.X / 25)) /0.38)*100).ToString("0.####"),//Попровить формулу
+                        //dUPercent = ((((contextTransformer.P2 / 1000) * (contextTransformer.R/25) + (contextTransformer.Q2 / 1000) * (contextTransformer.X/25)) / (0.38*0.38)) * 100).ToString("0.####"),//Попровить формулу
+                        dU = (((contextTransformer.P2 * contextTransformer.R + contextTransformer.Q2 * contextTransformer.X) * 1000) / 10).ToString("0.####"),
+                        dUPercent = ((((contextTransformer.P2 * contextTransformer.R + contextTransformer.Q2 * contextTransformer.X) * 1000) / 10) / GlobalGrid.U).ToString("0.####"),
                         P = contextTransformer.P1.ToString("0.####"),
                         Q = contextTransformer.Q1.ToString("0.####"),
                         R = contextTransformer.R.ToString("0.####"),
@@ -471,8 +473,8 @@ namespace GraduationProject.ViewModel
                     list.Add(new InfoNodes()
                     {
                         Number = contextTransformer.K,
-                        dUSum = (GlobalGrid.U - contextTransformer.U2) * 1000,
-                        dUSumPercent = ((GlobalGrid.U - contextTransformer.U2) / (GlobalGrid.U)) * 100,
+                        dUSum = (GlobalGrid.U - contextTransformer.U2 - contextTransformer.DeltaU) * 1000,
+                        dUSumPercent = ((GlobalGrid.U - contextTransformer.U2 - contextTransformer.DeltaU) / (GlobalGrid.U)) * 100,
                     });
                 }
                 if (i.View.DataContext is LineViewModel contextLine)
@@ -499,7 +501,7 @@ namespace GraduationProject.ViewModel
                 var parent = i.Parent.View.DataContext as LineViewModel;
                 item.N = context.N;
                 item.K = context.K;
-                item.DeltaUSumPercent = Math.Round((((GlobalGrid.U - parent.U2) / (GlobalGrid.U)) * 100),5);
+                item.DeltaUSumPercent = Math.Round((((GlobalGrid.U - parent.U2 - context.DeltaU) / (GlobalGrid.U)) * 100),5);
 
 
                 if (double.Parse(table.Branch_1.Max) >= item.DeltaUSumPercent & double.Parse(table.Branch_1.Min) <= item.DeltaUSumPercent)
@@ -510,7 +512,7 @@ namespace GraduationProject.ViewModel
                     list.Add(item);
                     continue;
                 }
-                else item.Branch_1 = "-";
+                //else item.Branch_1 = "-";
 
                 if (double.Parse(table.Branch_2.Max) >= item.DeltaUSumPercent & double.Parse(table.Branch_2.Min) <= item.DeltaUSumPercent)
                 {
@@ -519,7 +521,7 @@ namespace GraduationProject.ViewModel
                     list.Add(item);
                     continue;
                 }
-                else item.Branch_2 = "-";
+                //else item.Branch_2 = "-";
 
                 if (double.Parse(table.Branch_3.Max) >= item.DeltaUSumPercent & double.Parse(table.Branch_3.Min) <= item.DeltaUSumPercent)
                 {
@@ -528,7 +530,7 @@ namespace GraduationProject.ViewModel
                     list.Add(item);
                     continue;
                 }
-                else item.Branch_3 = "-";
+                //else item.Branch_3 = "-";
 
                 if (double.Parse(table.Branch_4.Max) >= item.DeltaUSumPercent & double.Parse(table.Branch_4.Min) <= item.DeltaUSumPercent)
                 {
@@ -538,7 +540,7 @@ namespace GraduationProject.ViewModel
                     list.Add(item);
                     continue;
                 }
-                else item.Branch_4 = "-";
+                //else item.Branch_4 = "-";
 
                 if (double.Parse(table.Branch_5.Max) >= item.DeltaUSumPercent & double.Parse(table.Branch_5.Min) <= item.DeltaUSumPercent)
                 {
@@ -547,7 +549,7 @@ namespace GraduationProject.ViewModel
                     list.Add(item);
                     continue;
                 }
-                else item.Branch_5 = "-";
+                //else item.Branch_5 = "-";
 
 
                 list.Add(item);

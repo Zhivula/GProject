@@ -95,7 +95,7 @@ namespace GraduationProject.Data
                 {
                     item = context.Transformers.Where(x => x.Brand == contextTransformer.Brand).Single();
                 }
-                var transformer = new TransformerView(item) { Height = 50, Width = 100 };
+                var transformer = new TransformerView(item, item.Snom, 0.92) { Height = 50, Width = 100 };
                 ((RotateTransform)transformer.RenderTransform).Angle = Angle;
                 if (Angle == 180 || Angle == 270)
                 {

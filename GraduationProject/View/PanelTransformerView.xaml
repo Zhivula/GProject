@@ -106,7 +106,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Foreground="Gray" Text="Падение напряжения, dU: "/>
-                    <TextBlock Foreground="Gray" Text="{Binding dU}"/>
+                    <TextBlock Foreground="Gray" Text="{Binding DeltaU}"/>
                     <TextBlock Foreground="Gray" Text="   кВ"/>
                 </StackPanel>
             </StackPanel>

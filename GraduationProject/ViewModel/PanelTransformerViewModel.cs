@@ -28,6 +28,7 @@ namespace GraduationProject.ViewModel
         private double wp2;
         private double wq1;
         private double wq2;
+        private double deltaU;
 
         public string LineNumber
         {
@@ -191,6 +192,15 @@ namespace GraduationProject.ViewModel
                 OnPropertyChanged(nameof(Wq2));
             }
         }
+        public double DeltaU
+        {
+            get => deltaU;
+            set
+            {
+                deltaU = value;
+                OnPropertyChanged(nameof(DeltaU));
+            }
+        }
         public PanelTransformerViewModel(TransformerView transformer)
         {
             var context = transformer.DataContext as TransformerViewModel;
@@ -207,6 +217,7 @@ namespace GraduationProject.ViewModel
             dQ = Q1 - Q2;
             dU = U1 - U2;
             Brand = context.Brand;
+            DeltaU = context.DeltaU;
         }
         #region PropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
