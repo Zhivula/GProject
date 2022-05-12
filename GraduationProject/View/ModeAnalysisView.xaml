@@ -495,7 +495,7 @@
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
                                     <Grid Grid.Column="0">
-                                        <TextBlock Foreground="White" Text="Snom, кВА" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
+                                        <TextBlock Foreground="White" Text="Sj, кВА" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
                                     </Grid>
                                     <Grid Grid.Column="1">
                                         <TextBlock Foreground="White" Text="cos(fi)" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
@@ -523,7 +523,7 @@
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
                                     <Grid Grid.Column="0">
-                                        <TextBlock Foreground="White" Text="Snom, кВА" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
+                                        <TextBlock Foreground="White" Text="Sj, кВА" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
                                     </Grid>
                                     <Grid Grid.Column="1">
                                         <TextBlock Foreground="White" Text="cos(fi)" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
@@ -573,7 +573,7 @@
                                                 <ColumnDefinition Width="*"/>
                                             </Grid.ColumnDefinitions>
                                             <Grid Grid.Column="0">
-                                                <TextBox Text="{Binding Path=LoadTransformerMax.Snom}" Margin="20 0">
+                                                <TextBox Text="{Binding Path=LoadTransformerMax.Sj}" Margin="20 0">
                                                     <TextBox.Template>
                                                         <ControlTemplate>
                                                             <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="White">
@@ -625,7 +625,7 @@
                                                 <ColumnDefinition Width="*"/>
                                             </Grid.ColumnDefinitions>
                                             <Grid Grid.Column="0">
-                                                <TextBox Text="{Binding Path=LoadTransformerMin.Snom}" Margin="20 0">
+                                                <TextBox Text="{Binding Path=LoadTransformerMin.Sj}" Margin="20 0">
                                                     <TextBox.Template>
                                                         <ControlTemplate>
                                                             <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="White">
@@ -760,16 +760,41 @@
                         </Button.Triggers>
                     </Button>
                     <TextBlock Text="Результаты расчета" Foreground="Black" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontFamily="Montserrat" Margin="0 20"/>
-                    <Button Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Right" Command="{Binding ShowCharts}">
-                        <StackPanel Orientation="Horizontal" Margin="0 0 10 0">
-                            <materialDesign:PackIcon Kind="ChartBar" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Gray" Height="40" Width="auto"/>
-                            <TextBlock Text="Графики напряжений" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Gray" Margin="10 0 0 0"/>
-                        </StackPanel>
-                        <Button.Triggers>
-                            <EventTrigger RoutedEvent="Button.Click">
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <!--<DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="GridResult"
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Button Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Right" Command="{Binding ExcelSave}">
+                            <StackPanel Orientation="Horizontal" Margin="0 0 10 0">
+                                <materialDesign:PackIcon Kind="Table" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Gray" Height="40" Width="auto"/>
+                                <TextBlock Text="Excel" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Gray" Margin="10 0 0 0"/>
+                            </StackPanel>
+                            <Button.Triggers>
+                                <EventTrigger RoutedEvent="Button.Click">
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(TranslateTransform.X)"  Storyboard.TargetName="Charts"
+                                         BeginTime="0:0:1"
+                                         From="1850"
+                                         To="0"
+                                         Duration="0:0:1"
+                                         FillBehavior="HoldEnd">
+                                                <DoubleAnimation.EasingFunction>
+                                                    <PowerEase Power="2" />
+                                                </DoubleAnimation.EasingFunction>
+                                            </DoubleAnimation>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                            </Button.Triggers>
+                        </Button>
+                        <Button Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Right" Command="{Binding ShowCharts}">
+                            <StackPanel Orientation="Horizontal" Margin="0 0 10 0">
+                                <materialDesign:PackIcon Kind="ChartBar" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Gray" Height="40" Width="auto"/>
+                                <TextBlock Text="Графики напряжений" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Gray" Margin="10 0 0 0"/>
+                            </StackPanel>
+                            <Button.Triggers>
+                                <EventTrigger RoutedEvent="Button.Click">
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <!--<DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="GridResult"
                                          BeginTime="0:0:0.5"
                                          From="1"
                                          To="0"
@@ -779,30 +804,31 @@
                                                 <PowerEase Power="3" />
                                             </DoubleAnimation.EasingFunction>
                                         </DoubleAnimation>-->
-                                        <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(TranslateTransform.X)"  Storyboard.TargetName="Charts"
+                                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(TranslateTransform.X)"  Storyboard.TargetName="Charts"
                                          BeginTime="0:0:1"
                                          From="1850"
                                          To="0"
                                          Duration="0:0:1"
                                          FillBehavior="HoldEnd">
-                                            <DoubleAnimation.EasingFunction>
-                                                <PowerEase Power="2" />
-                                            </DoubleAnimation.EasingFunction>
-                                        </DoubleAnimation>
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </EventTrigger>
-                        </Button.Triggers>
-                    </Button>
+                                                <DoubleAnimation.EasingFunction>
+                                                    <PowerEase Power="2" />
+                                                </DoubleAnimation.EasingFunction>
+                                            </DoubleAnimation>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                            </Button.Triggers>
+                        </Button>
+                    </StackPanel>
                 </Grid>
                 <Grid Background="#17171a" Height="Auto">
                     <Border BorderBrush="#333" BorderThickness="0 1"/>
                     <Grid Margin="10 0">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="0.15*"/>
-                            <ColumnDefinition Width="0.15*"/>
-                            <ColumnDefinition Width="0.15*"/>
-                            <ColumnDefinition Width="0.15*"/>
+                            <ColumnDefinition Width="0.10*"/>
+                            <ColumnDefinition Width="0.10*"/>
+                            <ColumnDefinition Width="0.10*"/>
+                            <ColumnDefinition Width="0.10*"/>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
@@ -831,17 +857,25 @@
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
                                     <Grid Grid.Column="0">
-                                        <TextBlock Foreground="White" Text="P, кВт" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
+                                        <TextBlock Foreground="White" Text="P1, кВт" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
                                     </Grid>
                                     <Grid Grid.Column="1">
-                                        <TextBlock Foreground="White" Text="Q, кВар" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
+                                        <TextBlock Foreground="White" Text="P2, кВт" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
                                     </Grid>
                                     <Grid Grid.Column="2">
-                                        <TextBlock Foreground="White" Text="dU, В" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
+                                        <TextBlock Foreground="White" Text="Q1, кВар" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
                                     </Grid>
                                     <Grid Grid.Column="3">
+                                        <TextBlock Foreground="White" Text="Q2, кВар" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
+                                    </Grid>
+                                    <Grid Grid.Column="4">
+                                        <TextBlock Foreground="White" Text="dU, В" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
+                                    </Grid>
+                                    <Grid Grid.Column="5">
                                         <TextBlock Foreground="White" Text="dU, %" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
                                     </Grid>
                                 </Grid>
@@ -859,17 +893,25 @@
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
                                     <Grid Grid.Column="0">
-                                        <TextBlock Foreground="White" Text="P, кВт" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
+                                        <TextBlock Foreground="White" Text="P1, кВт" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
                                     </Grid>
                                     <Grid Grid.Column="1">
-                                        <TextBlock Foreground="White" Text="Q, кВар" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
+                                        <TextBlock Foreground="White" Text="P2, кВт" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
                                     </Grid>
                                     <Grid Grid.Column="2">
-                                        <TextBlock Foreground="White" Text="dU, В" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
+                                        <TextBlock Foreground="White" Text="Q1, кВар" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
                                     </Grid>
                                     <Grid Grid.Column="3">
+                                        <TextBlock Foreground="White" Text="Q2, кВар" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
+                                    </Grid>
+                                    <Grid Grid.Column="4">
+                                        <TextBlock Foreground="White" Text="dU, В" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
+                                    </Grid>
+                                    <Grid Grid.Column="5">
                                         <TextBlock Foreground="White" Text="dU, %" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" FontFamily="Segoe UI Black" Margin="10"/>
                                     </Grid>
                                 </Grid>
@@ -884,10 +926,10 @@
                                 <Border BorderThickness="0 0 0 1" BorderBrush="#333"/>
                                 <Grid  Margin="0 2">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="0.15*"/>
-                                        <ColumnDefinition Width="0.15*"/>
-                                        <ColumnDefinition Width="0.15*"/>
-                                        <ColumnDefinition Width="0.15*"/>
+                                        <ColumnDefinition Width="0.10*"/>
+                                        <ColumnDefinition Width="0.10*"/>
+                                        <ColumnDefinition Width="0.10*"/>
+                                        <ColumnDefinition Width="0.10*"/>
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
@@ -919,17 +961,25 @@
                                                     <ColumnDefinition Width="*"/>
                                                     <ColumnDefinition Width="*"/>
                                                     <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
                                                 </Grid.ColumnDefinitions>
                                                 <Grid Grid.Column="0">
                                                     <TextBlock Foreground="Black" Text="{Binding Path=InfoBranchesMax.P}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 0 10 0"/>
                                                 </Grid>
                                                 <Grid Grid.Column="1">
-                                                    <TextBlock Foreground="Black" Text="{Binding Path=InfoBranchesMax.Q}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 0 10 0"/>
+                                                    <TextBlock Foreground="Black" Text="{Binding Path=InfoBranchesMax.P2}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 0 10 0"/>
                                                 </Grid>
                                                 <Grid Grid.Column="2">
-                                                    <TextBlock Foreground="Black" Text="{Binding Path=InfoBranchesMax.dU}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 0 10 0"/>
+                                                    <TextBlock Foreground="Black" Text="{Binding Path=InfoBranchesMax.Q}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 0 10 0"/>
                                                 </Grid>
                                                 <Grid Grid.Column="3">
+                                                    <TextBlock Foreground="Black" Text="{Binding Path=InfoBranchesMax.Q2}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 0 10 0"/>
+                                                </Grid>
+                                                <Grid Grid.Column="4">
+                                                    <TextBlock Foreground="Black" Text="{Binding Path=InfoBranchesMax.dU}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 0 10 0"/>
+                                                </Grid>
+                                                <Grid Grid.Column="5">
                                                     <TextBlock Foreground="Black" Text="{Binding Path=InfoBranchesMax.dUPercent}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 0 10 0"/>
                                                 </Grid>
                                             </Grid>
@@ -943,17 +993,25 @@
                                                     <ColumnDefinition Width="*"/>
                                                     <ColumnDefinition Width="*"/>
                                                     <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
                                                 </Grid.ColumnDefinitions>
                                                 <Grid Grid.Column="0">
                                                     <TextBlock Foreground="Black" Text="{Binding Path=InfoBranchesMin.P}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 0 10 0"/>
                                                 </Grid>
                                                 <Grid Grid.Column="1">
-                                                    <TextBlock Foreground="Black" Text="{Binding Path=InfoBranchesMin.Q}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 0 10 0"/>
+                                                    <TextBlock Foreground="Black" Text="{Binding Path=InfoBranchesMin.P2}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 0 10 0"/>
                                                 </Grid>
                                                 <Grid Grid.Column="2">
-                                                    <TextBlock Foreground="Black" Text="{Binding Path=InfoBranchesMin.dU}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 0 10 0"/>
+                                                    <TextBlock Foreground="Black" Text="{Binding Path=InfoBranchesMin.Q}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 0 10 0"/>
                                                 </Grid>
                                                 <Grid Grid.Column="3">
+                                                    <TextBlock Foreground="Black" Text="{Binding Path=InfoBranchesMin.Q2}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 0 10 0"/>
+                                                </Grid>
+                                                <Grid Grid.Column="4">
+                                                    <TextBlock Foreground="Black" Text="{Binding Path=InfoBranchesMin.dU}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 0 10 0"/>
+                                                </Grid>
+                                                <Grid Grid.Column="5">
                                                     <TextBlock Foreground="Black" Text="{Binding Path=InfoBranchesMin.dUPercent}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 0 10 0"/>
                                                 </Grid>
                                             </Grid>

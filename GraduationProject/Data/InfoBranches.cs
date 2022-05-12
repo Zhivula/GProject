@@ -14,6 +14,8 @@ namespace GraduationProject.Data
         public string dUPercent { get; set; }
         public string P { get; set; }
         public string Q { get; set; }
+        public string P2 { get; set; }
+        public string Q2 { get; set; }
         public string R { get; set; }
         public string X { get; set; }
     }

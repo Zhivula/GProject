@@ -55,7 +55,7 @@
                                 <ControlTemplate TargetType="Button">
                                     <Border BorderThickness="0" CornerRadius="5" Background="#3861fb">
                                         <Grid Height="35">
-                                            <TextBlock Text="Рассчитать" HorizontalAlignment="Center" FontFamily="Segoe UI Semibold" VerticalAlignment="Center"/>
+                                            <TextBlock Text="Установка ВДТ" HorizontalAlignment="Center" FontFamily="Segoe UI Semibold" VerticalAlignment="Center"/>
                                         </Grid>
                                     </Border>
                                 </ControlTemplate>

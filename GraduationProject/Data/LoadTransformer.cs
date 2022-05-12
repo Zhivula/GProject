@@ -5,7 +5,7 @@ namespace GraduationProject.Data
 {
     public class LoadTransformer : INotifyPropertyChanged
     {
-        private string snom;
+        private string sj;
         private string cosfi;
         private string p;
         private string q;
@@ -13,17 +13,18 @@ namespace GraduationProject.Data
         public int N { get; set; }
         public int K { get; set; }
 
-        public string Snom
+        public string Sj
         {
-            get => snom;
+            get => sj;
             set
             {
-                snom = value;
-                OnPropertyChanged(nameof(Snom));
-                if (Snom != "" & Snom != null & Cosfi != null & P != null & Q != null)
+                sj = value.Replace(".", ",");
+                OnPropertyChanged(nameof(Sj));
+                if (Sj != "" & Sj != null & Cosfi != null & P != null & Q != null)
                 {
-                    p = (double.Parse(Snom) * double.Parse(Cosfi)).ToString("#.####");
-                    q = Math.Sqrt(Math.Pow(double.Parse(Snom), 2) - Math.Pow(double.Parse(p), 2)).ToString("#.####");
+                    
+                    p = (double.Parse(Sj) * double.Parse(Cosfi)).ToString("#.####");
+                    q = Math.Sqrt(Math.Pow(double.Parse(Sj), 2) - Math.Pow(double.Parse(p), 2)).ToString("#.####");
                     OnPropertyChanged(nameof(P));
                     OnPropertyChanged(nameof(Q));
                 }
@@ -34,12 +35,12 @@ namespace GraduationProject.Data
             get => cosfi;
             set
             {
-                cosfi = value;
+                cosfi = value.Replace(".", ",");
                 OnPropertyChanged(nameof(Cosfi));
-                if (Cosfi != null && Snom != null && P != null && Q != null)
+                if (Cosfi != null && Sj != null && P != null && Q != null)
                 {
-                    p = (double.Parse(Snom) * double.Parse(Cosfi)).ToString("#.####");
-                    q = Math.Sqrt(Math.Pow(double.Parse(Snom), 2) - Math.Pow(double.Parse(p), 2)).ToString("#.####");
+                    p = (double.Parse(Sj) * double.Parse(Cosfi)).ToString("#.####");
+                    q = Math.Sqrt(Math.Pow(double.Parse(Sj), 2) - Math.Pow(double.Parse(p), 2)).ToString("#.####");
                     OnPropertyChanged(nameof(P));
                     OnPropertyChanged(nameof(Q));
                 }
@@ -50,13 +51,13 @@ namespace GraduationProject.Data
             get => p;
             set
             {
-                p = value;
+                p = value.Replace(".", ",");
                 OnPropertyChanged(nameof(P));
-                if (Cosfi != null && Snom != null && P != null && Q != null)
+                if (Cosfi != null && Sj != null && P != null && Q != null)
                 {
-                    snom = Math.Sqrt(Math.Pow(double.Parse(P), 2) + Math.Pow(double.Parse(Q), 2)).ToString("#.####");
-                    cosfi = (double.Parse(P) / double.Parse(snom)).ToString("0.####");
-                    OnPropertyChanged(nameof(Snom));
+                    sj = Math.Sqrt(Math.Pow(double.Parse(P), 2) + Math.Pow(double.Parse(Q), 2)).ToString("#.####");
+                    cosfi = (double.Parse(P) / double.Parse(sj)).ToString("0.####");
+                    OnPropertyChanged(nameof(Sj));
                     OnPropertyChanged(nameof(Cosfi));
                 }
             }
@@ -66,13 +67,13 @@ namespace GraduationProject.Data
             get => q;
             set
             {
-                q = value;
+                q = value.Replace(".", ",");
                 OnPropertyChanged(nameof(Q));
-                if (Cosfi != null && Snom != null && P != null && Q != null)
+                if (Cosfi != null && Sj != null && P != null && Q != null)
                 {
-                    snom = Math.Sqrt(Math.Pow(double.Parse(Q), 2) + Math.Pow(double.Parse(P), 2)).ToString("#.####");
-                    cosfi = (double.Parse(P) / double.Parse(snom)).ToString("0.####");
-                    OnPropertyChanged(nameof(Snom));
+                    sj = Math.Sqrt(Math.Pow(double.Parse(Q), 2) + Math.Pow(double.Parse(P), 2)).ToString("#.####");
+                    cosfi = (double.Parse(P) / double.Parse(sj)).ToString("0.####");
+                    OnPropertyChanged(nameof(Sj));
                     OnPropertyChanged(nameof(Cosfi));
                 }
             }

@@ -27,10 +27,6 @@ namespace GraduationProject.ViewModel
         private double r;
         private double x;
         private double l;
-        private double wp1;
-        private double wp2;
-        private double wq1;
-        private double wq2;
 
         public string LineNumber
         {
@@ -185,42 +181,6 @@ namespace GraduationProject.ViewModel
                 OnPropertyChanged(nameof(L));
             }
         }
-        public double Wp1
-        {
-            get => wp1;
-            set
-            {
-                wp1 = value;
-                OnPropertyChanged(nameof(Wp1));
-            }
-        }
-        public double Wp2
-        {
-            get => wp2;
-            set
-            {
-                wp2 = value;
-                OnPropertyChanged(nameof(Wp2));
-            }
-        }
-        public double Wq1
-        {
-            get => wq1;
-            set
-            {
-                wq1 = value;
-                OnPropertyChanged(nameof(Wq1));
-            }
-        }
-        public double Wq2
-        {
-            get => wq2;
-            set
-            {
-                wq2 = value;
-                OnPropertyChanged(nameof(Wq2));
-            }
-        }
         public PanelLineViewModel(LineView line)
         {
             var context = line.DataContext as LineViewModel;
@@ -238,10 +198,6 @@ namespace GraduationProject.ViewModel
             dU = Math.Round((U1 - U2),5);
             Brand = context.Brand;
             L = context.Length;
-            Wp1 = Math.Round(context.Wp1,5);
-            Wp2 = Math.Round(context.Wp2, 5);
-            Wq1 = Math.Round(context.Wq1,5);
-            Wq2 = Math.Round(context.Wq2, 5);
             Idop = context.Idop;
             I1 = context.I1;
             I2 = context.I2;

@@ -24,10 +24,6 @@ namespace GraduationProject.ViewModel
         private double r;
         private double x;
         private double l;
-        private double wp1;
-        private double wp2;
-        private double wq1;
-        private double wq2;
         private double deltaU;
 
         public string LineNumber
@@ -156,42 +152,6 @@ namespace GraduationProject.ViewModel
                 OnPropertyChanged(nameof(L));
             }
         }
-        public double Wp1
-        {
-            get => wp1;
-            set
-            {
-                wp1 = value;
-                OnPropertyChanged(nameof(Wp1));
-            }
-        }
-        public double Wp2
-        {
-            get => wp2;
-            set
-            {
-                wp2 = value;
-                OnPropertyChanged(nameof(Wp2));
-            }
-        }
-        public double Wq1
-        {
-            get => wq1;
-            set
-            {
-                wq1 = value;
-                OnPropertyChanged(nameof(Wq1));
-            }
-        }
-        public double Wq2
-        {
-            get => wq2;
-            set
-            {
-                wq2 = value;
-                OnPropertyChanged(nameof(Wq2));
-            }
-        }
         public double DeltaU
         {
             get => deltaU;
@@ -211,8 +171,6 @@ namespace GraduationProject.ViewModel
             Q2 = context.Q2;
             R = context.R;
             X = context.X;
-            //U2 = context.U2;
-            //U1 = context.U1;
             dP = P1 - P2;
             dQ = Q1 - Q2;
             dU = U1 - U2;

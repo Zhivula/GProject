@@ -52,6 +52,8 @@ namespace GraduationProject.ViewModel
         private Color color;
         private SolidColorBrush colorNode;
         private Visibility visibilytyVDT;
+        private Visibility visibilytyBSK;
+        private double qBSK;
 
         public int N
         {
@@ -438,7 +440,24 @@ namespace GraduationProject.ViewModel
                 OnPropertyChanged(nameof(VisibilytyVDT));
             }
         }
-
+        public Visibility VisibilytyBSK
+        {
+            get => visibilytyBSK;
+            set
+            {
+                visibilytyBSK = value;
+                OnPropertyChanged(nameof(VisibilytyBSK));
+            }
+        }
+        public double QBSK
+        {
+            get => qBSK;
+            set
+            {
+                qBSK = value;
+                OnPropertyChanged(nameof(QBSK));
+            }
+        }
         public LineViewModel(string brand, double length, double r0, double x0, double idop)
         {
             Opacity = 0;
@@ -459,6 +478,8 @@ namespace GraduationProject.ViewModel
             X0 = x0;
             Idop = idop;
             VisibilytyVDT = Visibility.Hidden;
+            VisibilytyBSK = Visibility.Hidden;
+            //QBSK = 0;
         }
         #region PropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;

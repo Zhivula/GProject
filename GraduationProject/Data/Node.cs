@@ -209,11 +209,9 @@ namespace GraduationProject.Data
 
                     contextButton.P2List.Add(transformer.K, transformer.P1);
                     contextButton.P2 = contextButton.P2List.Values.Sum();
-                    contextButton.Wp2 = contextButton.Wp2List.Values.Sum();
 
                     contextButton.Q2List.Add(transformer.K, transformer.Q1);
                     contextButton.Q2 = contextButton.Q2List.Values.Sum();
-                    contextButton.Wq2 = contextButton.Wq2List.Values.Sum();
 
                     contextButton.I2 = transformer.I;
 
@@ -222,8 +220,6 @@ namespace GraduationProject.Data
 
                     contextButton.P1List = new Dictionary<int, double>();
                     contextButton.Q1List = new Dictionary<int, double>();
-                    contextButton.Wp1List = new Dictionary<int, double>();
-                    contextButton.Wq1List = new Dictionary<int, double>();
 
                     foreach (var i in contextButton.P2List)
                     {
@@ -238,38 +234,14 @@ namespace GraduationProject.Data
                         contextButton.Q1List.Add(i.Key, i.Value + dQpercent);
                     }
 
-                    var K2f = Math.Pow((0.16 / transformer.Kz) + 0.82, 2);
-                    var DWp = ((contextButton.Wp2 * contextButton.Wp2 + contextButton.Wq2 * contextButton.Wq2) * contextButton.R0 * contextButton.Length * K2f) / (GlobalGrid.U * GlobalGrid.U * 1000 * GlobalGrid.T);
-                    var DWq = ((contextButton.Wp2 * contextButton.Wp2 + contextButton.Wq2 * contextButton.Wq2) * contextButton.X0 * contextButton.Length * K2f) / (GlobalGrid.U * GlobalGrid.U * 1000 * GlobalGrid.T);
-
-                    foreach (var i in contextButton.Wp2List)
-                    {
-                        var percent = i.Value / contextButton.Wp2;
-                        var dWPpercent = DWp * percent;
-                        contextButton.Wp1List.Add(i.Key, i.Value + dWPpercent);
-                    }
-                    foreach (var i in contextButton.Wq2List)
-                    {
-                        var percent = i.Value / contextButton.Wq2;
-                        var dWQpercent = DWq * percent;
-                        contextButton.Wq1List.Add(i.Key, i.Value + dWQpercent);
-                    }
-
-                    contextButton.Wp1 = contextButton.Wp1List.Values.Sum();
-                    contextButton.Wq1 = contextButton.Wq1List.Values.Sum();
-
                     contextButton.P1 = contextButton.P1List.Values.Sum();
                     contextButton.Q1 = contextButton.Q1List.Values.Sum();
-
-
 
                     var oldParent = contextButton;
 
                     while (parent != null)
                     {
                         var contextButtonParent = parent.View.DataContext as LineViewModel;
-                        contextButtonParent.Wp2 = oldParent.Wp1;
-                        contextButtonParent.Wq2 = oldParent.Wq1;
                         pp = parent;
 
                         contextButtonParent.P2List.Add(transformer.K, oldParent.P1List.Where(x => x.Key == transformer.K).FirstOrDefault().Value);
@@ -278,19 +250,11 @@ namespace GraduationProject.Data
                         contextButtonParent.Q2List.Add(transformer.K, oldParent.Q1List.Where(x => x.Key == transformer.K).FirstOrDefault().Value);
                         contextButtonParent.Q2 = contextButtonParent.Q2List.Values.Sum();
 
-                        contextButtonParent.Wp2List.Add(transformer.K, oldParent.Wp1List.Where(x => x.Key == transformer.K).FirstOrDefault().Value);
-                        contextButtonParent.Wp2 = contextButtonParent.Wp2List.Values.Sum();
-
-                        contextButtonParent.Wq2List.Add(transformer.K, oldParent.Wq1List.Where(x => x.Key == transformer.K).FirstOrDefault().Value);
-                        contextButtonParent.Wq2 = contextButtonParent.Wq2List.Values.Sum();
-
                         dP = (contextButtonParent.P2 * contextButtonParent.P2 + contextButtonParent.Q2 * contextButtonParent.Q2) * contextButtonParent.Length * contextButtonParent.R0 / (GlobalGrid.U * GlobalGrid.U * 1000);
                         dQ = (contextButtonParent.P2 * contextButtonParent.P2 + contextButtonParent.Q2 * contextButtonParent.Q2) * contextButtonParent.Length * contextButtonParent.X0 / (GlobalGrid.U * GlobalGrid.U * 1000);
 
                         contextButtonParent.P1List = new Dictionary<int, double>();
                         contextButtonParent.Q1List = new Dictionary<int, double>();
-                        contextButtonParent.Wp1List = new Dictionary<int, double>();
-                        contextButtonParent.Wq1List = new Dictionary<int, double>();
 
                         foreach (var i in contextButtonParent.P2List)
                         {
@@ -304,25 +268,6 @@ namespace GraduationProject.Data
                             var dQpercent = dQ * percent;
                             contextButtonParent.Q1List.Add(i.Key, i.Value + dQpercent);
                         }
-
-                        DWp = ((contextButtonParent.Wp2 * contextButtonParent.Wp2 + contextButtonParent.Wq2 * contextButtonParent.Wq2) * contextButtonParent.R0 * contextButtonParent.Length * K2f) / (GlobalGrid.U * GlobalGrid.U * 1000 * GlobalGrid.T);
-                        DWq = ((contextButtonParent.Wp2 * contextButtonParent.Wp2 + contextButtonParent.Wq2 * contextButtonParent.Wq2) * contextButtonParent.X0 * contextButtonParent.Length * K2f) / (GlobalGrid.U * GlobalGrid.U * 1000 * GlobalGrid.T);
-
-                        foreach (var i in contextButtonParent.Wp2List)
-                        {
-                            var percent = i.Value / contextButtonParent.Wp2;
-                            var dWPpercent = DWp * percent;
-                            contextButtonParent.Wp1List.Add(i.Key, i.Value + dWPpercent);
-                        }
-                        foreach (var i in contextButtonParent.Wq2List)
-                        {
-                            var percent = i.Value / contextButtonParent.Wq2;
-                            var dWQpercent = DWq * percent;
-                            contextButtonParent.Wq1List.Add(i.Key, i.Value + dWQpercent);
-                        }
-
-                        contextButtonParent.Wp1 = contextButtonParent.Wp1List.Values.Sum();
-                        contextButtonParent.Wq1 = contextButtonParent.Wq1List.Values.Sum();
 
                         contextButtonParent.P1 = contextButtonParent.P1List.Values.Sum();
                         contextButtonParent.Q1 = contextButtonParent.Q1List.Values.Sum();
@@ -358,19 +303,15 @@ namespace GraduationProject.Data
 
                 contextButton.P2List.Add(transformer.K, transformer.P1);
                 contextButton.P2 = contextButton.P2List.Values.Sum();
-                contextButton.Wp2 = contextButton.Wp2List.Values.Sum();
 
                 contextButton.Q2List.Add(transformer.K, transformer.Q1);
                 contextButton.Q2 = contextButton.Q2List.Values.Sum();
-                contextButton.Wq2 = contextButton.Wq2List.Values.Sum();
 
                 var dP = (contextButton.P2 * contextButton.P2 + contextButton.Q2 * contextButton.Q2) * contextButton.Length * contextButton.R0 / (GlobalGrid.U * GlobalGrid.U * 1000);
                 var dQ = (contextButton.P2 * contextButton.P2 + contextButton.Q2 * contextButton.Q2) * contextButton.Length * contextButton.X0 / (GlobalGrid.U * GlobalGrid.U * 1000);
 
                 contextButton.P1List = new Dictionary<int, double>();
                 contextButton.Q1List = new Dictionary<int, double>();
-                contextButton.Wp1List = new Dictionary<int, double>();
-                contextButton.Wq1List = new Dictionary<int, double>();
 
                 foreach (var i in contextButton.P2List)
                 {
@@ -385,26 +326,6 @@ namespace GraduationProject.Data
                     contextButton.Q1List.Add(i.Key, i.Value + dQpercent);
                 }
 
-                var K2f = Math.Pow((0.16 / transformer.Kz) + 0.82, 2);
-                var DWp = ((contextButton.Wp2 * contextButton.Wp2 + contextButton.Wq2 * contextButton.Wq2) * contextButton.R0 * contextButton.Length * K2f) / (GlobalGrid.U * GlobalGrid.U * 1000 * GlobalGrid.T);
-                var DWq = ((contextButton.Wp2 * contextButton.Wp2 + contextButton.Wq2 * contextButton.Wq2) * contextButton.X0 * contextButton.Length * K2f) / (GlobalGrid.U * GlobalGrid.U * 1000 * GlobalGrid.T);
-
-                foreach (var i in contextButton.Wp2List)
-                {
-                    var percent = i.Value / contextButton.Wp2;
-                    var dWPpercent = DWp * percent;
-                    contextButton.Wp1List.Add(i.Key, i.Value + dWPpercent);
-                }
-                foreach (var i in contextButton.Wq2List)
-                {
-                    var percent = i.Value / contextButton.Wq2;
-                    var dWQpercent = DWq * percent;
-                    contextButton.Wq1List.Add(i.Key, i.Value + dWQpercent);
-                }
-
-                contextButton.Wp1 = contextButton.Wp1List.Values.Sum();
-                contextButton.Wq1 = contextButton.Wq1List.Values.Sum();
-
                 contextButton.P1 = contextButton.P1List.Values.Sum();
                 contextButton.Q1 = contextButton.Q1List.Values.Sum();
 
@@ -413,8 +334,7 @@ namespace GraduationProject.Data
                 while (parent != null)
                 {
                     var contextButtonParent = parent.View.DataContext as LineViewModel;
-                    contextButtonParent.Wp2 = oldParent.Wp1;
-                    contextButtonParent.Wq2 = oldParent.Wq1;
+
                     pp = parent;
 
                     contextButtonParent.P2List.Add(transformer.K, oldParent.P1List.Where(x => x.Key == transformer.K).FirstOrDefault().Value);
@@ -423,19 +343,11 @@ namespace GraduationProject.Data
                     contextButtonParent.Q2List.Add(transformer.K, oldParent.Q1List.Where(x => x.Key == transformer.K).FirstOrDefault().Value);
                     contextButtonParent.Q2 = contextButtonParent.Q2List.Values.Sum();
 
-                    contextButtonParent.Wp2List.Add(transformer.K, oldParent.Wp1List.Where(x => x.Key == transformer.K).FirstOrDefault().Value);
-                    contextButtonParent.Wp2 = contextButtonParent.Wp2List.Values.Sum();
-
-                    contextButtonParent.Wq2List.Add(transformer.K, oldParent.Wq1List.Where(x => x.Key == transformer.K).FirstOrDefault().Value);
-                    contextButtonParent.Wq2 = contextButtonParent.Wq2List.Values.Sum();
-
                     dP = (contextButtonParent.P2 * contextButtonParent.P2 + contextButtonParent.Q2 * contextButtonParent.Q2) * contextButtonParent.Length * contextButtonParent.R0 / (GlobalGrid.U * GlobalGrid.U * 1000);
                     dQ = (contextButtonParent.P2 * contextButtonParent.P2 + contextButtonParent.Q2 * contextButtonParent.Q2) * contextButtonParent.Length * contextButtonParent.X0 / (GlobalGrid.U * GlobalGrid.U * 1000);
 
                     contextButtonParent.P1List = new Dictionary<int, double>();
                     contextButtonParent.Q1List = new Dictionary<int, double>();
-                    contextButtonParent.Wp1List = new Dictionary<int, double>();
-                    contextButtonParent.Wq1List = new Dictionary<int, double>();
 
                     foreach (var i in contextButtonParent.P2List)
                     {
@@ -450,25 +362,6 @@ namespace GraduationProject.Data
                         contextButtonParent.Q1List.Add(i.Key, i.Value + dQpercent);
                     }
 
-                    DWp = ((contextButtonParent.Wp2 * contextButtonParent.Wp2 + contextButtonParent.Wq2 * contextButtonParent.Wq2) * contextButtonParent.R0 * contextButtonParent.Length * K2f) / (GlobalGrid.U * GlobalGrid.U * 1000 * GlobalGrid.T);
-                    DWq = ((contextButtonParent.Wp2 * contextButtonParent.Wp2 + contextButtonParent.Wq2 * contextButtonParent.Wq2) * contextButtonParent.X0 * contextButtonParent.Length * K2f) / (GlobalGrid.U * GlobalGrid.U * 1000 * GlobalGrid.T);
-
-                    foreach (var i in contextButtonParent.Wp2List)
-                    {
-                        var percent = i.Value / contextButtonParent.Wp2;
-                        var dWPpercent = DWp * percent;
-                        contextButtonParent.Wp1List.Add(i.Key, i.Value + dWPpercent);
-                    }
-                    foreach (var i in contextButtonParent.Wq2List)
-                    {
-                        var percent = i.Value / contextButtonParent.Wq2;
-                        var dWQpercent = DWq * percent;
-                        contextButtonParent.Wq1List.Add(i.Key, i.Value + dWQpercent);
-                    }
-
-                    contextButtonParent.Wp1 = contextButtonParent.Wp1List.Values.Sum();
-                    contextButtonParent.Wq1 = contextButtonParent.Wq1List.Values.Sum();
-
                     contextButtonParent.P1 = contextButtonParent.P1List.Values.Sum();
                     contextButtonParent.Q1 = contextButtonParent.Q1List.Values.Sum();
 
@@ -479,12 +372,257 @@ namespace GraduationProject.Data
                 pp.Volt((float)GlobalGrid.U);
             }
         }
+        public void AddIter(Node<T> node)
+        {
+            if (node.View.DataContext is TransformerViewModel)
+            {
+                var contextButton = node.Parent.View.DataContext as LineViewModel;
+                var transformer = node.View.DataContext as TransformerViewModel;
+                var parent = Parent.Parent;
+                var pp = parent;
+
+                contextButton.P2List.Add(transformer.K, transformer.P1);
+                contextButton.P2 = contextButton.P2List.Values.Sum();
+
+                contextButton.Q2List.Add(transformer.K, transformer.Q1);
+                contextButton.Q2 = contextButton.Q2List.Values.Sum();
+
+                var dP = (contextButton.P2 * contextButton.P2 + contextButton.Q2 * contextButton.Q2) * contextButton.Length * contextButton.R0 / (contextButton.U1 * contextButton.U1 * 1000);
+                var dQ = (contextButton.P2 * contextButton.P2 + contextButton.Q2 * contextButton.Q2) * contextButton.Length * contextButton.X0 / (contextButton.U1 * contextButton.U1 * 1000);
+
+                contextButton.P1List = new Dictionary<int, double>();
+                contextButton.Q1List = new Dictionary<int, double>();
+
+                foreach (var i in contextButton.P2List)
+                {
+                    var percent = i.Value / contextButton.P2;
+                    var dPpercent = dP * percent;
+                    contextButton.P1List.Add(i.Key, i.Value + dPpercent);
+                }
+                foreach (var i in contextButton.Q2List)
+                {
+                    var percent = i.Value / contextButton.Q2;
+                    var dQpercent = dQ * percent;
+                    contextButton.Q1List.Add(i.Key, i.Value + dQpercent);
+                }
+
+                contextButton.P1 = contextButton.P1List.Values.Sum();
+                contextButton.Q1 = contextButton.Q1List.Values.Sum();
+
+                var oldParent = contextButton;
+
+                while (parent != null)
+                {
+                    var contextButtonParent = parent.View.DataContext as LineViewModel;
+
+                    pp = parent;
+
+                    contextButtonParent.P2List.Add(transformer.K, oldParent.P1List.Where(x => x.Key == transformer.K).FirstOrDefault().Value);
+                    contextButtonParent.P2 = contextButtonParent.P2List.Values.Sum();
+
+                    contextButtonParent.Q2List.Add(transformer.K, oldParent.Q1List.Where(x => x.Key == transformer.K).FirstOrDefault().Value);
+                    contextButtonParent.Q2 = contextButtonParent.Q2List.Values.Sum();
+
+                    dP = (contextButtonParent.P2 * contextButtonParent.P2 + contextButtonParent.Q2 * contextButtonParent.Q2) * contextButtonParent.Length * contextButtonParent.R0 / (contextButtonParent.U1 * contextButtonParent.U1 * 1000);
+                    dQ = (contextButtonParent.P2 * contextButtonParent.P2 + contextButtonParent.Q2 * contextButtonParent.Q2) * contextButtonParent.Length * contextButtonParent.X0 / (contextButtonParent.U1 * contextButtonParent.U1 * 1000);
+
+                    contextButtonParent.P1List = new Dictionary<int, double>();
+                    contextButtonParent.Q1List = new Dictionary<int, double>();
+
+                    foreach (var i in contextButtonParent.P2List)
+                    {
+                        var percent = i.Value / contextButtonParent.P2;
+                        var dPpercent = dP * percent;
+                        contextButtonParent.P1List.Add(i.Key, i.Value + dPpercent);
+                    }
+                    foreach (var i in contextButtonParent.Q2List)
+                    {
+                        var percent = i.Value / contextButtonParent.Q2;
+                        var dQpercent = dQ * percent;
+                        contextButtonParent.Q1List.Add(i.Key, i.Value + dQpercent);
+                    }
+
+                    contextButtonParent.P1 = contextButtonParent.P1List.Values.Sum();
+                    contextButtonParent.Q1 = contextButtonParent.Q1List.Values.Sum();
+
+                    //if (contextButtonParent.VisibilytyBSK == Visibility.Visible) contextButtonParent.Q1 += contextButtonParent.QBSK;
+
+                    oldParent = contextButtonParent;
+
+                    parent = pp.Parent;
+                }
+                pp.VoltUpdate((float)GlobalGrid.U);
+            }
+        }
+        public void AddBSK(double Q)
+        {
+            var contextButton = View.DataContext as LineViewModel;
+
+            var parent = Parent;
+            var pp = parent;
+            var key = 99999;
+            contextButton.Q2List.Add(key, Q);
+            contextButton.Q2 = contextButton.Q2List.Values.Sum();
+
+            var dP = (contextButton.P2 * contextButton.P2 + contextButton.Q2 * contextButton.Q2) * contextButton.Length * contextButton.R0 / (GlobalGrid.U * GlobalGrid.U * 1000);
+            var dQ = (contextButton.P2 * contextButton.P2 + contextButton.Q2 * contextButton.Q2) * contextButton.Length * contextButton.X0 / (GlobalGrid.U * GlobalGrid.U * 1000);
+
+            contextButton.P1List = new Dictionary<int, double>();
+            contextButton.Q1List = new Dictionary<int, double>();
+
+            foreach (var i in contextButton.P2List)
+            {
+                var percent = i.Value / contextButton.P2;
+                var dPpercent = dP * percent;
+                contextButton.P1List.Add(i.Key, i.Value + dPpercent);
+            }
+            foreach (var i in contextButton.Q2List)
+            {
+                var percent = i.Value / contextButton.Q2;
+                var dQpercent = dQ * percent;
+                contextButton.Q1List.Add(i.Key, i.Value + dQpercent);
+            }
+
+            contextButton.P1 = contextButton.P1List.Values.Sum();
+            contextButton.Q1 = contextButton.Q1List.Values.Sum();
+
+            var oldParent = contextButton;
+
+            while (parent != null)
+            {
+                var contextButtonParent = parent.View.DataContext as LineViewModel;
+                pp = parent;
+
+                contextButtonParent.Q2List.Add(key, oldParent.Q1List.Where(x => x.Key == key).FirstOrDefault().Value);
+                contextButtonParent.Q2 = contextButtonParent.Q2List.Values.Sum();
+
+                dP = (contextButtonParent.P2 * contextButtonParent.P2 + contextButtonParent.Q2 * contextButtonParent.Q2) * contextButtonParent.Length * contextButtonParent.R0 / (GlobalGrid.U * GlobalGrid.U * 1000);
+                dQ = (contextButtonParent.P2 * contextButtonParent.P2 + contextButtonParent.Q2 * contextButtonParent.Q2) * contextButtonParent.Length * contextButtonParent.X0 / (GlobalGrid.U * GlobalGrid.U * 1000);
+
+                contextButtonParent.P1List = new Dictionary<int, double>();
+                contextButtonParent.Q1List = new Dictionary<int, double>();
+
+                foreach (var i in contextButtonParent.P2List)
+                {
+                    var percent = i.Value / contextButtonParent.P2;
+                    var dPpercent = dP * percent;
+                    contextButtonParent.P1List.Add(i.Key, i.Value + dPpercent);
+                }
+                foreach (var i in contextButtonParent.Q2List)
+                {
+                    var percent = i.Value / contextButtonParent.Q2;
+                    var dQpercent = dQ * percent;
+                    contextButtonParent.Q1List.Add(i.Key, i.Value + dQpercent);
+                }
+
+                contextButtonParent.P1 = contextButtonParent.P1List.Values.Sum();
+                contextButtonParent.Q1 = contextButtonParent.Q1List.Values.Sum();
+
+                oldParent = contextButtonParent;
+
+                parent = pp.Parent;
+            }
+            pp.Volt((float)GlobalGrid.U);
+        }
+        public void VoltUpdate(float u)
+        {
+            TransformerViewModel transformer = View.DataContext as TransformerViewModel;
+            if (transformer != null)
+            {
+                transformer.U1 = (Parent.View.DataContext as LineViewModel).U2;
+                var DU = (transformer.R * transformer.P1 + transformer.X * transformer.P1) / (transformer.U1 * 1000);
+                transformer.U2 = transformer.U2 - DU;
+                var deltaUPercent = ((GlobalGrid.U - transformer.U1) / GlobalGrid.U) * 100;
+                if (deltaUPercent >= 10)
+                {
+                    transformer.ColorNode = new SolidColorBrush(Colors.Red);
+                }
+                if (deltaUPercent >= 5 && deltaUPercent < 10)
+                {
+                    transformer.ColorNode = new SolidColorBrush(Colors.Yellow);
+                }
+                if (deltaUPercent < 5)
+                {
+                    transformer.ColorNode = new SolidColorBrush(Colors.Green);
+                }
+            }
+
+            LineViewModel item = View.DataContext as LineViewModel;
+            if (item != null)
+            {
+                item.R = item.R0 * item.Length;
+                item.X = item.X0 * item.Length;
+                item.DU = (item.R * item.P1 + item.X * item.P1) / (u * 1000);
+                item.U1 = u;
+                u -= (float)item.DU;
+                //if (item.VisibilytyVDT == Visibility.Visible) item.U2 = 10.5f;
+                //else
+                item.U2 = u;
+                u = item.U2;
+                item.I1 = Math.Sqrt(Math.Pow(item.P1, 2) + Math.Pow(item.Q1, 2)) / (Math.Sqrt(3) * 10);
+                item.I2 = Math.Sqrt(Math.Pow(item.P2, 2) + Math.Pow(item.Q2, 2)) / (Math.Sqrt(3) * 10);
+
+                var deltaUPercent = ((GlobalGrid.U - item.U2) / GlobalGrid.U) * 100;
+
+                var kzLine = item.I2 / item.Idop;
+
+                if (kzLine >= 1)
+                {
+                    item.Opacity = 1;
+                    item.Color = Colors.Red;
+
+                    DoubleAnimation buttonAnimation = new DoubleAnimation();
+                    buttonAnimation.From = 0.3;
+                    buttonAnimation.To = 1;
+                    buttonAnimation.RepeatBehavior = RepeatBehavior.Forever;
+                    buttonAnimation.AutoReverse = true;
+                    buttonAnimation.Duration = new TimeSpan(0, 0, 2);
+                    var b = View as LineView;
+                    b.BorderGradient.BeginAnimation(Border.OpacityProperty, buttonAnimation);
+                }
+                if (kzLine >= 0.75 && kzLine < 1)
+                {
+                    item.Opacity = 1;
+                    item.Color = Colors.Yellow;
+
+                    DoubleAnimation buttonAnimation = new DoubleAnimation();
+                    buttonAnimation.From = 0.3;
+                    buttonAnimation.To = 1;
+                    buttonAnimation.RepeatBehavior = RepeatBehavior.Forever;
+                    buttonAnimation.AutoReverse = true;
+                    buttonAnimation.Duration = new TimeSpan(0, 0, 2);
+                    var b = View as LineView;
+                    b.BorderGradient.BeginAnimation(Border.OpacityProperty, buttonAnimation);
+                }
+                if (deltaUPercent >= 10)
+                {
+                    item.Opacity = 1;
+                    item.ColorNode = new SolidColorBrush(Colors.Red);
+                }
+                if (deltaUPercent >= 5 && deltaUPercent < 10)
+                {
+                    item.Opacity = 1;
+                    item.ColorNode = new SolidColorBrush(Colors.Yellow);
+                }
+                if (deltaUPercent < 5)
+                {
+                    item.Opacity = 1;
+                    item.ColorNode = new SolidColorBrush(Colors.Green);
+                }
+                foreach (var i in List)
+                {
+                    i.VoltUpdate(u);
+                }
+            }
+        }
         public void Volt(float u)
         {
             TransformerViewModel transformer = View.DataContext as TransformerViewModel;
             if (transformer != null)
             {
                 transformer.U1 = (Parent.View.DataContext as LineViewModel).U2;
+                var DU = (transformer.R * transformer.P1 + transformer.X * transformer.P1) / (transformer.U1 * 1000);
+                transformer.U2 = transformer.U2 - DU;
                 var deltaUPercent = ((GlobalGrid.U - transformer.U1) / GlobalGrid.U) * 100;
                 if (deltaUPercent >= 10)
                 {
@@ -508,7 +646,10 @@ namespace GraduationProject.Data
                 item.DU = (item.R * item.P1 + item.X * item.P1) / ((float)GlobalGrid.U * 1000);
                 item.U1 = u;
                 u -= (float)item.DU;
+                //if (item.VisibilytyVDT == Visibility.Visible) item.U2 = 10.5f;
+                //else 
                 item.U2 = u;
+                u = item.U2;
                 item.I1 = Math.Sqrt(Math.Pow(item.P1,2) + Math.Pow(item.Q1, 2)) / (Math.Sqrt(3) * 10);
                 item.I2 = Math.Sqrt(Math.Pow(item.P2, 2) + Math.Pow(item.Q2, 2)) / (Math.Sqrt(3) * 10);
 
@@ -595,21 +736,15 @@ namespace GraduationProject.Data
 
                 contextButton.P2List.Remove(transformer.K);
                 contextButton.P2 = contextButton.P2List.Values.Sum();
-                contextButton.Wp2List.Remove(transformer.K);
-                contextButton.Wp2 = contextButton.Wp2List.Values.Sum();
 
                 contextButton.Q2List.Remove(transformer.K);
                 contextButton.Q2 = contextButton.Q2List.Values.Sum();
-                contextButton.Wq2List.Remove(transformer.K);
-                contextButton.Wq2 = contextButton.Wq2List.Values.Sum();
 
                 var dP = (contextButton.P2 * contextButton.P2 + contextButton.Q2 * contextButton.Q2) * contextButton.Length * contextButton.R0 / (GlobalGrid.U * GlobalGrid.U * 1000);
                 var dQ = (contextButton.P2 * contextButton.P2 + contextButton.Q2 * contextButton.Q2) * contextButton.Length * contextButton.X0 / (GlobalGrid.U * GlobalGrid.U * 1000);
 
                 contextButton.P1List = new Dictionary<int, double>();
                 contextButton.Q1List = new Dictionary<int, double>();
-                contextButton.Wp1List = new Dictionary<int, double>();
-                contextButton.Wq1List = new Dictionary<int, double>();
 
                 foreach (var i in contextButton.P2List)
                 {
@@ -624,26 +759,6 @@ namespace GraduationProject.Data
                     contextButton.Q1List.Add(i.Key, i.Value + dQpercent);
                 }
 
-                var K2f = Math.Pow((0.16 / transformer.Kz) + 0.82, 2);
-                var DWp = ((contextButton.Wp2 * contextButton.Wp2 + contextButton.Wq2 * contextButton.Wq2) * contextButton.R0 * contextButton.Length * K2f) / (10.5f * 10.5f * 1000 * GlobalGrid.T);
-                var DWq = ((contextButton.Wp2 * contextButton.Wp2 + contextButton.Wq2 * contextButton.Wq2) * contextButton.X0 * contextButton.Length * K2f) / (10.5f * 10.5f * 1000 * GlobalGrid.T);
-
-                foreach (var i in contextButton.Wp2List)
-                {
-                    var percent = i.Value / contextButton.Wp2;
-                    var dWPpercent = DWp * percent;
-                    contextButton.Wp1List.Add(i.Key, i.Value + dWPpercent);
-                }
-                foreach (var i in contextButton.Wq2List)
-                {
-                    var percent = i.Value / contextButton.Wq2;
-                    var dWQpercent = DWq * percent;
-                    contextButton.Wq1List.Add(i.Key, i.Value + dWQpercent);
-                }
-
-                contextButton.Wp1 = contextButton.Wp1List.Values.Sum();
-                contextButton.Wq1 = contextButton.Wq1List.Values.Sum();
-
                 contextButton.P1 = contextButton.P1List.Values.Sum();
                 contextButton.Q1 = contextButton.Q1List.Values.Sum();
 
@@ -652,8 +767,7 @@ namespace GraduationProject.Data
                 while (parent != null)
                 {
                     var contextButtonParent = parent.View.DataContext as LineViewModel;
-                    contextButtonParent.Wp2 = oldParent.Wp1;
-                    contextButtonParent.Wq2 = oldParent.Wq1;
+
                     pp = parent;
 
                     if (oldParent.P1List.Count > 0) contextButtonParent.P2List.Remove(transformer.K);
@@ -664,21 +778,11 @@ namespace GraduationProject.Data
                     else contextButtonParent.Q2List.Remove(transformer.K);
                     contextButtonParent.Q2 = contextButtonParent.Q2List.Values.Sum();
 
-                    if (oldParent.Wp1List.Count > 0) contextButtonParent.Wp2List.Remove(transformer.K);
-                    else contextButtonParent.Wp2List.Remove(transformer.K);
-                    contextButtonParent.Wp2 = contextButtonParent.Wp2List.Values.Sum();
-
-                    if (oldParent.Wq1List.Count > 0) contextButtonParent.Wq2List.Remove(transformer.K);
-                    else contextButtonParent.Wq2List.Remove(transformer.K);
-                    contextButtonParent.Wq2 = contextButtonParent.Wq2List.Values.Sum();
-
                     dP = (contextButtonParent.P2 * contextButtonParent.P2 + contextButtonParent.Q2 * contextButtonParent.Q2) * contextButtonParent.Length * contextButtonParent.R0 / (GlobalGrid.U * GlobalGrid.U * 1000);
                     dQ = (contextButtonParent.P2 * contextButtonParent.P2 + contextButtonParent.Q2 * contextButtonParent.Q2) * contextButtonParent.Length * contextButtonParent.X0 / (GlobalGrid.U * GlobalGrid.U * 1000);
 
                     contextButtonParent.P1List = new Dictionary<int, double>();
                     contextButtonParent.Q1List = new Dictionary<int, double>();
-                    contextButtonParent.Wp1List = new Dictionary<int, double>();
-                    contextButtonParent.Wq1List = new Dictionary<int, double>();
 
                     foreach (var i in contextButtonParent.P2List)
                     {
@@ -692,25 +796,6 @@ namespace GraduationProject.Data
                         var dQpercent = dQ * percent;
                         contextButtonParent.Q1List.Add(i.Key, i.Value + dQpercent);
                     }
-
-                    DWp = ((contextButtonParent.Wp2 * contextButtonParent.Wp2 + contextButtonParent.Wq2 * contextButtonParent.Wq2) * contextButtonParent.R0 * contextButtonParent.Length * K2f) / (10.5f * 10.5f * 1000 * GlobalGrid.T);
-                    DWq = ((contextButtonParent.Wp2 * contextButtonParent.Wp2 + contextButtonParent.Wq2 * contextButtonParent.Wq2) * contextButtonParent.X0 * contextButtonParent.Length * K2f) / (10.5f * 10.5f * 1000 * GlobalGrid.T);
-
-                    foreach (var i in contextButtonParent.Wp2List)
-                    {
-                        var percent = i.Value / contextButtonParent.Wp2;
-                        var dWPpercent = DWp * percent;
-                        contextButtonParent.Wp1List.Add(i.Key, i.Value + dWPpercent);
-                    }
-                    foreach (var i in contextButtonParent.Wq2List)
-                    {
-                        var percent = i.Value / contextButtonParent.Wq2;
-                        var dWQpercent = DWq * percent;
-                        contextButtonParent.Wq1List.Add(i.Key, i.Value + dWQpercent);
-                    }
-
-                    contextButtonParent.Wp1 = contextButtonParent.Wp1List.Values.Sum();
-                    contextButtonParent.Wq1 = contextButtonParent.Wq1List.Values.Sum();
 
                     contextButtonParent.P1 = contextButtonParent.P1List.Values.Sum();
                     contextButtonParent.Q1 = contextButtonParent.Q1List.Values.Sum();

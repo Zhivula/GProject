@@ -50,6 +50,10 @@
     <Reference Include="MaterialDesignThemes.Wpf, Version=4.2.1.2, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignThemes.4.2.1\lib\net452\MaterialDesignThemes.Wpf.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="OxyPlot, Version=2.1.0.0, Culture=neutral, PublicKeyToken=638079a8f0bd61e9, processorArchitecture=MSIL">
       <HintPath>..\packages\OxyPlot.Core.2.1.0\lib\net45\OxyPlot.dll</HintPath>
     </Reference>
@@ -88,6 +92,7 @@
     <Compile Include="Data\BranchesMainTable.cs" />
     <Compile Include="Data\BranchesTable.cs" />
     <Compile Include="Data\BranchesTableMaxMin.cs" />
+    <Compile Include="Data\BSK.cs" />
     <Compile Include="Data\InfoBranches.cs" />
     <Compile Include="Data\InfoBranchesMaxMin.cs" />
     <Compile Include="Data\InfoNodes.cs" />
@@ -112,6 +117,7 @@
     <Compile Include="Model\SourceModel.cs" />
     <Compile Include="Model\TransformerModel.cs" />
     <Compile Include="ViewModel\AddSourceViewModel.cs" />
+    <Compile Include="ViewModel\BSCCatalogViewModel.cs" />
     <Compile Include="ViewModel\BSKViewModel.cs" />
     <Compile Include="ViewModel\CatalogLineViewModel.cs" />
     <Compile Include="ViewModel\CatalogTransformerViewModel.cs" />
@@ -120,6 +126,9 @@
     <Compile Include="ViewModel\PanelLineViewModel.cs" />
     <Compile Include="ViewModel\PanelTransformerViewModel.cs" />
     <Compile Include="ViewModel\VDTViewModel.cs" />
+    <Compile Include="View\BSCCatalogView.xaml.cs">
+      <DependentUpon>BSCCatalogView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\BSKView.xaml.cs">
       <DependentUpon>BSKView.xaml</DependentUpon>
     </Compile>
@@ -177,6 +186,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Theme\Scroll.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\BSCCatalogView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

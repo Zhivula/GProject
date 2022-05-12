@@ -1,4 +1,5 @@
 ﻿using GraduationProject.Data;
+using GraduationProject.DataBase;
 using GraduationProject.View;
 using GraduationProject.ViewModel;
 using System;
@@ -237,7 +238,7 @@ namespace GraduationProject.Model
             {
                 for (var i = 0; i < window.GridChange.Children.Count; i++)
                 {
-                    if (window.GridChange.Children[i] is Line) window.GridChange.Children[i].Visibility = Visibility.Hidden;
+                    if (window.GridChange.Children[i] is System.Windows.Shapes.Line) window.GridChange.Children[i].Visibility = Visibility.Hidden;
                 }
                 FlagViewGrid = false;
             }
@@ -245,7 +246,7 @@ namespace GraduationProject.Model
             {
                 for (var i = 0; i < window.GridChange.Children.Count; i++)
                 {
-                    if (window.GridChange.Children[i] is Line) window.GridChange.Children[i].Visibility = Visibility.Visible;
+                    if (window.GridChange.Children[i] is System.Windows.Shapes.Line) window.GridChange.Children[i].Visibility = Visibility.Visible;
                 }
                 FlagViewGrid = true;
             }
@@ -264,6 +265,22 @@ namespace GraduationProject.Model
         {
             var window = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
             window.StaticGrid.Children.Add(new BSKView());
+        }
+        public void BSKCatalog()
+        {
+            var window = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+            window.StaticGrid.Children.Add(new BSCCatalogView());
+        }
+        public void Iter()
+        {
+            var listElements = GlobalGrid.GetInstance().Tree.GetElements();
+            var listTransformers = listElements.Where(x => x.View.DataContext is TransformerViewModel).ToList();
+            foreach (var i in listTransformers)
+            {
+                var c = i.View.DataContext as TransformerViewModel;
+                c.UpdateTrL(i, c.Sj, 0.92);
+            }
+            MessageBox.Show("Успешно выполнено!");
         }
         /// <summary>
         /// Сохранение сериализируемой модели сети в отдельный файл.
@@ -305,7 +322,7 @@ namespace GraduationProject.Model
                 for (int i = window.GridChange.Children.Count - 1; i >= 0; --i)
                 {
                     var childTypeName = window.GridChange.Children[i].GetType().Name;
-                    if (childTypeName == nameof(Line))
+                    if (childTypeName == nameof(System.Windows.Shapes.Line))
                     {
                         window.GridChange.Children.RemoveAt(i);
                     }
@@ -316,11 +333,11 @@ namespace GraduationProject.Model
 
                 for (var i = 1; i < countWidth; i++)
                 {
-                    window.GridChange.Children.Add(new Line() { X1 = i * 10, X2 = i * 10, Y1 = 0, Y2 = countHeight * 10, Stroke = Brushes.Gray });
+                    window.GridChange.Children.Add(new System.Windows.Shapes.Line() { X1 = i * 10, X2 = i * 10, Y1 = 0, Y2 = countHeight * 10, Stroke = Brushes.Gray });
                 }
                 for (var i = 1; i < countHeight; i++)
                 {
-                    window.GridChange.Children.Add(new Line() { X1 = 0, X2 = countWidth * 10, Y1 = i * 10, Y2 = i * 10, Stroke = Brushes.Gray });
+                    window.GridChange.Children.Add(new System.Windows.Shapes.Line() { X1 = 0, X2 = countWidth * 10, Y1 = i * 10, Y2 = i * 10, Stroke = Brushes.Gray });
                 }
 
                 var global = GlobalGrid.GetInstance();
@@ -332,7 +349,13 @@ namespace GraduationProject.Model
 
                 var context = tree.Root.DataContext as LineModel;
 
-                var line = new LineView(context.Brand, context.L, context.R0, context.X0, context.Idop) { Height = 50, Width = 100 };
+                DataBase.Line item1;
+                using (var context1 = new MyDbContext())
+                {
+                    item1 = context1.Lines.Where(x => x.Brand == context.Brand).Single();
+                }
+
+                var line = new LineView(context.Brand, context.L, context.R0, context.X0, item1.Idop) { Height = 50, Width = 100 };
                 var contextLine = line.DataContext as LineViewModel;
                 contextLine.Flag = false;
                 ((RotateTransform)line.RenderTransform).Angle = tree.Root.Angle;
@@ -352,6 +375,13 @@ namespace GraduationProject.Model
                 }
             }
 
+            var listElements = GlobalGrid.GetInstance().Tree.GetElements();
+            var listTransformers = listElements.Where(x => x.View.DataContext is TransformerViewModel).ToList();
+            foreach (var i in listTransformers)
+            {
+                var c = i.View.DataContext as TransformerViewModel;
+                c.ChangeParameters(i, c.Sj, 0.92);
+            }
             MessageBox.Show("Успешно выполнено!");
         }
     }

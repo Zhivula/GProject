@@ -65,6 +65,11 @@
                         <Line Stroke="DeepSkyBlue" StrokeThickness="0.3" X1="60" Y1="5" X2="50" Y2="8"/>
                         <Line Stroke="DeepSkyBlue" StrokeThickness="0.3" X1="60" Y1="5" X2="58" Y2="14"/>
                     </Grid>
+                    <Grid Visibility="{Binding VisibilytyBSK}">
+                        <Line Stroke="DeepSkyBlue" StrokeThickness="3" X1="35" Y1="45" X2="35" Y2="5"/>
+                        <Line Stroke="DeepSkyBlue" StrokeThickness="3" X1="45" Y1="45" X2="45" Y2="5"/>
+                        <Line Stroke="White" StrokeThickness="5" X1="36.5" Y1="25" X2="43.5" Y2="25"/>
+                    </Grid>
                 </Grid>
                 <Button Grid.Column="2" Background="Green" Height="10" Width="10">
                     <Button.Template>

@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:GraduationProject.View"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-             d:DesignHeight="50" d:DesignWidth="100">
+             d:DesignHeight="50" d:DesignWidth="90">
     <Grid MouseEnter="Button_MouseEnter">
         <Border x:Name="Dop" Visibility="Hidden" Background="#17171a" Margin="-25 -200 -25 0" CornerRadius="10" Height="100" Width="150">
             <Grid Background="Transparent">
@@ -35,9 +35,9 @@
         </Border>
         <Grid>
             <Border BorderBrush="Gray" BorderThickness="0"/>
-            <Grid HorizontalAlignment="Left" Width="100">
+            <Grid HorizontalAlignment="Left" Width="90">
                 <TextBlock Text="{Binding P}" FontSize="15" Foreground="Gray" HorizontalAlignment="Center" Margin="0 80 0 0"/>
-                <TextBlock x:Name="Brand" Text="{Binding Brand}" FontSize="15" Foreground="Gray" HorizontalAlignment="Center" Margin="0 -20 0 0"/>
+                <TextBlock x:Name="Brand" Text="{Binding Brand}" FontSize="15" Foreground="Gray" HorizontalAlignment="Center" Margin="0 -15 0 0"/>
                 <TextBlock Text="" FontSize="15" Foreground="Gray" HorizontalAlignment="Left"/>
                 <!--Выше, раньше задавалось начало ветки трансформатора {Binding N}-->
                 <TextBlock x:Name="K" Text="{Binding K}" FontSize="15" Foreground="Black" HorizontalAlignment="Right" FontWeight="DemiBold"/>
@@ -68,8 +68,8 @@
                                 <Ellipse Stroke="Gray" StrokeThickness="2" Width="30" Height="30" Margin="-20 0 0 0"/>
                             </Grid>
                         </Button>
-                        <Rectangle Fill="Gray" Height="2" HorizontalAlignment="Left" Width="15" StrokeThickness="0"/>
-                        <Rectangle Fill="Gray" Height="2" HorizontalAlignment="Right" Width="15" StrokeThickness="0"/>
+                        <Rectangle Fill="Gray" Height="2" HorizontalAlignment="Left" Width="10" StrokeThickness="0"/>
+                        <Rectangle Fill="Gray" Height="2" HorizontalAlignment="Right" Width="10" StrokeThickness="0"/>
                     </Grid>
                     <Grid Grid.Column="2">
                         <Button Background="Green" Height="10" Width="10">

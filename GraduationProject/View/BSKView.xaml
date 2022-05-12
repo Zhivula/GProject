@@ -46,16 +46,35 @@
                             <TextBlock DockPanel.Dock="Top" Text=" кВ" Foreground="White" HorizontalAlignment="Center" FontSize="16"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
+                            <TextBlock DockPanel.Dock="Top" Text="Необходимая реактивная мощность БСК:   " Foreground="White" HorizontalAlignment="Center" FontSize="16"/>
+                            <TextBlock DockPanel.Dock="Top" Text="{Binding SBSKFull}" Foreground="Green" HorizontalAlignment="Center" FontSize="16"/>
+                            <TextBlock DockPanel.Dock="Top" Text=" кВар" Foreground="White" HorizontalAlignment="Center" FontSize="16"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
                             <TextBlock DockPanel.Dock="Top" Text="Реактивная мощность БСК:   " Foreground="White" HorizontalAlignment="Center" FontSize="16"/>
                             <TextBlock DockPanel.Dock="Top" Text="{Binding SBSK}" Foreground="Green" HorizontalAlignment="Center" FontSize="16"/>
                             <TextBlock DockPanel.Dock="Top" Text=" кВар" Foreground="White" HorizontalAlignment="Center" FontSize="16"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock DockPanel.Dock="Top" Text="Мощность одной батареи:   " Foreground="White" HorizontalAlignment="Center" FontSize="16"/>
+                            <TextBlock DockPanel.Dock="Top" Text="{Binding SBattery}" Foreground="Green" HorizontalAlignment="Center" FontSize="16"/>
+                            <TextBlock DockPanel.Dock="Top" Text=" кВар" Foreground="White" HorizontalAlignment="Center" FontSize="16"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock DockPanel.Dock="Top" Text="Количество батарей:   " Foreground="White" HorizontalAlignment="Center" FontSize="16"/>
+                            <TextBlock DockPanel.Dock="Top" Text="{Binding Count}" Foreground="Green" HorizontalAlignment="Center" FontSize="16"/>
+                            <TextBlock DockPanel.Dock="Top" Text=" шт." Foreground="White" HorizontalAlignment="Center" FontSize="16"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock DockPanel.Dock="Top" Text="Типономинал батарей:   " Foreground="White" HorizontalAlignment="Center" FontSize="16"/>
+                            <TextBlock DockPanel.Dock="Top" Text="{Binding Name}" Foreground="Green" HorizontalAlignment="Center" FontSize="16"/>
                         </StackPanel>
                         <Button Foreground="White" Margin="50 10" Cursor="Hand" Command="{Binding StartCommand}">
                             <Button.Template>
                                 <ControlTemplate TargetType="Button">
                                     <Border BorderThickness="0" CornerRadius="5" Background="#3861fb">
                                         <Grid Height="35">
-                                            <TextBlock Text="Рассчитать" HorizontalAlignment="Center" FontFamily="Segoe UI Semibold" VerticalAlignment="Center"/>
+                                            <TextBlock Text="Установка БСК" HorizontalAlignment="Center" FontFamily="Segoe UI Semibold" VerticalAlignment="Center"/>
                                         </Grid>
                                     </Border>
                                 </ControlTemplate>

@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Drawing;
 
 namespace GraduationProject.ViewModel
 {
@@ -415,10 +416,10 @@ namespace GraduationProject.ViewModel
                 {
                     N = context.N,
                     K = context.K,
+                    P = (context.P1 * m).ToString("0.####"),
+                    Q = (context.Q1 * m).ToString("0.####"),
                     Cosfi = (context.Cosfi).ToString("0.####"),
-                    Snom = (context.Snom*m).ToString("0.####"),
-                    P = (context.P1*m).ToString("0.####"),
-                    Q = (context.Q1*m).ToString("0.####")
+                    Sj = (context.Sj*m).ToString("0.####")
                 });
             }
             return list;
@@ -435,12 +436,12 @@ namespace GraduationProject.ViewModel
                     {
                         N = contextTransformer.N,
                         K = contextTransformer.K,
-                        //dU = ((((contextTransformer.P2/1000) * (contextTransformer.R / 25) + (contextTransformer.Q2/1000)* (contextTransformer.X / 25)) /0.38)*100).ToString("0.####"),//Попровить формулу
-                        //dUPercent = ((((contextTransformer.P2 / 1000) * (contextTransformer.R/25) + (contextTransformer.Q2 / 1000) * (contextTransformer.X/25)) / (0.38*0.38)) * 100).ToString("0.####"),//Попровить формулу
-                        dU = (((contextTransformer.P2 * contextTransformer.R + contextTransformer.Q2 * contextTransformer.X) * 1000) / 10).ToString("0.####"),
-                        dUPercent = ((((contextTransformer.P2 * contextTransformer.R + contextTransformer.Q2 * contextTransformer.X) * 1000) / 10) / GlobalGrid.U).ToString("0.####"),
+                        dU = ((contextTransformer.P2 * contextTransformer.R + contextTransformer.Q2 * contextTransformer.X)/ (Unom*1000)).ToString("0.####"),
+                        dUPercent = (((contextTransformer.P2 * contextTransformer.R + contextTransformer.Q2 * contextTransformer.X) / (Unom * 1000)) / GlobalGrid.U).ToString("0.####"),
                         P = contextTransformer.P1.ToString("0.####"),
                         Q = contextTransformer.Q1.ToString("0.####"),
+                        P2 = contextTransformer.P2.ToString("0.####"),
+                        Q2 = contextTransformer.Q2.ToString("0.####"),
                         R = contextTransformer.R.ToString("0.####"),
                         X = contextTransformer.X.ToString("0.####")
                     });
@@ -455,6 +456,8 @@ namespace GraduationProject.ViewModel
                         dUPercent = ((contextLine.DU/(GlobalGrid.U))*100).ToString("0.####"),
                         P = contextLine.P1.ToString("0.####"),
                         Q = contextLine.Q1.ToString("0.####"),
+                        P2 = contextLine.P2.ToString("0.####"),
+                        Q2 = contextLine.Q2.ToString("0.####"),
                         R = contextLine.R.ToString("0.####"),
                         X = contextLine.X.ToString("0.####")
                     });
@@ -473,8 +476,8 @@ namespace GraduationProject.ViewModel
                     list.Add(new InfoNodes()
                     {
                         Number = contextTransformer.K,
-                        dUSum = (GlobalGrid.U - contextTransformer.U2 - contextTransformer.DeltaU) * 1000,
-                        dUSumPercent = ((GlobalGrid.U - contextTransformer.U2 - contextTransformer.DeltaU) / (GlobalGrid.U)) * 100,
+                        dUSum = (GlobalGrid.U - (contextTransformer.U1 - contextTransformer.DeltaU)) * 1000,
+                        dUSumPercent = ((GlobalGrid.U - (contextTransformer.U1 - contextTransformer.DeltaU)) / (GlobalGrid.U)) * 100,
                     });
                 }
                 if (i.View.DataContext is LineViewModel contextLine)
@@ -501,58 +504,50 @@ namespace GraduationProject.ViewModel
                 var parent = i.Parent.View.DataContext as LineViewModel;
                 item.N = context.N;
                 item.K = context.K;
-                item.DeltaUSumPercent = Math.Round((((GlobalGrid.U - parent.U2 - context.DeltaU) / (GlobalGrid.U)) * 100),5);
+                item.DeltaUSumPercent = Math.Round((((GlobalGrid.U - (parent.U2 - context.DeltaU)) / (GlobalGrid.U)) * 100),5);
 
 
                 if (double.Parse(table.Branch_1.Max) >= item.DeltaUSumPercent & double.Parse(table.Branch_1.Min) <= item.DeltaUSumPercent)
                 {
                     item.Branch_1 = "+";
-
                     item.SelectedBranch = "+" + Branch_1.ToString() + "%";
-                    list.Add(item);
-                    continue;
+                    if(!list.Contains(item)) list.Add(item);
                 }
-                //else item.Branch_1 = "-";
+                else item.Branch_1 = "-";
 
                 if (double.Parse(table.Branch_2.Max) >= item.DeltaUSumPercent & double.Parse(table.Branch_2.Min) <= item.DeltaUSumPercent)
                 {
                     item.Branch_2 = "+";
                     item.SelectedBranch = "+" + Branch_2.ToString() + "%";
-                    list.Add(item);
-                    continue;
+                    if (!list.Contains(item)) list.Add(item);
                 }
-                //else item.Branch_2 = "-";
+                else item.Branch_2 = "-";
 
                 if (double.Parse(table.Branch_3.Max) >= item.DeltaUSumPercent & double.Parse(table.Branch_3.Min) <= item.DeltaUSumPercent)
                 {
                     item.Branch_3 = "+";
                     item.SelectedBranch = Branch_3.ToString() + "%";
-                    list.Add(item);
-                    continue;
+                    if (!list.Contains(item)) list.Add(item);
                 }
-                //else item.Branch_3 = "-";
+                else item.Branch_3 = "-";
 
                 if (double.Parse(table.Branch_4.Max) >= item.DeltaUSumPercent & double.Parse(table.Branch_4.Min) <= item.DeltaUSumPercent)
                 {
                     item.Branch_4 = "+";
-
                     item.SelectedBranch = "-" + Branch_4.ToString() + "%";
-                    list.Add(item);
-                    continue;
+                    if (!list.Contains(item)) list.Add(item);
                 }
-                //else item.Branch_4 = "-";
+                else item.Branch_4 = "-";
 
                 if (double.Parse(table.Branch_5.Max) >= item.DeltaUSumPercent & double.Parse(table.Branch_5.Min) <= item.DeltaUSumPercent)
                 {
                     item.Branch_5 = "+";
                     item.SelectedBranch = "-" + Branch_5.ToString() + "%";
-                    list.Add(item);
-                    continue;
+                    if (!list.Contains(item)) list.Add(item);
                 }
-                //else item.Branch_5 = "-";
+                else item.Branch_5 = "-";
 
-
-                list.Add(item);
+                if (!list.Contains(item)) list.Add(item);
             }
 
             return list;
@@ -599,7 +594,7 @@ namespace GraduationProject.ViewModel
                 var transformer = listTransformers.Where(x => x.Data == i.K).FirstOrDefault();
                 var context = transformer.View.DataContext as TransformerViewModel;
 
-                context.ChangeParameters(transformer, double.Parse(i.Snom), double.Parse(i.Cosfi));
+                context.ChangeParameters(transformer, double.Parse(i.Sj), double.Parse(i.Cosfi));//double.Parse(i.Cosfi)
             }
             
             InfoBranchesMax = FullInfoBranches();
@@ -614,7 +609,7 @@ namespace GraduationProject.ViewModel
                 var transformer = listTransformers.Where(x => x.Data == i.K).FirstOrDefault();
                 var context = transformer.View.DataContext as TransformerViewModel;
 
-                context.ChangeParameters(transformer, double.Parse(i.Snom), double.Parse(i.Cosfi));
+                context.ChangeParameters(transformer, double.Parse(i.Sj), double.Parse(i.Cosfi));
             }
 
             InfoBranchesMin = FullInfoBranches();
@@ -630,7 +625,7 @@ namespace GraduationProject.ViewModel
                 var transformer = listTransformers.Where(x => x.Data == i.K).FirstOrDefault();
                 var context = transformer.View.DataContext as TransformerViewModel;
 
-                context.ChangeParameters(transformer, double.Parse(i.Snom), double.Parse(i.Cosfi));
+                context.ChangeParameters(transformer, double.Parse(i.Sj), double.Parse(i.Cosfi));
             }
 
             var listSelectedBranches = GetSelectedBranches();
@@ -642,6 +637,67 @@ namespace GraduationProject.ViewModel
         {
             //PlotMax = GetPlotModel();
             //PlotMin = GetPlotModel();
+        });
+        public ICommand ExcelSave => new DelegateCommand(o =>
+        {
+            Microsoft.Office.Interop.Excel.Application ObjExcel = new Microsoft.Office.Interop.Excel.Application();
+            Microsoft.Office.Interop.Excel.Workbook ObjWorkBook;
+            Microsoft.Office.Interop.Excel.Worksheet ObjWorkSheet;
+            //Книга. 
+            ObjWorkBook = ObjExcel.Workbooks.Add(System.Reflection.Missing.Value);
+            //Или открыть уже имеющийся xls
+            //ObjWorkBook = ObjExcel.Workbooks.Add(AppDomain.CurrentDomain.BaseDirectory + @"Templates\NormyRashoda\Образец1.xls");
+            //Таблица.
+            ObjWorkSheet = (Microsoft.Office.Interop.Excel.Worksheet)ObjWorkBook.Sheets[1];
+
+            ObjWorkSheet.Cells[1, 1] = "Начало";
+            ObjWorkSheet.Cells[1, 2] = "Конец";
+            ObjWorkSheet.Cells[1, 3] = "R, Ом";
+            ObjWorkSheet.Cells[1, 4] = "X, Ом";
+            ObjWorkSheet.Cells[1, 5] = "P1, кВт";
+            ObjWorkSheet.Cells[1, 6] = "P2, кВт";
+            ObjWorkSheet.Cells[1, 7] = "Q1, кВар";
+            ObjWorkSheet.Cells[1, 8] = "Q2, кВар";
+            ObjWorkSheet.Cells[1, 9] = "dU, В";
+            ObjWorkSheet.Cells[1, 10] = "dUPercent, %";
+
+            ObjWorkSheet.Cells[1, 1] = "Начало";
+            ObjWorkSheet.Cells[1, 2] = "Конец";
+            ObjWorkSheet.Cells[1, 3] = "R, Ом";
+            ObjWorkSheet.Cells[1, 4] = "X, Ом";
+            ObjWorkSheet.Cells[1, 5] = "P1, кВт";
+            ObjWorkSheet.Cells[1, 6] = "P2, кВт";
+            ObjWorkSheet.Cells[1, 7] = "Q1, кВар";
+            ObjWorkSheet.Cells[1, 8] = "Q2, кВар";
+            ObjWorkSheet.Cells[1, 9] = "dU, В";
+            ObjWorkSheet.Cells[1, 10] = "dUPercent, %";
+
+            for (var i = 0; i < InfoBranchesMax.Count(); i++)
+            {
+                ObjWorkSheet.Cells[i + 2, 1] = InfoBranchesMax[i].N;
+                ObjWorkSheet.Cells[i + 2, 2] = InfoBranchesMax[i].K;
+                ObjWorkSheet.Cells[i + 2, 3] = InfoBranchesMax[i].R.ToString();
+                ObjWorkSheet.Cells[i + 2, 4] = InfoBranchesMax[i].X.ToString();
+                ObjWorkSheet.Cells[i + 2, 5] = InfoBranchesMax[i].P.ToString();
+                ObjWorkSheet.Cells[i + 2, 6] = InfoBranchesMax[i].P2.ToString();
+                ObjWorkSheet.Cells[i + 2, 7] = InfoBranchesMax[i].Q.ToString();
+                ObjWorkSheet.Cells[i + 2, 8] = InfoBranchesMax[i].Q2.ToString();
+                ObjWorkSheet.Cells[i + 2, 9] = InfoBranchesMax[i].dU.ToString();
+                ObjWorkSheet.Cells[i + 2, 10] = InfoBranchesMax[i].dUPercent.ToString();
+
+                //for (var j = 0; j < 10; j++) ObjWorkSheet.Cells[i + 2, j + 1].Style.Numberformat.Format = "0.000";
+            }
+            //Захватываем диапазон ячеек
+            //Microsoft.Office.Interop.Excel.Range range1 = ObjWorkSheet.UsedRange(ObjWorkSheet.Cells[2, 1], ObjWorkSheet.Cells[InfoBranchesMax.Count()+2, 10]);
+            ////Шрифт для диапазона
+            //range1.Cells.Font.Name = "Tahoma";
+            ////Размер шрифта для диапазона
+            //range1.Cells.Font.Size = 12;
+            ////Фоновый цвет
+            //range1.Interior.Color = Microsoft.Office.Interop.Excel.XlRgbColor.rgbGreen;
+            //Вызываем нашу созданную эксельку.
+            ObjExcel.Visible = true;
+            ObjExcel.UserControl = true;
         });
         public BranchesMainTable FindRangeForBranches(double dUcp, double m = 1)
         {
@@ -811,6 +867,54 @@ namespace GraduationProject.ViewModel
                 MarkerSize = 5,
                 MarkerType = MarkerType.Circle,
             };
+            var lineWithTransformers = new OxyPlot.Series.LineSeries() 
+            {
+                Title = "Режим наибольших нагрузок",
+                Color = OxyColor.FromRgb(22, 22, 124),
+                StrokeThickness = 3,
+                MarkerSize = 5,
+                MarkerType = MarkerType.Circle,
+            };
+            var lineRed = new OxyPlot.Series.LineSeries()
+            {
+                Title = "Режим наибольших нагрузок",
+                Color = OxyColor.FromRgb(255, 0, 0),
+                StrokeThickness = 2,
+                MarkerSize = 2,
+                MarkerType = MarkerType.None,
+            };
+
+            var dictionarySecond = GetDataChartSecond();
+            if (dictionarySecond.Count > 0)
+            {
+                var valuesList = dictionarySecond.Values.ToList();
+                var keysList = dictionarySecond.Keys.ToList();
+
+                lineWithTransformers.Points.Add(new DataPoint(0, valuesList[0][0]));
+                for (int i = 1; i < dictionarySecond.Count(); i++)
+                {
+                    lineWithTransformers.Points.Add(new DataPoint(i, valuesList[i][0]));
+                    lineWithTransformers.Points.Add(new DataPoint(i, valuesList[i][1]));
+                    lineWithTransformers.Points.Add(new DataPoint(i, valuesList[i][2]));
+                }
+                plot.Series.Add(lineWithTransformers);
+                plot.TextColor = OxyColors.Black;
+                plot.PlotAreaBorderThickness = new OxyThickness(2, 0, 0, 2);
+                plot.PlotAreaBorderColor = OxyColors.DimGray;
+
+                ////var min = dictionarySecond.Values.ToList().Min();
+                ////var max = dictionarySecond.Values.ToList().Max();
+
+                //var dateAxisH = new LinearAxis() { MajorGridlineStyle = LineStyle.Solid, MinorGridlineStyle = LineStyle.Dot, MinorGridlineColor = OxyColors.LightGray, MajorGridlineColor = OxyColors.Transparent, Position = AxisPosition.Left };
+                //dateAxisH.Layer = AxisLayer.BelowSeries;
+                //plot.Axes.Add(dateAxisH);
+
+                //var dateAxisV = new CategoryAxis() { MajorGridlineStyle = LineStyle.Solid, MinorGridlineStyle = LineStyle.Dot, MinorGridlineColor = OxyColors.LightGray, MajorGridlineColor = OxyColors.Transparent, Position = AxisPosition.Bottom, Angle = -90 };
+                //foreach (var i in keysList) dateAxisV.Labels.Add(i);
+                //dateAxisV.Layer = AxisLayer.AboveSeries;
+                //plot.Axes.Add(dateAxisV);
+            }
+
             var dictionary = GetDataChart();
 
             if (dictionary.Count > 0)
@@ -830,7 +934,7 @@ namespace GraduationProject.ViewModel
                 var min = dictionary.Values.ToList().Min();
                 var max = dictionary.Values.ToList().Max();
 
-                var dateAxisH = new LinearAxis() { MajorGridlineStyle = LineStyle.Solid, MinorGridlineStyle = LineStyle.Dot, MinorGridlineColor = OxyColors.LightGray, MajorGridlineColor = OxyColors.Transparent, Maximum = max, Minimum = min, Position = AxisPosition.Left };
+                var dateAxisH = new LinearAxis() { MajorGridlineStyle = LineStyle.Solid, MinorGridlineStyle = LineStyle.Dot, MinorGridlineColor = OxyColors.LightGray, MajorGridlineColor = OxyColors.Red, MajorStep = 5, Maximum = max, Minimum = min, Position = AxisPosition.Left };
                 dateAxisH.Layer = AxisLayer.BelowSeries;
                 plot.Axes.Add(dateAxisH);
 
@@ -838,7 +942,8 @@ namespace GraduationProject.ViewModel
                 foreach (var i in keysList) dateAxisV.Labels.Add(i);
                 dateAxisV.Layer = AxisLayer.AboveSeries;
                 plot.Axes.Add(dateAxisV);
-            }   
+            }
+
             return plot;
         }
         private Dictionary<string, double> GetDataChart()
@@ -855,6 +960,27 @@ namespace GraduationProject.ViewModel
                 }
             }
             list = list.OrderByDescending(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
+            return list;
+        }
+        private Dictionary<string, List<double>> GetDataChartSecond()
+        {
+            var list = new Dictionary<string, List<double>>();
+            var nodes = GetElements();
+            list.Add("ЦП", new List<double>(1));
+            list.Values.First().Add(5);
+
+            foreach (var i in nodes)
+            {
+                if (i.View.DataContext is TransformerViewModel contextTransformer)
+                {
+                    list.Add(contextTransformer.K.ToString(), new List<double>(3) {
+                        5 - ((GlobalGrid.U - contextTransformer.U1) / GlobalGrid.U) * 100,
+                        5 - ((GlobalGrid.U - (contextTransformer.U1-contextTransformer.DeltaU)) / GlobalGrid.U) * 100,
+                        5 - ((GlobalGrid.U - contextTransformer.U1) / GlobalGrid.U) * 100
+                    });
+                }
+            }
+            list = list.OrderByDescending(x => x.Value.First()).ToDictionary(x => x.Key, x => x.Value);
             return list;
         }
         #region PropertyChanged

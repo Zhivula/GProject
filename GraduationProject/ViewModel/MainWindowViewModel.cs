@@ -135,6 +135,14 @@ namespace GraduationProject.ViewModel
         {
             Model.BSK(); 
         });
+        public ICommand BSKCatalog => new DelegateCommand(o =>
+        {
+            Model.BSKCatalog();
+        });
+        public ICommand Iter => new DelegateCommand(o =>
+        {
+            Model.Iter();
+        });
         public ICommand Home => new DelegateCommand(o =>
         { 
             for (int i = window.FullGridChange.Children.Count - 1; i >= 0; --i)

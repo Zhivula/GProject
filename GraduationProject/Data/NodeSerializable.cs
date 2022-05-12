@@ -59,7 +59,12 @@ namespace GraduationProject.Data
             
             if (DataContext is LineModel contextLine)
             {
-                var line = new LineView(contextLine.Brand, contextLine.L, contextLine.R0, contextLine.X0, contextLine.Idop) { Height = 50, Width = 100 };
+                Line item1;
+                using (var context = new MyDbContext())
+                {
+                    item1 = context.Lines.Where(x => x.Brand == contextLine.Brand).Single();
+                }
+                var line = new LineView(contextLine.Brand, contextLine.L, contextLine.R0, contextLine.X0, item1.Idop) { Height = 50, Width = 100 };
                 ((RotateTransform)line.RenderTransform).Angle = Angle;
 
                 if (Angle == 180 || Angle == 270)
@@ -95,7 +100,7 @@ namespace GraduationProject.Data
                 {
                     item = context.Transformers.Where(x => x.Brand == contextTransformer.Brand).Single();
                 }
-                var transformer = new TransformerView(item, item.Snom, 0.92) { Height = 50, Width = 100 };
+                var transformer = new TransformerView(item, item.Snom, 0.92) { Height = 50, Width = 90 };
                 ((RotateTransform)transformer.RenderTransform).Angle = Angle;
                 if (Angle == 180 || Angle == 270)
                 {

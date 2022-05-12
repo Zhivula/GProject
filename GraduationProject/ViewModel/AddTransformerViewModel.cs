@@ -149,7 +149,7 @@ namespace GraduationProject.ViewModel
         {
             var global = GlobalGrid.GetInstance();
 
-            var view = new TransformerView(transformer, S, Cosfi) { Height = 50, Width = 100 };
+            var view = new TransformerView(transformer, S, Cosfi) { Height = 50, Width = 90 };
             Close();
             
             window.GridChange.Children.Add(view);
