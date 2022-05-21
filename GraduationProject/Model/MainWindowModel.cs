@@ -278,9 +278,14 @@ namespace GraduationProject.Model
             foreach (var i in listTransformers)
             {
                 var c = i.View.DataContext as TransformerViewModel;
-                c.UpdateTrL(i, c.Sj, 0.92);
+                c.UpdateTrL(i, c.Sj, c.Cosfi);                         ///
             }
             MessageBox.Show("Успешно выполнено!");
+        }
+        public void ChartVDT()
+        {
+            var window = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+            window.StaticGrid.Children.Add(new ChartVDTView());
         }
         /// <summary>
         /// Сохранение сериализируемой модели сети в отдельный файл.
@@ -380,7 +385,7 @@ namespace GraduationProject.Model
             foreach (var i in listTransformers)
             {
                 var c = i.View.DataContext as TransformerViewModel;
-                c.ChangeParameters(i, c.Sj, 0.92);
+                c.ChangeParameters(i, c.Sj, c.Cosfi);                         ///
             }
             MessageBox.Show("Успешно выполнено!");
         }

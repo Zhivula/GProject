@@ -89,15 +89,39 @@ namespace GraduationProject.ViewModel
                     var deltaUPercent = ((GlobalGrid.U - line.U2) / GlobalGrid.U) * 100;
                     if (deltaUPercent >= 10)
                     {
-                        Line = i.View;
+                        Line = i.Parent.View;
+                        var datacontext = i.Parent.View.DataContext as LineViewModel;
                         N = line.N;
                         K = line.K;
-                        Voltage1 = Math.Round(line.U1,5);
-                        Voltage2 = Math.Round(line.U2,5);
-                        MaxPlusVoltage = Math.Round(GlobalGrid.U - line.U2,5);
-                        SVDT = Math.Round(Math.Sqrt(line.P1 * line.P1 + line.Q1 * line.Q1) * (MaxPlusVoltage/ GlobalGrid.U),5);
+                        Voltage1 = Math.Round(datacontext.U1, 5);
+                        Voltage2 = Math.Round(datacontext.U2, 5);
+                        MaxPlusVoltage = Math.Round(GlobalGrid.U - datacontext.U2, 5);
+                        SVDT = Math.Round(Math.Sqrt(datacontext.P1 * datacontext.P1 + datacontext.Q1 * datacontext.Q1) * (MaxPlusVoltage / GlobalGrid.U), 5);
                         node = i;
                         return;
+                    }
+                }
+            }
+            if(Line == null)
+            {
+                foreach (var i in list)
+                {
+                    if (i.View.DataContext is LineViewModel line)
+                    {
+                        var deltaUPercent = ((GlobalGrid.U - line.U2) / GlobalGrid.U) * 100;
+                        if (deltaUPercent >= 5)
+                        {
+                            Line = i.Parent.View;
+                            var datacontext = i.Parent.View.DataContext as LineViewModel;
+                            N = line.N;
+                            K = line.K;
+                            Voltage1 = Math.Round(datacontext.U1, 5);
+                            Voltage2 = Math.Round(datacontext.U2, 5);
+                            MaxPlusVoltage = Math.Round(GlobalGrid.U - datacontext.U2, 5);
+                            SVDT = Math.Round(Math.Sqrt(datacontext.P1 * datacontext.P1 + datacontext.Q1 * datacontext.Q1) * (MaxPlusVoltage / GlobalGrid.U), 5);
+                            node = i;
+                            return;
+                        }
                     }
                 }
             }
@@ -106,6 +130,12 @@ namespace GraduationProject.ViewModel
         {
             if(Line != null)
             {
+                var chartVDTViewModel = new ChartVDTViewModel();
+                var chartBeforeVDT = new ChartBeforeVDT();
+                ChartBeforeVDT.plotBefore = chartVDTViewModel.GetPlotModel();//Как бы сохранение исходного графика до установки ВДТ
+                ChartBeforeVDT.dictionarySecondBefore = chartVDTViewModel.GetDataChartSecond(5);
+                ChartBeforeVDT.dictionaryFirstBefore = chartVDTViewModel.GetDataChart(5);
+
                 var line = Line as LineView;
                 var context = line.DataContext as LineViewModel;
                 context.VisibilytyVDT = Visibility.Visible;

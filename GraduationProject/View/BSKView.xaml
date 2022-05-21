@@ -25,18 +25,30 @@
                 <Grid Margin="5 20 5 5">
                     <StackPanel Orientation="Vertical">
                         <StackPanel Orientation="Horizontal">
+                            <TextBlock DockPanel.Dock="Top" Text="Рассматриваемый узел   " Foreground="White" HorizontalAlignment="Center" FontSize="16"/>
+                            <ComboBox ItemsSource="{Binding ComboboxSource}" SelectedItem="{Binding SelectedItem}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock DockPanel.Dock="Top" Text="Предыдущий узел   №" Foreground="White" HorizontalAlignment="Center" FontSize="16"/>
+                            <TextBlock DockPanel.Dock="Top" Text="{Binding N}" Foreground="White" HorizontalAlignment="Center" FontSize="16"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
                             <TextBlock DockPanel.Dock="Top" Text="Участок   " Foreground="White" HorizontalAlignment="Center" FontSize="16"/>
                             <TextBlock DockPanel.Dock="Top" Text="{Binding N}" Foreground="White" HorizontalAlignment="Center" FontSize="16"/>
                             <TextBlock DockPanel.Dock="Top" Text=" - " Foreground="White" HorizontalAlignment="Center" FontSize="16"/>
                             <TextBlock DockPanel.Dock="Top" Text="{Binding K}" Foreground="White" HorizontalAlignment="Center" FontSize="16"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock DockPanel.Dock="Top" Text="Напряжение в начале:   " Foreground="White" HorizontalAlignment="Center" FontSize="16"/>
+                            <TextBlock DockPanel.Dock="Top" Text="Напряжение в узле № " Foreground="White" HorizontalAlignment="Center" FontSize="16"/>
+                            <TextBlock DockPanel.Dock="Top" Text="{Binding N}" Foreground="White" HorizontalAlignment="Center" FontSize="16"/>
+                            <TextBlock DockPanel.Dock="Top" Text=":   " Foreground="White" HorizontalAlignment="Center" FontSize="16"/>
                             <TextBlock DockPanel.Dock="Top" Text="{Binding Voltage1}" Foreground="Red" HorizontalAlignment="Center" FontSize="16"/>
                             <TextBlock DockPanel.Dock="Top" Text=" кВ" Foreground="White" HorizontalAlignment="Center" FontSize="16"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock DockPanel.Dock="Top" Text="Напряжение в конце:   " Foreground="White" HorizontalAlignment="Center" FontSize="16"/>
+                            <TextBlock DockPanel.Dock="Top" Text="Напряжение в узле № " Foreground="White" HorizontalAlignment="Center" FontSize="16"/>
+                            <TextBlock DockPanel.Dock="Top" Text="{Binding K}" Foreground="White" HorizontalAlignment="Center" FontSize="16"/>
+                            <TextBlock DockPanel.Dock="Top" Text=":   " Foreground="White" HorizontalAlignment="Center" FontSize="16"/>
                             <TextBlock DockPanel.Dock="Top" Text="{Binding Voltage2}" Foreground="Red" HorizontalAlignment="Center" FontSize="16"/>
                             <TextBlock DockPanel.Dock="Top" Text=" кВ" Foreground="White" HorizontalAlignment="Center" FontSize="16"/>
                         </StackPanel>

@@ -41,10 +41,10 @@ namespace GraduationProject.View
             window.InfoPanel.Children.Clear();
             window.InfoPanel.Children.Add(new PanelTransformerView(this));
         }
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            Dop.Visibility = Visibility.Hidden;
-        }
+        //private void Button_Click_1(object sender, RoutedEventArgs e)
+        //{
+        //    Dop.Visibility = Visibility.Hidden;
+        //}
         private void RotateTransformer(object sender, RoutedEventArgs e)
         {
             var x = Canvas.GetLeft(this);
@@ -78,9 +78,9 @@ namespace GraduationProject.View
         //    window.InfoPanel.Children.Add(new PanelLineView());
         //}
 
-        private void Button_MouseWheel(object sender, MouseWheelEventArgs e)
-        {
-            Dop.Visibility = Visibility.Visible;
-        }
+        //private void Button_MouseWheel(object sender, MouseWheelEventArgs e)
+        //{
+        //    Dop.Visibility = Visibility.Visible;
+        //}
     }
 }

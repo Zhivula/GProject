@@ -278,11 +278,10 @@ namespace GraduationProject.ViewModel
             }
         }
 
-        public TransformerViewModel(Transformer transformer, double s = 0, double cosfi = 0.92, double kz = 0.60)
+        public TransformerViewModel(Transformer transformer, double s, double cosfi = 0.92, double kz = 0.56)
         {
             this.transformer = transformer;
             Kz = kz;
-            double cos = 0.92;
 
             S = s;
             Cosfi = cosfi;
@@ -290,18 +289,17 @@ namespace GraduationProject.ViewModel
             R = transformer.R;
             X = transformer.X;
 
-            if (S != 0 & Cosfi != 0)
-            {
-                Sj = S*Kz;
-                P2 = Sj * Cosfi;
-                Q2 = Sj * Math.Sqrt(1 - Cosfi * Cosfi);
-            }
-            else
-            {
-                Sj = transformer.Snom * Kz;
-                P2 = Sj * cosfi;
-                Q2 = Sj * Math.Sqrt(1 - cos * cos);
-        }
+            //if (S != 0 & Cosfi != 0)
+            //{
+            //    Sj = S*Kz;
+            //    P2 = Sj * Cosfi;
+            //    Q2 = Sj * Math.Sqrt(1 - Cosfi * Cosfi);
+            //}
+            //else
+            //{
+            Sj = S * Kz;
+            P2 = Sj * cosfi;
+            Q2 = Sj * Math.Sqrt(1 - cosfi * cosfi);
             DeltaU = (P2 * R + Q2 * X) / (10*1000);
             DPj = (P2 * P2 + Q2 * Q2) * R/ (10 * 10 * 1000);
             DQj = (P2 * P2 + Q2 * Q2) * X/ (10 * 10 * 1000);
@@ -318,7 +316,7 @@ namespace GraduationProject.ViewModel
             Snom = transformer.Snom;
             I = P1 / (Math.Sqrt(3) * 10 * Cosfi);
         }
-        public void ChangeParameters(Node<int> node, double S, double Cosfi)
+        public void ChangeParameters(Node<int> node, double Sj, double Cosfi)
         {
             var global = GlobalGrid.GetInstance();
 
@@ -326,10 +324,9 @@ namespace GraduationProject.ViewModel
             {
                 node.Delete(node.View);
 
-                this.S = S;
                 this.Cosfi = Cosfi;
 
-                Sj = S;
+                this.Sj = Sj;
                 P2 = Sj * Cosfi;
                 Q2 = Sj * Math.Sqrt(1 - Cosfi * Cosfi);
                 DeltaU = (P2 * R + Q2 * X) / (10*1000);
@@ -345,7 +342,7 @@ namespace GraduationProject.ViewModel
                 node.Add(node);
             }
         }
-        public void UpdateTrL(Node<int> node, double S, double Cosfi)
+        public void UpdateTrL(Node<int> node, double Sj, double Cosfi)
         {
             var global = GlobalGrid.GetInstance();
 
@@ -353,10 +350,9 @@ namespace GraduationProject.ViewModel
             {
                 node.Delete(node.View);
 
-                this.S = S;
                 this.Cosfi = Cosfi;
 
-                Sj = S;
+                this.Sj = Sj;
                 P2 = Sj * Cosfi;
                 Q2 = Sj * Math.Sqrt(1 - Cosfi * Cosfi);
                 DeltaU = (P2 * R + Q2 * X) / (10 * 1000);

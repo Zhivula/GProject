@@ -93,6 +93,7 @@
     <Compile Include="Data\BranchesTable.cs" />
     <Compile Include="Data\BranchesTableMaxMin.cs" />
     <Compile Include="Data\BSK.cs" />
+    <Compile Include="Data\ChartBeforeVDT.cs" />
     <Compile Include="Data\InfoBranches.cs" />
     <Compile Include="Data\InfoBranchesMaxMin.cs" />
     <Compile Include="Data\InfoNodes.cs" />
@@ -121,6 +122,7 @@
     <Compile Include="ViewModel\BSKViewModel.cs" />
     <Compile Include="ViewModel\CatalogLineViewModel.cs" />
     <Compile Include="ViewModel\CatalogTransformerViewModel.cs" />
+    <Compile Include="ViewModel\ChartVDTViewModel.cs" />
     <Compile Include="ViewModel\CorrectLineViewModel.cs" />
     <Compile Include="ViewModel\ModeAnalysisViewModel.cs" />
     <Compile Include="ViewModel\PanelLineViewModel.cs" />
@@ -131,6 +133,9 @@
     </Compile>
     <Compile Include="View\BSKView.xaml.cs">
       <DependentUpon>BSKView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ChartVDTView.xaml.cs">
+      <DependentUpon>ChartVDTView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\CorrectLineView.xaml.cs">
       <DependentUpon>CorrectLineView.xaml</DependentUpon>
@@ -194,6 +199,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\BSKView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ChartVDTView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

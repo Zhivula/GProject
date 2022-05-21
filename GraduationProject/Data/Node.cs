@@ -461,8 +461,15 @@ namespace GraduationProject.Data
             var parent = Parent;
             var pp = parent;
             var key = 99999;
-            contextButton.Q2List.Add(key, Q);
-            contextButton.Q2 = contextButton.Q2List.Values.Sum();
+            if (!contextButton.Q2List.Keys.Contains(key))
+            {
+                contextButton.Q2List.Add(key, Q);
+                contextButton.Q2 = contextButton.Q2List.Values.Sum();
+            }
+            else
+            {
+                MessageBox.Show("Сейчас можно установить только 1 БСК.");
+            }
 
             var dP = (contextButton.P2 * contextButton.P2 + contextButton.Q2 * contextButton.Q2) * contextButton.Length * contextButton.R0 / (GlobalGrid.U * GlobalGrid.U * 1000);
             var dQ = (contextButton.P2 * contextButton.P2 + contextButton.Q2 * contextButton.Q2) * contextButton.Length * contextButton.X0 / (GlobalGrid.U * GlobalGrid.U * 1000);
@@ -555,9 +562,8 @@ namespace GraduationProject.Data
                 item.DU = (item.R * item.P1 + item.X * item.P1) / (u * 1000);
                 item.U1 = u;
                 u -= (float)item.DU;
-                //if (item.VisibilytyVDT == Visibility.Visible) item.U2 = 10.5f;
-                //else
-                item.U2 = u;
+                if (item.VisibilytyVDT == Visibility.Visible) item.U2 = 10.5f;
+                else item.U2 = u;
                 u = item.U2;
                 item.I1 = Math.Sqrt(Math.Pow(item.P1, 2) + Math.Pow(item.Q1, 2)) / (Math.Sqrt(3) * 10);
                 item.I2 = Math.Sqrt(Math.Pow(item.P2, 2) + Math.Pow(item.Q2, 2)) / (Math.Sqrt(3) * 10);
@@ -646,9 +652,8 @@ namespace GraduationProject.Data
                 item.DU = (item.R * item.P1 + item.X * item.P1) / ((float)GlobalGrid.U * 1000);
                 item.U1 = u;
                 u -= (float)item.DU;
-                //if (item.VisibilytyVDT == Visibility.Visible) item.U2 = 10.5f;
-                //else 
-                item.U2 = u;
+                if (item.VisibilytyVDT == Visibility.Visible) item.U2 = 10.5f;
+                else item.U2 = u;
                 u = item.U2;
                 item.I1 = Math.Sqrt(Math.Pow(item.P1,2) + Math.Pow(item.Q1, 2)) / (Math.Sqrt(3) * 10);
                 item.I2 = Math.Sqrt(Math.Pow(item.P2, 2) + Math.Pow(item.Q2, 2)) / (Math.Sqrt(3) * 10);

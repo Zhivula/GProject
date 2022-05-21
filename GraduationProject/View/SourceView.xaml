@@ -6,8 +6,16 @@
              xmlns:local="clr-namespace:GraduationProject.View"
              mc:Ignorable="d"  d:DesignWidth="150" d:DesignHeight="90">
     <Grid>
-        <TextBlock Text="{Binding Name}" FontSize="15" Foreground="BlueViolet" FontWeight="Bold" HorizontalAlignment="Right" Margin="0 -25 30 0"/>
-        <TextBlock Text="{Binding Voltage}" FontSize="15" Foreground="DarkViolet" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0 0 30 -25"/>
+        <TextBlock Text="{Binding Name}" FontSize="15" Foreground="BlueViolet" FontWeight="Bold" HorizontalAlignment="Right" Margin="0 -25 30 0">
+            <TextBlock.RenderTransform>
+                        <TranslateTransform X="120" Y="0"/>
+            </TextBlock.RenderTransform>
+        </TextBlock>
+        <TextBlock Text="{Binding Voltage}" FontSize="15" Foreground="DarkViolet" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0 0 30 -25">
+            <TextBlock.RenderTransform>
+                <TranslateTransform X="25" Y="0"/>
+            </TextBlock.RenderTransform>
+        </TextBlock>
         <TextBlock Text="0" FontSize="15" Foreground="Black" HorizontalAlignment="Right" FontWeight="DemiBold" Margin="0 20 -10 0"/>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
             <Grid>

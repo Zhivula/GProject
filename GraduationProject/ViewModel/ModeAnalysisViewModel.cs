@@ -378,10 +378,10 @@ namespace GraduationProject.ViewModel
             Branch_5 = -5;
 
             N = 1.3;
-            M = 0.15;
+            M = 0.45;
             Ust = 1.78;
             DUnnyMin = 0;
-            DUnnyMax = 6;
+            DUnnyMax = 5;
             DUcpMax = 5;
             DUcpMin = 0;
 
@@ -416,8 +416,8 @@ namespace GraduationProject.ViewModel
                 {
                     N = context.N,
                     K = context.K,
-                    P = (context.P1 * m).ToString("0.####"),
-                    Q = (context.Q1 * m).ToString("0.####"),
+                    P = (context.P2 * m).ToString("0.####"),
+                    Q = (context.Q2 * m).ToString("0.####"),
                     Cosfi = (context.Cosfi).ToString("0.####"),
                     Sj = (context.Sj*m).ToString("0.####")
                 });
@@ -618,7 +618,7 @@ namespace GraduationProject.ViewModel
             BranchesMainTableMin = FindRangeForBranches(DUcpMin, M); 
             BranchesTableMin = FullBranchesTable(BranchesMainTableMin);
             for (var i = 0; i < BranchesTableMin.Count; i++) BranchesTableMaxMin[i].BranchesTableMin = BranchesTableMin[i];
-            PlotMin = GetPlotModel();
+            PlotMin = GetPlotModel(0);
             //Возврат к режиму наибольших нагрузок
             foreach (var i in ItemsSourceMax)
             {
@@ -631,7 +631,7 @@ namespace GraduationProject.ViewModel
             var listSelectedBranches = GetSelectedBranches();
 
             for (var i = 0; i < listSelectedBranches.Count; i++) BranchesTableMaxMin[i].BranchesTableSelected = listSelectedBranches[i];
-            PlotMax = GetPlotModel();
+            PlotMax = GetPlotModel(5);
         });
         public ICommand ShowCharts => new DelegateCommand(o =>
         {
@@ -842,7 +842,7 @@ namespace GraduationProject.ViewModel
                 return "-";
             }
         }
-        public PlotModel GetPlotModel()
+        public PlotModel GetPlotModel(double percent)
         {
             #region ScrollToTop
             var window = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
@@ -884,7 +884,7 @@ namespace GraduationProject.ViewModel
                 MarkerType = MarkerType.None,
             };
 
-            var dictionarySecond = GetDataChartSecond();
+            var dictionarySecond = GetDataChartSecond(percent);
             if (dictionarySecond.Count > 0)
             {
                 var valuesList = dictionarySecond.Values.ToList();
@@ -915,7 +915,7 @@ namespace GraduationProject.ViewModel
                 //plot.Axes.Add(dateAxisV);
             }
 
-            var dictionary = GetDataChart();
+            var dictionary = GetDataChart(percent);
 
             if (dictionary.Count > 0)
             {
@@ -946,37 +946,37 @@ namespace GraduationProject.ViewModel
 
             return plot;
         }
-        private Dictionary<string, double> GetDataChart()
+        private Dictionary<string, double> GetDataChart(double percent)
         {
             var list = new Dictionary<string, double>();
             var nodes = GetElements();
-            list.Add("ЦП", 5);
+            list.Add("ЦП", percent);
 
             foreach (var i in nodes)
             {
                 if (i.View.DataContext is TransformerViewModel contextTransformer)
                 {
-                    list.Add(contextTransformer.K.ToString(), 5 - ((GlobalGrid.U - contextTransformer.U1) / (GlobalGrid.U)) * 100 );
+                    list.Add(contextTransformer.K.ToString(), percent - ((GlobalGrid.U - contextTransformer.U1) / (GlobalGrid.U)) * 100 );
                 }
             }
             list = list.OrderByDescending(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
             return list;
         }
-        private Dictionary<string, List<double>> GetDataChartSecond()
+        private Dictionary<string, List<double>> GetDataChartSecond(double percent)
         {
             var list = new Dictionary<string, List<double>>();
             var nodes = GetElements();
             list.Add("ЦП", new List<double>(1));
-            list.Values.First().Add(5);
+            list.Values.First().Add(percent);
 
             foreach (var i in nodes)
             {
                 if (i.View.DataContext is TransformerViewModel contextTransformer)
                 {
                     list.Add(contextTransformer.K.ToString(), new List<double>(3) {
-                        5 - ((GlobalGrid.U - contextTransformer.U1) / GlobalGrid.U) * 100,
-                        5 - ((GlobalGrid.U - (contextTransformer.U1-contextTransformer.DeltaU)) / GlobalGrid.U) * 100,
-                        5 - ((GlobalGrid.U - contextTransformer.U1) / GlobalGrid.U) * 100
+                        percent - ((GlobalGrid.U - contextTransformer.U1) / GlobalGrid.U) * 100,
+                        percent - ((GlobalGrid.U - (contextTransformer.U1-contextTransformer.DeltaU)) / GlobalGrid.U) * 100,
+                        percent - ((GlobalGrid.U - contextTransformer.U1) / GlobalGrid.U) * 100
                     });
                 }
             }

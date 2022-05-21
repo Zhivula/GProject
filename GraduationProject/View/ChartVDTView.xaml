@@ -1,0 +1,54 @@
+﻿<UserControl x:Class="GraduationProject.View.ChartVDTView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GraduationProject.View"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:oxy="http://oxyplot.org/wpf"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Background="Transparent" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Grid Background="Black" Opacity="0.3" />
+        <Grid Margin="50 30">
+            <Border CornerRadius="7" Background="#17171a">
+                <Border.Effect>
+                    <DropShadowEffect ShadowDepth="0" Direction="90" Color="Black" Opacity="0.75"  BlurRadius="10.0" />
+                </Border.Effect>
+            </Border>
+            <DockPanel>
+                <Grid DockPanel.Dock="Top">
+                    <TextBlock Text="Графики напряжений" Foreground="White" HorizontalAlignment="Center" FontSize="20"/>
+                    <Button HorizontalAlignment="Right" Command="{Binding Close}" Background="Transparent" BorderThickness="0">
+                        <materialDesign:PackIcon Kind="Close" Foreground="White" Height="30" Width="30"/>
+                    </Button>
+                </Grid>
+                <Grid DockPanel.Dock="Bottom" Height="20">
+
+                </Grid>
+                <ScrollViewer>
+                    <StackPanel>
+                        <TextBlock Text="График напряжений до установки ВДТ" Foreground="White" HorizontalAlignment="Left" FontSize="15" Margin="10 10 0 0"/>
+                        <Grid Margin="15 5 15 15">
+                            <Border CornerRadius="7"  Background="White">
+                                <Border.Effect>
+                                    <DropShadowEffect ShadowDepth="0" Direction="90" Color="Black" Opacity="0.75"  BlurRadius="10.0" />
+                                </Border.Effect>
+                            </Border>
+                            <oxy:PlotView Background="Transparent" Model="{Binding PlotBefore}" Margin="10" Height="400"/>
+                        </Grid>
+                        <TextBlock Text="График напряжений после установки ВДТ" Foreground="White" HorizontalAlignment="Left" FontSize="15" Margin="10 10 0 0"/>
+                        <Grid Margin="15 5 15 15">
+                            <Border CornerRadius="7"  Background="White">
+                                <Border.Effect>
+                                    <DropShadowEffect ShadowDepth="0" Direction="90" Color="Black" Opacity="0.75"  BlurRadius="10.0" />
+                                </Border.Effect>
+                            </Border>
+                            <oxy:PlotView Background="Transparent" Model="{Binding PlotAfter}" Margin="10" Height="400"/>
+                        </Grid>
+                    </StackPanel>
+                </ScrollViewer>
+            </DockPanel>
+        </Grid>
+    </Grid>
+</UserControl>

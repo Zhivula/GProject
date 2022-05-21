@@ -22,11 +22,22 @@ namespace GraduationProject.ViewModel
     {
         private MainWindow window;
         public readonly MainWindowModel Model;
+        private Visibility visibilityChartVDT;
 
+        public Visibility VisibilityChartVDT
+        {
+            get => visibilityChartVDT;
+            set
+            {
+                visibilityChartVDT = value;
+                OnPropertyChanged(nameof(VisibilityChartVDT));
+            }
+        }
         public MainWindowViewModel()
         {
             Model = new MainWindowModel();
             window = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+            VisibilityChartVDT = Visibility.Visible;
         }
         public ICommand CreateNewSource => new DelegateCommand(o =>
         {
@@ -142,6 +153,10 @@ namespace GraduationProject.ViewModel
         public ICommand Iter => new DelegateCommand(o =>
         {
             Model.Iter();
+        });
+        public ICommand ChartVDT => new DelegateCommand(o =>
+        {
+            Model.ChartVDT();
         });
         public ICommand Home => new DelegateCommand(o =>
         { 
