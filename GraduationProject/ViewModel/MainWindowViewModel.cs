@@ -23,6 +23,7 @@ namespace GraduationProject.ViewModel
         private MainWindow window;
         public readonly MainWindowModel Model;
         private Visibility visibilityChartVDT;
+        private double kZ; 
 
         public Visibility VisibilityChartVDT
         {
@@ -31,6 +32,15 @@ namespace GraduationProject.ViewModel
             {
                 visibilityChartVDT = value;
                 OnPropertyChanged(nameof(VisibilityChartVDT));
+            }
+        }
+        public double KZ
+        {
+            get => kZ;
+            set
+            {
+                kZ = value;
+                OnPropertyChanged(nameof(KZ));
             }
         }
         public MainWindowViewModel()
@@ -157,6 +167,10 @@ namespace GraduationProject.ViewModel
         public ICommand ChartVDT => new DelegateCommand(o =>
         {
             Model.ChartVDT();
+        });
+        public ICommand ChangeKZ_ALL => new DelegateCommand(o =>
+        {
+            if (KZ != 0) Model.ChangeKZ_ALL(KZ);
         });
         public ICommand Home => new DelegateCommand(o =>
         { 

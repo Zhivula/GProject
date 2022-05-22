@@ -174,6 +174,8 @@ namespace GraduationProject.ViewModel
             dP = P1 - P2;
             dQ = Q1 - Q2;
             dU = U1 - U2;
+            U1 = context.U1;
+            U2 = context.U2;
             Brand = context.Brand;
             DeltaU = context.DeltaU;
         }

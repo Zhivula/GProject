@@ -287,6 +287,17 @@ namespace GraduationProject.Model
             var window = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
             window.StaticGrid.Children.Add(new ChartVDTView());
         }
+        public void ChangeKZ_ALL(double KZ)
+        {
+            var listElements = GlobalGrid.GetInstance().Tree.GetElements();
+            var listTransformers = listElements.Where(x => x.View.DataContext is TransformerViewModel).ToList();
+            foreach (var i in listTransformers)
+            {
+                var c = i.View.DataContext as TransformerViewModel;
+                c.ChangeParameters(i, c.S*KZ, c.Cosfi);
+            }
+            MessageBox.Show("Успешно выполнено!");
+        }
         /// <summary>
         /// Сохранение сериализируемой модели сети в отдельный файл.
         /// </summary>

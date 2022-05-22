@@ -47,6 +47,7 @@ namespace GraduationProject.ViewModel
         private Visibility visibility;
         private Transformer transformer;
         private SolidColorBrush colorNode;
+        private SolidColorBrush colorNodeLast;
 
         public Visibility Visibility
         {
@@ -277,8 +278,17 @@ namespace GraduationProject.ViewModel
                 OnPropertyChanged(nameof(ColorNode));
             }
         }
+        public SolidColorBrush ColorNodeLast
+        {
+            get => colorNodeLast;
+            set
+            {
+                colorNodeLast = value;
+                OnPropertyChanged(nameof(ColorNodeLast));
+            }
+        }
 
-        public TransformerViewModel(Transformer transformer, double s, double cosfi = 0.92, double kz = 0.56)
+        public TransformerViewModel(Transformer transformer, double s, double cosfi = 0.92, double kz = 0.32)
         {
             this.transformer = transformer;
             Kz = kz;

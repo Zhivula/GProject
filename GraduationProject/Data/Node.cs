@@ -537,20 +537,33 @@ namespace GraduationProject.Data
             if (transformer != null)
             {
                 transformer.U1 = (Parent.View.DataContext as LineViewModel).U2;
-                var DU = (transformer.R * transformer.P1 + transformer.X * transformer.P1) / (transformer.U1 * 1000);
-                transformer.U2 = transformer.U2 - DU;
+                var DU = (transformer.R * transformer.P1 + transformer.X * transformer.P1) / (10 * 1000);
+                transformer.U2 = transformer.U1 - DU;
                 var deltaUPercent = ((GlobalGrid.U - transformer.U1) / GlobalGrid.U) * 100;
                 if (deltaUPercent >= 10)
                 {
                     transformer.ColorNode = new SolidColorBrush(Colors.Red);
                 }
-                if (deltaUPercent >= 5 && deltaUPercent < 10)
+                if (deltaUPercent >= 5 & deltaUPercent < 10)
                 {
                     transformer.ColorNode = new SolidColorBrush(Colors.Yellow);
                 }
                 if (deltaUPercent < 5)
                 {
                     transformer.ColorNode = new SolidColorBrush(Colors.Green);
+                }
+                var deltaUPercentLast = ((GlobalGrid.U - transformer.U2) / GlobalGrid.U) * 100;
+                if (deltaUPercentLast >= 10)
+                {
+                    transformer.ColorNodeLast = new SolidColorBrush(Colors.Red);
+                }
+                if (deltaUPercentLast >= 5 && deltaUPercentLast < 10)
+                {
+                    transformer.ColorNodeLast = new SolidColorBrush(Colors.Yellow);
+                }
+                if (deltaUPercentLast < 5)
+                {
+                    transformer.ColorNodeLast = new SolidColorBrush(Colors.Green);
                 }
             }
 
@@ -628,7 +641,7 @@ namespace GraduationProject.Data
             {
                 transformer.U1 = (Parent.View.DataContext as LineViewModel).U2;
                 var DU = (transformer.R * transformer.P1 + transformer.X * transformer.P1) / (transformer.U1 * 1000);
-                transformer.U2 = transformer.U2 - DU;
+                transformer.U2 = transformer.U1 - DU;
                 var deltaUPercent = ((GlobalGrid.U - transformer.U1) / GlobalGrid.U) * 100;
                 if (deltaUPercent >= 10)
                 {
@@ -641,6 +654,19 @@ namespace GraduationProject.Data
                 if (deltaUPercent < 5)
                 {
                     transformer.ColorNode = new SolidColorBrush(Colors.Green);
+                }
+                var deltaUPercentLast = ((GlobalGrid.U - transformer.U2) / GlobalGrid.U) * 100;
+                if (deltaUPercentLast >= 10)
+                {
+                    transformer.ColorNodeLast = new SolidColorBrush(Colors.Red);
+                }
+                if (deltaUPercentLast >= 5 && deltaUPercentLast < 10)
+                {
+                    transformer.ColorNodeLast = new SolidColorBrush(Colors.Yellow);
+                }
+                if (deltaUPercentLast < 5)
+                {
+                    transformer.ColorNodeLast = new SolidColorBrush(Colors.Green);
                 }
             }
 
