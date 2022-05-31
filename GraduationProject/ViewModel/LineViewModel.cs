@@ -51,6 +51,7 @@ namespace GraduationProject.ViewModel
         private Dictionary<int, double> wq1List;
         private Color color;
         private SolidColorBrush colorNode;
+        private SolidColorBrush colorNodeLast;
         private Visibility visibilytyVDT;
         private Visibility visibilytyBSK;
         private double qBSK;
@@ -334,6 +335,15 @@ namespace GraduationProject.ViewModel
                 OnPropertyChanged(nameof(ColorNode));
             }
         }
+        public SolidColorBrush ColorNodeLast
+        {
+            get => colorNodeLast;
+            set
+            {
+                colorNodeLast = value;
+                OnPropertyChanged(nameof(ColorNodeLast));
+            }
+        }
         /// <summary>
         /// Хранит активные мощности P2 протекающие по линии
         /// </summary>
@@ -463,6 +473,7 @@ namespace GraduationProject.ViewModel
             Opacity = 0;
             Color = Colors.Transparent;
             ColorNode = new SolidColorBrush(Colors.Green);
+            ColorNodeLast = new SolidColorBrush(Colors.Green);
             P2List = new Dictionary<int, double>();
             P1List = new Dictionary<int, double>();
             Q2List = new Dictionary<int, double>();

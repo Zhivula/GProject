@@ -8,10 +8,10 @@ namespace GraduationProject.View
     /// </summary>
     public partial class ChartVDTView : UserControl
     {
-        public ChartVDTView()
+        public ChartVDTView(string name)
         {
             InitializeComponent();
-            DataContext = new ChartVDTViewModel();
+            DataContext = new ChartVDTViewModel(name);
         }
     }
 }

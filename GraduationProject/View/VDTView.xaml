@@ -29,6 +29,7 @@
                             <TextBlock DockPanel.Dock="Top" Text="{Binding N}" Foreground="White" HorizontalAlignment="Center" FontSize="16"/>
                             <TextBlock DockPanel.Dock="Top" Text=" - " Foreground="White" HorizontalAlignment="Center" FontSize="16"/>
                             <TextBlock DockPanel.Dock="Top" Text="{Binding K}" Foreground="White" HorizontalAlignment="Center" FontSize="16"/>
+                            <ComboBox ItemsSource="{Binding ComboboxSource}" SelectedItem="{Binding SelectedItem}" Margin="20 0 0 0"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock DockPanel.Dock="Top" Text="Напряжение в начале:   " Foreground="White" HorizontalAlignment="Center" FontSize="16"/>

@@ -285,7 +285,8 @@ namespace GraduationProject.Model
         public void ChartVDT()
         {
             var window = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
-            window.StaticGrid.Children.Add(new ChartVDTView());
+            if (GlobalGrid.VDT) window.StaticGrid.Children.Add(new ChartVDTView("ВДТ"));
+            if (GlobalGrid.BSK) window.StaticGrid.Children.Add(new ChartVDTView("БСК"));
         }
         public void ChangeKZ_ALL(double KZ)
         {

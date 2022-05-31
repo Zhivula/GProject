@@ -23,6 +23,8 @@ namespace GraduationProject.Data
             if (instance == null) instance = new GlobalGrid();
             return instance;
         }
+        public static bool VDT;
+        public static bool BSK;
         public static int T = 8760;
         public static double U = 10.5d;
 

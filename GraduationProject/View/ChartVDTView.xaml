@@ -28,23 +28,29 @@
                 </Grid>
                 <ScrollViewer>
                     <StackPanel>
-                        <TextBlock Text="График напряжений до установки ВДТ" Foreground="White" HorizontalAlignment="Left" FontSize="15" Margin="10 10 0 0"/>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="График напряжений до установки " Foreground="White" HorizontalAlignment="Left" FontSize="15" Margin="10 10 0 0"/>
+                            <TextBlock Text="{Binding Name}" Foreground="White" HorizontalAlignment="Left" FontSize="15" Margin="10 10 0 0"/>
+                        </StackPanel>
                         <Grid Margin="15 5 15 15">
                             <Border CornerRadius="7"  Background="White">
                                 <Border.Effect>
                                     <DropShadowEffect ShadowDepth="0" Direction="90" Color="Black" Opacity="0.75"  BlurRadius="10.0" />
                                 </Border.Effect>
                             </Border>
-                            <oxy:PlotView Background="Transparent" Model="{Binding PlotBefore}" Margin="10" Height="400"/>
+                            <oxy:PlotView Background="Transparent" Model="{Binding PlotBefore}" Margin="10" Height="500"/>
                         </Grid>
-                        <TextBlock Text="График напряжений после установки ВДТ" Foreground="White" HorizontalAlignment="Left" FontSize="15" Margin="10 10 0 0"/>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="График напряжений после установки " Foreground="White" HorizontalAlignment="Left" FontSize="15" Margin="10 10 0 0"/>
+                            <TextBlock Text="{Binding Name}" Foreground="White" HorizontalAlignment="Left" FontSize="15" Margin="10 10 0 0"/>
+                        </StackPanel>
                         <Grid Margin="15 5 15 15">
                             <Border CornerRadius="7"  Background="White">
                                 <Border.Effect>
                                     <DropShadowEffect ShadowDepth="0" Direction="90" Color="Black" Opacity="0.75"  BlurRadius="10.0" />
                                 </Border.Effect>
                             </Border>
-                            <oxy:PlotView Background="Transparent" Model="{Binding PlotAfter}" Margin="10" Height="400"/>
+                            <oxy:PlotView Background="Transparent" Model="{Binding PlotAfter}" Margin="10" Height="500"/>
                         </Grid>
                     </StackPanel>
                 </ScrollViewer>

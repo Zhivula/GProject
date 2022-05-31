@@ -45,8 +45,19 @@ namespace GraduationProject.ViewModel
                 OnPropertyChanged(nameof(PlotNow));
             }
         }
-        public ChartVDTViewModel()
+        private string name;
+        public string Name
         {
+            get => name;
+            set
+            {
+                name = value;
+                OnPropertyChanged(nameof(Name));
+            }
+        }
+        public ChartVDTViewModel(string name)
+        {
+            Name = name;
             var chartBeforeVDT = new ChartBeforeVDT();
             if (ChartBeforeVDT.plotBefore != null)
             {

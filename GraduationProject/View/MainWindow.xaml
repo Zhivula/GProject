@@ -24,12 +24,14 @@
                     </Canvas>
                 </Grid>
             </ScrollViewer>
-            <Button HorizontalAlignment="Left" VerticalAlignment="Top" BorderThickness="0" Height="50" Width="50" Margin="5 5">
-                <Border BorderBrush="#222531" Background="#222531" CornerRadius="5" Margin="0" Padding="14 5">
-                    <StackPanel Orientation="Vertical">
-                        <materialDesign:PackIcon Kind="UploadNetwork" Foreground="White" Height="20" Width="auto" HorizontalAlignment="Center"/>
-                        <TextBlock Text="Kz" Foreground="White" FontSize="12" HorizontalAlignment="Center"/>
-                    </StackPanel>
+            <Button HorizontalAlignment="Left" VerticalAlignment="Top" BorderThickness="0" Height="49" Width="50" Margin="5 5" Padding="1">
+                <Border Padding="3 3 3 3" Background="DarkViolet" CornerRadius="5" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Border BorderBrush="#222531" Background="#222531" CornerRadius="5" Margin="0" Padding="10 2" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <StackPanel Orientation="Vertical">
+                            <materialDesign:PackIcon Kind="UploadNetwork" Foreground="White" Height="20" Width="auto" HorizontalAlignment="Center"/>
+                            <TextBlock Text="Kz" Foreground="White" FontSize="12" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
                 </Border>
                 <Button.Triggers>
                     <EventTrigger RoutedEvent="Button.Click">
@@ -56,7 +58,7 @@
                 </Border.Effect>
                 <StackPanel HorizontalAlignment="Left" Margin="10 0" Orientation="Horizontal" VerticalAlignment="Center">
                     <TextBlock Text="Коэффициент загрузки: " FontSize="15" Foreground="BlueViolet" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                    <TextBox Text="{Binding KZ}" Margin="10 0 0 0" Width="101" Height="25" FontSize="20" Foreground="Black">
+                    <TextBox Text="{Binding KZ}" Margin="10 0 0 0" Width="101" Height="25" FontSize="18" Foreground="Black">
                         <TextBox.Template>
                             <ControlTemplate>
                                 <Border CornerRadius="5"  BorderThickness="1" BorderBrush="#FF468AFF" Background="White">
@@ -388,7 +390,7 @@
                         <TranslateTransform X="0" Y="0"/>
                     </Button.RenderTransform>
                 </Button>
-                <Button HorizontalAlignment="Right" VerticalAlignment="Top" BorderThickness="0" Height="50" Width="50" Margin="20 5" Command="{Binding BSKCatalog}">
+                <!--<Button HorizontalAlignment="Right" VerticalAlignment="Top" BorderThickness="0" Height="50" Width="50" Margin="20 5" Command="{Binding BSKCatalog}">
                     <Border BorderBrush="#222531" Background="#222531" CornerRadius="5" Margin="0" Padding="11 0">
                         <Grid>
                             <StackPanel Orientation="Vertical">
@@ -428,7 +430,7 @@
                     <Button.RenderTransform>
                         <TranslateTransform X="0" Y="0"/>
                     </Button.RenderTransform>
-                </Button>
+                </Button>-->
                 <Button HorizontalAlignment="Right" VerticalAlignment="Top" BorderThickness="0" Height="50" Width="50" Margin="20 5" Command="{Binding Iter}">
                     <Border BorderBrush="#222531" Background="#222531" CornerRadius="5" Margin="0" Padding="4 8">
                         <Grid>

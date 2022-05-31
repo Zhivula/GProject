@@ -251,6 +251,13 @@ namespace GraduationProject.ViewModel
         {
             if (line != null)
             {
+                GlobalGrid.VDT = false;
+                GlobalGrid.BSK = true;
+                var chartVDTViewModel = new ChartVDTViewModel("БСК");
+                var chartBeforeVDT = new ChartBeforeVDT();
+                ChartBeforeVDT.plotBefore = chartVDTViewModel.GetPlotModel();//Как бы сохранение исходного графика до установки ВДТ
+                ChartBeforeVDT.dictionarySecondBefore = chartVDTViewModel.GetDataChartSecond(5);
+                ChartBeforeVDT.dictionaryFirstBefore = chartVDTViewModel.GetDataChart(5);
                 line.VisibilytyBSK = Visibility.Visible;
                 //line.QBSK = SBSK;
                 //line.U2 = (float)GlobalGrid.U;

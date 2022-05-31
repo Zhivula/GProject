@@ -78,7 +78,7 @@
                         <ControlTemplate TargetType="Button">
                             <Grid>
                                 <Ellipse Fill="Green"/>
-                                <Ellipse Fill="{Binding ColorNode}">
+                                <Ellipse Fill="{Binding ColorNodeLast}">
                                 </Ellipse>
                                 <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Grid>

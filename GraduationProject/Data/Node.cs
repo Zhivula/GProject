@@ -537,7 +537,7 @@ namespace GraduationProject.Data
             if (transformer != null)
             {
                 transformer.U1 = (Parent.View.DataContext as LineViewModel).U2;
-                var DU = (transformer.R * transformer.P1 + transformer.X * transformer.P1) / (10 * 1000);
+                var DU = (transformer.R * transformer.P1 + transformer.X * transformer.Q1) / (10 * 1000);
                 transformer.U2 = transformer.U1 - DU;
                 var deltaUPercent = ((GlobalGrid.U - transformer.U1) / GlobalGrid.U) * 100;
                 if (deltaUPercent >= 10)
@@ -572,7 +572,7 @@ namespace GraduationProject.Data
             {
                 item.R = item.R0 * item.Length;
                 item.X = item.X0 * item.Length;
-                item.DU = (item.R * item.P1 + item.X * item.P1) / (u * 1000);
+                item.DU = (item.R * item.P1 + item.X * item.Q1) / (u * 1000);
                 item.U1 = u;
                 u -= (float)item.DU;
                 if (item.VisibilytyVDT == Visibility.Visible) item.U2 = 10.5f;
@@ -581,7 +581,8 @@ namespace GraduationProject.Data
                 item.I1 = Math.Sqrt(Math.Pow(item.P1, 2) + Math.Pow(item.Q1, 2)) / (Math.Sqrt(3) * 10);
                 item.I2 = Math.Sqrt(Math.Pow(item.P2, 2) + Math.Pow(item.Q2, 2)) / (Math.Sqrt(3) * 10);
 
-                var deltaUPercent = ((GlobalGrid.U - item.U2) / GlobalGrid.U) * 100;
+                var deltaUPercentLast = ((GlobalGrid.U - item.U2) / GlobalGrid.U) * 100;
+                var deltaUPercentFirst = ((GlobalGrid.U - item.U1) / GlobalGrid.U) * 100;
 
                 var kzLine = item.I2 / item.Idop;
 
@@ -613,20 +614,35 @@ namespace GraduationProject.Data
                     var b = View as LineView;
                     b.BorderGradient.BeginAnimation(Border.OpacityProperty, buttonAnimation);
                 }
-                if (deltaUPercent >= 10)
+                if (deltaUPercentFirst >= 10)
                 {
                     item.Opacity = 1;
                     item.ColorNode = new SolidColorBrush(Colors.Red);
                 }
-                if (deltaUPercent >= 5 && deltaUPercent < 10)
+                if (deltaUPercentFirst >= 5 && deltaUPercentFirst < 10)
                 {
                     item.Opacity = 1;
                     item.ColorNode = new SolidColorBrush(Colors.Yellow);
                 }
-                if (deltaUPercent < 5)
+                if (deltaUPercentFirst < 5)
                 {
                     item.Opacity = 1;
                     item.ColorNode = new SolidColorBrush(Colors.Green);
+                }
+                if (deltaUPercentLast >= 10)
+                {
+                    item.Opacity = 1;
+                    item.ColorNodeLast = new SolidColorBrush(Colors.Red);
+                }
+                if (deltaUPercentLast >= 5 && deltaUPercentLast < 10)
+                {
+                    item.Opacity = 1;
+                    item.ColorNodeLast = new SolidColorBrush(Colors.Yellow);
+                }
+                if (deltaUPercentLast < 5)
+                {
+                    item.Opacity = 1;
+                    item.ColorNodeLast = new SolidColorBrush(Colors.Green);
                 }
                 foreach (var i in List)
                 {
@@ -640,7 +656,7 @@ namespace GraduationProject.Data
             if (transformer != null)
             {
                 transformer.U1 = (Parent.View.DataContext as LineViewModel).U2;
-                var DU = (transformer.R * transformer.P1 + transformer.X * transformer.P1) / (transformer.U1 * 1000);
+                var DU = (transformer.R * transformer.P1 + transformer.X * transformer.Q1) / (transformer.U1 * 1000);
                 transformer.U2 = transformer.U1 - DU;
                 var deltaUPercent = ((GlobalGrid.U - transformer.U1) / GlobalGrid.U) * 100;
                 if (deltaUPercent >= 10)
@@ -675,7 +691,7 @@ namespace GraduationProject.Data
             {
                 item.R = item.R0 * item.Length;
                 item.X = item.X0 * item.Length;
-                item.DU = (item.R * item.P1 + item.X * item.P1) / ((float)GlobalGrid.U * 1000);
+                item.DU = (item.R * item.P1 + item.X * item.Q1) / ((float)GlobalGrid.U * 1000);
                 item.U1 = u;
                 u -= (float)item.DU;
                 if (item.VisibilytyVDT == Visibility.Visible) item.U2 = 10.5f;
@@ -684,7 +700,8 @@ namespace GraduationProject.Data
                 item.I1 = Math.Sqrt(Math.Pow(item.P1,2) + Math.Pow(item.Q1, 2)) / (Math.Sqrt(3) * 10);
                 item.I2 = Math.Sqrt(Math.Pow(item.P2, 2) + Math.Pow(item.Q2, 2)) / (Math.Sqrt(3) * 10);
 
-                var deltaUPercent = ((GlobalGrid.U - item.U2) / GlobalGrid.U) * 100;
+                var deltaUPercentLast = ((GlobalGrid.U - item.U2) / GlobalGrid.U) * 100;
+                var deltaUPercentFirst = ((GlobalGrid.U - item.U1) / GlobalGrid.U) * 100;
 
                 var kzLine = item.I2 / item.Idop;
 
@@ -716,25 +733,41 @@ namespace GraduationProject.Data
                     var b = View as LineView;
                     b.BorderGradient.BeginAnimation(Border.OpacityProperty, buttonAnimation);
                 }
-                if (deltaUPercent >= 10)
+                if (deltaUPercentFirst >= 10)
                 {
                     item.Opacity = 1;
                     item.ColorNode = new SolidColorBrush(Colors.Red);
                 }
-                if (deltaUPercent >= 5 && deltaUPercent < 10)
+                if (deltaUPercentFirst >= 5 && deltaUPercentFirst < 10)
                 {
                     item.Opacity = 1;
                     item.ColorNode = new SolidColorBrush(Colors.Yellow);
                 }
-                if (deltaUPercent < 5)
+                if (deltaUPercentFirst < 5)
                 {
                     item.Opacity = 1;
                     item.ColorNode = new SolidColorBrush(Colors.Green);
+                }
+                if (deltaUPercentLast >= 10)
+                {
+                    item.Opacity = 1;
+                    item.ColorNodeLast = new SolidColorBrush(Colors.Red);
+                }
+                if (deltaUPercentLast >= 5 && deltaUPercentLast < 10)
+                {
+                    item.Opacity = 1;
+                    item.ColorNodeLast = new SolidColorBrush(Colors.Yellow);
+                }
+                if (deltaUPercentLast < 5)
+                {
+                    item.Opacity = 1;
+                    item.ColorNodeLast = new SolidColorBrush(Colors.Green);
                 }
                 foreach (var i in List)
                 {
                     i.Volt(u);
                 }
+
             }
         }
         public Node<T> Find(T start, T finish)

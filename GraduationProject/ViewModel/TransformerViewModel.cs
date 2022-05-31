@@ -339,13 +339,14 @@ namespace GraduationProject.ViewModel
                 this.Sj = Sj;
                 P2 = Sj * Cosfi;
                 Q2 = Sj * Math.Sqrt(1 - Cosfi * Cosfi);
-                DeltaU = (P2 * R + Q2 * X) / (10*1000);
+                //DeltaU = (P2 * R + Q2 * X) / (10*1000);
 
                 dPj = (P2 * P2 + Q2 * Q2) * R / (10 * 10 * 1000);
                 dQj = (P2 * P2 + Q2 * Q2) * X / (10 * 10 * 1000);
 
                 P1 = P2 + dPj + transformer.Pxx;
                 Q1 = Q2 + dQj + transformer.Qxx;
+                DeltaU = (P1 * R + Q1 * X) / (10 * 1000);
 
                 I = P1 / (Math.Sqrt(3)*10*Cosfi);
 
@@ -365,13 +366,14 @@ namespace GraduationProject.ViewModel
                 this.Sj = Sj;
                 P2 = Sj * Cosfi;
                 Q2 = Sj * Math.Sqrt(1 - Cosfi * Cosfi);
-                DeltaU = (P2 * R + Q2 * X) / (10 * 1000);
+                //DeltaU = (P2 * R + Q2 * X) / (10 * 1000);
 
                 dPj = (P2 * P2 + Q2 * Q2) * R / (10 * 10 * 1000);
                 dQj = (P2 * P2 + Q2 * Q2) * X / (10 * 10 * 1000);
 
                 P1 = P2 + dPj + transformer.Pxx;
                 Q1 = Q2 + dQj + transformer.Qxx;
+                DeltaU = (P1 * R + Q1 * X) / (10 * 1000);
 
                 I = P1 / (Math.Sqrt(3) * 10 * Cosfi);
 
